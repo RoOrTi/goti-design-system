@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Client Project Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                        "surface-dark": "#27241b",
+                        "border-dark": "#544e3b"
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Noto Sans", sans-serif;
+        }
+        h1, h2, h3, .font-display {
+            font-family: "Noto Serif", serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden max-w-[430px] mx-auto border-x border-border-dark/20">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
+<div class="text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-display uppercase tracking-widest">GOTI</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-surface-dark text-white">
+<span class="material-symbols-outlined text-primary">person</span>
+</button>
+</div>
+</header>
+<!-- Project Overview / SectionHeader -->
+<div class="px-4 pt-6">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] font-display">Project Status</h2>
+<p class="text-[#bab29c] text-sm mt-1">Luxury Penthouse Interior Design</p>
+</div>
+<!-- Progress Card -->
+<div class="p-4 @container">
+<div class="flex flex-col items-center justify-center rounded-xl p-8 bg-surface-dark border border-border-dark/30 shadow-2xl relative overflow-hidden">
+<!-- Circular Progress Ring -->
+<div class="relative flex items-center justify-center">
+<svg class="w-48 h-48 transform -rotate-90">
+<circle class="text-background-dark/50" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="193.52" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-bold font-display text-white">65%</span>
+<span class="text-[10px] uppercase tracking-widest text-[#bab29c]">Complete</span>
+</div>
+</div>
+<div class="mt-6 text-center">
+<p class="text-[#bab29c] text-sm font-normal leading-normal">Overall progress is ahead of schedule.</p>
+</div>
+</div>
+</div>
+<!-- ActionPanel / Current Phase -->
+<div class="p-4 @container">
+<div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-xl border border-border-dark bg-background-dark p-6 @[480px]:flex-row @[480px]:items-center">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">architecture</span>
+<p class="text-white text-base font-bold leading-tight uppercase tracking-wider font-display">Current Phase</p>
+</div>
+<p class="text-[#bab29c] text-sm font-normal leading-relaxed">Concept Development - Finalizing bespoke material palette and interior lighting studies for the master suite.</p>
+</div>
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal transition-transform active:scale-95">
+<span class="truncate">View Roadmap</span>
+</button>
+</div>
+</div>
+<!-- Recent Deliverables / SectionHeader -->
+<div class="px-4 pt-4">
+<h2 class="text-white text-[20px] font-bold leading-tight tracking-[-0.015em] font-display">Recent Deliverables</h2>
+</div>
+<!-- Horizontal Carousel -->
+<div class="flex overflow-x-auto gap-4 px-4 py-4 no-scrollbar">
+<div class="flex-shrink-0 w-64">
+<div class="h-40 w-full bg-center bg-no-repeat bg-cover rounded-lg border border-border-dark" data-alt="High-end material moodboard with gold and marble" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDscOsfaCuM9zixKBIPzr6GMXKsYzynNKtFz2tQMBM90UPrRxYcqq14rWObfaWtojgJpCThCJHMBkSONPKwlSiAyn4E75lGSIR2nwCa7MMn8Mx3mY6lfHJDYVRHduNA8u8B4sFMI7foqFlUf1jJ2Jq4y__DPXJIgn_TBVW7bXyDAGkU15GfD26KdYGchy3PwTh1YdDbMmLRBw6w_8DJsa0lSDFGBxzfJieGv5cClVHrWF9EW1kO65WROWrNQ2L1Ph_kg_0o41sGDJA");'></div>
+<p class="text-white text-sm font-bold mt-2">Material Palette v2</p>
+<p class="text-[#bab29c] text-[12px]">Delivered: Oct 12</p>
+</div>
+<div class="flex-shrink-0 w-64">
+<div class="h-40 w-full bg-center bg-no-repeat bg-cover rounded-lg border border-border-dark" data-alt="3D render of a luxury penthouse living room" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCF6Fa4bce5-TOuRHHbqd3EmCD4uZPIrtDlyHs3HYRmx8SFVNKtaAt8sHnj6dxxGKrf1f92nQg9cSr-U30pz-06lXEHpGLK5aCI_wh4nVpfW5BILkWjsYnFqrepzd5u8ndragl4z0-dujLHPkSbDwsq_rLLahw4hD84Mp7IyHuZVInX0j51VYXSIoV4NvWGIPo18UUs-ajEPTShnbeOjVj9xAY7deCfw_oc1Mg7qCrZHmFLohWXG1P79L0glP7sEAbG50FTcllaFgE");'></div>
+<p class="text-white text-sm font-bold mt-2">Main Hall Render</p>
+<p class="text-[#bab29c] text-[12px]">Delivered: Oct 10</p>
+</div>
+<div class="flex-shrink-0 w-64">
+<div class="h-40 w-full bg-center bg-no-repeat bg-cover rounded-lg border border-border-dark" data-alt="Architectural lighting plan blueprint" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYQwfuxgpKe8HoN9NUV7SAb5r5ISv4oY-wEVMWDtjAakmlW0J7GJjg5Z1oGVni51n1hfwqDyD1uZ7GH18aXnp5wFUW6ZaaY3otoqhqZOhMygEAqBzOnZzgMFoRWcvkLFZ6szT06qcRb0QqlOhs-IKGVRSzlADDYx4PEyCL3aHTMpzCHzteSAt0l9ePpdK59i7JliNLeUgWQuXtQ_yQEU9i-bf87IqyEpqxeYRgw44KHc1vkmkEY1ZyjLTSntD4V3QoDjo3l4PtQyU");'></div>
+<p class="text-white text-sm font-bold mt-2">Lighting Study</p>
+<p class="text-[#bab29c] text-[12px]">Delivered: Oct 08</p>
+</div>
+</div>
+<!-- Timeline Section -->
+<div class="px-4 pt-6 pb-12">
+<h2 class="text-white text-[20px] font-bold leading-tight tracking-[-0.015em] font-display mb-6">Upcoming Milestones</h2>
+<div class="relative ml-2 border-l border-border-dark pl-6 space-y-8">
+<!-- Node 1 -->
+<div class="relative">
+<div class="absolute -left-[30px] top-0 w-4 h-4 bg-primary rounded-full ring-4 ring-background-dark"></div>
+<div>
+<p class="text-primary text-[11px] font-bold uppercase tracking-widest">Oct 25</p>
+<p class="text-white text-base font-bold">FF&amp;E Selection Finalized</p>
+<p class="text-[#bab29c] text-sm mt-1">Selection of luxury furniture, fixtures, and equipment.</p>
+</div>
+</div>
+<!-- Node 2 -->
+<div class="relative">
+<div class="absolute -left-[30px] top-0 w-4 h-4 bg-border-dark rounded-full ring-4 ring-background-dark"></div>
+<div>
+<p class="text-[#bab29c] text-[11px] font-bold uppercase tracking-widest">Nov 05</p>
+<p class="text-white text-base font-bold">Technical Drawings</p>
+<p class="text-[#bab29c] text-sm mt-1">Full set of construction and installation documents.</p>
+</div>
+</div>
+<!-- Node 3 -->
+<div class="relative">
+<div class="absolute -left-[30px] top-0 w-4 h-4 bg-border-dark rounded-full ring-4 ring-background-dark"></div>
+<div>
+<p class="text-[#bab29c] text-[11px] font-bold uppercase tracking-widest">Nov 15</p>
+<p class="text-white text-base font-bold">Project Procurement</p>
+<p class="text-[#bab29c] text-sm mt-1">Ordering long-lead items and custom pieces.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer -->
+<div class="h-20 bg-background-dark"></div>
+<!-- Bottom Tab Bar (iOS style) -->
+<nav class="fixed bottom-0 w-full max-w-[430px] bg-background-dark/90 backdrop-blur-lg border-t border-border-dark/50 px-6 py-3 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px]">Project</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#bab29c]">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px]">Files</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#bab29c]">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-[10px]">Messages</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#bab29c]">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px]">Settings</span>
+</div>
+</nav>
+</div>
+</body></html>

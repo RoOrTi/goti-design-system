@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "stitch": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "n2-stitch-mcp",
+                "proxy",
+                "--key",
+                "AQ.Ab8RN6IY25Pq4HGp1yKLg2nX5bIrLzgzSrAum68s7I5XV0QWxQ"
+            ]
+        }
+    }
+}

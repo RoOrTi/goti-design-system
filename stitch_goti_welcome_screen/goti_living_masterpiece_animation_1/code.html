@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI - Timeless Masterpiece</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #8B7355;
+            --bg-deep: #080808;
+            --gallery-charcoal: #121212;
+        }
+        @keyframes subtle-ken-burns {
+            0% { transform: scale(1.02) translateY(0); }
+            100% { transform: scale(1.06) translateY(-5px); }
+        }
+        @keyframes subtle-head-tilt {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(0.8deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes meditative-blink {
+            0%, 45%, 55%, 100% { opacity: 1; }
+            50% { opacity: 0.15; }
+        }
+        @keyframes mona-lisa-smile {
+            0% { filter: contrast(1) brightness(1); }
+            50% { filter: contrast(1.05) brightness(1.02); }
+            100% { filter: contrast(1) brightness(1); }
+        }
+        @keyframes imperceptible-eyebrow {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-0.5px); }
+            100% { transform: translateY(0); }
+        }
+        .animate-timeless-zoom {
+            animation: subtle-ken-burns 40s ease-in-out infinite alternate;
+        }
+        .animate-meditative-blink {
+            animation: meditative-blink 12s ease-in-out infinite;
+        }
+        .animate-head-tilt {
+            animation: subtle-head-tilt 25s ease-in-out infinite;
+        }
+        .animate-subtle-smile {
+            animation: mona-lisa-smile 15s ease-in-out infinite;
+        }
+        .animate-eyebrow-focus {
+            animation: imperceptible-eyebrow 20s ease-in-out infinite;
+        }
+        .portrait-overlay {
+            background: radial-gradient(circle at 50% 40%, transparent 10%, rgba(8, 8, 8, 0.5) 100%);
+        }
+        .dust-layer {
+            position: absolute;
+            inset: 0;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCPGSoh7GOQyybwiZ1d_0TClZ-Gtg4dIBFgNGWhpF9EDnTuCX98cdlW6HSIpY1XKIyit-wtdI-R8GQhNS4ZW9trv1Tumt2wpO-hFM2tYKw_74QCmKLA65a_opGitfLhjimTIWIAONvK1JTl8-XqC8pBCz-UnKIO_pvGLo29Z687XvHTRrnebb8XMvBwrWMIey3l_zLewg58NRewunxKSLw9opSZS3vGI3gmwkG8Fs7Hnj3_wvUVfkk9ZG3Q3LebebJrPJMzuQl8Pk4);
+            opacity: 0.08;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            overflow: hidden;
+            background-color: var(--bg-deep);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-white antialiased h-screen flex flex-col items-center justify-center">
+<div class="fixed top-0 left-0 w-full h-12 flex justify-between items-center px-8 z-50">
+<div class="text-[13px] font-medium opacity-60">9:41</div>
+<div class="flex gap-1.5 items-center opacity-60">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[20px]">battery_full</span>
+</div>
+</div>
+<main class="relative w-full h-full flex flex-col items-center overflow-hidden">
+<div class="relative w-full h-full overflow-hidden">
+<div class="absolute inset-0 animate-timeless-zoom flex items-center justify-center">
+<div class="relative w-full h-full animate-head-tilt overflow-hidden">
+<img alt="Classical portrait of a woman" class="w-full h-full object-cover object-center scale-105 animate-subtle-smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVyP0GqYfevBd-K87gWh-TZzcIz9XSYVA5qhO57xDp7BJgXWKGiR7OnW_kXRyYuRS4UcRykNc28u7wREJpThuQXJLpwDLhZjKx6KJEcRwX2StN8lvSpXwzYhT5kSwNdhXWuEHwnHtN8K1b3QeziJcdXubU31ZY_N_UlxoceLu-88Tj28iKaouFVQsjTPoHBjiWshjWCFyK_MxtaR2Vq-u8Bd24-TKoFE2bhTcMJiUR1SFWKhMu_Y3pWb17uOvSPDm-5jRqzE0k_u4"/>
+<div class="absolute inset-0 bg-black/5 animate-meditative-blink pointer-events-none"></div>
+<div class="absolute inset-0 animate-eyebrow-focus pointer-events-none"></div>
+</div>
+</div>
+<div class="absolute inset-0 portrait-overlay pointer-events-none"></div>
+<div class="dust-layer"></div>
+<div class="absolute inset-x-0 bottom-0 h-[40vh] bg-gradient-to-t from-[var(--bg-deep)] via-[var(--bg-deep)]/60 to-transparent"></div>
+<div class="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] pointer-events-none"></div>
+</div>
+<div class="absolute bottom-16 w-full flex flex-col items-center">
+<div class="w-16 h-[0.5px] bg-[var(--primary)] opacity-20"></div>
+</div>
+<div class="fixed bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/10 rounded-full"></div>
+</main>
+
+</body></html>

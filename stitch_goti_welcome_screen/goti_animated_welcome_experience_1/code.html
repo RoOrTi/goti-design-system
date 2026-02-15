@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Pure Animation Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9d006",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181711",
+                        "charcoal": "#121212",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #f9d006;
+            --charcoal-color: #121212;
+        }
+        .light-leak {
+            background: radial-gradient(circle at 50% 50%, rgba(249, 208, 6, 0.03) 0%, transparent 70%),
+                        radial-gradient(circle at 20% 30%, rgba(249, 208, 6, 0.05) 0%, transparent 40%);
+        }
+        .vignette-overlay {
+            background: radial-gradient(circle at center, transparent 0%, rgba(18, 18, 18, 0.2) 60%, rgba(18, 18, 18, 0.8) 100%);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-charcoal font-display antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-col bg-charcoal overflow-hidden light-leak">
+<div class="h-12 w-full flex justify-between items-center px-8 z-50">
+<span class="text-white/20 text-xs font-bold">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-white/20 text-[14px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-white/20 text-[14px]">wifi</span>
+<span class="material-symbols-outlined text-white/20 text-[18px]">battery_full</span>
+</div>
+</div>
+<div class="relative flex-1 w-full flex flex-col items-center justify-center">
+<div class="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-[3000ms] ease-out" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBexx8FnElxhC7B-x9fPnlTtU-saiThtYFnLydgL77FE37Pb2yZ336CcfSMKM0WBvI2DmZU1NT4wEPbYmOXxVqn9UK0x2L56XpLVpCv_5LI84o43PikeqoXlA5ulHTmf4sT-f5z5BaT3iweOW6k-YsshDah4HCfoLGtYMAVMFkGUvYRS68k18EIyXP2OBoWXPbeOzUrx6xQNlKjyljpUDJz1kaWESpGmxuTXVEyzBwkdo1P0MYUBKOZ_HhVJUDZlKgqOID_Js1jXf0");'>
+</div>
+<div class="absolute inset-0 bg-charcoal/10 mix-blend-multiply"></div>
+<div class="absolute inset-0 vignette-overlay"></div>
+<div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-charcoal to-transparent"></div>
+</div>
+<div class="relative z-10 w-full h-full pointer-events-none">
+</div>
+</div>
+<div class="h-8 flex justify-center items-end pb-2 z-50">
+<div class="w-32 h-1 bg-white/10 rounded-full"></div>
+</div>
+<div class="fixed top-16 right-6 z-50">
+<div class="w-10 h-10 rounded-full bg-white/5 backdrop-blur-sm flex items-center justify-center border border-white/5 opacity-40">
+<span class="material-symbols-outlined text-white text-lg">volume_up</span>
+</div>
+</div>
+</div>
+
+</body></html>

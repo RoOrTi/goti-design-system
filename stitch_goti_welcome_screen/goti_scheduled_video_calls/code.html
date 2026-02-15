@@ -1,0 +1,134 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                        "card-dark": "#27241b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-[430px] mx-auto bg-background-light dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-gray-900 dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Scheduled Meetings</h2>
+</div>
+<div class="px-4 py-2">
+<!-- SectionHeader -->
+<h3 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] pt-4">Upcoming Calls</h3>
+</div>
+<!-- Meeting Card 1 -->
+<div class="p-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl border border-primary/30 shadow-lg bg-white dark:bg-card-dark overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-[21/9] bg-cover" data-alt="Modern minimalist architectural rendering of Aura Residence" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCR7mZjCO99ZlckRs0K0egTCzANGzAfd7r-mY6Eaos0MfzfZxCOYeZhbYxsWmUqDU6vXjkzyv7-rZ5lEAajl5jwI98vZRe8hPXq_rS78TTl5QzddiuhPYH_rrnn7gqgSOHsnvzppO3NtXgr24RMsRFx479QUPXd62V-D3rs0NUSoV49hb0siFNbWjeag4cmiErgPSb-EBbSVy_-oJ5UsqZHpI53EASLIUONtPHfh2T9Yd8h2D3XEvdz2X6ogE2OT0uj0mNFJVczXNw");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-3 p-5">
+<p class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Concept Review: Aura Residence</p>
+<div class="flex flex-col gap-1">
+<p class="text-primary font-serif text-lg font-bold">Oct 24, 10:30 AM - 11:30 AM</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="size-8 rounded-full overflow-hidden border border-primary/20 bg-gray-200">
+<img class="size-full object-cover" data-alt="Portrait of designer Rodrigo Ordoñez Timoniuk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMnbKePdA9xP8B73u1h2KL448Nv8EgqAz-g6Ek-amgoguVBp_Vk7mYL0hd_lborGWD42ObZ02g_xlcWoh3YF8KfsBRU5AA87AnY_PAkfiZtZo9e4SV1EQOfxvBi27do4p0ObR0CHbH73HovbQMY2tyreXnKy-R74S7fRL2YLWGEt2vFDj1dY13Vn20vcOkHnqIYholP-fJt5k2n77gLTkjIP013fkX9GETxFKf73XgnmefdzIczwe1NBOnuuapnl-u78iJs5YSGU0"/>
+</div>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal">Designer: Rodrigo Ordoñez Timoniuk</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<!-- ActionsBar Integrated -->
+<div class="flex gap-4">
+<button class="flex flex-col items-center gap-1 group">
+<div class="rounded-full bg-gray-100 dark:bg-[#393528] p-2 text-gray-700 dark:text-white group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_add_on</span>
+</div>
+<span class="text-gray-400 text-[10px] uppercase font-bold tracking-wider">Add</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="rounded-full bg-gray-100 dark:bg-[#393528] p-2 text-gray-700 dark:text-white group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<span class="text-gray-400 text-[10px] uppercase font-bold tracking-wider">Reschedule</span>
+</button>
+</div>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-background-dark text-sm font-bold leading-normal shadow-md hover:bg-primary/90 transition-colors">
+<span class="truncate">Join Call</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Meeting Card 2 -->
+<div class="p-4 @container pt-0">
+<div class="flex flex-col items-stretch justify-start rounded-xl border border-primary/30 shadow-lg bg-white dark:bg-card-dark overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-[21/9] bg-cover" data-alt="Luxury interior suite design with gold accents" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnFgRFVTQwpf5kn2eOSnew22UuuZnye_J8ndAcokCbTdSy6H6ehXp-25rd1X-yrdAzZQm6GOBKFQmr0jP7StQlVjQJuSRXITAZDZ7OTYAMyyjs9QqKwczMcD_wh2d6eN5MfrfPP-mzDtXOtbdXJ0QVjQpdmKHR9-TetCsbuirwdG5u_drFOVkpbWmJPdBmeLO0u4JlFzGbfY8HEyaxvlPzc04piBhtbMOLs8DyRP8Ew4J2MVkCizd78zBjffy3JapVC-kl6kLMD5w");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-3 p-5">
+<p class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Design Alignment: Zenith Suite</p>
+<div class="flex flex-col gap-1">
+<p class="text-primary font-serif text-lg font-bold">Oct 26, 02:00 PM - 03:00 PM</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="size-8 rounded-full overflow-hidden border border-primary/20 bg-gray-200">
+<img class="size-full object-cover" data-alt="Portrait of designer Rodrigo Ordoñez Timoniuk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6JU6d7ARwrGoIXahxb71g0OtOkri3INc8jdUwlmYMViJF7zFOHS5Uln3nZ2c5Ej0JTxP2ggpv9d1bbONlY0GKAk0iuFVZ0aHR03Jr0QFbDk_zxWiGEAAOsXAnO9yE8d0WRPWvmLoImZaIlh22kGgxGC1zZ-p6n6sKwHtX5d1X6n8C5TKix2Edn3heQ74XL1B0kma_JBOgPtTulmTxn6JHNwlfxsXNuR1fXH5XIgMMBKradPTk9DpsKCHuXO2Ru5erU5IZ3_027zc"/>
+</div>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal">Designer: Rodrigo Ordoñez Timoniuk</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex gap-4">
+<button class="flex flex-col items-center gap-1 group">
+<div class="rounded-full bg-gray-100 dark:bg-[#393528] p-2 text-gray-700 dark:text-white group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_add_on</span>
+</div>
+<span class="text-gray-400 text-[10px] uppercase font-bold tracking-wider">Add</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="rounded-full bg-gray-100 dark:bg-[#393528] p-2 text-gray-700 dark:text-white group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<span class="text-gray-400 text-[10px] uppercase font-bold tracking-wider">Reschedule</span>
+</button>
+</div>
+<button class="flex min-w-[100px] cursor-not-allowed items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold leading-normal">
+<span class="truncate">Join Call</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Spacing -->
+<div class="h-20 bg-transparent"></div>
+<!-- Floating Action Button for New Meeting (Optional enhancement) -->
+<button class="fixed bottom-6 right-6 size-14 rounded-full bg-primary text-background-dark shadow-2xl flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+</body></html>

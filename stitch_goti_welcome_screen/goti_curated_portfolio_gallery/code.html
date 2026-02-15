@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Noto+Serif:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Noto Serif", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex items-center bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="text-white flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-primary">arrow_back_ios</span>
+</div>
+<h2 class="text-primary text-xl font-extrabold leading-tight tracking-[0.2em] flex-1 text-center font-display">GOTI</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center p-0">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+</div>
+</header>
+<!-- Main Gallery Content -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Project 1: Full-Width Cinematic Image -->
+<section class="relative w-full mb-1">
+<div class="relative w-full aspect-[9/16] md:aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Minimalist modern luxury house interior with soft lighting" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB092wxSD6bpHDBjFNIWfgnikcrApZyJ4VCTXHcY2v9ezIwxyAUApHGw22p8GEWx1mz3fdMJpKpnoweu37z5UMsju9ZMBE_sVtl09TP6ogqS4wshToyyaa6X0lDqh4tU5x_xGui3BW_J0ihdjwipRTDc1IzCPiEYoOrJKNnZLyA8oR3Ytjp6N2ubw5tqkplUEVJ7TnvI4Dwqd5xGOZZtwwalQQUOQ1wIki3fZGAuwzTkd8KyyhnPfjhngcdgwufN140i2yH_VZS2cE");'></div>
+<div class="absolute bottom-10 left-6 right-6">
+<h3 class="font-serif text-3xl italic text-white mb-1">Aura Residence</h3>
+<p class="text-primary text-xs uppercase tracking-widest font-semibold">Interior Design</p>
+</div>
+</div>
+</section>
+<!-- Project 2 -->
+<section class="relative w-full mb-1">
+<div class="relative w-full aspect-[9/16] md:aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Sophisticated typography and gold foil branding mockups" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxvNLR2X-2TOeWtR8AkBZnJ9lDt9sw2UJ3GXLaOUK1YseeTG0fEG8czfbmzItOqhKShVfum_tIGrCHexdyi1mkXAJIwcRz_OMBT6YPugeg2T1DOUP98S6L0GifgUyhZTKZgUFlBY_c7Dx3bwZjpEIfmBDVtM1RlC0XSwYfXJ4g_iZTV2PHExkIFmrVDh6oc0Besp07_wkar9m4w1kgZ9InpkHxlP7Qd7-KU_MKWSkg6jBLluYvchnQf-f1SgUNKIEuzpSY9cHND_A");'></div>
+<div class="absolute bottom-10 left-6 right-6">
+<h3 class="font-serif text-3xl italic text-white mb-1">Ethereal Branding</h3>
+<p class="text-primary text-xs uppercase tracking-widest font-semibold">Visual Identity</p>
+</div>
+</div>
+</section>
+<!-- Project 3 -->
+<section class="relative w-full mb-1">
+<div class="relative w-full aspect-[9/16] md:aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Clean architectural lines of a concrete skyscraper" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdRSXLSJk_8DSDDCYCFi2IYHrlY1QDthrIvEuiCkOCsP9EIzU0LISnD_EipFU4Tx186si-ovmJTlwnz4RG9FIkkavE4WxkpZ-636fbn3ByL7ZW8nrWC5W8YXx5dbg9HDyhhhmXTzs31tfZO-OYYQQ8HElz4FqUUtKtsSlA3SN__EWTIBOOxBXFdXYm_dSHGRE6-CjgM91JtnYfDcgYF7wcfw_hlIKAFyXCElA-qe8hS_Ne5Ak_p59PJ3_OBAa1MFVLFyzSH9qXlLk");'></div>
+<div class="absolute bottom-10 left-6 right-6">
+<h3 class="font-serif text-3xl italic text-white mb-1">Neo-Minimalist Loft</h3>
+<p class="text-primary text-xs uppercase tracking-widest font-semibold">Architecture</p>
+</div>
+</div>
+</section>
+<!-- Project 4 -->
+<section class="relative w-full">
+<div class="relative w-full aspect-[9/16] md:aspect-video overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Artistic fashion editorial layout with symmetrical composition" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAE5AjACtqGgMj5ol80OUVzAH4NwavSVuo1y8qhiK2ijRFnZCTelDEKUcq7uW6exwflxsnZVPiu3vwK67F1WePtWXPZY5yL04ai2ZmuojSgHkXROd9hPAiZECnB99asZukWV4trmCEh7GyFdjnspx1Jcp53iEdcGiL9pqWEg0yAfGFyXPY681TzIJMFVEzLcK0Yc3wxgqKxqbJHmcTsudEX5FmK-zdGqdvC8eBp61d_x4HgcF9xvc-PveLg_zozpPZ7aOqvPb0JZ3w");'></div>
+<div class="absolute bottom-10 left-6 right-6">
+<h3 class="font-serif text-3xl italic text-white mb-1">Symmetry Editorial</h3>
+<p class="text-primary text-xs uppercase tracking-widest font-semibold">Creative Direction</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50">
+<div class="flex gap-2 border-t border-primary/20 bg-background-dark/80 backdrop-blur-lg px-4 pb-8 pt-4">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/50 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/50 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">folder</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/50 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

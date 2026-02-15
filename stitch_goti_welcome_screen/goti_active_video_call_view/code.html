@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Active Video Call View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white overflow-hidden">
+<div class="relative h-screen w-full flex flex-col overflow-hidden">
+<!-- Main Video Feed (Rodrigo Ordoñez Timoniuk / Project Render) -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="High-end architectural 3D interior render of a luxury residence" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdav20dvteh1BqNGW_7TbX_UCzxkFZv6J4Zh0bl7ZBGp2x9GmoxYt7e1QkDI_5VNf-33_VG-GmlEFq89Mr1prKBCi4Kt23NCLqKOiSX0xM5SDJF23KQZVPyG0Q1gEDNFiE3LElYLAb7db2-Ug6t6pDaW6M8FIM5EVdor5W2A5CLqAQtSP8ihjg5xa0o_DJYjQkEDvLHDNJQiiZRPhGOZnAbKU0P7NswSMYsy_dSRxzP7be1DpFzr9mwePyae-QwYqSXAR59a5G_sQ');">
+<!-- Overlay for readability -->
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+</div>
+<!-- Top Navigation / Meeting Info -->
+<div class="relative z-20 flex items-center bg-gradient-to-b from-black/60 to-transparent p-6 pb-12">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white">arrow_back_ios</span>
+</div>
+<div class="flex-1 text-center">
+<h2 class="text-white text-lg font-bold tracking-tight">Aura Residence - Concept Review</h2>
+<div class="flex items-center justify-center gap-2">
+<span class="size-2 rounded-full bg-red-500 animate-pulse"></span>
+<p class="text-white/70 text-xs font-sans uppercase tracking-widest">Live â€¢ 24:15</p>
+</div>
+</div>
+<div class="flex w-10 items-center justify-end">
+<span class="material-symbols-outlined text-white">more_vert</span>
+</div>
+</div>
+<!-- Floating Inset (User Camera) -->
+<div class="absolute top-24 right-4 z-20">
+<div class="w-28 h-40 rounded-xl border border-white/20 shadow-2xl overflow-hidden bg-background-dark">
+<div class="w-full h-full bg-cover bg-center" data-alt="Small inset video feed showing the user's camera" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtsvy_NNVfG1DNCL0Y1OI7wwiST52esBoSr9AAfBkiGbV4jIRNxOwZ4SKjmh5vZ7MkaGh4N2G7_UB_HM-JUDgVvXuXfvX5nQEplfagaJBaO3XOcPVgnmDPIWggyl86Ou9sikKhimJ_aq5DmDdmMiAGDTqghOOkba8MZSeDfuHGcMbXmv455a7P5rqCm2SDokcu_HUXADIXFz1olXGn15bWdHKIacpJ9qNXnZ5i0AzIPMV_H9fv6ohL0OEVznIPWBMnw46WoxXsETw');">
+</div>
+</div>
+</div>
+<!-- Participant Tag (Main Speaker) -->
+<div class="absolute bottom-32 left-4 z-20">
+<div class="bg-black/40 backdrop-blur-md rounded-lg px-3 py-1.5 flex items-center gap-2 border border-white/10">
+<span class="material-symbols-outlined text-primary size-5 text-[18px]">graphic_eq</span>
+<span class="text-sm font-sans font-medium tracking-wide">Rodrigo Ordoñez Timoniuk â€” Lead Architect</span>
+</div>
+</div>
+<!-- Bottom Controls Bar -->
+<div class="absolute bottom-0 left-0 w-full p-6 pb-10 z-30">
+<div class="mx-auto max-w-md bg-black/40 backdrop-blur-xl rounded-full p-3 flex items-center justify-between border border-white/10">
+<!-- Mute Button -->
+<button class="flex size-14 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-[24px]">mic</span>
+</button>
+<!-- Camera Toggle Button -->
+<button class="flex size-14 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined fill-icon text-[24px]">videocam</span>
+</button>
+<!-- Screen Share Button -->
+<button class="flex size-14 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-[24px]">present_to_all</span>
+</button>
+<!-- End Call Button (Deep Red-Gold variant) -->
+<button class="flex size-14 items-center justify-center rounded-full bg-[#8b1e1e] text-white hover:bg-red-700 transition-colors">
+<span class="material-symbols-outlined fill-icon text-[28px]">call_end</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

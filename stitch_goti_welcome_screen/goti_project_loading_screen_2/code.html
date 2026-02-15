@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#f2b90d",
+                "background-light": "#f8f8f5",
+                "background-dark": "#181611",
+              },
+              fontFamily: {
+                "display": ["Manrope", "sans-serif"],
+                "serif": ["Georgia", "serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .logo-trace {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col items-center justify-between bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- Top Status Bar Area (iOS Style) -->
+<div class="w-full h-12 flex justify-between items-center px-8 pt-4">
+<span class="text-xs font-semibold dark:text-white/40">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[16px] dark:text-white/40">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[16px] dark:text-white/40">wifi</span>
+<span class="material-symbols-outlined text-[16px] dark:text-white/40">battery_full</span>
+</div>
+</div>
+<!-- Main Loading Content -->
+<div class="flex flex-col items-center justify-center flex-1 w-full max-w-md px-10">
+<!-- Logo Section -->
+<div class="relative mb-12">
+<!-- Decorative background light effect -->
+<div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full scale-150"></div>
+<!-- GOTI Serif Logo -->
+<h1 class="text-6xl font-serif tracking-widest text-primary relative z-10 font-bold">
+                    GOTI
+                </h1>
+<!-- Golden Thread Simulation (Underline) -->
+<div class="absolute -bottom-4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
+</div>
+<!-- Progress Information Component -->
+<div class="w-full flex flex-col gap-6">
+<!-- Progress Bar Component -->
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-primary text-xs font-medium uppercase tracking-[0.3em] leading-normal opacity-80">Curating...</p>
+<p class="text-white text-lg font-light leading-normal">74%</p>
+</div>
+<div class="rounded-full bg-white/5 h-[2px] w-full overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 74%;"></div>
+</div>
+<p class="text-white/40 text-[10px] uppercase tracking-widest font-normal text-center mt-2">Crafting Excellence</p>
+</div>
+</div>
+</div>
+<!-- Meta Information at Footer -->
+<div class="pb-12 w-full">
+<div class="flex flex-col items-center gap-4">
+<div class="w-1 h-1 rounded-full bg-primary opacity-50"></div>
+<p class="text-white/30 text-[10px] font-normal tracking-[0.4em] uppercase text-center">GOTI Design Agency</p>
+</div>
+</div>
+<!-- iOS Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/10 rounded-full"></div>
+</div>
+<!-- Background Pattern -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
+<svg height="100%" width="100%">
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"></path>
+</pattern>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+</body></html>

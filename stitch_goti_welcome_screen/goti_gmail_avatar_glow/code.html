@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Gmail Avatar Glow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px 10px rgba(242, 185, 13, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-gray-900 dark:text-white">arrow_back_ios</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Avatar Preview</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-full h-12 bg-transparent text-gray-900 dark:text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Main Preview Area -->
+<div class="flex flex-col items-center justify-center py-8 px-4">
+<!-- ProfileHeader (Modified for Large Preview) -->
+<div class="flex w-full flex-col gap-8 items-center">
+<div class="relative flex flex-col items-center">
+<!-- Circular Avatar Container with smoky background simulation -->
+<div class="relative flex items-center justify-center rounded-full w-64 h-64 bg-black overflow-hidden border-4 border-[#393528] shadow-2xl glow-effect">
+<!-- Abstract Smoky Background -->
+<div class="absolute inset-0 opacity-40 bg-gradient-to-tr from-black via-[#2a261a] to-black" data-alt="Dark smoky abstract background pattern"></div>
+<!-- Logo Content -->
+<div class="relative z-10 flex flex-col items-center">
+<h1 class="text-white text-5xl font-extrabold tracking-tighter drop-shadow-[0_0_15px_rgba(242,185,13,0.8)]">GOTI</h1>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-2">
+<p class="text-gray-900 dark:text-white text-2xl font-bold leading-tight tracking-tight">Premium Smoky Glow</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-base font-medium">Variant 2: Gold Pulse &amp; Charcoal Mist</p>
+</div>
+</div>
+</div>
+<!-- SegmentedButtons (Variant Selector) -->
+<div class="flex px-4 py-3">
+<div class="flex h-12 flex-1 items-center justify-center rounded-full bg-gray-200 dark:bg-[#393528] p-1.5">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm text-gray-500 dark:text-[#bab29c] has-[:checked]:text-gray-900 dark:has-[:checked]:text-white text-sm font-semibold transition-all">
+<span class="truncate">Variant 1</span>
+<input class="invisible w-0" name="variant-select" type="radio" value="Variant 1"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm text-gray-500 dark:text-[#bab29c] has-[:checked]:text-gray-900 dark:has-[:checked]:text-white text-sm font-semibold transition-all">
+<span class="truncate">Variant 2</span>
+<input checked="" class="invisible w-0" name="variant-select" type="radio" value="Variant 2"/>
+</label>
+</div>
+</div>
+<!-- Controls Section -->
+<div class="flex flex-col gap-2 pb-24">
+<!-- Slider -->
+<div class="px-4">
+<div class="relative flex w-full flex-col items-start justify-between gap-3 p-4 rounded-xl bg-gray-100 dark:bg-[#1f1d17]">
+<div class="flex w-full items-center justify-between">
+<p class="text-gray-900 dark:text-white text-base font-bold">Glow Radius</p>
+<p class="text-gray-900 dark:text-white text-sm font-semibold">75%</p>
+</div>
+<div class="flex h-4 w-full items-center gap-4">
+<div class="flex h-1.5 flex-1 rounded-full bg-gray-300 dark:bg-[#544e3b]">
+<div class="h-full w-[75%] rounded-full bg-primary"></div>
+<div class="relative">
+<div class="absolute -left-2 -top-2 size-5 rounded-full bg-white shadow-lg border-2 border-primary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ActionPanel (Toggle) -->
+<div class="px-4">
+<div class="flex flex-col items-start justify-between gap-4 rounded-xl border border-gray-200 dark:border-[#544e3b] bg-gray-100 dark:bg-[#181611] p-5 @[480px]:flex-row @[480px]:items-center">
+<div class="flex flex-col gap-1">
+<p class="text-gray-900 dark:text-white text-base font-bold leading-tight">Pulsing Animation</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal">Enable the dynamic gold breathing effect</p>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-300 dark:bg-[#393528] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-all">
+<div class="h-full w-[27px] rounded-full bg-white shadow-md"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- ActionPanel (Toggle 2) -->
+<div class="px-4">
+<div class="flex flex-col items-start justify-between gap-4 rounded-xl border border-gray-200 dark:border-[#544e3b] bg-gray-100 dark:bg-[#181611] p-5 @[480px]:flex-row @[480px]:items-center">
+<div class="flex flex-col gap-1">
+<p class="text-gray-900 dark:text-white text-base font-bold leading-tight">Smoky Depth</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal">Layered charcoal mist background</p>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-300 dark:bg-[#393528] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary transition-all">
+<div class="h-full w-[27px] rounded-full bg-white shadow-md"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Action -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent">
+<button class="w-full flex items-center justify-center rounded-full h-14 bg-primary text-background-dark gap-2 text-lg font-extrabold shadow-xl active:scale-[0.98] transition-transform">
+<span>Update Gmail Avatar</span>
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</div>
+</body></html>

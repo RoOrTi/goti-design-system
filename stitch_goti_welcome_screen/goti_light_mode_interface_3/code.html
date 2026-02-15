@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Design Agency</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "charcoal": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Spline Sans", sans-serif;
+        }
+        .serif-logo {
+            font-family: serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-charcoal">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 justify-between border-b border-primary/10">
+<div class="text-charcoal dark:text-white flex size-12 shrink-0 items-center" data-icon="menu">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h2 class="text-charcoal dark:text-primary serif-logo text-2xl font-bold tracking-widest flex-1 text-center">GOTI</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-charcoal dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<div class="text-charcoal dark:text-white" data-icon="person">
+<span class="material-symbols-outlined">person</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Main Content Container -->
+<main class="max-w-md mx-auto bg-background-light dark:bg-background-dark pb-20">
+<!-- Hero Header Image -->
+<div class="@container">
+<div class="@[480px]:px-4 @[480px]:py-3">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden bg-zinc-200 @[480px]:rounded-lg min-h-[450px] relative" data-alt="Minimalist luxury interior with sunlight and shadows" style='background-image: linear-gradient(0deg, rgba(24, 22, 17, 0.7) 0%, rgba(24, 22, 17, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0Jsca-WwXIPg5wOjSsfzb5j43xY1VdZTdL70haeMb14W4x9vOCz_y_j34AFxohRj1WRivbAjpPb65tAfg2YoQd8UOG4ZL5SK0aB6KucZEkOzJmhR9s9qT4oXQuDQbTG7nWGsK22TYcpQ2XJCncQLd0BynBrY44DDrhGeqchQvdkxPi8RYd8I0e2wIRI46nRRp7vem6mhMkLwBCXwNqdQspygPWAHxyUfml65KlAarR5VAKdlUV_MK1bBIhlcqgxdXMQDWYY6CJO4");'>
+<div class="flex p-6 flex-col">
+<span class="text-primary font-bold tracking-widest text-xs uppercase mb-2">Design Agency</span>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">Elevating Spaces Through Curated Minimalism</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Headline & Body -->
+<div class="px-4 pt-8">
+<h1 class="text-charcoal dark:text-white tracking-tight text-[32px] font-bold leading-tight pb-3">Architectural Excellence &amp; Luxury Design</h1>
+<p class="text-charcoal/80 dark:text-white/80 text-lg font-normal leading-relaxed pb-6">
+                A high-end studio specializing in sophisticated spaces and high-fashion aesthetics. We blend structural precision with the warmth of natural textures.
+            </p>
+<button class="bg-primary text-white px-8 py-3 rounded-full font-bold text-sm tracking-wider uppercase hover:opacity-90 transition-opacity">
+                Explore Portfolio
+            </button>
+</div>
+<!-- Section: Expertise -->
+<div class="mt-10">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Our Expertise</h2>
+<div class="grid grid-cols-2 gap-4 px-4">
+<div class="bg-white dark:bg-zinc-800 p-4 rounded-xl border border-primary/5 shadow-sm">
+<div class="text-primary mb-3">
+<span class="material-symbols-outlined text-3xl">architecture</span>
+</div>
+<h3 class="font-bold text-charcoal dark:text-white">Spatial Planning</h3>
+<p class="text-xs text-charcoal/60 dark:text-white/60 mt-1">Optimizing flow and functionality in luxury builds.</p>
+</div>
+<div class="bg-white dark:bg-zinc-800 p-4 rounded-xl border border-primary/5 shadow-sm">
+<div class="text-primary mb-3">
+<span class="material-symbols-outlined text-3xl">light_mode</span>
+</div>
+<h3 class="font-bold text-charcoal dark:text-white">Luminous Art</h3>
+<p class="text-xs text-charcoal/60 dark:text-white/60 mt-1">Custom lighting schemes that redefine atmosphere.</p>
+</div>
+</div>
+</div>
+<!-- Section: Featured Projects -->
+<div class="mt-12">
+<div class="flex justify-between items-center px-4 mb-4">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight">Latest Curations</h2>
+<span class="text-primary text-sm font-semibold">View All</span>
+</div>
+<div class="flex flex-col gap-6 px-4">
+<div class="group">
+<div class="aspect-video w-full rounded-xl bg-zinc-100 overflow-hidden" data-alt="Modernist white marble kitchen interior">
+<img alt="Kitchen Project" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxOZXj2wZ9GtdJciJyaZGIQgQxjZ3GpE6qgKmTFAF6gSyOVpTMAbfj_GZddId3cZmdRK-kwD30fz-qbRa98heREqU41Cm6uADUL2HWH1gAHxg4GCbydnfNkJKu77Xyhx9Y5eUez5Jl5ijgXm3yjePADk7Fg-7o0uBQgu1GiTWBlqIangrLkZ3tc29sHCMaOTz6Ivn0MX0a0xk_QHCULD5trv_DeWqP_pVAE8JCvmSWvY23dmXg4B6adj2IdULmMAnMuoxIemy1pSI"/>
+</div>
+<div class="mt-3">
+<h3 class="text-charcoal dark:text-white font-bold text-lg">The Alabaster Suite</h3>
+<p class="text-charcoal/60 dark:text-white/60 text-sm">Paris, France • 2024</p>
+</div>
+</div>
+<div class="group">
+<div class="aspect-video w-full rounded-xl bg-zinc-100 overflow-hidden" data-alt="Brutalist concrete lounge with gold accents">
+<img alt="Lounge Project" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0xXGP0HeoB9RapQ5YN2tigLzFA9RuELcBza1U8gdORufGySXN8G-MBYXug_NqDT8Tm0WfUCa63eonsGKQ7Cuw5uHvdfRrCr1p1JEcUtSNDPx7VtX1SF1yEI8ZLvOy0-pUHoQo3CQHTbPxJFgcAfLqYNlKNVTj6odZTw0W3q99K6nY-rzCz2MLiNzgPPENYxNBDG7StnMWw8VLf2WfC1FWIJND4xxLbDoL1S1kkMlhL_-r8Q_PepCTHFphmzLqA2dlJgXzjD5Cgd0"/>
+</div>
+<div class="mt-3">
+<h3 class="text-charcoal dark:text-white font-bold text-lg">Golden Brutalist Loft</h3>
+<p class="text-charcoal/60 dark:text-white/60 text-sm">Berlin, Germany • 2023</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Map Area -->
+<div class="mt-16 px-4 pb-12">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight mb-4">Visit Our Studio</h2>
+<div class="w-full h-48 rounded-xl bg-primary/10 overflow-hidden relative" data-location="Paris" style="">
+<img alt="Studio Location Map" class="w-full h-full object-cover opacity-60 grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrR9rIIMdr1GMRd_JxT9JcKmWCxCRHbg6Ag3qneVtoKGw8l1rcMVRjabyT5ZtW7XwNgHXdrYPbUIgQM0hfopGmHH24nJlCfjnT9JSktp51dA1A6BXxo2UFoI31XYj0dboe4wcEpnAJtX8pkixAoQws8UxN7Bu6DmLUwLsNjedMCdTcdvt8wxVWKMEgG8W08lScFpvYzcdMkhQ3wFRMM-pDlp_qlsLy5e1DgYfg7udUijBXYkFVY4w9ytkqL82DVLGZbh96238YqEU"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-charcoal text-white p-2 rounded-full shadow-xl">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="text-charcoal dark:text-white font-medium">12 Avenue des Champs-Élysées, Paris</p>
+<p class="text-primary text-sm mt-1">contact@goti.design</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (iOS Style) -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light/95 dark:bg-background-dark/95 border-t border-primary/10 flex justify-around items-center py-4 z-50">
+<div class="text-primary flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Home</span>
+</div>
+<div class="text-charcoal/40 dark:text-white/40 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Projects</span>
+</div>
+<div class="text-charcoal/40 dark:text-white/40 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Contact</span>
+</div>
+</div>
+</body></html>

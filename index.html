@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTI Design Agency - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9d006",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181711",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .screen-card {
+            transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .screen-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-4xl">pentagon</span>
+                    <div>
+                        <h1 class="text-2xl font-bold text-primary">GOTI</h1>
+                        <p class="text-xs text-white/60">Design Agency</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="#brand"
+                        class="text-sm font-semibold text-white/70 hover:text-primary transition-colors">Brand</a>
+                    <a href="#client"
+                        class="text-sm font-semibold text-white/70 hover:text-primary transition-colors">Client</a>
+                    <a href="#studio"
+                        class="text-sm font-semibold text-white/70 hover:text-primary transition-colors">Studio</a>
+                    <a href="#communication"
+                        class="text-sm font-semibold text-white/70 hover:text-primary transition-colors">Communication</a>
+                    <a href="#social"
+                        class="text-sm font-semibold text-white/70 hover:text-primary transition-colors">Social</a>
+                    <a href="#documents"
+                        class="text-sm font-semibold text-white/70 hover:text-primary transition-colors">Documents</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="mailto:timoniukrodrigo04@gmail.com"
+                        class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-background-dark rounded-full font-bold text-sm hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-lg">mail</span>
+                        Contact
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 px-4 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2
+                    class="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary to-yellow-600 bg-clip-text text-transparent">
+                    GOTI Design System
+                </h2>
+                <p class="text-xl text-white/80 mb-8">
+                    Luxury-focused digital design agency specializing in high-end branding, UI/UX, and immersive digital
+                    experiences.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div class="flex items-center gap-2 text-white/60">
+                        <span class="material-symbols-outlined text-primary">person</span>
+                        <span class="text-sm">Rodrigo Ordoñez Timoniuk</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white/60">
+                        <span class="material-symbols-outlined text-primary">dashboard</span>
+                        <span class="text-sm">69 Screens</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white/60">
+                        <span class="material-symbols-outlined text-primary">palette</span>
+                        <span class="text-sm">7 Categories</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+
+        <!-- Brand & Identity -->
+        <section id="brand" class="category-section mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                <h3 class="text-3xl font-bold">Brand & Identity</h3>
+                <span class="text-sm text-white/40 ml-auto">8 screens</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="stitch_goti_welcome_screen/goti_welcome_screen/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">home</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Welcome Screen</h4>
+                    <p class="text-sm text-white/60">Flagship entry point</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/rodrigo_ot_digital_business_card_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">badge</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Business Card v1</h4>
+                    <p class="text-sm text-white/60">Digital contact card</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/rodrigo_ot_digital_business_card_2/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">contact_page</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Business Card v2</h4>
+                    <p class="text-sm text-white/60">Alternative design</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/rodrigo_ot_digital_business_card_3/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">person_pin</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Business Card v3</h4>
+                    <p class="text-sm text-white/60">Social media variant</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/rodrigo_ot_digital_business_card_4/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">account_circle</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Business Card v4</h4>
+                    <p class="text-sm text-white/60">Premium variant</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_brand_signature_background/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">wallpaper</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Brand Background</h4>
+                    <p class="text-sm text-white/60">Signature backgrounds</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Client Experience -->
+        <section id="client" class="category-section mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+                <h3 class="text-3xl font-bold">Client Experience</h3>
+                <span class="text-sm text-white/40 ml-auto">12 screens</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="stitch_goti_welcome_screen/goti_client_project_dashboard/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">dashboard</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Project Dashboard</h4>
+                    <p class="text-sm text-white/60">Project tracking interface</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_animated_welcome_experience_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">celebration</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Welcome Experience v1</h4>
+                    <p class="text-sm text-white/60">Onboarding flow</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_animated_welcome_experience_2/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">waving_hand</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Welcome Experience v2</h4>
+                    <p class="text-sm text-white/60">Alternative onboarding</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_client_testimonials_carousel/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">reviews</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Testimonials</h4>
+                    <p class="text-sm text-white/60">Client reviews carousel</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Studio & Services -->
+        <section id="studio" class="category-section mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl">apartment</span>
+                <h3 class="text-3xl font-bold">Studio & Services</h3>
+                <span class="text-sm text-white/40 ml-auto">9 screens</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="stitch_goti_welcome_screen/goti_the_studio_section_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">business</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">The Studio v1</h4>
+                    <p class="text-sm text-white/60">Agency showcase</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_the_studio_section_2/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">storefront</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">The Studio v2</h4>
+                    <p class="text-sm text-white/60">Philosophy & workspace</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_design_services_menu/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">design_services</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Services Menu</h4>
+                    <p class="text-sm text-white/60">Agency offerings</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_curated_portfolio_gallery/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">photo_library</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Portfolio Gallery</h4>
+                    <p class="text-sm text-white/60">Work showcase</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Communication Tools -->
+        <section id="communication" class="category-section mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl">forum</span>
+                <h3 class="text-3xl font-bold">Communication Tools</h3>
+                <span class="text-sm text-white/40 ml-auto">15 screens</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="stitch_goti_welcome_screen/goti_designer_chat_center_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">chat</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Chat Center v1</h4>
+                    <p class="text-sm text-white/60">Client collaboration</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_active_video_call_view/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">videocam</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Video Call</h4>
+                    <p class="text-sm text-white/60">Meeting interface</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_inquiry_&_contact_screen_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">contact_mail</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Contact Form</h4>
+                    <p class="text-sm text-white/60">Inquiry screen</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Social & Marketing -->
+        <section id="social" class="category-section mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl">share</span>
+                <h3 class="text-3xl font-bold">Social & Marketing</h3>
+                <span class="text-sm text-white/40 ml-auto">12 screens</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="stitch_goti_welcome_screen/goti_instagram_feed_templates_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">grid_on</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Instagram Feed v1</h4>
+                    <p class="text-sm text-white/60">Social media grid</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_instagram_stories_templates_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">auto_stories</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Stories Template</h4>
+                    <p class="text-sm text-white/60">Story designs</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_vip_monthly_newsletter_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">newspaper</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">VIP Newsletter</h4>
+                    <p class="text-sm text-white/60">Email campaign</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Business Documents -->
+        <section id="documents" class="category-section mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="material-symbols-outlined text-primary text-3xl">description</span>
+                <h3 class="text-3xl font-bold">Business Documents</h3>
+                <span class="text-sm text-white/40 ml-auto">5 screens</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="stitch_goti_welcome_screen/goti_luxury_design_proposal_1/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">request_quote</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Design Proposal</h4>
+                    <p class="text-sm text-white/60">Client proposals</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_luxury_invoice_rodrigo_o.t/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">receipt_long</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Invoice Template</h4>
+                    <p class="text-sm text-white/60">Billing document</p>
+                </a>
+                <a href="stitch_goti_welcome_screen/goti_official_letterhead_rodrigo_o.t/code.html" target="_blank"
+                    class="screen-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-primary/20 to-transparent rounded-lg mb-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-5xl">article</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Official Letterhead</h4>
+                    <p class="text-sm text-white/60">Correspondence</p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background-dark/50 border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">pentagon</span>
+                        <span class="text-xl font-bold">GOTI</span>
+                    </div>
+                    <p class="text-sm text-white/60">Luxury-focused digital design agency</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <div class="space-y-2 text-sm text-white/60">
+                        <a href="https://wa.me/5493464608289"
+                            class="flex items-center gap-2 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">phone</span>
+                            +549 3464 608289
+                        </a>
+                        <a href="mailto:timoniukrodrigo04@gmail.com"
+                            class="flex items-center gap-2 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">mail</span>
+                            timoniukrodrigo04@gmail.com
+                        </a>
+                        <a href="https://gotirot.wixsite.com/actividadeseduca" target="_blank"
+                            class="flex items-center gap-2 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">language</span>
+                            Portfolio Website
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <div class="space-y-2 text-sm text-white/60">
+                        <a href="DESIGN.md" target="_blank"
+                            class="flex items-center gap-2 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">description</span>
+                            Design System (v2.0)
+                        </a>
+                        <p class="text-xs text-white/40 mt-4">© 2024-2026 GOTI Design Agency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

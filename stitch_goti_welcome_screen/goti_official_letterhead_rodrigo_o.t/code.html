@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "charcoal": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .gold-texture {
+            background: linear-gradient(135deg, #daa60b 0%, #f7e1a0 50%, #daa60b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+<!-- TopAppBar Navigation -->
+<div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800">
+<div class="text-charcoal dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h2 class="text-charcoal dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center gold-texture">GOTI</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-charcoal dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Main Letterhead Content -->
+<div class="flex flex-col flex-1 px-6 py-10 max-w-4xl mx-auto w-full bg-white dark:bg-background-dark shadow-sm my-4 rounded-xl border border-gray-100 dark:border-gray-800">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
+<div class="flex-shrink-0">
+<h1 class="text-4xl font-bold tracking-tighter gold-texture">GOTI</h1>
+</div>
+<div class="flex items-center gap-4 border-l-2 border-primary pl-4 md:text-right">
+<div>
+<h3 class="text-charcoal dark:text-white text-sm font-bold leading-tight tracking-tight uppercase">RODRIGO ORDOÑEZ TIMONIUK</h3>
+<p class="text-primary text-xs font-medium leading-normal">Founder &amp; Creative Director</p>
+</div>
+</div>
+</div>
+<!-- Content Body -->
+<div class="flex-1 space-y-8">
+<div class="text-right text-gray-400 text-xs mb-10">
+                    October 24, 2023
+                </div>
+<div class="space-y-6">
+<p class="text-charcoal dark:text-white text-base font-normal leading-relaxed">
+                        Dear Client,
+                    </p>
+<p class="text-charcoal dark:text-white text-base font-normal leading-relaxed">
+                        At GOTI Design Agency, we believe that every detail matters. This official letterhead represents our commitment to excellence and high-end design aesthetics. We strive to provide our clients with not just services, but transformative visual experiences that elevate their brand to a global standard.
+                    </p>
+<p class="text-charcoal dark:text-white text-base font-normal leading-relaxed">
+                        This personalized document has been prepared specifically for our ongoing collaboration. We look forward to the innovative milestones we will achieve together.
+                    </p>
+</div>
+<!-- Signature Placeholder -->
+<div class="pt-12">
+<div class="h-10 w-40 border-b border-charcoal dark:border-white mb-2">
+<!-- Signature Space -->
+</div>
+<p class="text-charcoal dark:text-white text-sm font-bold">Rodrigo O.T.</p>
+</div>
+</div>
+<!-- Footer Details -->
+<div class="mt-20 pt-8 border-t border-gray-100 dark:border-gray-800">
+<div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4 uppercase tracking-widest font-medium">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[14px]">call</span>
+<span>+54 3464 608289</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[14px]">mail</span>
+<span>timoniukrodrigo01@gmail.com</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[14px]">language</span>
+<span>www.goti.design</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacing Bottom -->
+<div class="h-10 bg-transparent"></div>
+</div>
+</body></html>

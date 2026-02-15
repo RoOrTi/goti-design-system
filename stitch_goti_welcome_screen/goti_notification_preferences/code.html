@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                        "surface-dark": "#221e10",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .toggle-checked:checked + .toggle-slider {
+            background-color: #daa60b;
+            justify-content: flex-end;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col max-w-[430px] mx-auto overflow-x-hidden shadow-2xl">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-4 sticky top-0 z-10 border-b border-black/5 dark:border-white/5">
+<div class="text-primary flex size-10 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-xl font-serif font-bold leading-tight tracking-tight flex-1 text-center pr-10">Notification Preferences</h2>
+</div>
+<div class="flex flex-col flex-1 pb-10">
+<!-- SectionHeader -->
+<div class="px-4 pb-2 pt-8">
+<h3 class="text-gray-900 dark:text-white text-sm font-bold uppercase tracking-[0.2em]">Communication</h3>
+</div>
+<!-- ListItems with Toggles -->
+<div class="flex flex-col">
+<!-- Item 1: Project Updates -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark px-4 min-h-[88px] py-4 justify-between border-b border-black/5 dark:border-white/5">
+<div class="flex flex-col justify-center max-w-[75%]">
+<p class="text-gray-900 dark:text-white text-base font-semibold leading-normal">Project Updates</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal leading-normal mt-1">Get notified about milestone progress and status changes.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-[#393528] p-0.5 transition-colors duration-200 has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all duration-200 peer-checked:translate-x-[20px]"></div>
+</label>
+</div>
+</div>
+<!-- Item 2: New Messages -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark px-4 min-h-[88px] py-4 justify-between border-b border-black/5 dark:border-white/5">
+<div class="flex flex-col justify-center max-w-[75%]">
+<p class="text-gray-900 dark:text-white text-base font-semibold leading-normal">New Messages</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal leading-normal mt-1">Real-time alerts when your project lead sends a message.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-[#393528] p-0.5 transition-colors duration-200 has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all duration-200 peer-checked:translate-x-[20px]"></div>
+</label>
+</div>
+</div>
+<!-- SectionHeader -->
+<div class="px-4 pb-2 pt-8">
+<h3 class="text-gray-900 dark:text-white text-sm font-bold uppercase tracking-[0.2em]">Meetings &amp; Files</h3>
+</div>
+<!-- Item 3: Meeting Reminders -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark px-4 min-h-[88px] py-4 justify-between border-b border-black/5 dark:border-white/5">
+<div class="flex flex-col justify-center max-w-[75%]">
+<p class="text-gray-900 dark:text-white text-base font-semibold leading-normal">Meeting Reminders</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal leading-normal mt-1">Never miss a scheduled design review or consultation.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-[#393528] p-0.5 transition-colors duration-200 has-[:checked]:bg-primary">
+<input class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all duration-200 peer-checked:translate-x-0"></div>
+</label>
+</div>
+</div>
+<!-- Item 4: Document Ready -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark px-4 min-h-[88px] py-4 justify-between border-b border-black/5 dark:border-white/5">
+<div class="flex flex-col justify-center max-w-[75%]">
+<p class="text-gray-900 dark:text-white text-base font-semibold leading-normal">Document Ready for Download</p>
+<p class="text-gray-500 dark:text-[#bab29c] text-sm font-normal leading-normal mt-1">Immediate alerts for invoices, contracts, and design assets.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-[#393528] p-0.5 transition-colors duration-200 has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all duration-200 peer-checked:translate-x-[20px]"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Promotion / Footer Area -->
+<div class="mt-auto px-6 pt-12 text-center">
+<div class="bg-primary/10 rounded-xl p-6 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">stars</span>
+<h4 class="text-gray-900 dark:text-white font-bold text-lg">Premium Support</h4>
+<p class="text-gray-500 dark:text-[#bab29c] text-xs mt-2 font-medium">As a GOTI Design client, you receive priority notification routing for all critical updates.</p>
+</div>
+<p class="text-gray-400 dark:text-gray-600 text-[10px] mt-8 uppercase tracking-widest">GOTI DESIGN AGENCY — EST 2024</p>
+</div>
+</div>
+<!-- Tab Bar Placeholder for iOS feel -->
+<div class="h-16 flex items-center justify-around bg-white/5 backdrop-blur-md border-t border-white/5 px-6">
+<span class="material-symbols-outlined text-gray-500">home</span>
+<span class="material-symbols-outlined text-gray-500">folder</span>
+<span class="material-symbols-outlined text-primary">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/50">
+<img class="w-full h-full object-cover" data-alt="Client profile picture placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv7S2sCNbHI3xkpL_P9CPaYePAUUkjuBYb2t-Emibdt2vpHff5V9FzNUjzscWfNKylD3W51DBcRKpaJ1KWbbw3U9CQBq4vdY0Hgno4UJb-IoQCq-JJbF39WTSUdRq6CBP8qB9KKXnvuu1hbejViNaDAJ_oFvn9q0LJ41wGeCiJL5II38CDFq5-QUL8YrqfM6HlRaP7sr4j5xJuAO-U6FdISL6Q8Xgt7C4d3lLGfQ9iOVb7h0sN3C2yGlFT8AlTnaxKbKKcLs3ul7M"/>
+</div>
+</div>
+</div>
+</body></html>

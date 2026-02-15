@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Loading Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "gold-metallic": "#D4AF37",
+                        "charcoal-deep": "#111318"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif-luxury": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .shimmer-stroke {
+            stroke-dasharray: 150;
+            stroke-dashoffset: 450;
+        }
+        @keyframes custom-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .animate-subtle-pulse {
+            animation: custom-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<!-- iOS Status Bar Mockup -->
+<div class="fixed top-0 w-full h-11 flex items-center justify-between px-8 z-50">
+<div class="text-white text-sm font-semibold">9:41</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-white text-[18px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-white text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-white text-[22px]">battery_full</span>
+</div>
+</div>
+<!-- Main Loading Container -->
+<div class="relative flex h-screen w-full flex-col items-center justify-center bg-charcoal-deep overflow-hidden">
+<!-- Background Accents (Subtle Glow) -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+</div>
+<!-- Center Identity -->
+<div class="relative flex items-center justify-center">
+<!-- Shimmering Circular Loader -->
+<div class="absolute">
+<svg class="w-64 h-64 rotate-[-90deg]" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="48" stroke="rgba(212, 175, 55, 0.1)" stroke-width="0.5"></circle>
+<circle class="shimmer-stroke" cx="50" cy="50" fill="none" r="48" stroke="url(#goldGradient)" stroke-linecap="round" stroke-width="1.2"></circle>
+<defs>
+<lineargradient id="goldGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#D4AF37" stop-opacity="0.2"></stop>
+<stop offset="50%" stop-color="#F9E4B7" stop-opacity="1"></stop>
+<stop offset="100%" stop-color="#D4AF37" stop-opacity="0.2"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<!-- Logo -->
+<div class="z-10 text-center">
+<h1 class="font-serif-luxury text-5xl tracking-[0.2em] text-gold-metallic select-none">
+                    GOTI
+                </h1>
+</div>
+</div>
+<!-- Progress Text -->
+<div class="mt-40 flex flex-col items-center gap-8 w-full max-w-xs px-6">
+<div class="flex flex-col items-center gap-2">
+<p class="text-white/60 text-xs font-light tracking-[0.3em] uppercase animate-subtle-pulse">
+                    Loading...
+                </p>
+</div>
+<!-- ProgressBar Component Integration -->
+<div class="w-full flex flex-col gap-3">
+<div class="flex gap-6 justify-between items-end">
+<p class="text-white/40 text-[10px] uppercase tracking-widest font-medium leading-normal">Establishing Secure Connection</p>
+<p class="text-gold-metallic/80 text-xs font-light leading-normal tracking-wider">64%</p>
+</div>
+<div class="rounded-full bg-white/5 h-[1px] w-full overflow-hidden">
+<div class="h-full rounded-full bg-gold-metallic/60" style="width: 64%;"></div>
+</div>
+</div>
+</div>
+<!-- Footer Meta Text -->
+<div class="absolute bottom-12 w-full flex flex-col items-center gap-4">
+<!-- Page Indicators -->
+<div class="flex w-full flex-row items-center justify-center gap-2.5">
+<div class="h-1 w-1 rounded-full bg-gold-metallic"></div>
+<div class="h-1 w-1 rounded-full bg-white/10"></div>
+<div class="h-1 w-1 rounded-full bg-white/10"></div>
+</div>
+<p class="text-white/20 text-[10px] font-normal tracking-[0.1em] uppercase">
+                Premium luxury brand experience © 2024
+            </p>
+</div>
+</div>
+<!-- Background Image / Header Style reference for atmospheric texture -->
+<div class="hidden">
+<div data-alt="Dark silk texture with golden light reflections"></div>
+</div>
+</body></html>

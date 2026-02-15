@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Welcome Screen</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D4AF37", // Elegant gold for the classical theme
+                        "background-light": "#FDFCF0",
+                        "background-dark": "#0A0B08",
+                    },
+                    fontFamily: {
+                        display: ["'Playfair Display'", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                    animation: {
+                        'ken-burns': 'kenburns 20s ease infinite alternate',
+                        'fade-up': 'fadeUp 1.2s ease-out forwards',
+                    },
+                    keyframes: {
+                        kenburns: {
+                            '0%': { transform: 'scale(1) translateY(0)' },
+                            '100%': { transform: 'scale(1.15) translateY(-2%)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        .portrait-container {
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+        .stagger-1 { animation-delay: 0.2s; }
+        .stagger-2 { animation-delay: 0.4s; }
+        .stagger-3 { animation-delay: 0.6s; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<main class="relative h-screen w-full flex flex-col justify-between max-w-md mx-auto overflow-hidden">
+<div class="h-12 w-full"></div>
+<div class="relative flex-1 portrait-container overflow-hidden">
+<img alt="Classical high-resolution portrait" class="absolute inset-0 w-full h-full object-cover animate-ken-burns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxoRzPBbI2178F_8MNy0vTUb7DYTe270UX5_rWNPv5Ed8wx8AJk7xJInuynwBEPSQn62foNk5HwYt6i2doTm1FJr6ufUG8Hye6dJygXYGltJCWlJDrC4dXH-EDfCkaWQgwZYNCs7CWssJRAF4w2qvhNM8hDVioEx50p9jF9hIlfy-QSkJPUYzo2b_y9CUTo_uoBVsup9W3GsHb_aYaxeiiXOiYY9uTeRv1gGQc5pZKP6XpXk0G9HNiag3WCSCYpE6ukccYIEkOmRM"/>
+</div>
+<div class="relative z-10 px-8 pb-12 pt-4 flex flex-col items-center text-center bg-gradient-to-t from-background-light dark:from-background-dark via-background-light/90 dark:via-background-dark/90 to-transparent">
+<div class="opacity-0 animate-fade-up stagger-1">
+<h1 class="font-display text-6xl font-bold tracking-tight mb-2 text-slate-800 dark:text-slate-50">
+                    GOTI
+                </h1>
+<div class="h-1 w-12 bg-primary mx-auto mb-6 rounded-full"></div>
+</div>
+<div class="opacity-0 animate-fade-up stagger-2 mb-12">
+<p class="font-sans text-lg text-slate-600 dark:text-slate-400 font-light leading-relaxed">
+                    Welcome to the Future of GOTI
+                </p>
+<p class="text-sm text-slate-500 dark:text-slate-500 mt-2 uppercase tracking-[0.2em] font-medium">
+                    Artistry &amp; Innovation
+                </p>
+</div>
+<div class="w-full opacity-0 animate-fade-up stagger-3">
+<button class="w-full py-4 px-8 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-semibold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-black/10 dark:shadow-white/5">
+                    Get Started
+                </button>
+<p class="mt-6 text-xs text-slate-400 dark:text-slate-600 font-medium">
+                    Already have an account? <a class="text-primary hover:underline" href="#">Sign In</a>
+</p>
+</div>
+</div>
+<div class="pb-2 flex justify-center">
+<div class="w-32 h-1.5 bg-slate-300 dark:bg-slate-800 rounded-full"></div>
+</div>
+</main>
+<div class="hidden lg:block fixed -z-10 inset-0 bg-[#12140e]">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+</div>
+
+</body></html>

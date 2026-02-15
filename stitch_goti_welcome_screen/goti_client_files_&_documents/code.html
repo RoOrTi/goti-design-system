@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Client Files &amp; Documents</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Files &amp; Documents</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-primary gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- SearchBar -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-primary/30">
+<div class="text-primary flex border-none bg-white dark:bg-[#27241b] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-white dark:bg-[#27241b] focus:border-none h-full placeholder:text-slate-400 dark:placeholder-[#bab29c] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search files..." value=""/>
+</div>
+</label>
+</div>
+<!-- SectionHeader: Folders -->
+<div class="flex items-center justify-between px-4 pb-2 pt-4">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Folders</h3>
+<span class="text-primary text-sm font-semibold">View All</span>
+</div>
+<!-- TextGrid for Folders -->
+<div class="grid grid-cols-2 gap-3 p-4">
+<div class="flex flex-1 gap-3 rounded-xl border border-primary/10 dark:border-[#544e3b] bg-white dark:bg-[#27241b] p-4 items-center">
+<div class="text-primary">
+<span class="material-symbols-outlined">folder</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-sm font-bold leading-tight">Project Plans</h2>
+</div>
+<div class="flex flex-1 gap-3 rounded-xl border border-primary/10 dark:border-[#544e3b] bg-white dark:bg-[#27241b] p-4 items-center">
+<div class="text-primary">
+<span class="material-symbols-outlined">folder</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-sm font-bold leading-tight">Moodboards</h2>
+</div>
+<div class="flex flex-1 gap-3 rounded-xl border border-primary/10 dark:border-[#544e3b] bg-white dark:bg-[#27241b] p-4 items-center">
+<div class="text-primary">
+<span class="material-symbols-outlined">folder</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-sm font-bold leading-tight">Contracts</h2>
+</div>
+<div class="flex flex-1 gap-3 rounded-xl border border-primary/10 dark:border-[#544e3b] bg-white dark:bg-[#27241b] p-4 items-center">
+<div class="text-primary">
+<span class="material-symbols-outlined">folder</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-sm font-bold leading-tight">Invoices</h2>
+</div>
+</div>
+<!-- SectionHeader: Recent Files -->
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-6">Recent Files</h3>
+<!-- Files List -->
+<div class="flex flex-col gap-1 px-4 pb-10">
+<!-- File Item 1 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-[#27241b]/40 rounded-xl border border-primary/5 dark:border-[#393528] mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-sm font-bold">Brand_Guidelines_V2.pdf</p>
+<p class="text-slate-500 dark:text-[#bab29c] text-xs">4.2 MB • Oct 24, 2023</p>
+</div>
+</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- File Item 2 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-[#27241b]/40 rounded-xl border border-primary/5 dark:border-[#393528] mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">image</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-sm font-bold">Campaign_Moodboard.jpg</p>
+<p class="text-slate-500 dark:text-[#bab29c] text-xs">12.8 MB • Oct 22, 2023</p>
+</div>
+</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- File Item 3 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-[#27241b]/40 rounded-xl border border-primary/5 dark:border-[#393528] mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">article</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-sm font-bold">Service_Agreement_Final.docx</p>
+<p class="text-slate-500 dark:text-[#bab29c] text-xs">850 KB • Oct 18, 2023</p>
+</div>
+</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- File Item 4 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-[#27241b]/40 rounded-xl border border-primary/5 dark:border-[#393528] mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-sm font-bold">Invoice_INV-2023-08.pdf</p>
+<p class="text-slate-500 dark:text-[#bab29c] text-xs">1.1 MB • Oct 15, 2023</p>
+</div>
+</div>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Floating Action Button for Upload (Optional High-end feel) -->
+<div class="fixed bottom-6 right-6">
+<button class="flex size-14 items-center justify-center rounded-full bg-primary text-white shadow-xl">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</body></html>

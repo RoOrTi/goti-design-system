@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#221e10",
+                        "charcoal": "#181611",
+                        "alabaster": "#f8f8f5",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .serif-font { font-family: 'Playfair Display', serif; }
+        .sans-font { font-family: 'Spline Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-charcoal dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden max-w-[430px] mx-auto shadow-2xl">
+<!-- TopAppBar -->
+<div class="flex items-center bg-charcoal dark:bg-background-dark p-4 pb-2 justify-between border-b border-white/10 sticky top-0 z-50">
+<div class="text-white flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">GOTI Branding Guide</h2>
+</div>
+<!-- Headline -->
+<div class="px-4 py-8">
+<h1 class="text-charcoal dark:text-white tracking-tight text-[32px] font-bold leading-tight pb-2">Visual Identity</h1>
+<p class="text-charcoal/70 dark:text-white/70 text-sm">Version 1.0 • Luxury Design Agency</p>
+</div>
+<!-- Typography Section -->
+<div class="mb-8">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-l-4 border-primary ml-4">Typography</h2>
+<div class="px-4 mt-4">
+<div class="p-6 bg-white dark:bg-charcoal/40 rounded-xl border border-primary/10 mb-4">
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Primary Heading</p>
+<h1 class="serif-font text-charcoal dark:text-white text-[42px] leading-tight mb-2">Elegant Serif</h1>
+<p class="text-charcoal/60 dark:text-white/60 text-sm italic serif-font">Playfair Display Regular &amp; Bold</p>
+</div>
+<div class="p-6 bg-white dark:bg-charcoal/40 rounded-xl border border-primary/10">
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Body &amp; UI</p>
+<h2 class="sans-font text-charcoal dark:text-white text-2xl font-semibold mb-2">Modern Sans-Serif</h2>
+<p class="text-charcoal/60 dark:text-white/60 text-sm sans-font leading-relaxed">Spline Sans for clean readability across all digital platforms and print applications.</p>
+</div>
+</div>
+</div>
+<!-- Color Palette Section -->
+<div class="mb-8">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-l-4 border-primary ml-4">Color Palette</h2>
+<div class="grid grid-cols-1 gap-4 px-4 mt-4">
+<!-- Champagne Gold -->
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-charcoal/40 rounded-xl">
+<div class="size-16 rounded-lg bg-primary shadow-lg shadow-primary/20"></div>
+<div class="flex flex-col">
+<span class="font-bold text-charcoal dark:text-white">Champagne Gold</span>
+<span class="text-xs font-mono text-charcoal/60 dark:text-white/60">#DAA60B</span>
+</div>
+</div>
+<!-- Deep Charcoal -->
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-charcoal/40 rounded-xl">
+<div class="size-16 rounded-lg bg-charcoal border border-white/10 shadow-lg"></div>
+<div class="flex flex-col">
+<span class="font-bold text-charcoal dark:text-white">Deep Charcoal</span>
+<span class="text-xs font-mono text-charcoal/60 dark:text-white/60">#181611</span>
+</div>
+</div>
+<!-- Alabaster -->
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-charcoal/40 rounded-xl">
+<div class="size-16 rounded-lg bg-alabaster border border-charcoal/10 shadow-lg"></div>
+<div class="flex flex-col">
+<span class="font-bold text-charcoal dark:text-white">Alabaster</span>
+<span class="text-xs font-mono text-charcoal/60 dark:text-white/60">#F8F8F5</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Logo Usage Section -->
+<div class="mb-8">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-l-4 border-primary ml-4">Logo Usage</h2>
+<div class="flex flex-col gap-4 px-4 mt-4">
+<!-- Dark Background Logo -->
+<div class="relative h-40 bg-charcoal rounded-xl flex items-center justify-center overflow-hidden group">
+<div class="text-primary text-5xl serif-font font-bold">GOTI</div>
+<div class="absolute bottom-2 right-3 text-[10px] text-white/40 uppercase tracking-widest">On Dark Background</div>
+</div>
+<!-- Light Background Logo -->
+<div class="relative h-40 bg-alabaster rounded-xl flex items-center justify-center overflow-hidden border border-charcoal/5">
+<div class="text-primary text-5xl serif-font font-bold">GOTI</div>
+<div class="absolute bottom-2 right-3 text-[10px] text-charcoal/40 uppercase tracking-widest">On Light Background</div>
+</div>
+</div>
+</div>
+<!-- Imagery Section -->
+<div class="mb-12">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-l-4 border-primary ml-4">Imagery Style</h2>
+<p class="text-charcoal/70 dark:text-white/70 text-sm px-4 pt-1 mb-4">High-fashion, editorial portraits with dramatic lighting and minimal environments.</p>
+<div class="px-4">
+<div class="grid grid-cols-2 gap-2">
+<img alt="High fashion editorial model" class="w-full h-48 object-cover rounded-lg" data-alt="Close-up high fashion portrait with dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Ahg26qPQQ-zSfWdqjIwZnflEQ3VdOSj7fYGWaQTP7U0pw7TRCdiOVIL_Hm2YatXOaBzPvAr6v_Bj0XI_eAlEZdLzfRqcAfYtLClT7Sa2_Sc0ZdnzA_ltuDsoxa17e1N3Qt9rzkZi41RhMoEfsU-WmGFBFRecG3nV50NThgqOefHwu2NCI_BE6OzCSMOROViuOj6vO8ABvmVArMjtgRWoa-hu2ccdLIsSKa2vymazZVk6aTPAfGGOP2F-Y572HN1lHVuCOTr71WQ"/>
+<img alt="Elegant fashion attire" class="w-full h-48 object-cover rounded-lg" data-alt="Luxury fabric texture and elegant apparel detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PdDOArngWKgfq6Zz3mwvlu0-vgrc4-Y9rQO-i1Qx8LEn7bCMtTncGK6qQaGWcUaFFREpGxBtiX-9pBASQ7OhOv2h8YE_ziO9ZS9lSTs5dVavD4RyQB0Rae024ar7nRRF6I66LfOGuoboKTeaxYAk_X0al_d6vqXfGQxzAKrXZZ1xHpqxY9UvQZqirfahNYSO0quYRglcmNWQRNbSWihqWGdeOuqOpoucWyh3qCZR2pT9FEzjBP24xRyQQhMaIrpEIk_UjBTWxDA"/>
+</div>
+<div class="mt-2">
+<img alt="Artistic studio shot" class="w-full h-64 object-cover rounded-lg" data-alt="Minimalist artistic studio portrait with shadow play" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqLkozFz7Vxjat2cNIZULp_KkjoE-60Z_l_hth3wqX72-7X9vnbFvBdi7i7tCVlBWNpjVY8nNsigFYC9uOuhxqIXp0ivmm3Y4Oi5OZu47J4Ws8dTFkoVnCQZscCwter-KfH-eMuuvJ3dU7g9dJ5czbevsmQZ-RHNhxBLZS5UEyIm2GtHYw3kFSASIHnOopcBmkXWlFc4SBqPLUZPMq6DvjVMoxYguVCV_115lNVdJFVLWqTqJHwNsI_GTH3rhxCupgD4uh4ayRxH4"/>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="p-8 bg-charcoal text-center">
+<div class="text-primary text-2xl serif-font font-bold mb-2">GOTI</div>
+<p class="text-white/40 text-xs tracking-widest uppercase">© 2024 GOTI Design Agency</p>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Designer Chat Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: "Noto Serif", serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-white">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto border-x border-white/5">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-dark p-4 pt-12 pb-4 border-b border-white/5">
+<div class="relative flex size-12 shrink-0 items-center justify-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Portrait of designer Rodrigo Ordoñez Timoniuk looking professional" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8qH4mpAe3x7j3g9gxv3f2sptevXq2murSPoAODNGh24_ATiO4oPiU_FyW9kYqhaVROCPbUjjd2hI5-FdvJoJ0qhvliwwDZJvpd2DnmRGhVxO-3MJmKDqshRZC6PSyQZ79QCYswHoQkuijNGqxxoDg7gUIkuDBuImHo7D9YupLh5mbwpArLUTLVEhIuibWwiN60ZuxMaiJo3oi4TjeHe3j-ATjwufddVK336qbDY68YHw_noHdJRmVWr1ZSKb2NOuYUsQRdgYEMMY");'>
+</div>
+<div class="absolute bottom-1 right-1 size-3 bg-green-500 rounded-full border-2 border-background-dark"></div>
+</div>
+<div class="flex flex-col ml-3 flex-1">
+<h2 class="text-primary text-lg font-bold leading-tight tracking-[-0.015em] font-display">Rodrigo Ordoñez Timoniuk</h2>
+<p class="text-[10px] text-white/40 uppercase tracking-widest font-sans">Lead Designer</p>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-transparent text-white/60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto p-4 space-y-2">
+<!-- Section Header -->
+<div class="py-6">
+<h4 class="text-white/30 text-[10px] uppercase font-bold tracking-[0.2em] text-center font-sans">Private Session â€¢ Today</h4>
+</div>
+<!-- SingleMessage: Designer (Rodrigo Ordoñez Timoniuk) -->
+<div class="flex items-end gap-3 py-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 shrink-0" data-alt="Small avatar of Rodrigo Ordoñez Timoniuk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5gowkY58GNHcteXdy9sm4tTiendlpgfAt00GHDH8OalfhTf5cAvvq7Ys71uO3cLx1tQloEX9DYjU8o6oDbr9NbkuFsiw4QgCJWiH9vqBdH4ezO276EZrj0yloXhVEZcCgfyELTJNNExjKjSVGLHFOQJeAMpvzXLagVuqZhPLhJhqJeD7kFPEVn_bLVVNSZem8IDGxQzU4scmCIGi6XGHIFxmKXks5Gi1OU9zskpobqAhhOsiCXERUu4MvDE988Qg0vi6GEvj2meM");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-primary/60 text-[11px] font-sans font-medium ml-1">Rodrigo Ordoñez Timoniuk</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-tr-xl rounded-br-xl rounded-bl-xl px-4 py-3 bg-background-dark border border-primary/30 text-white/90">
+                        Welcome back. I have uploaded the final high-fidelity mockups for the landing page. How do they feel to you?
+                    </div>
+</div>
+</div>
+<!-- SingleMessage: Client -->
+<div class="flex items-end gap-3 py-2 justify-end">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<p class="text-white/30 text-[11px] font-sans font-medium mr-1 uppercase">CLIENT</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-tl-xl rounded-bl-xl rounded-br-xl px-4 py-3 bg-[#333333] text-white">
+                        The minimalist approach is stunning. I'm curious if we could experiment with a slightly heavier weight for the headings?
+                    </div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 shrink-0" data-alt="Abstract premium logo for client profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAx6RBK-NuB8nhNpOThayN0nxfjlWxJ2tQ-W-2Sm-rwI0jNbOeI5zC0h_T4atTtD2otp9eyNrR1xB1walZjWwXM_bdcWfj6DDwYmq3NeY9kzW_bbR4xfwo_4gkXWH_ITTeDmdtbd7cHEnqUtlBkOirFHiQ9cH0ZwaUzOV4qeG_Oal-3epbMhv6zyMxghMoJbBs8IAwTwfkgWKanOm5GeI1cAgjIzZgnOqtXlMl8iWsXrw20X6vQ7HLy_nUDVwFd_EQVphxGK5U2vw");'></div>
+</div>
+<!-- SingleMessage: Designer (Rodrigo Ordoñez Timoniuk) -->
+<div class="flex items-end gap-3 py-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 shrink-0" data-alt="Small avatar of Rodrigo Ordoñez Timoniuk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoNUaD1l9cJwaMNtK4kDtwrBKaFyB5lk77txkRey7m5dMPgLkqGQnQLsnroTlN6dHItOV9CHpVno_pXgtnPHjqkB_572TxMY-njaCrQFe4wVCKTYEokf0nCMCFGmwEgKjNYW7U5rOwy9jIobm7NEfsKS7tsmPUY2a4srkUd4S-O-9J1UsFT8-ozEDFKGSKcffGv5LGcptCuWEiP3FgnS7Xk-kyWSGjl3ddAse1KHRfETkmOQZUJ8Sl2aDOOboxmDJq7HyZVg_VRjg");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-primary/60 text-[11px] font-sans font-medium ml-1">Rodrigo Ordoñez Timoniuk</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-tr-xl rounded-br-xl rounded-bl-xl px-4 py-3 bg-background-dark border border-primary/30 text-white/90">
+                        Absolutely. I'll adjust the typography settings and share an updated version within the hour.
+                    </div>
+</div>
+</div>
+<!-- SingleMessage: Client -->
+<div class="flex items-end gap-3 py-2 justify-end">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<p class="text-white/30 text-[11px] font-sans font-medium mr-1 uppercase">CLIENT</p>
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-tl-xl rounded-bl-xl rounded-br-xl px-4 py-3 bg-[#333333] text-white">
+                        Perfect. Also, let's confirm the color palette for the mobile view.
+                    </div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 shrink-0" data-alt="Abstract premium logo for client profile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAU4iWxY34nscg5xiOHQ9MH4MgI97oc8TC6fmMznKted8opgFpFx80kEHMqwS2590TgfyfXwUWmYbt2yC_KtqhlbHTJNjxKudBq0wQbCA5C80sA1GbcQJHs5ofOMYjFqQp76SDaaYNzgpCFhEzqWqcBTRcWY0eZBDq75IVEFm-WKhBlr1b-ninjvVsC14U4xBtg2afWlOt41c12ypd2iniQ0Q4Jj7FaKrZX14n5KcoTgTirAjRlnyPfVRRAznnBXaTztoVdAGT-KuA");'></div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-4 bg-background-dark border-t border-white/5 pb-10">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none text-sm text-white/80 placeholder:text-white/20 focus:ring-0 font-sans" placeholder="Type your message..." type="text"/>
+<button class="text-primary font-display font-bold text-sm tracking-widest uppercase px-2">
+                    Send
+                </button>
+</div>
+</div>
+</div>
+</body></html>

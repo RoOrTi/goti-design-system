@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Main Menu Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#d4af37", // Gold for serif logo and accents
+                "background-light": "#f6f6f8",
+                "background-dark": "#111318",
+                "charcoal": "#111318",
+                "gold-leaf": "#D4AF37",
+              },
+              fontFamily: {
+                "display": ["Manrope", "sans-serif"],
+                "serif": ["Playfair Display", "serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        .silk-texture {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .nav-item-hover:hover .underline-draw {
+            width: 100%;
+        }
+        .underline-draw {
+            width: 0;
+            height: 1px;
+            background-color: #D4AF37;
+            transition: width 0.4s ease;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col bg-charcoal dark overflow-hidden silk-texture">
+<!-- TopAppBar (Modified for Premium Style) -->
+<header class="flex items-center justify-between px-6 pt-12 pb-6">
+<button class="text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<h1 class="font-serif text-3xl font-medium tracking-widest text-gold-leaf">GOTI</h1>
+<button class="text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</header>
+<!-- Main Navigation Menu -->
+<main class="flex-1 flex flex-col justify-center items-center px-8">
+<nav class="w-full flex flex-col gap-12">
+<a class="group nav-item-hover flex flex-col items-center" href="#">
+<span class="text-white text-lg font-light tracking-[0.3em] uppercase">The Studio</span>
+<div class="underline-draw mt-2"></div>
+</a>
+<a class="group nav-item-hover flex flex-col items-center" href="#">
+<span class="text-white text-lg font-light tracking-[0.3em] uppercase">Curated Portfolio</span>
+<div class="underline-draw mt-2"></div>
+</a>
+<a class="group nav-item-hover flex flex-col items-center" href="#">
+<span class="text-white text-lg font-light tracking-[0.3em] uppercase">Design Services</span>
+<div class="underline-draw mt-2"></div>
+</a>
+<a class="group nav-item-hover flex flex-col items-center" href="#">
+<span class="text-white text-lg font-light tracking-[0.3em] uppercase">Inquiry</span>
+<div class="underline-draw mt-2"></div>
+</a>
+</nav>
+</main>
+<!-- Decorative Background Element -->
+<div class="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute top-[-5%] right-[-5%] w-80 h-80 bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- BottomNavBar (Modified for Minimalist Look) -->
+<div class="flex gap-2 border-t border-white/5 bg-charcoal/80 backdrop-blur-md px-6 pb-8 pt-4">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-gold-leaf" href="#">
+<span class="material-symbols-outlined fill-1">home</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/40 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/40 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">brush</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/40 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">GOTI Design Agency</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-slate-900 dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- HeadlineText -->
+<div class="bg-background-light dark:bg-background-dark">
+<h2 class="text-slate-900 dark:text-white tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Luxury Virtual Background Studio</h2>
+</div>
+<!-- BodyText -->
+<div class="bg-background-light dark:bg-background-dark">
+<p class="text-slate-600 dark:text-slate-300 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center italic">Personalized for Rodrigo Ordoñez Timoniuk</p>
+</div>
+<!-- SectionHeader -->
+<div class="bg-background-light dark:bg-background-dark">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Select Background Variant</h3>
+</div>
+<!-- ImageGrid -->
+<div class="bg-background-light dark:bg-background-dark">
+<div class="grid grid-cols-1 gap-4 p-4">
+<!-- Variant 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 aspect-video flex flex-col justify-end p-5 border-2 border-primary" data-alt="Cinematic minimalist architectural studio with golden lighting" style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-bNc-aCBZMM-7ItdDG16nxQ0sBvHcYh77BxcpCdPdwKm9qvSt65UQG2_hMTGneWwHa6tQfbauF-oqGhaESz3LmCnIBPDTBGHBlLcotXYtD3DEmX5CIkADNjNzkE4fQ5jomN4cEHRMK0IBTh_YaIrjn6lQdbdBFCUYurDvWwrrdVtzHEI65X0_gn4xoZmDJNmEFH4JVbU61DPHCxkl_n3icXnwnpueau-Q87ELsUsyd4i3cwkRElj9OATi8yDDpQ4skFqC91uSrI0"); background-size: cover; background-position: center;'>
+<div class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                    Active
+                </div>
+<div class="absolute top-4 left-4 bg-white/10 backdrop-blur-sm p-2 rounded">
+<p class="text-primary text-[10px] font-bold tracking-widest">GOTI</p>
+</div>
+<div>
+<p class="text-white text-lg font-bold leading-tight mb-1">Variant 1: Minimalist Studio</p>
+<p class="text-white/70 text-sm">Cinematic, soft golden lighting for a high-end feel.</p>
+</div>
+</div>
+<!-- Variant 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 aspect-video flex flex-col justify-end p-5 border border-white/10" data-alt="Dark charcoal background with silk texture and gold logo" style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIOxQdjR8lE7-mli7RY73paRL1hPfecBUP8LPjaMpIGl-jhb9zwObiYuVsmEdmfOloYbkOa6nMDtf8Aoy5qnd-8EMrSD29JUOEHWsIgqdvoXgMPqJTyM7CoM5a4UOAkGlgKpUIzslTswvYRv2w60-7InNzC2w8XorqsZvZLp7ino6dLUwq4KsXQGFtngRTodC6kq-fh9T_ee7N8PJx_fpx8pryC93PmHC3wuYKAXMSECuMhET84ELA7yV7ljFy8wjKkDVORhfCNL0"); background-size: cover; background-position: center;'>
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<p class="text-primary text-2xl font-bold tracking-[0.5em]">GOTI</p>
+</div>
+<div>
+<p class="text-white text-lg font-bold leading-tight mb-1">Variant 2: Charcoal Silk</p>
+<p class="text-white/70 text-sm">Premium authority with sophisticated dark textures.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Additional Custom Component: Action Button -->
+<div class="p-4 bg-background-light dark:bg-background-dark">
+<button class="w-full bg-primary hover:bg-primary/90 text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">download</span>
+            Download for Zoom &amp; Teams
+        </button>
+</div>
+<!-- SectionHeader -->
+<div class="bg-background-light dark:bg-background-dark">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Technical Specifications</h3>
+</div>
+<!-- Custom Component: List -->
+<div class="px-4 pb-10 bg-background-light dark:bg-background-dark">
+<div class="space-y-4">
+<div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-primary">aspect_ratio</span>
+<div>
+<p class="text-sm font-bold">16:9 Aspect Ratio</p>
+<p class="text-xs text-slate-500">Perfectly optimized for video calls.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-primary">hd</span>
+<div>
+<p class="text-sm font-bold">4K Resolution</p>
+<p class="text-xs text-slate-500">Crisp and professional visuals.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-primary">visibility</span>
+<div>
+<p class="text-sm font-bold">Distraction-Free</p>
+<p class="text-xs text-slate-500">Designed to make you the focus.</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

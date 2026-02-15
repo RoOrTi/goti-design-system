@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
+<div class="text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-white">arrow_back_ios</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-sans">Client Stories</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-white">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- HeadlineText -->
+<div class="flex flex-col items-center px-4 py-8">
+<h2 class="text-white tracking-light text-[32px] font-bold leading-tight text-center">Client Trust</h2>
+<p class="text-primary/70 text-sm font-sans tracking-widest uppercase mt-2">Excellence in every detail</p>
+</div>
+<!-- Carousel -->
+<div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory">
+<div class="flex items-stretch p-4 gap-6">
+<!-- Card 1 -->
+<div class="snap-center flex h-full flex-col gap-6 rounded-xl min-w-[85vw] glass-card p-8">
+<div class="flex flex-col gap-4">
+<span class="material-symbols-outlined text-primary text-5xl opacity-80" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="text-white text-2xl font-light leading-relaxed italic">
+                            GOTI redefined our brand identity with unparalleled elegance. The attention to detail is truly world-class.
+                        </p>
+</div>
+<div class="mt-4">
+<div class="w-12 h-[1px] bg-primary/40 mb-4"></div>
+<p class="text-primary text-xs font-bold font-sans tracking-widest uppercase">ELENA RIVERA</p>
+<p class="text-white/40 text-[10px] font-sans tracking-wider uppercase mt-1">CEO of Luxe Living</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-center flex h-full flex-col gap-6 rounded-xl min-w-[85vw] glass-card p-8">
+<div class="flex flex-col gap-4">
+<span class="material-symbols-outlined text-primary text-5xl opacity-80" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="text-white text-2xl font-light leading-relaxed italic">
+                            The creative vision brought to our project was both sophisticated and revolutionary. A prestige experience.
+                        </p>
+</div>
+<div class="mt-4">
+<div class="w-12 h-[1px] bg-primary/40 mb-4"></div>
+<p class="text-primary text-xs font-bold font-sans tracking-widest uppercase">MARCUS CHEN</p>
+<p class="text-white/40 text-[10px] font-sans tracking-wider uppercase mt-1">Founder of ArchiTech</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-center flex h-full flex-col gap-6 rounded-xl min-w-[85vw] glass-card p-8">
+<div class="flex flex-col gap-4">
+<span class="material-symbols-outlined text-primary text-5xl opacity-80" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="text-white text-2xl font-light leading-relaxed italic">
+                            Working with GOTI was a seamless journey into luxury design. They captured our essence perfectly.
+                        </p>
+</div>
+<div class="mt-4">
+<div class="w-12 h-[1px] bg-primary/40 mb-4"></div>
+<p class="text-primary text-xs font-bold font-sans tracking-widest uppercase">SOPHIA LORENZO</p>
+<p class="text-white/40 text-[10px] font-sans tracking-wider uppercase mt-1">Creative Director at Vogue</p>
+</div>
+</div>
+</div>
+</div>
+<!-- PageIndicators -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-8">
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+</div>
+<div class="mt-auto">
+<!-- Decorative Branding Element -->
+<div class="flex justify-center py-4 opacity-20">
+<div class="w-px h-12 bg-white"></div>
+</div>
+<!-- BottomNavBar -->
+<div class="flex gap-2 border-t border-white/10 bg-background-dark px-4 pb-8 pt-4">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/40" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium font-sans uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/40" href="#">
+<span class="material-symbols-outlined">work</span>
+<p class="text-[10px] font-medium font-sans uppercase tracking-wider">Work</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="text-[10px] font-medium font-sans uppercase tracking-wider">Reviews</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/40" href="#">
+<span class="material-symbols-outlined">mail</span>
+<p class="text-[10px] font-medium font-sans uppercase tracking-wider">Contact</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>
