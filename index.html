@@ -321,6 +321,12 @@
 
         .screen-card p {
             color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        /* Shadow Glow Utility */
+        .shadow-glow {
+            box-shadow: 0 0 30px -5px rgba(249, 208, 6, 0.1);
         }
 
         /* Better aspect ratio for previews */
@@ -407,8 +413,11 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative py-20 px-4 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent"></div>
+    <section class="relative py-12 px-4 overflow-hidden border-b border-white/5">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,208,6,0.08),transparent_50%)]">
+        </div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(249,208,6,0.05),transparent_40%)]">
+        </div>
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="text-center max-w-3xl mx-auto">
                 <h2
@@ -446,9 +455,8 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
 
-        <!-- Brand & Identity -->
-        <section id="brand" class="category-section mb-16">
-            <div class="flex items-center gap-3 mb-8">
+        <section id="brand" class="category-section mb-10">
+            <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">verified</span>
                 <h3 class="text-3xl font-bold">Brand & Identity</h3>
                 <span class="text-sm text-white/40 ml-auto">8 screens</span>
@@ -485,9 +493,8 @@
             </div>
         </section>
 
-        <!-- Client Experience -->
-        <section id="client" class="category-section mb-16">
-            <div class="flex items-center gap-3 mb-8">
+        <section id="client" class="category-section mb-10">
+            <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">groups</span>
                 <h3 class="text-3xl font-bold">Client Experience</h3>
                 <span class="text-sm text-white/40 ml-auto">12 screens</span>
@@ -542,8 +549,8 @@
         </section>
 
         <!-- Studio & Services -->
-        <section id="studio" class="category-section mb-16">
-            <div class="flex items-center gap-3 mb-8">
+        <section id="studio" class="category-section mb-10">
+            <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">apartment</span>
                 <h3 class="text-3xl font-bold">Studio & Services</h3>
                 <span class="text-sm text-white/40 ml-auto">9 screens</span>
@@ -589,8 +596,8 @@
         </section>
 
         <!-- Communication Tools -->
-        <section id="communication" class="category-section mb-16">
-            <div class="flex items-center gap-3 mb-8">
+        <section id="communication" class="category-section mb-10">
+            <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">forum</span>
                 <h3 class="text-3xl font-bold">Communication Tools</h3>
                 <span class="text-sm text-white/40 ml-auto">15 screens</span>
@@ -626,9 +633,8 @@
             </div>
         </section>
 
-        <!-- Social & Marketing -->
-        <section id="social" class="category-section mb-16">
-            <div class="flex items-center gap-3 mb-8">
+        <section id="social" class="category-section mb-10">
+            <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">share</span>
                 <h3 class="text-3xl font-bold">Social & Marketing</h3>
                 <span class="text-sm text-white/40 ml-auto">12 screens</span>
@@ -664,9 +670,8 @@
             </div>
         </section>
 
-        <!-- Business Documents -->
-        <section id="documents" class="category-section mb-16">
-            <div class="flex items-center gap-3 mb-8">
+        <section id="documents" class="category-section mb-10">
+            <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">description</span>
                 <h3 class="text-3xl font-bold">Business Documents</h3>
                 <span class="text-sm text-white/40 ml-auto">5 screens</span>
