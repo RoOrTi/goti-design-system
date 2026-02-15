@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTI Master Dashboard UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f9d006', // GOTI Gold
+                        dark: '#181711',    // GOTI Dark
+                        surface: '#25241d',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #181711;
+            background-image: radial-gradient(circle at 50% 50%, rgba(249, 208, 6, 0.05) 0%, transparent 70%);
+            min-height: 100vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .menu-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            /* Glass base */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .menu-button {
+            flex-grow: 1;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-transform: capitalize;
+        }
+
+        /* Hover states */
+        .menu-row:hover .icon-circle {
+            background: rgba(249, 208, 6, 0.1);
+            border-color: #f9d006;
+            transform: rotate(10deg);
+        }
+
+        .menu-row:hover .menu-button {
+            border-color: rgba(249, 208, 6, 0.5);
+            box-shadow: 0 0 20px rgba(249, 208, 6, 0.2);
+            transform: translateX(5px);
+            color: #f9d006;
+        }
+
+        /* Specific styles for special buttons */
+        .btn-blue {
+            background: linear-gradient(180deg, #007bff 0%, #0056b3 100%) !important;
+            border: none !important;
+            color: white !important;
+        }
+
+        .btn-orange {
+            background: linear-gradient(180deg, #ff6b35 0%, #d64917 100%) !important;
+            border: none !important;
+            color: white !important;
+        }
+
+        .material-symbols-outlined {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .menu-row:hover .material-symbols-outlined {
+            color: #f9d006;
+        }
+
+        h2 {
+            grid-column: span 2;
+            text-align: center;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #f9d006 0%, #daa60b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <h2>GOTI MASTER DASHBOARD</h2>
+
+        <!-- Left Column -->
+        <div class="button-group">
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">school</span></div>
+                <div class="menu-button">Cursos</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">calendar_month</span></div>
+                <div class="menu-button">Calendario</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">ads_click</span></div>
+                <div class="menu-button">Botones</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">share</span></div>
+                <div class="menu-button">Redes</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">payments</span></div>
+                <div class="menu-button">Finanzas</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">3d_rotation</span></div>
+                <div class="menu-button">3D</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">shopping_bag</span></div>
+                <div class="menu-button">Productos</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">groups</span></div>
+                <div class="menu-button">Equipo</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">receipt_long</span></div>
+                <div class="menu-button">Movimientos</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">info</span></div>
+                <div class="menu-button">Estado</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">person_add</span></div>
+                <div class="menu-button">Members</div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="button-group">
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">list_alt</span></div>
+                <div class="menu-button">Índice</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">trending_up</span></div>
+                <div class="menu-button">Merval</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">work</span></div>
+                <div class="menu-button">Portafolio</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">dashboard</span></div>
+                <div class="menu-button btn-blue">DASHBOARD</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">radio</span></div>
+                <div class="menu-button">Radio</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">menu_book</span></div>
+                <div class="menu-button">CURSOS</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">currency_exchange</span></div>
+                <div class="menu-button">Forex</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">design_services</span></div>
+                <div class="menu-button">Servicios</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">waving_hand</span></div>
+                <div class="menu-button btn-orange">Saludar</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">home</span></div>
+                <div class="menu-button">Home</div>
+            </div>
+            <div class="menu-row">
+                <div class="icon-circle"><span class="material-symbols-outlined">chess</span></div>
+                <div class="menu-button">Chess</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
