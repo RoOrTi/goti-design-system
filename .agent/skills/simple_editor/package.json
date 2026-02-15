@@ -1,0 +1,12 @@
+{
+    "name": "wix-simple-editor",
+    "version": "1.0.0",
+    "description": "Wix automation skill",
+    "main": "simple_editor.js",
+    "scripts": {
+        "start": "node simple_editor.js"
+    },
+    "dependencies": {
+        "puppeteer": "^21.11.0"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "name": "wix-visual-designer",
+    "version": "1.0.0",
+    "description": "Visual identity and design automation for Wix.",
+    "main": "designer.js",
+    "scripts": {
+        "start": "node designer.js"
+    },
+    "dependencies": {
+        "puppeteer": "^21.0.0",
+        "chalk": "^4.1.2"
+    }
+}
