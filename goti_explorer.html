@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTI - Design Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9d006",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0a0a0a",
+                        "surface": "#121212",
+                        "border": "#222222",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #0d0d0d;
+            border-right: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .preview-area {
+            flex: 1;
+            background-color: #050505;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-header {
+            height: 60px;
+            background-color: #0d0d0d;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .iframe-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+        }
+
+        iframe {
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item {
+            padding: 10px 16px;
+            margin: 2px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(249, 208, 6, 0.05);
+            color: #ccc;
+        }
+
+        .nav-item.active {
+            background-color: rgba(249, 208, 6, 0.1);
+            color: #f9d006;
+            font-weight: 600;
+        }
+
+        .category-header {
+            padding: 24px 16px 8px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .search-box {
+            padding: 20px 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #f9d006;
+        }
+
+        /* Viewport buttons */
+        .vp-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #666;
+            transition: all 0.2s;
+        }
+
+        .vp-btn.active {
+            background: #f9d006;
+            color: black;
+            border-color: #f9d006;
+            font-weight: 700;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+
+        #empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #444;
+            text-align: center;
+        }
+
+        #empty-state h1 {
+            color: #f9d006;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .skill-card {
+            background: #121212;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-card:hover {
+            border-color: #f9d006;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-card .icon-box {
+            width: 48px;
+            height: 48px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f9d006;
+        }
+
+        .skill-card h3 {
+            font-weight: 700;
+            font-size: 15px;
+            color: white;
+        }
+
+        .skill-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .tag {
+            font-size: 10px;
+            background: rgba(249, 208, 6, 0.1);
+            color: #f9d006;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex h-screen w-full">
+        <!-- Sidebar -->
+        <aside class="sidebar h-full">
+            <div class="p-6 flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-3xl">pentagon</span>
+                <div>
+                    <h1 class="font-extrabold text-xl tracking-tighter">GOTI <span
+                            class="text-primary font-black">EXP</span></h1>
+                    <p class="text-[10px] text-zinc-600 uppercase font-bold tracking-widest">Master Design System</p>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search skill...">
+            </div>
+
+            <div class="flex-1 overflow-y-auto" id="navList">
+                <!-- Nav items will be injected here -->
+            </div>
+
+            <div
+                class="p-4 border-t border-zinc-900 flex justify-between items-center text-[10px] text-zinc-600 font-bold uppercase">
+                <span>Rodrigo O.T. Agency</span>
+                <span class="text-primary" id="totalCount">0 Screens</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="preview-area h-full">
+            <div id="previewPane" class="hidden h-full flex flex-col">
+                <header class="preview-header">
+                    <div class="flex items-center gap-4">
+                        <button id="closePreview" class="p-2 hover:bg-white/5 rounded-full text-zinc-500">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <div>
+                            <h2 id="currentName" class="font-bold text-sm">Dashboard Principal</h2>
+                            <p id="currentPath" class="text-[10px] text-zinc-500 font-mono">/inicio/dashboard_1</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="flex bg-black p-1 rounded-lg gap-1 border border-zinc-800">
+                            <button class="vp-btn" data-width="375px">Móvil</button>
+                            <button class="vp-btn" data-width="768px">Tablet</button>
+                            <button class="vp-btn active" data-width="100%">Full</button>
+                        </div>
+                        <a id="externalLink" href="#" target="_blank"
+                            class="p-3 bg-primary text-black rounded-lg hover:scale-105 transition-transform flex items-center justify-center">
+                            <span class="material-symbols-outlined text-sm font-bold">open_in_new</span>
+                        </a>
+                    </div>
+                </header>
+
+                <div class="iframe-container">
+                    <iframe id="previewFrame" src="" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div>
+
+            <!-- Home / Grid View -->
+            <div id="gridView" class="h-full overflow-hidden flex flex-col">
+                <div class="p-10 pb-0">
+                    <h1 class="text-6xl font-black tracking-tight mb-4">Skill <span class="text-primary">Factory</span>
+                    </h1>
+                    <p class="text-zinc-400 max-w-2xl text-lg">
+                        Explora la biblioteca completa de componentes y pantallas de alta fidelidad diseñadas por el
+                        estudio GOTI.
+                    </p>
+                </div>
+                <div class="grid-view" id="gridContent">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Data generated from filesystem scan
+        const screens = [
+            { id: '27c5106e-e4e5-4f22-8f3b-18fe88b38831', category: 'Brand & Identity', name: 'BIENVENIDA', path: 'stitch_goti_welcome_screen/bienvenida/code.html', icon: 'dashboard' },
+            { id: '05ffbea8-56ad-417e-9bcc-32f5f027824a', category: 'Brand & Identity', name: 'VENDER 1', path: 'stitch_goti_welcome_screen/comprar/vender_1/code.html', icon: 'dashboard' },
+            { id: 'e8b1c73d-110e-4a7d-8086-ae6c2f58a950', category: 'Brand & Identity', name: 'VENDER 2', path: 'stitch_goti_welcome_screen/comprar/vender_2/code.html', icon: 'dashboard' },
+            { id: '656a052d-d463-4727-a6c7-e81403bad5fe', category: 'Brand & Identity', name: 'VENDER 3', path: 'stitch_goti_welcome_screen/comprar/vender_3/code.html', icon: 'dashboard' },
+            { id: 'f11d7beb-0f78-4541-9485-1c396a7143fc', category: 'Brand & Identity', name: 'CONTROL DE CARTERA Y IMPUESTOS 1', path: 'stitch_goti_welcome_screen/control_de_cartera_y_impuestos_1/code.html', icon: 'dashboard' },
+            { id: '5846674f-c001-4e9f-a27e-9dd2490beb46', category: 'Brand & Identity', name: 'CONTROL DE CARTERA Y IMPUESTOS 2', path: 'stitch_goti_welcome_screen/control_de_cartera_y_impuestos_2/code.html', icon: 'dashboard' },
+            { id: '2d7a276c-c5d9-4fe5-b6a5-82bb8c6d277e', category: 'Auth & Profile', name: ' INICIAR SESIÓN', path: 'stitch_goti_welcome_screen/crear_cuenta_/_iniciar_sesión/code.html', icon: 'dashboard' },
+            { id: '2927dd48-1e8a-4f0f-ac9f-0815492dd8f0', category: 'Auth & Profile', name: 'CREAR CUENTA 1', path: 'stitch_goti_welcome_screen/crear_cuenta_1/code.html', icon: 'dashboard' },
+            { id: '7ca3797a-104f-44fa-b33b-ccb1f2b9ad0f', category: 'Auth & Profile', name: 'CREAR CUENTA 2', path: 'stitch_goti_welcome_screen/crear_cuenta_2/code.html', icon: 'dashboard' },
+            { id: '51f74bc1-92d7-48d4-a81a-d76d2465a3d6', category: 'Auth & Profile', name: 'CREAR CUENTA 3', path: 'stitch_goti_welcome_screen/crear_cuenta_3/code.html', icon: 'dashboard' },
+            { id: '3a70be78-5858-4896-8be2-616f255c75ed', category: 'Auth & Profile', name: 'CREAR CUENTA 4', path: 'stitch_goti_welcome_screen/crear_cuenta_4/code.html', icon: 'dashboard' },
+            { id: '6a6cda51-73aa-478b-a7a5-a9015f7a115d', category: 'Communication', name: 'GOTI ACTIVE VIDEO CALL VIEW', path: 'stitch_goti_welcome_screen/goti_active_video_call_view/code.html', icon: 'dashboard' },
+            { id: '77af4680-d47f-4d41-bf0b-85bd652d0125', category: 'Client Experience', name: 'GOTI ANIMATED WELCOME EXPERIENCE 1', path: 'stitch_goti_welcome_screen/goti_animated_welcome_experience_1/code.html', icon: 'dashboard' },
+            { id: 'f3bab5ff-8a2a-4138-bfcb-776e15b56296', category: 'Client Experience', name: 'GOTI ANIMATED WELCOME EXPERIENCE 2', path: 'stitch_goti_welcome_screen/goti_animated_welcome_experience_2/code.html', icon: 'dashboard' },
+            { id: 'eb609c35-4c0f-44b2-9cc5-f1113a67429e', category: 'Brand & Identity', name: 'GOTI BRAND COLLABORATIONS GRID', path: 'stitch_goti_welcome_screen/goti_brand_collaborations_grid/code.html', icon: 'dashboard' },
+            { id: '1b3a0b13-f5ac-4b3a-bacf-587cda37ef73', category: 'Brand & Identity', name: 'GOTI BRAND SIGNATURE BACKGROUND', path: 'stitch_goti_welcome_screen/goti_brand_signature_background/code.html', icon: 'dashboard' },
+            { id: '045c68cc-ba25-4e7d-8724-ae7e780db8fd', category: 'Client Experience', name: 'GOTI CLIENT FILES & DOCUMENTS', path: 'stitch_goti_welcome_screen/goti_client_files_&_documents/code.html', icon: 'dashboard' },
+            { id: 'dc9db168-f039-402f-8248-b2eaace4d5bc', category: 'Client Experience', name: 'GOTI CLIENT PROJECT DASHBOARD', path: 'stitch_goti_welcome_screen/goti_client_project_dashboard/code.html', icon: 'dashboard' },
+            { id: 'b35784f6-6a24-475e-a725-6cfce1444a40', category: 'Client Experience', name: 'GOTI CLIENT TESTIMONIALS CAROUSEL', path: 'stitch_goti_welcome_screen/goti_client_testimonials_carousel/code.html', icon: 'dashboard' },
+            { id: '400ce5de-d8f9-4a52-ada3-2dba9816e5a5', category: 'Communication', name: 'GOTI COLLABORATIVE WHITEBOARD VIEW 1', path: 'stitch_goti_welcome_screen/goti_collaborative_whiteboard_view_1/code.html', icon: 'dashboard' },
+            { id: '0113de0d-1b9e-4e78-90af-73dd784f68eb', category: 'Communication', name: 'GOTI COLLABORATIVE WHITEBOARD VIEW 2', path: 'stitch_goti_welcome_screen/goti_collaborative_whiteboard_view_2/code.html', icon: 'dashboard' },
+            { id: 'e9cbcdd6-a79e-40e1-8627-d528bf3748ba', category: 'Studio & Projects', name: 'GOTI CURATED PORTFOLIO GALLERY', path: 'stitch_goti_welcome_screen/goti_curated_portfolio_gallery/code.html', icon: 'dashboard' },
+            { id: '3ad3f9c1-c93a-416f-983b-86939c147a21', category: 'Communication', name: 'GOTI DESIGNER CHAT CENTER 1', path: 'stitch_goti_welcome_screen/goti_designer_chat_center_1/code.html', icon: 'dashboard' },
+            { id: 'a45d98d2-0186-4b6e-85ed-91d76d1652f3', category: 'Communication', name: 'GOTI DESIGNER CHAT CENTER 2', path: 'stitch_goti_welcome_screen/goti_designer_chat_center_2/code.html', icon: 'dashboard' },
+            { id: 'de80d3d2-ecef-462d-a628-55a8a6df7c38', category: 'Communication', name: 'GOTI DESIGNER CHAT CENTER 3', path: 'stitch_goti_welcome_screen/goti_designer_chat_center_3/code.html', icon: 'dashboard' },
+            { id: '00cd5e31-1778-4d84-a334-1123b50eb6ff', category: 'Brand & Identity', name: 'GOTI DESIGN SERVICES MENU', path: 'stitch_goti_welcome_screen/goti_design_services_menu/code.html', icon: 'dashboard' },
+            { id: '159dd50d-9023-49a9-a3f0-a6ccc1075fad', category: 'Brand & Identity', name: 'GOTI GMAIL AVATAR GLOW', path: 'stitch_goti_welcome_screen/goti_gmail_avatar_glow/code.html', icon: 'dashboard' },
+            { id: 'c11fe198-7cac-4fd4-aa0e-4dc12e16911f', category: 'Brand & Identity', name: 'GOTI GMAIL AVATAR SHIMMER 1', path: 'stitch_goti_welcome_screen/goti_gmail_avatar_shimmer_1/code.html', icon: 'dashboard' },
+            { id: '5f85498b-ae6a-4be2-a058-ddc552b3b093', category: 'Brand & Identity', name: 'GOTI GMAIL AVATAR SHIMMER 2', path: 'stitch_goti_welcome_screen/goti_gmail_avatar_shimmer_2/code.html', icon: 'dashboard' },
+            { id: '294e7c46-c9bd-4567-b569-62e477fd49db', category: 'Communication', name: 'GOTI INQUIRY & CONTACT SCREEN 1', path: 'stitch_goti_welcome_screen/goti_inquiry_&_contact_screen_1/code.html', icon: 'dashboard' },
+            { id: 'd51d8c07-af77-49e0-bf68-4fb095096b1d', category: 'Communication', name: 'GOTI INQUIRY & CONTACT SCREEN 2', path: 'stitch_goti_welcome_screen/goti_inquiry_&_contact_screen_2/code.html', icon: 'dashboard' },
+            { id: '746f2b47-7ac6-4231-895f-156921ce2485', category: 'Social & Marketing', name: 'GOTI INSTAGRAM FEED TEMPLATES 1', path: 'stitch_goti_welcome_screen/goti_instagram_feed_templates_1/code.html', icon: 'dashboard' },
+            { id: '0fc7c54f-63ea-4552-845d-cb80bcf21f01', category: 'Social & Marketing', name: 'GOTI INSTAGRAM FEED TEMPLATES 2', path: 'stitch_goti_welcome_screen/goti_instagram_feed_templates_2/code.html', icon: 'dashboard' },
+            { id: '4dd9d7e5-3571-43e2-bc4f-33c8fccfd4cd', category: 'Social & Marketing', name: 'GOTI INSTAGRAM FEED TEMPLATES 3', path: 'stitch_goti_welcome_screen/goti_instagram_feed_templates_3/code.html', icon: 'dashboard' },
+            { id: 'c119a48d-71e5-4c17-b595-69ab4fcf1623', category: 'Social & Marketing', name: 'GOTI INSTAGRAM HIGHLIGHT ICONS', path: 'stitch_goti_welcome_screen/goti_instagram_highlight_icons/code.html', icon: 'dashboard' },
+            { id: 'b69bb5eb-ce70-4052-b0aa-fa045a210087', category: 'Social & Marketing', name: 'GOTI INSTAGRAM STORIES TEMPLATES 1', path: 'stitch_goti_welcome_screen/goti_instagram_stories_templates_1/code.html', icon: 'dashboard' },
+            { id: '3471bf58-b689-4b01-92c2-2381e0e2cf8b', category: 'Social & Marketing', name: 'GOTI INSTAGRAM STORIES TEMPLATES 2', path: 'stitch_goti_welcome_screen/goti_instagram_stories_templates_2/code.html', icon: 'dashboard' },
+            { id: '5ffa4dec-134f-47af-9157-a6db67f2712b', category: 'Brand & Identity', name: 'GOTI LIGHT MODE INTERFACE 1', path: 'stitch_goti_welcome_screen/goti_light_mode_interface_1/code.html', icon: 'dashboard' },
+            { id: '89ce4be4-98d8-4e6f-9a8d-8e5f059718cb', category: 'Brand & Identity', name: 'GOTI LIGHT MODE INTERFACE 2', path: 'stitch_goti_welcome_screen/goti_light_mode_interface_2/code.html', icon: 'dashboard' },
+            { id: 'c0542c67-34ee-4ead-b9a1-c283af0c163d', category: 'Brand & Identity', name: 'GOTI LIGHT MODE INTERFACE 3', path: 'stitch_goti_welcome_screen/goti_light_mode_interface_3/code.html', icon: 'dashboard' },
+            { id: '8553be52-60e3-4eff-ba94-19c8d63e38b0', category: 'Brand & Identity', name: 'GOTI LIGHT MODE INTERFACE 4', path: 'stitch_goti_welcome_screen/goti_light_mode_interface_4/code.html', icon: 'dashboard' },
+            { id: '197b82b4-f19d-474c-bd17-cc6a8716357b', category: 'Brand & Identity', name: 'GOTI LIVING MASTERPIECE ANIMATION 1', path: 'stitch_goti_welcome_screen/goti_living_masterpiece_animation_1/code.html', icon: 'dashboard' },
+            { id: '56522056-a58a-4e06-95ae-04319352aa4f', category: 'Brand & Identity', name: 'GOTI LIVING MASTERPIECE ANIMATION 2', path: 'stitch_goti_welcome_screen/goti_living_masterpiece_animation_2/code.html', icon: 'dashboard' },
+            { id: '89b1c681-2a5c-49ea-9541-87db1380b3dd', category: 'Brand & Identity', name: 'GOTI LIVING MASTERPIECE ANIMATION 3', path: 'stitch_goti_welcome_screen/goti_living_masterpiece_animation_3/code.html', icon: 'dashboard' },
+            { id: 'da59b0e6-3e04-4c92-ba35-2a46750bc8cd', category: 'Brand & Identity', name: 'GOTI LOADING ANIMATION SCREEN', path: 'stitch_goti_welcome_screen/goti_loading_animation_screen/code.html', icon: 'dashboard' },
+            { id: '5d7719d0-b590-4f85-8e17-5ee84b1cda32', category: 'Brand & Identity', name: 'GOTI LUXURY CORPORATE ENVELOPE', path: 'stitch_goti_welcome_screen/goti_luxury_corporate_envelope/code.html', icon: 'dashboard' },
+            { id: '82dd7d08-c855-4d41-945c-1a5f83290ddb', category: 'Business Assets', name: 'GOTI LUXURY DESIGN PROPOSAL 1', path: 'stitch_goti_welcome_screen/goti_luxury_design_proposal_1/code.html', icon: 'dashboard' },
+            { id: 'b481d206-5b62-4e53-b5c1-06494f5bb497', category: 'Business Assets', name: 'GOTI LUXURY DESIGN PROPOSAL 2', path: 'stitch_goti_welcome_screen/goti_luxury_design_proposal_2/code.html', icon: 'dashboard' },
+            { id: 'a1a932bf-1eaf-407c-a7ad-04adf0ac8144', category: 'Business Assets', name: 'GOTI LUXURY INVOICE RODRIGO O.T', path: 'stitch_goti_welcome_screen/goti_luxury_invoice_rodrigo_o.t/code.html', icon: 'dashboard' },
+            { id: 'a905ad51-5204-4ba9-b328-4a681cd12c99', category: 'Business Assets', name: 'GOTI LUXURY VIRTUAL BACKGROUND STUDIO', path: 'stitch_goti_welcome_screen/goti_luxury_virtual_background_studio/code.html', icon: 'dashboard' },
+            { id: '25f6e7ea-327a-4e13-80fc-0f5c22d74356', category: 'Brand & Identity', name: 'GOTI MAIN MENU STUDIO', path: 'stitch_goti_welcome_screen/goti_main_menu_studio/code.html', icon: 'dashboard' },
+            { id: 'c6601a27-9d36-480e-aa90-077bf4ff3089', category: 'Brand & Identity', name: 'GOTI MASTER DASHBOARD UI', path: 'stitch_goti_welcome_screen/goti_master_dashboard_ui/code.html', icon: 'dashboard' },
+            { id: '9f85de82-a489-495c-9f7e-8341b9d51a33', category: 'Brand & Identity', name: 'GOTI NOTIFICATION CENTER', path: 'stitch_goti_welcome_screen/goti_notification_center/code.html', icon: 'dashboard' },
+            { id: '8dd9829b-1bd8-4087-adae-6999ddab8d9b', category: 'Brand & Identity', name: 'GOTI NOTIFICATION PREFERENCES', path: 'stitch_goti_welcome_screen/goti_notification_preferences/code.html', icon: 'dashboard' },
+            { id: '75f1a880-afa8-4497-b438-ac29c7afd915', category: 'Business Assets', name: 'GOTI OFFICIAL LETTERHEAD RODRIGO O.T', path: 'stitch_goti_welcome_screen/goti_official_letterhead_rodrigo_o.t/code.html', icon: 'dashboard' },
+            { id: 'ceb0cd24-9fd5-467d-a4b0-2f6295748ea7', category: 'Brand & Identity', name: 'GOTI PHYSICAL THANK YOU CARD RODRIGO O.T', path: 'stitch_goti_welcome_screen/goti_physical_thank_you_card_rodrigo_o.t/code.html', icon: 'dashboard' },
+            { id: '173d76ca-ae2b-4665-8edc-48d1828882fe', category: 'Brand & Identity', name: 'GOTI PROFESSIONAL EMAIL SIGNATURE 1', path: 'stitch_goti_welcome_screen/goti_professional_email_signature_1/code.html', icon: 'dashboard' },
+            { id: '4f053dd5-0007-4c4d-af85-0f4f8768e1a0', category: 'Brand & Identity', name: 'GOTI PROFESSIONAL EMAIL SIGNATURE 2', path: 'stitch_goti_welcome_screen/goti_professional_email_signature_2/code.html', icon: 'dashboard' },
+            { id: '71a6d617-2dfa-4938-9581-1e16f398cdf0', category: 'Brand & Identity', name: 'GOTI PROFESSIONAL EMAIL SIGNATURE 3', path: 'stitch_goti_welcome_screen/goti_professional_email_signature_3/code.html', icon: 'dashboard' },
+            { id: 'f134ab1d-6ee7-4a58-a308-90c1f971f85e', category: 'Brand & Identity', name: 'GOTI PROFESSIONAL EMAIL SIGNATURE 4', path: 'stitch_goti_welcome_screen/goti_professional_email_signature_4/code.html', icon: 'dashboard' },
+            { id: 'fb7a9943-25bd-4f09-bee8-0c03029ada1b', category: 'Brand & Identity', name: 'GOTI PROFESSIONAL EMAIL SIGNATURE 5', path: 'stitch_goti_welcome_screen/goti_professional_email_signature_5/code.html', icon: 'dashboard' },
+            { id: '30fda567-0320-4ce2-808e-ba4cc5989bed', category: 'Brand & Identity', name: 'GOTI PROJECT DETAIL VIEW 1', path: 'stitch_goti_welcome_screen/goti_project_detail_view_1/code.html', icon: 'dashboard' },
+            { id: '7fe909d1-6f47-4712-88d3-407888f43105', category: 'Brand & Identity', name: 'GOTI PROJECT DETAIL VIEW 2', path: 'stitch_goti_welcome_screen/goti_project_detail_view_2/code.html', icon: 'dashboard' },
+            { id: '3278dde7-aa2b-481b-bc22-bb33436f6342', category: 'Brand & Identity', name: 'GOTI PROJECT LOADING SCREEN 1', path: 'stitch_goti_welcome_screen/goti_project_loading_screen_1/code.html', icon: 'dashboard' },
+            { id: '907c0094-1013-4d27-a9c8-18fae50d1208', category: 'Brand & Identity', name: 'GOTI PROJECT LOADING SCREEN 2', path: 'stitch_goti_welcome_screen/goti_project_loading_screen_2/code.html', icon: 'dashboard' },
+            { id: '3d34fdea-851e-46d7-ab5f-5ea8963c98d8', category: 'Communication', name: 'GOTI SCHEDULED VIDEO CALLS', path: 'stitch_goti_welcome_screen/goti_scheduled_video_calls/code.html', icon: 'dashboard' },
+            { id: 'ea0a8a79-bb8d-4343-a287-6772bf47f6d1', category: 'Brand & Identity', name: 'GOTI THANK YOU FOR YOUR TRUST SCREEN 1', path: 'stitch_goti_welcome_screen/goti_thank_you_for_your_trust_screen_1/code.html', icon: 'dashboard' },
+            { id: '9471c7a0-a2ad-4c9a-ada0-d395266f254b', category: 'Brand & Identity', name: 'GOTI THANK YOU FOR YOUR TRUST SCREEN 2', path: 'stitch_goti_welcome_screen/goti_thank_you_for_your_trust_screen_2/code.html', icon: 'dashboard' },
+            { id: 'd7eb6e73-6dba-4f4b-a96c-e8368d140995', category: 'Brand & Identity', name: 'GOTI THE STUDIO SECTION 1', path: 'stitch_goti_welcome_screen/goti_the_studio_section_1/code.html', icon: 'dashboard' },
+            { id: 'b6b1d903-0fc1-4c12-a8b9-0094f92477e2', category: 'Brand & Identity', name: 'GOTI THE STUDIO SECTION 2', path: 'stitch_goti_welcome_screen/goti_the_studio_section_2/code.html', icon: 'dashboard' },
+            { id: '7b1f8be3-10b5-4f61-b129-7bb01cfc986f', category: 'Brand & Identity', name: 'GOTI THE STUDIO SECTION 3', path: 'stitch_goti_welcome_screen/goti_the_studio_section_3/code.html', icon: 'dashboard' },
+            { id: 'ef985171-c619-490b-a1fa-dd2f718508ca', category: 'Social & Marketing', name: 'GOTI VIP MONTHLY NEWSLETTER 1', path: 'stitch_goti_welcome_screen/goti_vip_monthly_newsletter_1/code.html', icon: 'dashboard' },
+            { id: '0546902b-712e-4feb-bc7f-2a26fcec48d3', category: 'Social & Marketing', name: 'GOTI VIP MONTHLY NEWSLETTER 2', path: 'stitch_goti_welcome_screen/goti_vip_monthly_newsletter_2/code.html', icon: 'dashboard' },
+            { id: '54239724-a516-490b-9bca-bcc66d6bd7be', category: 'Social & Marketing', name: 'GOTI VISUAL BRANDING GUIDE 1', path: 'stitch_goti_welcome_screen/goti_visual_branding_guide_1/code.html', icon: 'dashboard' },
+            { id: '64a3d4b7-2de2-4728-ac0e-dee7f6892aeb', category: 'Social & Marketing', name: 'GOTI VISUAL BRANDING GUIDE 2', path: 'stitch_goti_welcome_screen/goti_visual_branding_guide_2/code.html', icon: 'dashboard' },
+            { id: 'f29d1633-bb4d-41a8-b615-aeb600ab486a', category: 'Brand & Identity', name: 'GOTI WELCOME SCREEN', path: 'stitch_goti_welcome_screen/goti_welcome_screen/code.html', icon: 'dashboard' },
+            { id: '9044def8-4d76-4458-ab4f-4b078115555f', category: 'Auth & Profile', name: 'INICIAR SESIÓN 1', path: 'stitch_goti_welcome_screen/iniciar_sesión_1/code.html', icon: 'dashboard' },
+            { id: '47871cbb-525a-4273-86d8-1a8b772e2478', category: 'Auth & Profile', name: 'INICIAR SESIÓN 2', path: 'stitch_goti_welcome_screen/iniciar_sesión_2/code.html', icon: 'dashboard' },
+            { id: 'ea811b93-b87f-4284-ae94-6ed921b13a8c', category: 'Trader Platform', name: 'DASHBOARD 1', path: 'stitch_goti_welcome_screen/inicio/dashboard_1/code.html', icon: 'dashboard' },
+            { id: 'd1248ec3-e775-4334-a3a7-4536cdeffc46', category: 'Trader Platform', name: 'DASHBOARD 2', path: 'stitch_goti_welcome_screen/inicio/dashboard_2/code.html', icon: 'dashboard' },
+            { id: 'fd77c1bb-b4bc-4118-b3c2-5e800c0c3da6', category: 'Trader Platform', name: 'DASHBOARD 3', path: 'stitch_goti_welcome_screen/inicio/dashboard_3/code.html', icon: 'dashboard' },
+            { id: 'caa7ca25-35a2-42c9-8c60-d51315e33d96', category: 'Trader Platform', name: 'DASHBOARD 4', path: 'stitch_goti_welcome_screen/inicio/dashboard_4/code.html', icon: 'dashboard' },
+            { id: '86cb353f-d2fd-4b68-bc9f-a388f19d443e', category: 'Trader Platform', name: 'DASHBOARD 5', path: 'stitch_goti_welcome_screen/inicio/dashboard_5/code.html', icon: 'dashboard' },
+            { id: 'c07feee1-1d99-4b13-9cd0-02f81aca00b6', category: 'Trader Platform', name: 'DASHBOARD 6', path: 'stitch_goti_welcome_screen/inicio/dashboard_6/code.html', icon: 'dashboard' },
+            { id: '1e637906-b58f-4a19-bce8-4f830a2b9e30', category: 'Trader Platform', name: 'DASHBOARD 7', path: 'stitch_goti_welcome_screen/inicio/dashboard_7/code.html', icon: 'dashboard' },
+            { id: '9afed1ba-0ee4-4261-8fa9-5f872af06718', category: 'Trader Platform', name: 'DASHBOARD 8', path: 'stitch_goti_welcome_screen/inicio/dashboard_8/code.html', icon: 'dashboard' },
+            { id: '142ab3fd-2df2-4088-ac15-b352c9f99906', category: 'Brand & Identity', name: 'JUAN DAVID DIGITAL BUSINESS CARD 1', path: 'stitch_goti_welcome_screen/juan_david_digital_business_card_1/code.html', icon: 'dashboard' },
+            { id: '1b54f38a-cafe-4a1a-bac6-81e1bbe3e879', category: 'Trader Platform', name: 'MIS INVERSIONES 1', path: 'stitch_goti_welcome_screen/mis_inversiones_1/code.html', icon: 'dashboard' },
+            { id: '6c036d9d-3c49-4053-863e-c81abd72006c', category: 'Trader Platform', name: 'MIS INVERSIONES 2', path: 'stitch_goti_welcome_screen/mis_inversiones_2/code.html', icon: 'dashboard' },
+            { id: '3196ba0c-a389-441c-b07c-a8b9b2cb3b37', category: 'Trader Platform', name: 'MIS INVERSIONES 3', path: 'stitch_goti_welcome_screen/mis_inversiones_3/code.html', icon: 'dashboard' },
+            { id: '6d551ea5-d6f2-41cd-9c9b-bba6d2bd00e0', category: 'Trader Platform', name: 'MIS INVERSIONES 4', path: 'stitch_goti_welcome_screen/mis_inversiones_4/code.html', icon: 'dashboard' },
+            { id: '72eaa4c7-8bfe-4877-a341-0acb7b771e3c', category: 'Trader Platform', name: 'MONITOREO DE INVERSIONES 1', path: 'stitch_goti_welcome_screen/monitoreo_de_inversiones_1/code.html', icon: 'dashboard' },
+            { id: 'bbeb96e3-5695-4ded-a2b5-4e3acdc95c43', category: 'Trader Platform', name: 'MONITOREO DE INVERSIONES 2', path: 'stitch_goti_welcome_screen/monitoreo_de_inversiones_2/code.html', icon: 'dashboard' },
+            { id: 'f8054bd7-7a54-4c8e-b6a1-3f0235669e4b', category: 'Trader Platform', name: 'OPERACIONES FÁCILES 1', path: 'stitch_goti_welcome_screen/operaciones_fáciles_1/code.html', icon: 'dashboard' },
+            { id: '938e6f59-c233-4d0f-810a-a20734df7f53', category: 'Trader Platform', name: 'OPERACIONES FÁCILES 2', path: 'stitch_goti_welcome_screen/operaciones_fáciles_2/code.html', icon: 'dashboard' },
+            { id: '38183c83-512d-4961-8c22-b9c2feba9887', category: 'Auth & Profile', name: 'CONFIGURACIÓN', path: 'stitch_goti_welcome_screen/perfil/configuración/code.html', icon: 'dashboard' },
+            { id: '0f2e45fb-f4e3-421e-99db-301b3c8fdc8a', category: 'Auth & Profile', name: 'RECUPERAR CONTRASEÑA', path: 'stitch_goti_welcome_screen/recuperar_contraseña/code.html', icon: 'dashboard' },
+            { id: '95031615-b611-463c-9b1f-c3c43f5afc8a', category: 'Trader Platform', name: 'REGISTRO DE INVERSIONES', path: 'stitch_goti_welcome_screen/registro_de_inversiones/code.html', icon: 'dashboard' },
+            { id: '4dbcc1a9-a71e-4e1c-9418-59813f03d193', category: 'Auth & Profile', name: 'RESTABLECER CONTRASEÑA 1', path: 'stitch_goti_welcome_screen/restablecer_contraseña_1/code.html', icon: 'dashboard' },
+            { id: 'c7bde9bd-f8f6-49cd-a2fc-48c596f5516d', category: 'Auth & Profile', name: 'RESTABLECER CONTRASEÑA 2', path: 'stitch_goti_welcome_screen/restablecer_contraseña_2/code.html', icon: 'dashboard' },
+            { id: '9c741b32-7fec-4db0-b7be-a56611577e78', category: 'Auth & Profile', name: 'RESTABLECER CONTRASEÑA 3', path: 'stitch_goti_welcome_screen/restablecer_contraseña_3/code.html', icon: 'dashboard' },
+            { id: '4f7f7ff1-2286-493c-82b5-50f25c00ea93', category: 'Brand & Identity', name: 'RODRIGO O.T. DIGITAL SIGNATURE', path: 'stitch_goti_welcome_screen/rodrigo_o.t._digital_signature/code.html', icon: 'dashboard' },
+            { id: 'b06de2c3-ce43-449b-9527-65160a12dbfe', category: 'Brand & Identity', name: 'RODRIGO OT DIGITAL BUSINESS CARD 1', path: 'stitch_goti_welcome_screen/rodrigo_ot_digital_business_card_1/code.html', icon: 'dashboard' },
+            { id: '0caecbc0-2380-4e2f-ac83-842351d173db', category: 'Brand & Identity', name: 'SOPORTE Y AYUDA 1', path: 'stitch_goti_welcome_screen/soporte_y_ayuda_1/code.html', icon: 'dashboard' },
+            { id: 'f7c17c2d-9a75-49de-aed3-24e0c38b3e1e', category: 'Brand & Identity', name: 'SOPORTE Y AYUDA 2', path: 'stitch_goti_welcome_screen/soporte_y_ayuda_2/code.html', icon: 'dashboard' },
+            { id: '27d30cad-7756-424c-9194-eea2a8b54f01', category: 'Auth & Profile', name: 'SMS 1', path: 'stitch_goti_welcome_screen/verificación_email/sms_1/code.html', icon: 'dashboard' },
+            { id: '4245b8bd-3f61-45ea-bbba-0593677e1811', category: 'Auth & Profile', name: 'SMS 2', path: 'stitch_goti_welcome_screen/verificación_email/sms_2/code.html', icon: 'dashboard' }
+        ];
+
+        // Group by category
+        const categories = {};
+        screens.forEach(s => {
+            if (!categories[s.category]) categories[s.category] = [];
+            categories[s.category].push(s);
+        });
+
+        const navList = document.getElementById('navList');
+        const gridContent = document.getElementById('gridContent');
+        const totalCount = document.getElementById('totalCount');
+        const searchInput = document.getElementById('searchInput');
+        const previewPane = document.getElementById('previewPane');
+        const gridView = document.getElementById('gridView');
+        const previewFrame = document.getElementById('previewFrame');
+        const closePreview = document.getElementById('closePreview');
+        const currentName = document.getElementById('currentName');
+        const currentPath = document.getElementById('currentPath');
+        const externalLink = document.getElementById('externalLink');
+
+        totalCount.textContent = `${screens.length} Screens`;
+
+        function renderSidebar(filter = '') {
+            navList.innerHTML = '';
+            Object.keys(categories).forEach(cat => {
+                const catScreens = categories[cat].filter(s =>
+                    s.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    s.category.toLowerCase().includes(filter.toLowerCase())
+                );
+
+                if (catScreens.length > 0) {
+                    const header = document.createElement('div');
+                    header.className = 'category-header';
+                    header.textContent = cat;
+                    navList.appendChild(header);
+
+                    catScreens.forEach(screen => {
+                        const item = document.createElement('div');
+                        item.className = 'nav-item';
+                        item.innerHTML = `<span class="material-symbols-outlined text-[18px]">${screen.icon}</span> ${screen.name}`;
+                        item.onclick = () => openPreview(screen);
+                        navList.appendChild(item);
+                    });
+                }
+            });
+        }
+
+        function renderGrid(filter = '') {
+            gridContent.innerHTML = '';
+            screens.forEach(screen => {
+                if (screen.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    screen.category.toLowerCase().includes(filter.toLowerCase())) {
+
+                    const card = document.createElement('div');
+                    card.className = 'skill-card';
+                    card.innerHTML = `
+                        <div class="tag">${screen.category}</div>
+                        <div class="icon-box">
+                            <span class="material-symbols-outlined text-3xl">${screen.icon}</span>
+                        </div>
+                        <h3>${screen.name}</h3>
+                        <p>Interfaz optimizada para la categoría ${screen.category}.</p>
+                    `;
+                    card.onclick = () => openPreview(screen);
+                    gridContent.appendChild(card);
+                }
+            });
+        }
+
+        function openPreview(screen) {
+            gridView.classList.add('hidden');
+            previewPane.classList.remove('hidden');
+            previewFrame.src = screen.path;
+            currentName.textContent = screen.name;
+            currentPath.textContent = `/${screen.path}`;
+            externalLink.href = screen.path;
+
+            // Highlight in sidebar
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent.trim().includes(screen.name)) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        closePreview.onclick = () => {
+            previewPane.classList.add('hidden');
+            gridView.classList.remove('hidden');
+            previewFrame.src = '';
+        };
+
+        searchInput.oninput = (e) => {
+            renderSidebar(e.target.value);
+            renderGrid(e.target.value);
+        };
+
+        // Viewport switcher
+        document.querySelectorAll('.vp-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.vp-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                previewFrame.style.width = btn.dataset.width;
+            };
+        });
+
+        // Initialize
+        renderSidebar();
+        renderGrid();
+    </script>
+</body>
+
+</html>
