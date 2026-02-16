@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#12110c",
+                        "charcoal": "#181611",
+                        "alabaster": "#f8f8f5",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .serif-font { font-family: 'Playfair Display', serif; }
+        .sans-font { font-family: 'Spline Sans', sans-serif; }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-charcoal dark:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden max-w-[430px] mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<div class="flex items-center bg-charcoal dark:bg-black p-4 pb-2 justify-between border-b border-white/10 sticky top-0 z-50">
+<div class="text-white flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<div class="flex-1 text-center">
+<p class="text-[10px] text-primary font-bold uppercase tracking-[0.2em]">Brand Guide</p>
+<h2 class="text-white text-sm font-bold leading-tight tracking-widest uppercase">GOTI</h2>
+</div>
+<div class="text-white flex size-12 shrink-0 items-center justify-end">
+<span class="material-symbols-outlined">share</span>
+</div>
+</div>
+<div class="px-6 py-10 border-b border-primary/10">
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Creative Direction</p>
+<h1 class="text-charcoal dark:text-white tracking-tight text-3xl font-bold leading-tight mb-1">RODRIGO ORDOÑEZ TIMONIUK</h1>
+<p class="text-charcoal/60 dark:text-white/60 text-sm font-medium italic serif-font">Founder &amp; Principal Designer</p>
+<div class="mt-8 flex items-center gap-4 p-4 rounded-xl bg-primary/5 border border-primary/20">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<p class="text-xs text-charcoal/50 dark:text-white/50 uppercase tracking-tighter">Documentation Owner</p>
+<p class="text-sm font-bold">Rodrigo O. Timoniuk</p>
+</div>
+</div>
+</div>
+<div class="mb-8 pt-6">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 border-l-4 border-primary ml-6">Typography</h2>
+<div class="px-6 mt-4">
+<div class="p-6 bg-white dark:bg-charcoal/40 rounded-xl border border-primary/10 mb-4 shadow-sm">
+<p class="text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Primary Heading</p>
+<h1 class="serif-font text-charcoal dark:text-white text-[42px] leading-tight mb-2">Elegant Serif</h1>
+<p class="text-charcoal/60 dark:text-white/60 text-sm italic serif-font">Playfair Display Regular &amp; Bold</p>
+</div>
+<div class="p-6 bg-white dark:bg-charcoal/40 rounded-xl border border-primary/10 shadow-sm">
+<p class="text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Body &amp; UI</p>
+<h2 class="sans-font text-charcoal dark:text-white text-2xl font-semibold mb-2">Modern Sans-Serif</h2>
+<p class="text-charcoal/60 dark:text-white/60 text-sm sans-font leading-relaxed">Spline Sans for clean readability across all digital platforms and print applications.</p>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 border-l-4 border-primary ml-6">Color Palette</h2>
+<div class="grid grid-cols-1 gap-3 px-6 mt-4">
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-charcoal/40 rounded-xl border border-black/5 dark:border-white/5">
+<div class="size-16 rounded-lg bg-primary shadow-lg shadow-primary/20"></div>
+<div class="flex flex-col">
+<span class="font-bold text-charcoal dark:text-white">Champagne Gold</span>
+<span class="text-xs font-mono text-charcoal/60 dark:text-white/60">#DAA60B</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-charcoal/40 rounded-xl border border-black/5 dark:border-white/5">
+<div class="size-16 rounded-lg bg-charcoal border border-white/10 shadow-lg"></div>
+<div class="flex flex-col">
+<span class="font-bold text-charcoal dark:text-white">Deep Charcoal</span>
+<span class="text-xs font-mono text-charcoal/60 dark:text-white/60">#181611</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-charcoal/40 rounded-xl border border-black/5 dark:border-white/5">
+<div class="size-16 rounded-lg bg-alabaster border border-charcoal/10 shadow-lg"></div>
+<div class="flex flex-col">
+<span class="font-bold text-charcoal dark:text-white">Alabaster</span>
+<span class="text-xs font-mono text-charcoal/60 dark:text-white/60">#F8F8F5</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 border-l-4 border-primary ml-6">Logo Usage</h2>
+<div class="flex flex-col gap-4 px-6 mt-4">
+<div class="relative h-40 bg-charcoal rounded-xl flex flex-col items-center justify-center overflow-hidden border border-white/10">
+<div class="text-primary text-5xl serif-font font-bold tracking-widest">GOTI</div>
+<div class="mt-1 text-white/40 text-[8px] uppercase tracking-[0.4em]">Design Agency</div>
+<div class="absolute bottom-2 right-3 text-[9px] text-white/30 uppercase tracking-widest">Master Brandmark</div>
+</div>
+<div class="relative h-40 bg-alabaster rounded-xl flex flex-col items-center justify-center overflow-hidden border border-charcoal/10">
+<div class="text-primary text-5xl serif-font font-bold tracking-widest">GOTI</div>
+<div class="mt-1 text-charcoal/40 text-[8px] uppercase tracking-[0.4em]">Design Agency</div>
+<div class="absolute bottom-2 right-3 text-[9px] text-charcoal/30 uppercase tracking-widest">Alternative</div>
+</div>
+</div>
+</div>
+<div class="mb-12">
+<h2 class="text-charcoal dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 border-l-4 border-primary ml-6">Imagery Style</h2>
+<p class="text-charcoal/70 dark:text-white/70 text-sm px-6 pt-2 mb-4">High-fashion, editorial portraits curated by Rodrigo O. Timoniuk.</p>
+<div class="px-6">
+<div class="grid grid-cols-2 gap-2">
+<img alt="High fashion editorial model" class="w-full h-48 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Ahg26qPQQ-zSfWdqjIwZnflEQ3VdOSj7fYGWaQTP7U0pw7TRCdiOVIL_Hm2YatXOaBzPvAr6v_Bj0XI_eAlEZdLzfRqcAfYtLClT7Sa2_Sc0ZdnzA_ltuDsoxa17e1N3Qt9rzkZi41RhMoEfsU-WmGFBFRecG3nV50NThgqOefHwu2NCI_BE6OzCSMOROViuOj6vO8ABvmVArMjtgRWoa-hu2ccdLIsSKa2vymazZVk6aTPAfGGOP2F-Y572HN1lHVuCOTr71WQ"/>
+<img alt="Elegant fashion attire" class="w-full h-48 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0PdDOArngWKgfq6Zz3mwvlu0-vgrc4-Y9rQO-i1Qx8LEn7bCMtTncGK6qQaGWcUaFFREpGxBtiX-9pBASQ7OhOv2h8YE_ziO9ZS9lSTs5dVavD4RyQB0Rae024ar7nRRF6I66LfOGuoboKTeaxYAk_X0al_d6vqXfGQxzAKrXZZ1xHpqxY9UvQZqirfahNYSO0quYRglcmNWQRNbSWihqWGdeOuqOpoucWyh3qCZR2pT9FEzjBP24xRyQQhMaIrpEIk_UjBTWxDA"/>
+</div>
+<div class="mt-2">
+<img alt="Artistic studio shot" class="w-full h-64 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqLkozFz7Vxjat2cNIZULp_KkjoE-60Z_l_hth3wqX72-7X9vnbFvBdi7i7tCVlBWNpjVY8nNsigFYC9uOuhxqIXp0ivmm3Y4Oi5OZu47J4Ws8dTFkoVnCQZscCwter-KfH-eMuuvJ3dU7g9dJ5czbevsmQZ-RHNhxBLZS5UEyIm2GtHYw3kFSASIHnOopcBmkXWlFc4SBqPLUZPMq6DvjVMoxYguVCV_115lNVdJFVLWqTqJHwNsI_GTH3rhxCupgD4uh4ayRxH4"/>
+</div>
+</div>
+</div>
+<div class="p-10 bg-charcoal text-center border-t border-primary/20">
+<div class="text-primary text-3xl serif-font font-bold mb-1 tracking-widest uppercase">GOTI</div>
+<p class="text-white/60 text-[10px] tracking-[0.3em] uppercase mb-8">Creative Studio</p>
+<div class="space-y-4 mb-8">
+<div>
+<p class="text-primary/60 text-[10px] uppercase tracking-widest mb-1">Inquiries</p>
+<p class="text-white text-sm font-medium">rodrigo@goti.design</p>
+</div>
+<div>
+<p class="text-primary/60 text-[10px] uppercase tracking-widest mb-1">Location</p>
+<p class="text-white text-sm font-medium">Global Operations</p>
+</div>
+</div>
+<div class="h-px w-12 bg-primary/30 mx-auto mb-6"></div>
+<p class="text-white/30 text-[9px] tracking-[0.2em] uppercase leading-loose">
+                Managed &amp; Directed by<br/>
+<span class="text-white/50 font-bold">Rodrigo Ordoñez Timoniuk</span><br/>
+                © 2024 GOTI Branding. All Rights Reserved.
+            </p>
+</div>
+</div>
+
+
+    <script src="../../../../../../../../../goti_core.js"></script>
+</body></html>
+

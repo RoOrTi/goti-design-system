@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Operaciones Fáciles - Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased selection:bg-primary selection:text-background-dark">
+<!-- Main Wrapper mimicking mobile screen -->
+<div class="relative mx-auto flex h-screen w-full max-w-md flex-col overflow-hidden bg-background-light shadow-2xl dark:bg-background-dark">
+<!-- Header / Status Area -->
+<div class="flex w-full items-center justify-between px-6 py-6">
+<!-- Progress Indicators -->
+<div class="flex flex-row gap-2">
+<div class="h-1.5 w-6 rounded-full bg-gray-300 dark:bg-white/20"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary shadow-[0_0_8px_rgba(19,236,91,0.5)]"></div>
+<div class="h-1.5 w-6 rounded-full bg-gray-300 dark:bg-white/20"></div>
+</div>
+<!-- Skip Button -->
+<button class="group flex items-center gap-1 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+<span>Omitir</span>
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-0.5">chevron_right</span>
+</button>
+</div>
+<!-- Main Content (Centered) -->
+<div class="flex flex-1 flex-col items-center justify-center px-6">
+<!-- Hero Illustration Container -->
+<div class="@container w-full max-w-[340px]">
+<div class="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-100 p-8 shadow-inner ring-1 ring-gray-100 dark:from-[#1a2c20] dark:to-[#0d1610] dark:ring-white/5">
+<!-- Decorative background glow inside illustration -->
+<div class="absolute right-0 top-0 h-32 w-32 -translate-y-1/2 translate-x-1/2 rounded-full bg-primary/20 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 h-32 w-32 -translate-x-1/2 translate-y-1/2 rounded-full bg-primary/10 blur-3xl"></div>
+<!-- Main Visual -->
+<div class="relative flex h-full w-full flex-col items-center justify-end overflow-hidden rounded-xl bg-[#2a3830] shadow-lg dark:bg-[#152019]" data-alt="Abstract mobile interface showing a rising stock graph and buy button">
+<!-- Abstract Chart Lines -->
+<div class="absolute inset-0 p-4 opacity-50">
+<svg class="h-full w-full overflow-visible stroke-white/20" fill="none" stroke-width="2" viewbox="0 0 100 100">
+<path d="M0 80 C 20 80, 40 60, 50 50 C 60 40, 80 20, 100 10"></path>
+<path d="M0 90 C 30 90, 50 70, 100 40" stroke-opacity="0.5"></path>
+</svg>
+</div>
+<!-- Foreground "Card" representing a trade -->
+<div class="relative z-10 mb-6 flex w-[85%] flex-col items-center gap-3 rounded-lg bg-background-light p-4 shadow-xl dark:bg-[#1e2e24]">
+<div class="flex w-full items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-lg">attach_money</span>
+</div>
+<div class="flex flex-col">
+<div class="h-2 w-16 rounded-full bg-gray-200 dark:bg-white/20"></div>
+<div class="mt-1 h-1.5 w-10 rounded-full bg-gray-100 dark:bg-white/10"></div>
+</div>
+</div>
+<div class="h-4 w-12 rounded bg-primary/20"></div>
+</div>
+<div class="mt-1 flex w-full items-center gap-2">
+<button class="flex h-8 flex-1 items-center justify-center rounded bg-primary text-xs font-bold text-background-dark">
+                                    Comprar
+                                </button>
+<button class="flex h-8 flex-1 items-center justify-center rounded border border-gray-200 text-xs font-bold text-gray-400 dark:border-white/10 dark:text-gray-500">
+                                    Vender
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="mt-8 flex flex-col items-center text-center">
+<h1 class="font-display text-[32px] font-bold leading-tight tracking-tight text-gray-900 dark:text-white">
+                    Compra y Venta <br/>
+<span class="text-primary">Simplificada</span>
+</h1>
+<p class="mt-4 max-w-[320px] text-base font-medium leading-relaxed text-gray-600 dark:text-gray-400">
+                    Accede a los mercados de Argentina y EE.UU. en tiempo real. Ejecuta órdenes de compra y venta en segundos con nuestra interfaz intuitiva.
+                </p>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-6 pb-10 pt-4">
+<button class="relative flex h-14 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-primary px-6 text-lg font-bold tracking-wide text-background-dark transition-all hover:brightness-110 active:scale-[0.98]">
+<span class="z-10">Siguiente</span>
+<!-- Shimmer effect overlay -->
+<div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform group-hover:animate-[shimmer_1.5s_infinite]"></div>
+</button>
+</div>
+</div>
+
+    <script src="../../../../../../../../../goti_core.js"></script>
+</body></html>

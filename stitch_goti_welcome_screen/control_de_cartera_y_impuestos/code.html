@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Control de Cartera y Impuestos</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl">
+<!-- Header: TopAppBar -->
+<div class="flex items-center w-full p-6 justify-end z-10">
+<button class="group flex items-center justify-center rounded-full py-2 px-4 transition-colors hover:bg-white/5 active:bg-white/10">
+<p class="text-slate-500 dark:text-[#9db9a6] text-sm font-bold leading-normal tracking-wide group-hover:text-primary transition-colors">Omitir</p>
+</button>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center px-6 w-full relative z-0">
+<!-- Abstract Background Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Central Visual: ImageGrid Adaptation -->
+<div class="relative w-full aspect-[4/5] max-h-[400px] mb-6 rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-gradient-to-b from-white/5 to-transparent">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover opacity-90 mix-blend-overlay" data-alt="3D illustration showing a floating smartphone displaying a financial pie chart, surrounded by gold coins and tax documents in a dark modern style" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5e7x22u6w3FfoYUtH1XwQE8qEcN2RZ9FnLnn82oMSVJjoWe6o5uiVG9LrNGXctIQspuppeE7JJGhwGFIxX70cOuQQMj75XFvwkhGOOPGN-wIuI4sMTJaRYxs8PlqNxzdW2-sDOL4UmCAQVTk-6PqxV0z9VbpRl_Ld2oFXuPzimfSAcovF3hnPkZ8rKHE7CYGSLLrpoAnaNtCnQ7g2CtlyDktryoClnTGrE5-brd7XvnQe4ewqo17smPKnYL8_BBkEPUl17aHe95o");'>
+</div>
+<!-- Overlay Icon Integration -->
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-t from-background-dark via-transparent to-transparent">
+<!-- Floating Icon representation -->
+<div class="relative p-6 bg-background-dark/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg transform translate-y-12">
+<span class="material-symbols-outlined text-6xl text-primary drop-shadow-[0_0_15px_rgba(19,236,91,0.6)]">
+                            account_balance
+                        </span>
+<div class="absolute -top-3 -right-3 bg-white/10 p-2 rounded-full border border-white/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-xl text-white">
+                                description
+                            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- HeadlineText -->
+<div class="w-full mt-4">
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[32px] font-extrabold leading-tight text-center">
+                    Control Total de tu <span class="text-primary">Cartera</span>
+</h1>
+</div>
+<!-- BodyText -->
+<div class="w-full mt-3 mb-4">
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium leading-relaxed text-center max-w-[320px] mx-auto">
+                    Monitorea tus rendimientos en tiempo real y descarga tus reportes fiscales de Argentina y EE.UU. en un solo clic.
+                </p>
+</div>
+</div>
+<!-- Footer Area -->
+<div class="w-full flex flex-col items-center pb-8 pt-4 px-6 z-10 bg-gradient-to-t from-background-dark to-transparent">
+<!-- PageIndicators -->
+<div class="flex flex-row items-center justify-center gap-3 mb-8">
+<!-- Step 1 (Completed/Inactive) -->
+<div class="h-2 w-2 rounded-full bg-slate-300 dark:bg-white/20"></div>
+<!-- Step 2 (Completed/Inactive) -->
+<div class="h-2 w-2 rounded-full bg-slate-300 dark:bg-white/20"></div>
+<!-- Step 3 (Active) -->
+<div class="h-2 w-8 rounded-full bg-primary shadow-[0_0_10px_rgba(19,236,91,0.5)] transition-all duration-300"></div>
+</div>
+<!-- Action Button -->
+<button class="w-full h-14 bg-primary hover:bg-[#0fd650] active:scale-[0.98] rounded-xl flex items-center justify-center transition-all duration-200 shadow-[0_4px_20px_rgba(19,236,91,0.25)]">
+<span class="text-background-dark text-lg font-bold tracking-wide">Siguiente</span>
+<span class="material-symbols-outlined ml-2 text-background-dark text-xl font-bold">arrow_forward</span>
+</button>
+</div>
+</div>
+
+    <script src="../../../../../../../../../goti_core.js"></script>
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verificación Email/SMS</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles to hide number input arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px -5px rgba(19, 236, 91, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- TopAppBar -->
+<header class="flex items-center px-4 pt-6 pb-2 justify-between z-10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors group">
+<span class="material-symbols-outlined text-slate-900 dark:text-white text-2xl group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+</button>
+<!-- Progress indicator could go here -->
+<div class="flex gap-1">
+<div class="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-white/20"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-white/20"></div>
+<div class="h-1.5 w-6 rounded-full bg-primary"></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-6 pt-8 pb-6">
+<!-- Hero Icon -->
+<div class="flex justify-center mb-8">
+<div class="relative flex items-center justify-center size-20 rounded-full bg-primary/10 dark:bg-white/5 border border-primary/20 glow-effect">
+<span class="material-symbols-outlined text-primary text-4xl">lock_person</span>
+<!-- Decorative elements -->
+<div class="absolute -top-1 -right-1 size-3 bg-primary rounded-full animate-pulse"></div>
+</div>
+</div>
+<!-- Text Section -->
+<div class="flex flex-col items-center text-center space-y-3 mb-10">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                    Verificación de Seguridad
+                </h1>
+<p class="text-slate-500 dark:text-gray-400 text-base leading-relaxed max-w-[280px]">
+                    Hemos enviado un código de 6 dígitos al <span class="text-slate-800 dark:text-white font-semibold">+54 9 11 **** 3820</span>
+</p>
+</div>
+<!-- Confirmation Code Input -->
+<div class="flex justify-center mb-8 w-full">
+<fieldset class="flex gap-2 sm:gap-3 w-full justify-center">
+<!-- Input 1 -->
+<div class="relative group">
+<input autofocus="" class="flex h-14 w-11 sm:w-12 text-center bg-white dark:bg-[#1A2C20] rounded-lg border border-gray-200 dark:border-[#3b5443] focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none text-xl font-bold transition-all placeholder-shown:border-gray-200" maxlength="1" type="number"/>
+</div>
+<!-- Input 2 -->
+<div class="relative group">
+<input class="flex h-14 w-11 sm:w-12 text-center bg-white dark:bg-[#1A2C20] rounded-lg border border-gray-200 dark:border-[#3b5443] focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none text-xl font-bold transition-all" maxlength="1" type="number"/>
+</div>
+<!-- Input 3 -->
+<div class="relative group">
+<input class="flex h-14 w-11 sm:w-12 text-center bg-white dark:bg-[#1A2C20] rounded-lg border border-gray-200 dark:border-[#3b5443] focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none text-xl font-bold transition-all" maxlength="1" type="number"/>
+</div>
+<!-- Separator -->
+<div class="flex items-center justify-center text-gray-400 dark:text-gray-600">-</div>
+<!-- Input 4 -->
+<div class="relative group">
+<input class="flex h-14 w-11 sm:w-12 text-center bg-white dark:bg-[#1A2C20] rounded-lg border border-gray-200 dark:border-[#3b5443] focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none text-xl font-bold transition-all" maxlength="1" type="number"/>
+</div>
+<!-- Input 5 -->
+<div class="relative group">
+<input class="flex h-14 w-11 sm:w-12 text-center bg-white dark:bg-[#1A2C20] rounded-lg border border-gray-200 dark:border-[#3b5443] focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none text-xl font-bold transition-all" maxlength="1" type="number"/>
+</div>
+<!-- Input 6 -->
+<div class="relative group">
+<input class="flex h-14 w-11 sm:w-12 text-center bg-white dark:bg-[#1A2C20] rounded-lg border border-gray-200 dark:border-[#3b5443] focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none text-xl font-bold transition-all" maxlength="1" type="number"/>
+</div>
+</fieldset>
+</div>
+<!-- Timer & Resend -->
+<div class="flex flex-col items-center gap-4 mb-auto">
+<div class="flex items-center gap-2 bg-gray-100 dark:bg-[#1A2C20] px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-sm">schedule</span>
+<p class="text-sm font-medium text-slate-700 dark:text-gray-300">
+                        El código expira en <span class="text-slate-900 dark:text-white font-bold font-mono">00:30</span>
+</p>
+</div>
+<button class="text-sm font-semibold text-gray-400 cursor-not-allowed hover:text-primary transition-colors flex items-center gap-1" disabled="">
+<span class="material-symbols-outlined text-lg">refresh</span>
+                    Reenviar código
+                </button>
+</div>
+<!-- Action Button -->
+<div class="mt-8">
+<button class="w-full bg-primary hover:bg-green-400 active:scale-[0.98] text-background-dark font-bold text-lg h-14 rounded-xl shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 group">
+<span>Verificar</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Numeric Keypad Simulation (Visual Only - simulating phone keyboard open) -->
+<div class="mt-8 -mx-6 bg-gray-200 dark:bg-[#1c1c1e] pb-6 pt-2 hidden sm:hidden">
+<!-- This hidden div is just to show thought process of platform, kept hidden as per static UI preference -->
+</div>
+</main>
+</div>
+<!-- Background Decoration -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] -translate-x-1/3 translate-y-1/3"></div>
+</div>
+
+    <script src="../../../../../../../../../goti_core.js"></script>
+</body></html>

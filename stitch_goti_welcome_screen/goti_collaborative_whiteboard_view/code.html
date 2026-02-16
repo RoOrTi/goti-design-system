@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Whiteboard with PDF Export</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#daa60b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#181611",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-bg {
+            background-image: radial-gradient(circle, #393528 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        @keyframes package-document {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            30% {
+                transform: scale(0.9) translate(0, -20px);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.1) translate(200%, -500%);
+                opacity: 0;
+            }
+        }
+        @keyframes pdf-glow {
+            0%, 100% { border-color: rgba(218, 166, 11, 0.4); }
+            50% { border-color: rgba(218, 166, 11, 1); }
+        }
+        .exporting .canvas-container {
+            animation: package-document 1.2s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+        }
+        .export-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden">
+<div class="relative flex h-screen w-full flex-col">
+<div class="flex items-center bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between z-20">
+<div class="text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined">close</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<h2 class="text-white text-sm font-bold leading-tight tracking-[-0.015em]">GOTI Design Review</h2>
+<span class="text-[10px] text-primary/80 uppercase tracking-widest font-semibold">Live Session</span>
+</div>
+<div class="flex items-center justify-end">
+<button class="export-btn flex items-center justify-center gap-2 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/5 hover:bg-primary/10 transition-all active:scale-95" onclick="document.body.classList.toggle('exporting'); setTimeout(()=&gt;document.body.classList.remove('exporting'), 1500)">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'wght' 400;">picture_as_pdf</span>
+<span class="text-[10px] font-bold text-white uppercase tracking-wider">Export as PDF</span>
+</button>
+</div>
+</div>
+<main class="relative flex-1 bg-background-dark overflow-hidden canvas-bg">
+<div class="canvas-container absolute inset-0 flex items-center justify-center p-6">
+<div class="relative w-full h-full max-h-[70vh] rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-background-dark">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-contain" data-alt="Detailed minimalist architectural floor plan on dark background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVdI6m_rfgIua3cnTFJYIqi3CQ3reku4LDn8plLtFhxfQg-KLTznbLwNhzkqj2FbJybkTum0sI2Pmv5sM33lraD_17qz5gTHBzuaaUA4Va_4_YH5LNWtUaQrpv0w3uGLqepBAuPwcpoEkf2Zefusb0Kp81Yk1sHBvYGaGHsS75OjAIcjRsWcpFdqK8s7hZSHrIVTp3XF7N4qIKgbm0NGxa1kGTjglex8HkdO6r-Cm5v9zmKpLZWTUQy0agBOcqymtlyCRbnNKW6DE");'>
+</div>
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 600">
+<circle cx="200" cy="250" fill="none" r="40" stroke="#daa60b" stroke-dasharray="5 3" stroke-width="2"></circle>
+<path d="M150 200 L250 300" stroke="#daa60b" stroke-linecap="round" stroke-width="1.5"></path>
+<path d="M250 200 L150 300" stroke="#daa60b" stroke-linecap="round" stroke-width="1.5"></path>
+<text fill="#daa60b" font-size="12" font-style="italic" x="210" y="240">Expand foyer</text>
+<path d="M50 450 Q 100 400 150 450 T 250 450" fill="none" opacity="0.6" stroke="white" stroke-width="1"></path>
+<rect fill="none" height="40" opacity="0.4" rx="4" stroke="white" stroke-width="1" width="80" x="50" y="50"></rect>
+</svg>
+<div class="absolute bottom-4 right-4 opacity-10 pointer-events-none">
+<span class="text-2xl font-black tracking-tighter">GOTI</span>
+</div>
+</div>
+</div>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 bg-black/40 backdrop-blur-xl p-2 rounded-full border border-white/10 z-30">
+<button class="p-3 text-primary bg-primary/10 rounded-full">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-3 text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined">category</span>
+</button>
+<button class="p-3 text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined">auto_fix_normal</span>
+</button>
+<div class="w-8 h-[1px] bg-white/10 mx-auto my-1"></div>
+<button class="p-3 text-white/70 hover:text-white transition-colors">
+<span class="material-symbols-outlined">palette</span>
+</button>
+<div class="flex flex-col items-center gap-2 pb-2">
+<div class="size-4 rounded-full bg-primary border border-white/20"></div>
+<div class="size-4 rounded-full bg-white border border-white/20"></div>
+<div class="size-4 rounded-full bg-[#393528] border border-white/20"></div>
+</div>
+</div>
+<div class="absolute left-4 bottom-4 w-32 aspect-[3/4] rounded-xl overflow-hidden border-2 border-primary/40 shadow-xl z-30">
+<div class="w-full h-full bg-center bg-cover" data-alt="Close up portrait of a professional designer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_1YBdgCFbU0yT8nTSwYCgxwKyFAF-sglsDrgklHDAtn0nQEHqtqmQOFFtn_x_mwGNOCCX77umcQbpuZfbWC_f7225y4KPXSzU-5AR7wKJ2iCRiygJsbKXVIZbD0buFGX_b28GR7jBVtu4oRYgJnZge5OEsCBSO2-nqFChaDZqwi1eDZJEJ-QmfkUKwCc05UiSutJXVG9wMh0TDTvlZ1ZaEFl7Zi4cse02Snr0-oeOipICGfzvf_p4BhXOYBfZnW22gdmpHFKqi0g");'>
+</div>
+<div class="absolute bottom-1 left-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px] text-primary">mic</span>
+<span class="text-[8px] font-bold text-white uppercase tracking-tighter">Designer</span>
+</div>
+</div>
+</main>
+<div class="flex gap-2 border-t border-white/10 bg-background-dark px-4 pb-8 pt-4 z-20">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/60" href="#">
+<div class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/60" href="#">
+<div class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white" href="#">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-red-500/20 text-red-500 shadow-sm border border-red-500/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call_end</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/60" href="#">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">video_camera_front</span>
+</div>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-white/60" href="#">
+<div class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">pan_tool</span>
+</div>
+</a>
+</div>
+</div>
+
+
+    <script src="../../../../../../../../../goti_core.js"></script>
+</body></html>
+

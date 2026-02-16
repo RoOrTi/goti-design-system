@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOTI Inquiry &amp; Contact Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600;6..72,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f2b90d",
+              "background-light": "#f8f8f5",
+              "background-dark": "#181611",
+            },
+            fontFamily: {
+              "display": ["Newsreader", "serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Newsreader', serif;
+        }
+        .gold-border-input {
+            border-top: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: 1px solid #f2b90d !important;
+            border-radius: 0 !important;
+            background-color: transparent !important;
+        }
+        .gold-border-input:focus {
+            box-shadow: none !important;
+            border-bottom: 2px solid #f2b90d !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-white font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[430px] mx-auto bg-background-light dark:bg-background-dark">
+<!-- Top Bar -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-primary flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">GOTI</h2>
+</div>
+<!-- Headline -->
+<div class="px-6 pt-10 pb-6 text-center">
+<h1 class="text-primary tracking-tight text-[36px] font-bold leading-tight">Start a Conversation</h1>
+<p class="text-[#bab29c] text-sm mt-2 font-light">Let's craft your vision into reality.</p>
+</div>
+<!-- Inquiry Form -->
+<div class="flex flex-col gap-8 px-6 py-6">
+<!-- Name Field -->
+<div class="flex flex-col w-full">
+<p class="text-primary/70 text-xs uppercase tracking-widest font-medium pb-1">Name</p>
+<input class="gold-border-input flex w-full text-white placeholder:text-[#393528] py-3 text-lg font-normal outline-none" placeholder="Enter your full name" type="text"/>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col w-full">
+<p class="text-primary/70 text-xs uppercase tracking-widest font-medium pb-1">Email</p>
+<input class="gold-border-input flex w-full text-white placeholder:text-[#393528] py-3 text-lg font-normal outline-none" placeholder="yourname@domain.com" type="email"/>
+</div>
+<!-- Project Type Field -->
+<div class="flex flex-col w-full">
+<p class="text-primary/70 text-xs uppercase tracking-widest font-medium pb-1">Project Type</p>
+<div class="relative">
+<select class="gold-border-input flex w-full text-white py-3 text-lg font-normal outline-none appearance-none">
+<option class="bg-background-dark" value="">Select a service</option>
+<option class="bg-background-dark" value="brand">Brand Identity</option>
+<option class="bg-background-dark" value="digital">Digital Experience</option>
+<option class="bg-background-dark" value="editorial">Editorial Design</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 bottom-3 text-primary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Vision/Message Field -->
+<div class="flex flex-col w-full pt-4">
+<p class="text-primary/70 text-xs uppercase tracking-widest font-medium pb-1">Tell us about your vision</p>
+<textarea class="gold-border-input flex w-full text-white placeholder:text-[#393528] py-3 text-lg font-normal outline-none resize-none" placeholder="Describe your project goals..." rows="4"></textarea>
+</div>
+<!-- Submit Button -->
+<div class="mt-6">
+<button class="w-full h-16 rounded bg-gradient-to-r from-[#f2b90d] via-[#ffd700] to-[#f2b90d] text-background-dark text-xl font-bold uppercase tracking-[0.1em] shadow-lg">
+                    Send Inquiry
+                </button>
+</div>
+</div>
+<!-- Secondary Contact Options -->
+<div class="mt-auto px-6 pb-12">
+<div class="flex flex-col gap-6 pt-10 border-t border-primary/10">
+<p class="text-center text-[#bab29c] text-xs uppercase tracking-widest mb-2">Direct Channels</p>
+<div class="flex justify-around items-center">
+<!-- WhatsApp -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="size-10 flex items-center justify-center rounded-full border border-primary/30 group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-xl">chat</span>
+</div>
+<span class="text-white text-sm font-medium">WhatsApp</span>
+</a>
+<!-- Direct Email -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="size-10 flex items-center justify-center rounded-full border border-primary/30 group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-xl">mail</span>
+</div>
+<span class="text-white text-sm font-medium">Direct Email</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Safe Area Spacer -->
+<div class="h-8"></div>
+</div>
+
+    <script src="../../../../../../../../../goti_core.js"></script>
+</body></html>
+
