@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bienvenida - Dashboard Financiero 01</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden transition-colors duration-300">
+<!-- Main Content Wrapper with vertical spacing -->
+<div class="flex flex-col flex-grow w-full max-w-md mx-auto h-full justify-between">
+<!-- Top Section: Image & Branding -->
+<div class="flex flex-col w-full">
+<!-- Header Image Component -->
+<div class="@container w-full pt-4 px-4 pb-4">
+<div class="w-full relative aspect-[4/5] overflow-hidden rounded-xl shadow-2xl">
+<!-- Background Gradient for depth -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-background-light/20 dark:to-background-dark/80 z-10"></div>
+<!-- Main Image -->
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transform transition-transform duration-700 hover:scale-105" data-alt="Abstract glowing 3D green financial chart rising upwards on dark background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAen0WJ-mU0VUCR0uPbIBLnw9LzRPjSTjQlF4qMJGN-96ISqF2Mc_IE3mNjVzoTp0NqQitqFxjLCakR0SoB9PKwTt6zsPAD27B9f--QoWxB5QhLbPc4yELdiHT3Cwrdd_1U8UbFNQCsmwhNIXzrV51qNE_FbvuNzsv0xLeDRNP4041zMKbLkXoYWCFbV1EqwfhV085gEJSU2AD9AxH9SAiHIk6m0lEYRlFVJNwvZCtXQ7gtNfnz_AguqKjItNylsSHx9PbdPYhDwT8");'>
+</div>
+<!-- Floating Badge/Logo Element -->
+<div class="absolute top-6 left-6 z-20 flex items-center justify-center w-12 h-12 rounded-full bg-background-dark/30 backdrop-blur-md border border-white/10">
+<span class="material-symbols-outlined text-primary text-2xl">trending_up</span>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="flex flex-col px-6 pt-2 pb-6">
+<!-- Eyebrow -->
+<p class="text-primary text-sm font-bold tracking-wider uppercase mb-2 text-center">Dashboard Financiero 01</p>
+<!-- HeadlineText Component -->
+<h1 class="text-[#111813] dark:text-white tracking-tight text-[36px] font-extrabold leading-[1.1] text-center mb-4">
+                        Tu capital,<br/>sin fronteras.
+                    </h1>
+<!-- BodyText Component -->
+<p class="text-[#637588] dark:text-[#a0aec0] text-base font-medium leading-relaxed text-center max-w-xs mx-auto">
+                        Invierte en Argentina y EE.UU. desde un solo lugar. Gestiona, opera y crece tu portafolio global.
+                    </p>
+</div>
+</div>
+<!-- Bottom Section: Actions -->
+<div class="flex flex-col w-full px-4 pb-8 space-y-3 mt-auto">
+<!-- SingleButton (Primary) -->
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 bg-primary text-background-dark text-lg font-bold leading-normal tracking-[0.015em] transition-all hover:brightness-110 active:scale-[0.98] shadow-[0_0_20px_rgba(19,236,91,0.3)]">
+<span class="truncate z-10">Comenzar ahora</span>
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+</button>
+<!-- SingleButton (Secondary) -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-[#111813] dark:text-white text-base font-semibold leading-normal tracking-[0.015em] hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="truncate mr-2">Ya tengo cuenta</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Safe Area Spacer for iOS Home Indicator -->
+<div class="h-4 w-full bg-transparent"></div>
+</div>
+</body></html>

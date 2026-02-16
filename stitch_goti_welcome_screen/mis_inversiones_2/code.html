@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mis Inversiones</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#162b1e",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }.pie-segment {
+            transition: all 0.3s ease;
+        }
+        .pie-segment:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+            transform-origin: center;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden pb-20">
+<header class="sticky top-0 z-20 flex items-center justify-between bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 py-4">
+<h2 class="text-2xl font-extrabold leading-tight tracking-tight">Mis Inversiones</h2>
+<div class="flex items-center justify-end">
+<button class="flex items-center justify-center rounded-full w-10 h-10 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">visibility</span>
+</button>
+<button class="flex items-center justify-center rounded-full w-10 h-10 ml-2 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-white" style="font-size: 24px;">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col gap-6 px-4 pt-2">
+<section class="flex flex-col gap-4 rounded-2xl bg-surface-light dark:bg-surface-dark p-5 shadow-sm border border-slate-200 dark:border-white/5">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<p class="text-slate-500 dark:text-gray-400 text-sm font-medium">Valor Total de la Cuenta</p>
+<h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">$4,520,300<span class="text-2xl text-slate-400 dark:text-gray-500">.00</span></h1>
+</div>
+</div>
+<div class="h-px w-full bg-slate-100 dark:bg-white/10"></div>
+<div class="flex gap-6">
+<div class="flex flex-col">
+<p class="text-slate-400 dark:text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Retorno Total</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">trending_up</span>
+<p class="text-primary text-base font-bold">+$240,000 (5.60%)</p>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-400 dark:text-gray-500 text-xs font-semibold uppercase tracking-wider mb-1">Día</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">arrow_drop_up</span>
+<p class="text-primary text-base font-bold">+1.2%</p>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-6">
+<div class="rounded-2xl bg-surface-light dark:bg-surface-dark p-5 shadow-sm border border-slate-200 dark:border-white/5">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Distribución</h3>
+<span class="text-xs font-medium bg-slate-100 dark:bg-white/10 px-2 py-1 rounded text-slate-500 dark:text-gray-400">% Portfolio</span>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-6">
+<div class="relative w-40 h-40 shrink-0">
+<svg class="w-full h-full rotate-[-90deg]" viewBox="0 0 100 100">
+<circle class="pie-segment" cx="50" cy="50" fill="transparent" r="25" stroke="#13ec5b" stroke-dasharray="157 157" stroke-width="50"></circle>
+<circle class="pie-segment" cx="50" cy="50" fill="transparent" r="25" stroke="#0e9f3d" stroke-dasharray="94.2 157" stroke-dashoffset="-157" stroke-width="50"></circle>
+<circle class="pie-segment" cx="50" cy="50" fill="transparent" r="25" stroke="#095e24" stroke-dasharray="62.8 157" stroke-dashoffset="-251.2" stroke-width="50"></circle>
+<circle class="fill-surface-light dark:fill-surface-dark" cx="50" cy="50" r="35"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="text-xs text-slate-400 font-medium">Total</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">100%</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 w-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#13ec5b]"></div>
+<span class="text-sm font-medium text-slate-700 dark:text-gray-300">Cedears</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">50%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#0e9f3d]"></div>
+<span class="text-sm font-medium text-slate-700 dark:text-gray-300">Bonos</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">30%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#095e24]"></div>
+<span class="text-sm font-medium text-slate-700 dark:text-gray-300">FCI</span>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">20%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-2xl bg-surface-light dark:bg-surface-dark p-5 shadow-sm border border-slate-200 dark:border-white/5">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Rendimiento</h3>
+<div class="flex gap-3 text-[10px] font-bold uppercase text-slate-400 dark:text-gray-500">
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300 dark:bg-gray-600"></span>Costo</div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span>Actual</div>
+</div>
+</div>
+<div class="flex flex-col gap-5">
+<div class="relative">
+<div class="flex justify-between text-xs mb-1">
+<span class="font-bold text-slate-700 dark:text-gray-300">AAPL</span>
+<span class="text-primary font-bold">+11.5%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-slate-300 dark:bg-gray-600 rounded-full" style="width: 80%;"></div>
+<div class="absolute top-0 left-0 h-full bg-primary/80 rounded-full" style="width: 89%;"></div>
+</div>
+<div class="flex justify-between mt-1 text-[10px] text-slate-400 dark:text-gray-500">
+<span>$45k inv.</span>
+<span>$50.2k act.</span>
+</div>
+</div>
+<div class="relative">
+<div class="flex justify-between text-xs mb-1">
+<span class="font-bold text-slate-700 dark:text-gray-300">GGAL</span>
+<span class="text-red-500 font-bold">-3.6%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-slate-300 dark:bg-gray-600 rounded-full" style="width: 65%;"></div>
+<div class="absolute top-0 left-0 h-full bg-red-500/80 rounded-full" style="width: 62%;"></div>
+</div>
+<div class="flex justify-between mt-1 text-[10px] text-slate-400 dark:text-gray-500">
+<span>$125k inv.</span>
+<span>$120.5k act.</span>
+</div>
+</div>
+<div class="relative">
+<div class="flex justify-between text-xs mb-1">
+<span class="font-bold text-slate-700 dark:text-gray-300">SPY</span>
+<span class="text-primary font-bold">+8.2%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-slate-300 dark:bg-gray-600 rounded-full" style="width: 70%;"></div>
+<div class="absolute top-0 left-0 h-full bg-primary/80 rounded-full" style="width: 76%;"></div>
+</div>
+<div class="flex justify-between mt-1 text-[10px] text-slate-400 dark:text-gray-500">
+<span>$785k inv.</span>
+<span>$850.1k act.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-2xl bg-surface-light dark:bg-surface-dark p-5 shadow-sm border border-slate-200 dark:border-white/5">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Variación Histórica</h3>
+<select class="bg-transparent text-xs font-medium text-slate-500 dark:text-gray-400 border-none focus:ring-0 p-0 cursor-pointer">
+<option>6 Meses</option>
+<option>1 Año</option>
+<option>YTD</option>
+</select>
+</div>
+<div class="relative h-40 w-full flex items-end justify-between px-2 pt-6 border-b border-slate-100 dark:border-white/10 pb-1">
+<div class="absolute top-6 left-0 right-0 h-px bg-slate-100 dark:bg-white/5 border-dashed border-t border-slate-200 dark:border-white/10"></div>
+<div class="absolute top-1/2 left-0 right-0 h-px bg-slate-100 dark:bg-white/5 border-dashed border-t border-slate-200 dark:border-white/10"></div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-[12%] h-full justify-end">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all rounded-t-sm h-[30%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-[10px] px-1.5 py-0.5 rounded pointer-events-none whitespace-nowrap z-10">3.2%</div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">Ene</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-[12%] h-full justify-end">
+<div class="w-full bg-red-500/40 group-hover:bg-red-500 transition-all rounded-t-sm h-[15%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-[10px] px-1.5 py-0.5 rounded pointer-events-none whitespace-nowrap z-10">-1.5%</div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">Feb</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-[12%] h-full justify-end">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all rounded-t-sm h-[45%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-[10px] px-1.5 py-0.5 rounded pointer-events-none whitespace-nowrap z-10">4.5%</div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">Mar</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-[12%] h-full justify-end">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all rounded-t-sm h-[20%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-[10px] px-1.5 py-0.5 rounded pointer-events-none whitespace-nowrap z-10">2.0%</div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">Abr</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-[12%] h-full justify-end">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all rounded-t-sm h-[60%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-[10px] px-1.5 py-0.5 rounded pointer-events-none whitespace-nowrap z-10">6.1%</div>
+</div>
+<span class="text-[10px] text-slate-400 font-medium">May</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer w-[12%] h-full justify-end">
+<div class="w-full bg-primary group-hover:bg-primary transition-all rounded-t-sm h-[55%] relative shadow-[0_0_10px_rgba(19,236,91,0.3)]">
+<div class="opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-surface-dark text-white text-[10px] px-1.5 py-0.5 rounded pointer-events-none whitespace-nowrap z-10">5.6%</div>
+</div>
+<span class="text-[10px] text-slate-900 dark:text-white font-bold">Jun</span>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full overflow-x-auto hide-scrollbar">
+<div class="flex gap-3 min-w-max">
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-primary px-4 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-background-dark" style="font-size: 18px;">grid_view</span>
+<p class="text-background-dark text-sm font-bold">Todo</p>
+</button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-white/10 px-4 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-gray-300" style="font-size: 18px;">flag</span>
+<p class="text-slate-700 dark:text-gray-300 text-sm font-medium">Argentina</p>
+</button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-white/10 px-4 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-gray-300" style="font-size: 18px;">public</span>
+<p class="text-slate-700 dark:text-gray-300 text-sm font-medium">Estados Unidos</p>
+</button>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-full bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-white/10 px-4 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-gray-300" style="font-size: 18px;">account_balance</span>
+<p class="text-slate-700 dark:text-gray-300 text-sm font-medium">FCI</p>
+</button>
+</div>
+</section>
+<section class="flex flex-col gap-4 pb-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Activos</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-gray-400 text-sm">
+<span>Ordenar</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">sort</span>
+</div>
+</div>
+<div class="group flex flex-col gap-3 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all active:scale-[0.99]">
+<div class="flex justify-between items-start gap-3">
+<div class="flex items-center gap-3">
+<div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white p-2">
+<div class="bg-contain bg-center bg-no-repeat w-full h-full" data-alt="Apple Logo black on white background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAMjVRDEjzelmRa8-grVYPFDMGQ6W8y7kMwXrdGAGXR28jMPSoQgbMyMoHW4NaOeKseG7hgmefWChabSxqY0xSvd9KqTy1SWTGCtcLmin7H_PlwwETV7z706YQmVgDg4-9fl4hIGBYM1CM4PRNnufyaY4IO1WNTipQj2MUsYCRMoK-7BcX3hDK7O4dhIprlpB6K08_Zhs4pUrBgbAu-sZ3-LLP-sSJdoU-QxQjNk3rFjpL9wo7x5aB9fJFwev3kREyskG1lPKf-bXc");'></div>
+<div class="absolute -bottom-1 -right-1 rounded-full bg-slate-900 dark:bg-white p-[2px]">
+<div class="w-3 h-3 rounded-full bg-cover bg-center" data-alt="USA Flag icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCm96h9Z-XOr42gVQFWS81KCBQVtye0S5xl5Z04dGd8-0GOO8GcUFHa109rpRUeSgZqQQKy7kF69Hi5OBtEaTbYzjCjqD2XyCs03q98Gpo05OJ1nk0W1D20pb7_ImZfln8nues_bH0Woad_RyN9VgFq3YjvWoAxC2dBV3egBsfNUC_vaZ5Qu33gzOTtenloFEhSnQrXf5DAUr5JUQkr1qPufvo3b3h69BHtKimBk2jF-4wjE7zO4-BFR7pMtowXczLScOYs74wuMEs");'></div>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">AAPL</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">Apple Inc.</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">$50,200</p>
+<p class="text-sm font-semibold text-primary">+11.5%</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-2 mt-1">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Cant.</span>
+<span class="text-xs font-medium dark:text-gray-300">10 CEDEARs</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Promedio</span>
+<span class="text-xs font-medium dark:text-gray-300">$45,000</span>
+</div>
+</div>
+<div class="flex items-center gap-1 rounded bg-slate-100 dark:bg-white/5 px-2 py-1">
+<span class="text-[10px] font-bold text-slate-500 dark:text-gray-400">CEDEAR</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all active:scale-[0.99]">
+<div class="flex justify-between items-start gap-3">
+<div class="flex items-center gap-3">
+<div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white p-1">
+<div class="bg-contain bg-center bg-no-repeat w-full h-full rounded-md" data-alt="Banco Galicia Logo orange geometric abstract" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhj3lzqIBrXbrwUh4uA5vZioFSLzIrDJ32h2JX26XoLMRuQ8WsBFnhPcqKWMq1UzG59RHEZkr7WiCQ0Kyuhx9evFVTqnCmtBKyWf35Co0mDRzMUvP4_2yCGNAAunC5Jh7k4Eg-ayclO4dJ6uBCZFSNlhppn7RC-jrYwUpyum2mWMKzE73OgimuEQYmYlJ7Xh-cJur-xN4bNjnOJGWYc0dqF33vIFFjvo3sZqt0EaHRNlgxfSUc-_ar8kWVOYorIGU0Wa8E4EgRdHM");'></div>
+<div class="absolute -bottom-1 -right-1 rounded-full bg-slate-900 dark:bg-white p-[2px]">
+<div class="w-3 h-3 rounded-full bg-cover bg-center" data-alt="Argentina Flag icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnUEwy5evrHTDJnkV0lKp82TmUJVLK849mDaTc-7zUPcK_Ij_XF621PlquA12SkA17E9mjz-1ryQIKdiUK0uRnI3kD6m4F4-9N7Tcb4IcZTWldJmyWN9qu-6NHBDcuTsZiMz8biyWtW2p0y0RKDz21z8prHIVjRDUtYbvNsy1WcYdE0FCwCjYBKiGU4ikyLGJBAtAUX_FyU7Nnjnurx_kHiQ2ULqrJ28CBJ_5Of4YHC4RaolchfczS_XRkFwTR6zUoU9UpwT5H9ZI");'></div>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">GGAL</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">Grupo Fin. Galicia</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">$120,500</p>
+<p class="text-sm font-semibold text-red-500">-3.6%</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-2 mt-1">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Cant.</span>
+<span class="text-xs font-medium dark:text-gray-300">500 Acc.</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Promedio</span>
+<span class="text-xs font-medium dark:text-gray-300">$125,000</span>
+</div>
+</div>
+<div class="flex items-center gap-1 rounded bg-slate-100 dark:bg-white/5 px-2 py-1">
+<span class="text-[10px] font-bold text-slate-500 dark:text-gray-400">ACCIONES</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all active:scale-[0.99]">
+<div class="flex justify-between items-start gap-3">
+<div class="flex items-center gap-3">
+<div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white p-2">
+<div class="bg-contain bg-center bg-no-repeat w-full h-full" data-alt="S&amp;P 500 logo text only" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCGUU6nhnsr2GsFLYBmaVQldXyl-qLeroYR3--9bfWJkGYg7o6h60aiV9Otmp5v9cGADMFjsr2Qs5JrgtLNKtX3XJ4hbnfipOZG-almZ61CXH9KXVQ-VkoE1_aq5tKb413NQdMXHBs9NiB6N-8F8ydn738xZYxa6e0uKiin2YicBgurGPdm9TGcaU27FByxNvO2oZeSUhVT3bf-OFPw4IfRYBquSi6boltO269qkz-dpOw_jaJ5fsQMp25tJ5fFDsNdq_GPebxbNZQ");'></div>
+<div class="absolute -bottom-1 -right-1 rounded-full bg-slate-900 dark:bg-white p-[2px]">
+<div class="w-3 h-3 rounded-full bg-cover bg-center" data-alt="USA Flag icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDasP0JyQVhS40ZjmfNM7PVSpD-xpmWk14IGS0BF753wZfQ_JhgV852nin_IBTgol94QQfuRRFui-KXbHn5uKeoE876vOOEzxNmi2fTGB_eGv86zzC2WzYvvJeEa3zlnpt6_JStS-21HVEGk0V8BGCuDvvTmBj-hgjCR6Y3_VV7Q4ImS_PyNoRiHCkDU06OO1HWOab3zwLQHKtOkTGU4uAYrMnS5i_qeJiNPkanCymAzkh7-GllF41ENNHOFHt5DYkgSxruDdGB6cQ");'></div>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">SPY</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">SPDR S&amp;P 500 ETF</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">$850,100</p>
+<p class="text-sm font-semibold text-primary">+8.2%</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-2 mt-1">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Cant.</span>
+<span class="text-xs font-medium dark:text-gray-300">55 CEDEARs</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Promedio</span>
+<span class="text-xs font-medium dark:text-gray-300">$15,400</span>
+</div>
+</div>
+<div class="flex items-center gap-1 rounded bg-slate-100 dark:bg-white/5 px-2 py-1">
+<span class="text-[10px] font-bold text-slate-500 dark:text-gray-400">ETF</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all active:scale-[0.99]">
+<div class="flex justify-between items-start gap-3">
+<div class="flex items-center gap-3">
+<div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-600 p-2">
+<div class="bg-contain bg-center bg-no-repeat w-full h-full" data-alt="YPF logo white text on blue" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYExy0a2sUxOYYO0MyBCpv_V2RYJsBWLp-tu2N_FOcKtce_MbHXGvUFL59gxRlnaQpePLZd3rSUEezAAI5U894OVL62fyp_QusBmx9rT4er4rOZwvYNookdDGfXhOj1-ebvRnf36y_9TWo9wm_xZn7U9PtQZsqKA1I8kFw3GbnDDReH9pgEwRLWllsHdjqH_1vhJNg2vfpdeojn9Hly50DSYR_pzOVkklnsKzCO0IwKEU1OzQuMb9RDdt9lPNBUpLwPEDP_Bt7QTo");'></div>
+<div class="absolute -bottom-1 -right-1 rounded-full bg-slate-900 dark:bg-white p-[2px]">
+<div class="w-3 h-3 rounded-full bg-cover bg-center" data-alt="Argentina Flag icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNqXj63U39WHIvZDMm-RO6cwDqWn0U7Frq_3W1j1uug_ziiBK452PKPerZwJz3EAKOQhhiZVgZ3bv3txrbbr2ETVSnTKEM7q6I_s1xkL0xKtQr_rt9PkMtk4xsD9r4JUGbTaQYFbN4OwRhsDBDFgz2i0p4CDeA-jA8qaizDXM5wPTfKxu-jOlEgEuGelnfZdelNnKrP8WLcnyOscrUB6NH18u1GaK5c2sS4oY47I7jjgHMkPo8ustx0zi6096wuOHd8VsXqeXoIUE");'></div>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">YPFS</p>
+<p class="text-xs text-slate-500 dark:text-gray-400">YPF Sociedad Anonima</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-base font-bold text-slate-900 dark:text-white leading-tight">$35,400</p>
+<p class="text-sm font-semibold text-primary">+0.5%</p>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-white/5 pt-2 mt-1">
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Cant.</span>
+<span class="text-xs font-medium dark:text-gray-300">120 Acc.</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-slate-400 dark:text-gray-500 font-semibold">Promedio</span>
+<span class="text-xs font-medium dark:text-gray-300">$294</span>
+</div>
+</div>
+<div class="flex items-center gap-1 rounded bg-slate-100 dark:bg-white/5 px-2 py-1">
+<span class="text-[10px] font-bold text-slate-500 dark:text-gray-400">ACCIONES</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-20">
+<button class="flex items-center gap-2 bg-primary text-background-dark font-extrabold px-6 py-3 rounded-full shadow-[0_0_20px_rgba(19,236,91,0.4)] hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined font-bold">swap_horiz</span>
+<span>Operar</span>
+</button>
+</div>
+<nav class="fixed bottom-0 left-0 w-full bg-surface-light dark:bg-surface-dark border-t border-slate-200 dark:border-white/5 pb-6 pt-3 px-6 z-30">
+<ul class="flex justify-between items-center">
+<li>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1" style="font-variation-settings: 'FILL' 1;">pie_chart</span>
+<span class="text-[10px] font-bold">Portafolio</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-gray-500 hover:text-slate-900 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined">candlestick_chart</span>
+<span class="text-[10px] font-medium">Mercado</span>
+</a>
+</li>
+<li class="w-12"></li>
+<li>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-gray-500 hover:text-slate-900 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-[10px] font-medium">Movimientos</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-gray-500 hover:text-slate-900 dark:hover:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Perfil</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+
+</body></html>

@@ -9,6 +9,13 @@
                 "--key",
                 "AQ.Ab8RN6IY25Pq4HGp1yKLg2nX5bIrLzgzSrAum68s7I5XV0QWxQ"
             ]
+        },
+        "cloud-run": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@google-cloud/cloud-run-mcp"
+            ]
         }
     }
 }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crear Cuenta - App Financiera</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1c271f",
+                        "border-green": "#3b5443",
+                        "text-muted": "#9db9a6"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>/* Custom checkbox style override for better theme integration */
+.custom-checkbox:checked {
+    background-color: #13ec5b;
+    border-color: #13ec5b;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDIFnvb_84VSqD3x_HK_loGRTc6SHFlnW9IBMYeyReFOW_K9el8vVUaIP7UxyuLeWb33f3KqMa1BNQ0kkZbbwcEhsQiTc5oyL2CWfn5wcIX5MRHzaxBvKvqv1J0D_W4nAxxcyMu6BB7mvk-ZhvH8yaY7fRqOnFjml68m2T3z9z2in0YiVMr6An7u-f3atTduvh1Siajjz7s-kHIs5yMB7MZSt07kT5YDE4TPKQYSOemAjcjCHIkSeuL8nLhs3YsEtHay1B6y5pZbW8)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header / Nav -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<button class="text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</button>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12"></h2>
+</div>
+<!-- Main Content Scrollable Area -->
+<div class="flex-1 flex flex-col px-4 pb-8">
+<!-- Headline & Subtitle -->
+<div class="pt-4 pb-6">
+<h1 class="text-white tracking-tight text-[32px] font-bold leading-tight text-left mb-2">Crear Cuenta</h1>
+<p class="text-text-muted text-base font-normal leading-normal">Comienza a invertir en los mercados de Argentina y EE.UU.</p>
+</div>
+<!-- Form Fields -->
+<div class="flex flex-col gap-5 w-full max-w-[480px] mx-auto">
+<!-- Email Field -->
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Correo electrónico</p>
+<div class="flex items-center rounded-lg border border-border-green bg-surface-dark focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-14 placeholder:text-text-muted px-[15px] text-base font-normal leading-normal" placeholder="ejemplo@email.com" type="email"/>
+</div>
+</label>
+<!-- Password Field -->
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Contraseña</p>
+<div class="flex w-full items-stretch rounded-lg border border-border-green bg-surface-dark focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-14 placeholder:text-text-muted px-[15px] text-base font-normal leading-normal" placeholder="Ingresa tu contraseña" type="password"/>
+<button class="text-text-muted hover:text-white flex items-center justify-center px-[15px] rounded-r-lg transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">visibility</span>
+</button>
+</div>
+<!-- Password Strength Indicator (Visual only) -->
+<div class="flex gap-1 mt-2">
+<div class="h-1 w-1/4 rounded-full bg-primary"></div>
+<div class="h-1 w-1/4 rounded-full bg-primary/30"></div>
+<div class="h-1 w-1/4 rounded-full bg-surface-dark"></div>
+<div class="h-1 w-1/4 rounded-full bg-surface-dark"></div>
+</div>
+<p class="text-xs text-text-muted mt-1">Nivel de seguridad: Débil</p>
+</label>
+<!-- Confirm Password Field -->
+<label class="flex flex-col w-full">
+<p class="text-white text-base font-medium leading-normal pb-2">Confirmar contraseña</p>
+<div class="flex w-full items-stretch rounded-lg border border-border-green bg-surface-dark focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-14 placeholder:text-text-muted px-[15px] text-base font-normal leading-normal" placeholder="Repite tu contraseña" type="password"/>
+<button class="text-text-muted hover:text-white flex items-center justify-center px-[15px] rounded-r-lg transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">visibility_off</span>
+</button>
+</div>
+</label>
+<!-- Terms Checkbox -->
+<div class="flex items-start gap-3 mt-2">
+<div class="relative flex items-center pt-0.5">
+<input class="custom-checkbox h-5 w-5 rounded border-border-green bg-surface-dark text-primary focus:ring-primary focus:ring-offset-background-dark cursor-pointer transition-all" type="checkbox"/>
+</div>
+<p class="text-text-muted text-sm leading-tight">
+                        He leído y acepto los <a class="text-primary hover:underline font-medium" href="#">Términos y Condiciones</a> y la <a class="text-primary hover:underline font-medium" href="#">Política de Privacidad</a>.
+                    </p>
+</div>
+<!-- Submit Button -->
+<button class="mt-4 flex w-full items-center justify-center rounded-lg bg-primary h-14 px-4 text-background-dark text-base font-bold leading-normal hover:bg-[#0fd650] active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(19,236,91,0.15)]">
+                    Crear Cuenta
+                </button>
+<!-- Login Redirect -->
+<div class="flex justify-center items-center mt-2">
+<p class="text-text-muted text-base">
+                        ¿Ya tienes cuenta? 
+                        <a class="text-primary font-bold hover:underline ml-1" href="#">Iniciar Sesión</a>
+</p>
+</div>
+</div>
+<!-- Spacer to push footer down if content is short -->
+<div class="flex-1"></div>
+<!-- Security Badge -->
+<div class="flex items-center justify-center gap-2 mt-8 opacity-60">
+<span class="material-symbols-outlined text-text-muted" style="font-size: 16px;">lock</span>
+<span class="text-xs text-text-muted uppercase tracking-widest font-medium">Encriptación 256-bit SSL</span>
+</div>
+</div>
+</div>
+</body></html>
