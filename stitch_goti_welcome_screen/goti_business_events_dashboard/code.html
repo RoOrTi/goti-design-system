@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Business Events Dashboard - GOTI</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet" />
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "accent-blue": "#0084ff",
+                        "background": "#0a0a0a",
+                        "surface": "#141414",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .neo-glass {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Clock Animation */
+        .clock-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .needle {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            border-radius: 10px;
+        }
+
+        .needle.hour {
+            width: 4px;
+            height: 50px;
+            background: white;
+            z-index: 3;
+        }
+
+        .needle.minute {
+            width: 3px;
+            height: 70px;
+            background: #13ec5b;
+            box-shadow: 0 0 10px #13ec5b;
+            z-index: 2;
+        }
+
+        .needle.second {
+            width: 1px;
+            height: 80px;
+            background: white;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        /* Calendar Styles */
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .calendar-day.active {
+            background: #0084ff;
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 132, 255, 0.4);
+            font-weight: 700;
+        }
+
+        .calendar-day.muted {
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Vertical Slider */
+        .v-slider {
+            width: 60px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            justify-content: flex-end;
+        }
+
+        .slider-track {
+            width: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            flex: 1;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: white;
+            opacity: 0.6;
+            border-radius: 8px;
+            transition: height 0.3s ease;
+        }
+
+        .analog-marks span {
+            position: absolute;
+            font-weight: 900;
+            color: #13ec5b;
+            font-size: 18px;
+            text-shadow: 0 0 10px #13ec5b;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(0.95);
+                opacity: 0.4;
+            }
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid #13ec5b33;
+            animation: pulse-ring 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center p-8 overflow-hidden">
+    <div class="max-w-6xl w-full grid grid-cols-12 gap-8 items-start">
+
+        <!-- Left Section: Clock and Calendar -->
+        <div class="col-span-12 md:col-span-8 flex flex-col gap-8">
+
+            <div class="flex flex-wrap gap-12 items-center justify-center md:items-start md:justify-start">
+
+                <!-- Analog Clock -->
+                <div class="relative w-[280px] h-[280px] flex items-center justify-center">
+                    <!-- Glow Rings -->
+                    <div class="ring w-full h-full"></div>
+                    <div class="ring w-4/5 h-4/5" style="animation-delay: 1s;"></div>
+
+                    <!-- Analog Marks -->
+                    <div class="relative w-full h-full font-display">
+                        <span
+                            class="absolute top-2 left-1/2 -translate-x-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">12</span>
+                        <span
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">3</span>
+                        <span
+                            class="absolute bottom-2 left-1/2 -translate-x-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">6</span>
+                        <span
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">9</span>
+
+                        <!-- Clock Center -->
+                        <div class="clock-center">
+                            <div class="size-3 bg-white rounded-full z-50"></div>
+                        </div>
+
+                        <!-- Needles -->
+                        <div id="h-needle" class="needle hour"></div>
+                        <div id="m-needle" class="needle minute"></div>
+                        <div id="s-needle" class="needle second"></div>
+
+                        <!-- Digital Clock Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center pt-24">
+                            <div class="bg-black/80 border border-white/10 px-4 py-1 rounded-lg backdrop-blur-md">
+                                <span id="digital-time"
+                                    class="font-mono text-xl font-bold tracking-widest text-white">05:02:39</span>
+                                <div class="text-[8px] text-center text-white/40 uppercase font-black tracking-widest">
+                                    mar, 17 feb</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vertical Slider -->
+                <div class="v-slider">
+                    <div class="slider-track">
+                        <div class="slider-fill"></div>
+                    </div>
+                    <div class="text-accent-blue mt-2">
+                        <span class="material-symbols-outlined">volume_up</span>
+                    </div>
+                </div>
+
+                <!-- Calendar Card -->
+                <div class="neo-glass p-6 rounded-[32px] w-[300px]">
+                    <div class="flex items-center justify-between mb-6 px-2">
+                        <button
+                            class="material-symbols-outlined opacity-40 hover:opacity-100 transition-opacity">chevron_left</button>
+                        <h3 class="font-display font-black text-sm uppercase tracking-widest">Febrero de 2026</h3>
+                        <button
+                            class="material-symbols-outlined opacity-40 hover:opacity-100 transition-opacity">chevron_right</button>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-7 gap-y-3 gap-x-1 text-center font-black text-[9px] uppercase tracking-widest text-white/20 mb-4">
+                        <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-1">
+                        <!-- Muted Days -->
+                        <span class="calendar-day muted">26</span>
+                        <span class="calendar-day muted">27</span>
+                        <span class="calendar-day muted">28</span>
+                        <span class="calendar-day muted">29</span>
+                        <span class="calendar-day muted">30</span>
+                        <span class="calendar-day muted">31</span>
+                        <!-- Actual Days -->
+                        <span class="calendar-day">1</span>
+                        <span class="calendar-day">2</span>
+                        <span class="calendar-day">3</span>
+                        <span class="calendar-day">4</span>
+                        <span class="calendar-day">5</span>
+                        <span class="calendar-day">6</span>
+                        <span class="calendar-day">7</span>
+                        <span class="calendar-day">8</span>
+                        <span class="calendar-day">9</span>
+                        <span class="calendar-day">10</span>
+                        <span class="calendar-day">11</span>
+                        <span class="calendar-day">12</span>
+                        <span class="calendar-day">13</span>
+                        <span class="calendar-day">14</span>
+                        <span class="calendar-day">15</span>
+                        <span class="calendar-day">16</span>
+                        <span class="calendar-day active">17</span>
+                        <span class="calendar-day">18</span>
+                        <span class="calendar-day">19</span>
+                        <span class="calendar-day">20</span>
+                        <span class="calendar-day">21</span>
+                        <span class="calendar-day">22</span>
+                        <span class="calendar-day">23</span>
+                        <span class="calendar-day">24</span>
+                        <span class="calendar-day">25</span>
+                        <span class="calendar-day">26</span>
+                        <span class="calendar-day">27</span>
+                        <span class="calendar-day">28</span>
+                        <span class="calendar-day muted">1</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Section: Events and Alarms Form -->
+        <div class="col-span-12 md:col-span-4">
+            <div class="neo-glass p-8 rounded-[40px] border-white/10">
+                <h2 class="font-display font-black text-2xl mb-8">Eventos y Alarmas</h2>
+
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Fecha
+                            del Evento</label>
+                        <input type="text" placeholder="dd/mm/aaaa"
+                            class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-accent-blue focus:outline-none transition-colors">
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Hora</label>
+                        <div class="relative">
+                            <input type="text" placeholder="--:--"
+                                class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-accent-blue focus:outline-none transition-colors">
+                            <span
+                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 opacity-20">schedule</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Descripción</label>
+                        <input type="text" placeholder="Ej: Pagar WiFi"
+                            class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-accent-blue focus:outline-none transition-colors">
+                    </div>
+
+                    <button
+                        class="w-full bg-accent-blue hover:bg-blue-600 text-white font-black rounded-2xl py-4 transition-all active:scale-[0.98] shadow-lg shadow-blue-500/20 uppercase tracking-widest text-xs">
+                        Agregar Evento
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Clock Interaction Script -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = now.getHours();
+            const m = now.getMinutes();
+            const s = now.getSeconds();
+
+            const hDeg = (h % 12) * 30 + m * 0.5;
+            const mDeg = m * 6;
+            const sDeg = s * 6;
+
+            document.getElementById('h-needle').style.transform = `translate(-50%, 0) rotate(${hDeg}deg)`;
+            document.getElementById('m-needle').style.transform = `translate(-50%, 0) rotate(${mDeg}deg)`;
+            document.getElementById('s-needle').style.transform = `translate(-50%, 0) rotate(${sDeg}deg)`;
+
+            // Digital update
+            const timeString = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            document.getElementById('digital-time').textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+
+</html>

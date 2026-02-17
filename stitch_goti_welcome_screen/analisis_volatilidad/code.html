@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Análisis de Volatilidad Interactivo - GOTI</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Google Fonts: Outfit & Inter -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons as Font -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "primary-glow": "rgba(19, 236, 91, 0.4)",
+                        "background-dark": "#0a0f0c",
+                        "surface-dark": "#121a15",
+                        "accent-red": "#ff4d4d",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"]
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .active-tab {
+            color: #13ec5b;
+            border-bottom: 2px solid #13ec5b;
+        }
+
+        .data-row:hover {
+            background: rgba(19, 236, 91, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .chart-container-premium {
+            position: relative;
+            filter: drop-shadow(0 0 8px rgba(19, 236, 91, 0.1));
+        }
+
+        /* Custom Tooltip Styling */
+        #chartjs-tooltip {
+            opacity: 0;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            pointer-events: none;
+            transition: all 0.1s ease;
+            font-size: 10px;
+            z-index: 100;
+            border: 1px solid rgba(19, 236, 91, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-sans min-h-screen relative overflow-x-hidden selection:bg-primary/30">
+    <!-- Abstract Background Glows -->
+    <div
+        class="fixed -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] pointer-events-none">
+    </div>
+    <div
+        class="fixed -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-accent-red/5 rounded-full blur-[120px] pointer-events-none">
+    </div>
+
+    <div class="max-w-md mx-auto p-6 pb-32 relative z-10">
+        <!-- Header with Interactive Log -->
+        <header class="mb-8 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="../bienvenida/code.html"
+                    class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-90">
+                    <span class="material-symbols-outlined text-sm">arrow_back_ios_new</span>
+                </a>
+                <div>
+                    <h1 class="font-display text-xl font-bold tracking-tight">Market Intelligence</h1>
+                    <div class="flex items-center gap-1.5 opacity-50">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                        <span class="text-[10px] uppercase tracking-widest font-semibold font-mono">Core System
+                            v2.4</span>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgVIFjnO3Fp3Q7r1roPsM30XFC-3FAPXrJEWWJAlcVguOdFXUlbeHU62q7rZYZeSoV1ayzQn1Iqu0Yx9irpkFWdia_fMNqP-vxVaUig7NonzS-UEPVWaDWpxiQA3VrtTu63MQtYUS6tyul3aqZVjqyZE_SyqFLG3OhGM5DyF7KC6Gx2T3nFw8Izkfv9UqeM-WVWpuToMVgmhsj621Ukb-JbUTwQnP0GbOEeOaOu7AP_jVW-_zpYSffNjRzjSO_D3OUKyyPRhVBjUo"
+                    alt="User" class="w-full h-full object-cover">
+            </div>
+        </header>
+
+        <!-- Interactive Terminal Log (Collapsible) -->
+        <div class="mb-8">
+            <div class="premium-glass rounded-2xl overflow-hidden border border-white/5">
+                <div class="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
+                    <div class="flex gap-1.5">
+                        <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+                        <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                        <div class="w-2 h-2 rounded-full bg-primary/50"></div>
+                    </div>
+                    <span class="text-[9px] font-mono text-white/30 uppercase tracking-widest">Colab Data Engine</span>
+                </div>
+                <div id="terminal-log"
+                    class="p-4 h-24 overflow-y-auto font-mono text-[9px] leading-relaxed scroll-hide">
+                    <p class="text-primary">> Initializing yfinance.download()...</p>
+                    <p class="text-white/40">Fetching tokens JD, NVDA, NFLX, GGAL.BA</p>
+                    <p class="text-white/60">[*********************100%***********************] 4 of 4 completed</p>
+                    <p class="text-yellow-500">> Warning: pandas.pct_change() fill_method='pad' is deprecated.</p>
+                    <p class="text-primary/80">> Volatility analyzed. Processing results...</p>
+                    <p class="text-white/40">> CSV Exports: volatilidad_diaria.csv generated.</p>
+                    <p class="text-primary animate-pulse">> Ready for interaction.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metric Tabs -->
+        <nav class="flex gap-6 mb-6 px-1 border-b border-white/5">
+            <button onclick="switchTab('volatilidad')"
+                class="tab-btn active-tab pb-2 text-xs font-bold uppercase tracking-widest transition-all">Volatilidad</button>
+            <button onclick="switchTab('precios')"
+                class="tab-btn pb-2 text-xs font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">Precios</button>
+            <button onclick="switchTab('alertas')"
+                class="tab-btn pb-2 text-xs font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">Alertas</button>
+        </nav>
+
+        <!-- Content Sections -->
+        <div id="tab-volatilidad" class="tab-content transition-all duration-300">
+            <!-- Asset Carousel (Interactive) -->
+            <div class="flex gap-4 overflow-x-auto pb-4 scroll-hide snap-x">
+                <!-- GGAL Card Detail -->
+                <div
+                    class="min-w-[280px] snap-center premium-glass rounded-3xl p-6 border-red-500/10 shadow-[box-shadow:inset_0_0_40px_rgba(248,113,113,0.02)]">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span
+                                    class="px-2 py-0.5 rounded-lg bg-red-500/10 text-red-500 text-[10px] font-black uppercase tracking-tighter">Critical</span>
+                                <h3 class="font-display font-extrabold text-xl">GGAL.BA</h3>
+                            </div>
+                            <p class="text-[10px] text-white/40 uppercase tracking-widest font-bold">Max Vol: 6.53%</p>
+                        </div>
+                        <div
+                            class="w-12 h-12 flex items-center justify-center rounded-2xl bg-red-500/10 text-red-500 animate-float">
+                            <span class="material-symbols-outlined text-2xl">trending_up</span>
+                        </div>
+                    </div>
+                    <div class="h-28 w-full chart-container-premium">
+                        <canvas id="main-chart-ggal"></canvas>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-white/5 rounded-2xl p-3 text-center border border-white/5">
+                            <p class="text-[8px] text-white/30 uppercase mb-1">Diaria</p>
+                            <p class="text-sm font-bold text-red-500">1.36%</p>
+                        </div>
+                        <div class="bg-white/5 rounded-2xl p-3 text-center border border-white/5">
+                            <p class="text-[8px] text-white/30 uppercase mb-1">Mensual</p>
+                            <p class="text-sm font-bold text-white">9.03%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NVDA Card Detail -->
+                <div class="min-w-[280px] snap-center premium-glass rounded-3xl p-6 border-primary/10">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span
+                                    class="px-2 py-0.5 rounded-lg bg-primary/10 text-primary text-[10px] font-black uppercase tracking-tighter">Efficient</span>
+                                <h3 class="font-display font-extrabold text-xl">NVDA</h3>
+                            </div>
+                            <p class="text-[10px] text-white/40 uppercase tracking-widest font-bold">Max Vol: 3.93%</p>
+                        </div>
+                        <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined text-2xl">insights</span>
+                        </div>
+                    </div>
+                    <div class="h-28 w-full">
+                        <canvas id="main-chart-nvda"></canvas>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-white/5 rounded-2xl p-3 text-center border border-white/5">
+                            <p class="text-[8px] text-white/30 uppercase mb-1">Diaria</p>
+                            <p class="text-sm font-bold text-primary">1.26%</p>
+                        </div>
+                        <div class="bg-white/5 rounded-2xl p-3 text-center border border-white/5">
+                            <p class="text-[8px] text-white/30 uppercase mb-1">Mensual</p>
+                            <p class="text-sm font-bold text-white">8.44%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Summary -->
+            <div class="mt-4 grid grid-cols-3 gap-3">
+                <div class="premium-glass rounded-2xl p-4 border-white/5">
+                    <span class="material-symbols-outlined text-primary text-lg mb-2">speed</span>
+                    <p class="text-[10px] text-white/40 uppercase">Promedio</p>
+                    <p class="text-lg font-bold">2.38%</p>
+                </div>
+                <div class="premium-glass rounded-2xl p-4 border-white/5">
+                    <span class="material-symbols-outlined text-yellow-500 text-lg mb-2">history</span>
+                    <p class="text-[10px] text-white/40 uppercase">Días Críticos</p>
+                    <p class="text-lg font-bold">8</p>
+                </div>
+                <div onclick="location.href='../reportes_visuales/code.html'"
+                    class="premium-glass rounded-2xl p-4 border-primary/20 bg-primary/5 cursor-pointer hover:bg-primary/10 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-primary text-lg mb-2 group-hover:scale-110 transition-transform">image</span>
+                    <p class="text-[10px] text-primary uppercase font-black">Visual PNG</p>
+                    <p class="text-xs font-bold text-white/60">Ver Dashboards</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-precios" class="tab-content hidden animate-fade-in transition-all">
+            <div class="premium-glass rounded-3xl overflow-hidden border border-white/5">
+                <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
+                    <h3 class="font-display font-bold">Data Stream Snapshot</h3>
+                    <span class="text-[10px] font-mono opacity-40">2025.12.01 - 2025.12.05</span>
+                </div>
+                <div class="overflow-x-auto scroll-hide">
+                    <table class="w-full text-[11px]">
+                        <thead class="bg-white/5 text-white/40 font-mono tracking-widest uppercase">
+                            <tr>
+                                <th class="p-4 text-left">Fecha</th>
+                                <th class="p-4 text-center">GGAL</th>
+                                <th class="p-4 text-center">NVDA</th>
+                                <th class="p-4 text-center">NFLX</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-medium text-white/70">
+                            <tr class="data-row border-t border-white/5">
+                                <td class="p-4">2025-12-01</td>
+                                <td class="p-4 text-center text-primary">7958.96</td>
+                                <td class="p-4 text-center">179.91</td>
+                                <td class="p-4 text-center">109.13</td>
+                            </tr>
+                            <tr class="data-row border-t border-white/5 bg-white/[0.02]">
+                                <td class="p-4">2025-12-02</td>
+                                <td class="p-4 text-center text-red-400">7879.43</td>
+                                <td class="p-4 text-center">181.45</td>
+                                <td class="p-4 text-center">109.35</td>
+                            </tr>
+                            <tr class="data-row border-t border-white/5">
+                                <td class="p-4">2025-12-03</td>
+                                <td class="p-4 text-center text-primary font-bold">8058.39</td>
+                                <td class="p-4 text-center">179.58</td>
+                                <td class="p-4 text-center underline">103.96</td>
+                            </tr>
+                            <tr class="data-row border-t border-white/5 bg-white/[0.02]">
+                                <td class="p-4">2025-12-04</td>
+                                <td class="p-4 text-center">7834.68</td>
+                                <td class="p-4 text-center text-primary">183.38</td>
+                                <td class="p-4 text-center">103.22</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-alertas" class="tab-content hidden animate-fade-in transition-all">
+            <div class="space-y-4">
+                <div class="flex items-center justify-between px-1 mb-2">
+                    <p class="text-[10px] uppercase tracking-widest font-black text-white/30">Detection Log (>3%
+                        Threshold)</p>
+                    <button class="text-[10px] text-primary font-bold hover:underline">Download CSV</button>
+                </div>
+
+                <!-- GGAL Alert -->
+                <div
+                    class="premium-glass rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden border-red-500/20 shadow-[box-shadow:inset_0_0_20px_rgba(248,113,113,0.05)]">
+                    <div class="w-1.5 h-full bg-red-500 absolute left-0 top-0"></div>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500">
+                        <span class="material-symbols-outlined">warning</span>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-bold text-sm">GGAL.BA Critical Volatility</h4>
+                            <span class="text-[10px] font-mono opacity-40">Dec 18</span>
+                        </div>
+                        <p class="text-xs text-white/50 mt-1">Explosive movement detected. Daily change: 6.53%</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-red-500 font-black text-lg">6.5%</span>
+                    </div>
+                </div>
+
+                <!-- NFLX Alert -->
+                <div
+                    class="premium-glass rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden border-yellow-500/20">
+                    <div class="w-1.5 h-full bg-yellow-500 absolute left-0 top-0"></div>
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500">
+                        <span class="material-symbols-outlined">analytics</span>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-bold text-sm">NFLX High Threshold</h4>
+                            <span class="text-[10px] font-mono opacity-40">Dec 03</span>
+                        </div>
+                        <p class="text-xs text-white/50 mt-1">Steady upward volatility detected in streaming sector.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-yellow-500 font-black text-lg">4.9%</span>
+                    </div>
+                </div>
+
+                <!-- NVDA Alert -->
+                <div
+                    class="premium-glass rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden border-primary/20">
+                    <div class="w-1.5 h-full bg-primary absolute left-0 top-0"></div>
+                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-baseline">
+                            <h4 class="font-bold text-sm">NVDA Surge Event</h4>
+                            <span class="text-[10px] font-mono opacity-40">Dec 19</span>
+                        </div>
+                        <p class="text-xs text-white/50 mt-1">AI demand fuels volatility spikes in NASDAQ listing.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-primary font-black text-lg">3.9%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Float Interactive Button (Download Data) -->
+        <button
+            class="fixed bottom-24 right-6 w-14 h-14 bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 shadow-2xl flex items-center justify-center hover:bg-white/10 active:scale-90 transition-all group">
+            <span
+                class="material-symbols-outlined text-white/40 group-hover:text-primary transition-colors">cloud_download</span>
+        </button>
+
+        <!-- Main Footer Navigation -->
+        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-48px)] max-w-sm z-50">
+            <button onclick="location.href='../inicio/code.html'"
+                class="w-full h-16 premium-glass bg-primary/10 border-primary/20 rounded-3xl group relative overflow-hidden active:scale-[0.98] transition-all">
+                <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-primary font-black uppercase tracking-[0.2em] text-xs">Unlock Full
+                        Dashboard</span>
+                    <span class="material-symbols-outlined text-primary text-xl animate-pulse">lock_open</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hidden Tooltip Element -->
+    <div id="chartjs-tooltip"></div>
+
+    <script>
+        // Tab Management
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active-tab', 'opacity-100'));
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.onclick.toString().includes(tabId));
+            activeBtn.classList.add('active-tab', 'opacity-100');
+
+            // Terminal scroll effect simulation
+            const log = document.getElementById('terminal-log');
+            const p = document.createElement('p');
+            p.className = 'text-primary/40 mt-1';
+            p.textContent = `> Switched view context to ${tabId.toUpperCase()}`;
+            log.appendChild(p);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chart Config
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: 'index' },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: true, position: 'nearest', padding: 10, cornerRadius: 10, titleFont: { size: 10 }, bodyFont: { size: 10 } }
+                },
+                scales: {
+                    x: { display: false },
+                    y: { display: false }
+                },
+                elements: {
+                    line: { tension: 0.5, borderCapStyle: 'round' },
+                    point: { radius: 0, hoverRadius: 5, backgroundColor: '#13ec5b' }
+                }
+            };
+
+            // GGAL Sparkline (Detail)
+            new Chart(document.getElementById('main-chart-ggal'), {
+                type: 'line',
+                data: {
+                    labels: ['Dec 1', 'Dec 3', 'Dec 5', 'Dec 8', 'Dec 10', 'Dec 12', 'Dec 15', 'Dec 18', 'Dec 20', 'Dec 22'],
+                    datasets: [{
+                        data: [2.2, 5.0, 3.5, 4.0, 2.5, 3.8, 4.2, 6.53, 5.1, 4.0],
+                        borderColor: '#f87171',
+                        backgroundColor: 'rgba(248, 113, 113, 0.05)',
+                        fill: true,
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // NVDA Sparkline (Detail)
+            new Chart(document.getElementById('main-chart-nvda'), {
+                type: 'line',
+                data: {
+                    labels: ['Dec 1', 'Dec 3', 'Dec 5', 'Dec 8', 'Dec 10', 'Dec 12', 'Dec 15', 'Dec 18', 'Dec 20', 'Dec 22'],
+                    datasets: [{
+                        data: [1.5, 2.8, 1.2, 3.5, 2.1, 3.2, 1.8, 3.93, 2.5, 1.26],
+                        borderColor: '#13ec5b',
+                        backgroundColor: 'rgba(19, 236, 91, 0.05)',
+                        fill: true,
+                    }]
+                },
+                options: commonOptions
+            });
+
+            // Lucide Init
+            if (window.lucide) { lucide.createIcons(); }
+
+            // Auto-scroll terminal log occasionally
+            setInterval(() => {
+                const log = document.getElementById('terminal-log');
+                if (Math.random() > 0.7) {
+                    const p = document.createElement('p');
+                    p.className = 'text-white/20';
+                    p.innerHTML = `<span class="opacity-30">${new Date().toLocaleTimeString()}</span> Data ping successful.`;
+                    log.appendChild(p);
+                    log.scrollTop = log.scrollHeight;
+                    if (log.children.length > 20) log.removeChild(log.firstChild);
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>

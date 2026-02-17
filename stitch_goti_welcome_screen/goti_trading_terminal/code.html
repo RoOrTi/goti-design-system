@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Goti Trading Terminal - Technical Analysis</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "danger": "#ff4d4d",
+                        "warning": "#f9d006",
+                        "background": "#050705",
+                        "surface": "#0d110d",
+                        "border": "rgba(255,255,255,0.05)"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .terminal-grid {
+            background-image:
+                linear-gradient(rgba(19, 236, 91, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(19, 236, 91, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .premium-border {
+            border: 1px solid rgba(19, 236, 91, 0.1);
+            box-shadow: 0 0 20px rgba(19, 236, 91, 0.03);
+        }
+
+        .side-panel {
+            background: rgba(13, 17, 13, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .active-asset {
+            background: rgba(19, 236, 91, 0.1);
+            border-color: rgba(19, 236, 91, 0.3);
+            color: #13ec5b;
+        }
+
+        /* ApexCharts Customization */
+        .apexcharts-tooltip {
+            background: #0d110d !important;
+            border: 1px solid rgba(19, 236, 91, 0.3) !important;
+            color: white !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-white font-display min-h-screen overflow-hidden terminal-grid">
+    <!-- Top Navigation Bar -->
+    <header class="h-14 border-b border-white/5 flex items-center justify-between px-6 side-panel sticky top-0 z-50">
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl font-black">finance_chip</span>
+                <h1 class="font-black text-lg tracking-tighter">GOTI <span class="text-primary/70">TERMINAL</span></h1>
+            </div>
+            <div class="h-6 w-px bg-white/10"></div>
+            <div class="flex gap-4">
+                <button
+                    class="text-[10px] font-bold uppercase tracking-widest text-primary border-b-2 border-primary pb-1">Velas
+                    (OHLC)</button>
+                <button
+                    class="text-[10px] font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors">Volatilidad</button>
+                <button
+                    class="text-[10px] font-bold uppercase tracking-widest text-white/40 hover:text-white transition-colors">Order
+                    Book</button>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 font-mono">
+            <div class="flex flex-col items-end">
+                <span class="text-[9px] text-white/30 uppercase">Market Health</span>
+                <span class="text-[11px] text-primary font-bold">STABLE (0.42%)</span>
+            </div>
+            <div class="h-8 w-px bg-white/10"></div>
+            <div id="live-clock" class="text-sm font-bold text-white/80">05:35:12</div>
+        </div>
+    </header>
+
+    <div class="flex h-[calc(100vh-3.5rem)]">
+        <!-- Sidebar: Assets Selection -->
+        <aside class="w-20 sm:w-64 border-r border-white/5 side-panel p-4 overflow-y-auto">
+            <div class="mb-6 px-2">
+                <p class="text-[9px] uppercase font-black text-white/20 tracking-[0.2em] mb-4">Watchlist</p>
+                <div class="space-y-2">
+                    <div
+                        class="active-asset border border-transparent p-3 rounded-xl flex justify-between items-center cursor-pointer transition-all">
+                        <div>
+                            <p class="font-black text-xs">GGAL.BA</p>
+                            <p class="text-[9px] opacity-60">Galicia ADR</p>
+                        </div>
+                        <span class="text-[11px] font-bold text-danger">-0.85%</span>
+                    </div>
+                    <div
+                        class="hover:bg-white/5 border border-transparent p-3 rounded-xl flex justify-between items-center cursor-pointer transition-all">
+                        <div>
+                            <p class="font-black text-xs text-white/80">NVDA</p>
+                            <p class="text-[9px] text-white/30">NVIDIA Corp</p>
+                        </div>
+                        <span class="text-[11px] font-bold text-primary">+1.45%</span>
+                    </div>
+                    <div
+                        class="hover:bg-white/5 border border-transparent p-3 rounded-xl flex justify-between items-center cursor-pointer transition-all">
+                        <div>
+                            <p class="font-black text-xs text-white/80">NFLX</p>
+                            <p class="text-[9px] text-white/30">Netflix</p>
+                        </div>
+                        <span class="text-[11px] font-bold text-primary">+0.22%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-auto px-2 pt-6 border-t border-white/5">
+                <div class="bg-primary/5 p-4 rounded-2xl border border-primary/10">
+                    <p class="text-[10px] font-black text-primary uppercase mb-2">AI Signal</p>
+                    <p class="text-[11px] text-white/60 leading-tight">GGAL volatilidad en zona crítica. Posible
+                        breakout bajista.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chart Area -->
+        <main class="flex-1 p-6 relative overflow-hidden flex flex-col">
+            <!-- Price Summary Bar -->
+            <div class="flex items-center gap-8 mb-6 bg-white/5 p-4 rounded-2xl border border-white/5">
+                <div>
+                    <span class="text-[10px] text-white/30 uppercase font-black">Último Precio</span>
+                    <p class="text-2xl font-black text-white">$ 7.879,43 <span
+                            class="text-xs text-danger font-bold">-1.2%</span></p>
+                </div>
+                <div class="h-8 w-px bg-white/10"></div>
+                <div>
+                    <span class="text-[10px] text-white/30 uppercase font-black">Máximo 24h</span>
+                    <p class="text-sm font-bold">$ 8.058,39</p>
+                </div>
+                <div>
+                    <span class="text-[10px] text-white/30 uppercase font-black">Mínimo 24h</span>
+                    <p class="text-sm font-bold">$ 7.658,49</p>
+                </div>
+                <div>
+                    <span class="text-[10px] text-white/30 uppercase font-black">Volumen (24h)</span>
+                    <p class="text-sm font-bold">1.2M <span class="text-xs text-primary/60">BTC</span></p>
+                </div>
+            </div>
+
+            <!-- The Big Chart Container -->
+            <div class="flex-1 premium-border rounded-3xl bg-black/40 relative overflow-hidden">
+                <div id="apex-main-chart" class="h-full w-full"></div>
+            </div>
+
+            <!-- Timeline Selector -->
+            <div class="mt-6 flex justify-center gap-2">
+                <button
+                    class="px-4 py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-black uppercase">1H</button>
+                <button
+                    class="px-4 py-1.5 rounded-lg hover:bg-white/5 text-white/40 text-[10px] font-black uppercase">1D</button>
+                <button
+                    class="px-4 py-1.5 rounded-lg hover:bg-white/5 text-white/40 text-[10px] font-black uppercase shadow-none">1W</button>
+                <button
+                    class="px-4 py-1.5 rounded-lg hover:bg-white/5 text-white/40 text-[10px] font-black uppercase">1M</button>
+                <button
+                    class="px-4 py-1.5 rounded-lg hover:bg-white/5 text-white/40 text-[10px] font-black uppercase">YTD</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quick Trade Bar -->
+    <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 z-50">
+        <div
+            class="bg-surface/80 backdrop-blur-3xl border border-white/10 rounded-full h-16 px-8 flex items-center justify-between shadow-2xl">
+            <div class="flex items-center gap-4">
+                <span class="text-xs font-black text-white/30 uppercase tracking-widest">Trade GGAL:</span>
+                <div class="flex gap-2">
+                    <button
+                        class="bg-primary text-background px-6 py-2 rounded-full font-black text-[10px] uppercase hover:scale-105 transition-all">Buy
+                        (Call)</button>
+                    <button
+                        class="bg-danger text-white px-6 py-2 rounded-full font-black text-[10px] uppercase hover:scale-105 transition-all">Sell
+                        (Put)</button>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-[10px] font-mono opacity-40">Qty:</span>
+                <input type="text" value="100.0"
+                    class="w-16 bg-transparent border-b border-white/20 text-center font-mono text-sm focus:border-primary outline-none">
+                <button
+                    class="material-symbols-outlined text-white/20 hover:text-white transition-colors">settings</button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chart Data Generation (Based on your provided Sheet data + technical variance)
+            // GGAL Prices provided: 7958, 7879, 8058, 7834, 7658
+            // We'll generate a longer technical sequence
+            const generateCandleData = () => {
+                let data = [];
+                let base = 7900;
+                let date = new Date('2025-12-01').getTime();
+
+                const ggalProvided = [7958, 7879, 8058, 7834, 7658];
+
+                for (let i = 0; i < 30; i++) {
+                    let open, close, high, low;
+                    if (i < 5) {
+                        close = ggalProvided[i];
+                        open = i === 0 ? 8000 : ggalProvided[i - 1];
+                    } else {
+                        open = data[i - 1].y[3];
+                        let change = (Math.random() - 0.5) * 200;
+                        close = open + change;
+                    }
+
+                    high = Math.max(open, close) + Math.random() * 50;
+                    low = Math.min(open, close) - Math.random() * 50;
+
+                    data.push({
+                        x: new Date(date),
+                        y: [open.toFixed(2), high.toFixed(2), low.toFixed(2), close.toFixed(2)]
+                    });
+                    date += 86400000; // Increment one day
+                }
+                return data;
+            };
+
+            const options = {
+                series: [{
+                    name: 'GGAL.BA Candle',
+                    type: 'candlestick',
+                    data: generateCandleData()
+                }],
+                chart: {
+                    type: 'candlestick',
+                    height: '100%',
+                    background: 'transparent',
+                    toolbar: { show: false },
+                    animations: { enabled: true, easing: 'easeinout', speed: 800 }
+                },
+                theme: { mode: 'dark' },
+                xaxis: {
+                    type: 'datetime',
+                    axisBorder: { show: false },
+                    axisTicks: { show: false },
+                    labels: { style: { colors: 'rgba(255,255,255,0.3)', fontFamily: 'Manrope' } }
+                },
+                yaxis: {
+                    tooltip: { enabled: true },
+                    labels: { style: { colors: 'rgba(255,255,255,0.3)', fontFamily: 'JetBrains Mono' } }
+                },
+                grid: { borderColor: 'rgba(255,255,255,0.02)', strokeDashArray: 4 },
+                plotOptions: {
+                    candlestick: {
+                        colors: { upward: '#13ec5b', downward: '#ff4d4d' },
+                        wick: { useFillColor: true }
+                    }
+                }
+            };
+
+            const chart = new ApexCharts(document.querySelector("#apex-main-chart"), options);
+            chart.render();
+
+            // Clock functionality
+            setInterval(() => {
+                document.getElementById('live-clock').textContent = new Date().toLocaleTimeString('es-AR', { hour12: false });
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

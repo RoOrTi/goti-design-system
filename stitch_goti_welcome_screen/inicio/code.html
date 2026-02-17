@@ -19,6 +19,8 @@
         rel="stylesheet" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -55,10 +57,38 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-    </style>
-    <style>
+
         body {
             min-height: max(884px, 100dvh);
+            background: #0a0f0c;
+        }
+
+        .neo-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .neo-glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .neo-glass-card:hover {
+            border-color: rgba(19, 236, 91, 0.2);
+            background: rgba(19, 236, 91, 0.02);
+            transform: translateY(-2px);
+        }
+
+        .ai-glow {
+            box-shadow: 0 0 20px rgba(19, 236, 91, 0.1);
+        }
+
+        .tab-active {
+            background: #13ec5b !important;
+            color: #102216 !important;
         }
     </style>
 </head>
@@ -78,30 +108,83 @@
                 </div>
             </div>
             <div>
-                <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Hola, Sofia</p>
-                <h2 class="text-base font-bold leading-tight">Dashboard</h2>
+                <p id="dynamic-greeting"
+                    class="text-[10px] text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest">Buenos
+                    días, Sofia</p>
+                <div class="flex items-center gap-2">
+                    <h2 class="text-base font-black leading-tight">Master Panel</h2>
+                    <span id="header-clock"
+                        class="text-[10px] font-mono text-primary/60 bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10">05:10:00</span>
+                </div>
             </div>
         </div>
-        <button
-            class="relative flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-            <span class="material-symbols-outlined text-gray-700 dark:text-white">notifications</span>
-            <span class="absolute top-2 right-2 size-2 bg-danger rounded-full"></span>
-        </button>
+        <div class="flex items-center gap-3">
+            <div class="hidden sm:flex flex-col items-end">
+                <span class="text-[8px] font-black uppercase tracking-widest text-white/30">Sesión Actual</span>
+                <span class="text-[10px] font-bold text-yellow-500 flex items-center gap-1">
+                    <span class="size-1.5 rounded-full bg-yellow-500 animate-pulse"></span> PRE-MARKET
+                </span>
+            </div>
+            <button
+                class="relative flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors border border-white/5 bg-white/5">
+                <span class="material-symbols-outlined text-gray-700 dark:text-white text-xl">notifications</span>
+                <span class="absolute top-2.5 right-2.5 size-1.5 bg-danger rounded-full"></span>
+            </button>
+        </div>
     </header>
     <!-- Portfolio Stats -->
     <section class="px-5 pb-6">
         <div class="flex flex-col gap-1">
-            <span class="text-gray-500 dark:text-gray-400 text-sm font-medium">Valor total de cartera</span>
+            <span class="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Patrimonio
+                Neto</span>
             <div class="flex items-baseline gap-2">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">$ 1.250.400,00</h1>
-                <span class="text-sm font-bold text-gray-500">ARS</span>
+                <h1 class="text-4xl font-black tracking-tight text-white">$ 1.250.400,00</h1>
+                <span class="text-xs font-bold text-primary/60">ARS</span>
             </div>
-            <div class="flex items-center gap-2 mt-1">
-                <div class="flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded text-primary text-sm font-bold">
-                    <span class="material-symbols-outlined text-[16px]">trending_up</span>
-                    <span>+ 1,2%</span>
+
+            <div class="mt-4 h-32 w-full">
+                <canvas id="portfolioChart"></canvas>
+            </div>
+
+            <div class="flex items-center justify-between mt-4">
+                <div class="flex items-center gap-2">
+                    <div
+                        class="flex items-center gap-1 bg-primary/20 px-2 py-0.5 rounded-full text-primary text-[10px] font-black italic">
+                        <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                        <span>+ 1,2%</span>
+                    </div>
+                    <span class="text-white/40 text-[10px] font-bold">HOY: +$ 14.230</span>
                 </div>
-                <span class="text-gray-500 dark:text-gray-400 text-sm">Ganancia del día ($ 14.230)</span>
+                <div class="flex gap-1">
+                    <div class="w-1 h-1 rounded-full bg-primary"></div>
+                    <div class="w-1 h-1 rounded-full bg-white/20"></div>
+                    <div class="w-1 h-1 rounded-full bg-white/20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Intelligence Panel (From Colab Volatility) -->
+    <section class="px-5 pb-8">
+        <div class="neo-glass-card rounded-[24px] p-5 ai-glow relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 opacity-5">
+                <span class="material-symbols-outlined text-8xl text-primary">psychology</span>
+            </div>
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary text-sm">bolt</span>
+                <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary/80">Estrategia IA •
+                    Volatilidad</h3>
+            </div>
+            <div class="flex justify-between items-end">
+                <div>
+                    <h4 class="text-lg font-bold leading-none mb-1">Riesgo GGAL Detectado</h4>
+                    <p class="text-[11px] text-white/50 leading-relaxed max-w-[200px]">Alerta del sistema yfinance:
+                        Volatilidad diaria > 3%. Se recomienda cobertura en opciones.</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-2xl font-black text-danger">6.53%</p>
+                    <p class="text-[8px] uppercase font-bold text-white/30">Umbral Crítico</p>
+                </div>
             </div>
         </div>
     </section>
@@ -158,34 +241,36 @@
     <!-- Assets List -->
     <section class="flex flex-col gap-4 px-5">
         <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold">Mis Inversiones</h3>
-            <button class="text-primary text-sm font-bold">Ver todo</button>
+            <h3 class="text-xl font-black tracking-tight">Mis Activos</h3>
+            <button
+                class="text-primary text-xs font-bold uppercase tracking-widest px-3 py-1 bg-primary/10 rounded-full">Ver
+                Historial</button>
         </div>
         <!-- Asset Card 1: Positive -->
-        <article
-            class="bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
+        <article class="neo-glass-card rounded-[24px] p-5">
             <!-- Header Row -->
             <div class="flex justify-between items-start mb-4">
                 <div class="flex items-center gap-3">
                     <div
-                        class="size-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
-                        <img class="w-5 h-5 dark:invert" data-alt="Apple Logo"
+                        class="size-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+                        <img class="w-6 h-6 dark:invert brightness-200" data-alt="Apple Logo"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDJX8VcesyE2utB5smwnE6xT645a3Xf1JvMSANVV2iTG-asXiuDbDlGZN1d-wYtS1iA6D7d7Pu6atZecOZtx2nTSt0SSEvrtXDjN2Dlx6BoSE3TjGFvqFAsV8CP2cjfG5YaRXOMwkonGIZkiWWj4QJrKwa35njnUy9--VnXt24hNb1-xstmOcM0yYuFbMHh81kwb9aDAb2ojYvU9YpBGbSxijZVpQ6nq3hjWtNYMY-POOCWj0WsSSBPVIlSkQOuRMrjPKz3UFvu3E" />
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h4 class="font-bold text-lg leading-none">AAPL</h4>
+                            <h4 class="font-black text-base leading-none">AAPL</h4>
                             <span
-                                class="text-[10px] bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-gray-500 dark:text-gray-300 font-bold uppercase">CEDEAR</span>
+                                class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">CEDEAR</span>
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Apple Inc.</p>
+                        <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Apple Computers
+                        </p>
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="font-bold text-lg leading-none">$ 12.450,00</p>
-                    <p class="text-xs font-bold text-primary flex items-center justify-end gap-0.5 mt-0.5">
-                        <span class="material-symbols-outlined text-[12px]">arrow_upward</span>
-                        1.45%
+                    <p class="font-black text-lg leading-none">$ 12.450,00</p>
+                    <p class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                        <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                        +1.45%
                     </p>
                 </div>
             </div>
@@ -379,49 +464,88 @@
     <script src="../../goti_core.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Apply premium glow pulse to the primary action button
-            const operateBtn = document.querySelector('button:has(span:contains("Operar")), button:contains("Operar")');
-            // Using a simpler selector since :has/:contains might not be supported in all versions of Tailwind/Browser
-            const allBtns = document.querySelectorAll('button');
-            const mainAction = Array.from(allBtns).find(b => b.textContent.includes('Operar'));
-            if (mainAction) {
-                window.goti.applyGlowPulse(mainAction);
-            }
-
-            // Real-time Data Simulation
-            const totalValueEl = document.querySelector('h1.text-4xl');
-            const dailyGainPercentEl = document.querySelector('.bg-primary\/10 span:last-child');
-            const dailyGainAmountEl = document.querySelector('.px-5 .pb-6 span.text-gray-500:last-child');
-
-            let totalValue = 1250400.00;
-            let dailyGainAmount = 14230;
-
-            function updateMetrics() {
-                const change = (Math.random() - 0.45) * 50; // Bias slightly positive
-                totalValue += change;
-                dailyGainAmount += change;
-
-                if (totalValueEl) {
-                    totalValueEl.textContent = `$ ${totalValue.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                }
-
-                if (dailyGainAmountEl) {
-                    dailyGainAmountEl.textContent = `Ganancia del día ($ ${dailyGainAmount.toLocaleString('es-AR', { maximumFractionDigits: 0 })})`;
-                }
-
-                // Update asset prices
-                document.querySelectorAll('article').forEach(card => {
-                    const priceEl = card.querySelector('.font-bold.text-lg:not(h4)');
-                    if (priceEl) {
-                        let currentPrice = parseFloat(priceEl.textContent.replace('$', '').replace('.', '').replace(',', '.'));
-                        const priceChange = (Math.random() - 0.5) * 5;
-                        currentPrice += priceChange;
-                        priceEl.textContent = `$ ${currentPrice.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            // Portfolio Performance Chart
+            const ctx = document.getElementById('portfolioChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [...Array(7).keys()].map(i => `D-${6 - i}`),
+                        datasets: [{
+                            data: [1220000, 1235000, 1215000, 1240000, 1245000, 1242000, 1250400],
+                            borderColor: '#13ec5b',
+                            backgroundColor: (context) => {
+                                const chart = context.chart;
+                                const { ctx, chartArea } = chart;
+                                if (!chartArea) return null;
+                                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                                gradient.addColorStop(0, 'rgba(19, 236, 91, 0)');
+                                gradient.addColorStop(1, 'rgba(19, 236, 91, 0.15)');
+                                return gradient;
+                            },
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            pointHoverRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
                     }
                 });
             }
 
-            setInterval(updateMetrics, 3000);
+            // Market Segment Logic
+            const radios = document.querySelectorAll('input[name="market"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const value = e.target.value;
+                    const labels = document.querySelectorAll('label span');
+                    labels.forEach(l => l.classList.remove('text-background-dark', 'dark:text-white'));
+                    // Logic to visually switch content if needed
+                });
+            });
+
+            // Real-time Clock & Greeting
+            function updateClock() {
+                const now = new Date();
+                const hours = now.getHours();
+                const timeStr = now.toLocaleTimeString('es-AR', { hour12: false });
+
+                const clockEl = document.getElementById('header-clock');
+                const greetingEl = document.getElementById('dynamic-greeting');
+
+                if (clockEl) clockEl.textContent = timeStr;
+
+                if (greetingEl) {
+                    let greeting = "Buenos días";
+                    if (hours >= 13) greeting = "Buenas tardes";
+                    if (hours >= 20 || hours < 5) greeting = "Buenas noches";
+                    greetingEl.textContent = `${greeting}, Sofia`;
+                }
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // Real-time Data Simulation
+            const totalValueEl = document.querySelector('h1.text-4xl');
+            let totalValue = 1250400.00;
+
+            function updateMetrics() {
+                const change = (Math.random() - 0.48) * 40;
+                totalValue += change;
+                if (totalValueEl) {
+                    totalValueEl.textContent = `$ ${totalValue.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                }
+            }
+            setInterval(updateMetrics, 2000);
         });
     </script>
 </body>
