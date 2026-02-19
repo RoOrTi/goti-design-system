@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Soporte y Ayuda</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Soporte y Ayuda</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -22,130 +27,159 @@
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
                 },
             },
         }
     </script>
-<style>
+    <style>
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
         body {
             min-height: max(884px, 100dvh);
         }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
-<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
-<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
-<button class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-<span aria-label="Volver" class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span>
-</button>
-<h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-8">Soporte y Ayuda</h1>
-</header>
-<main class="flex-1 flex flex-col gap-6 p-4 pb-12">
-<div class="relative w-full h-32 rounded-2xl overflow-hidden mb-2 bg-gradient-to-r from-[#102216] to-[#1a3a25]">
-<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-40 mix-blend-overlay" data-alt="Abstract financial geometric shapes in green dark theme"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-transparent to-transparent"></div>
-<div class="absolute bottom-4 left-4 z-10">
-<p class="text-primary font-bold text-sm tracking-wide uppercase mb-1">Centro de Ayuda</p>
-<h2 class="text-white text-xl font-bold">Estamos aquí para ayudarte</h2>
-</div>
-</div>
-<section>
-<h3 class="text-lg font-bold mb-4 px-1">¿Necesitas ayuda personalizada?</h3>
-<div class="flex flex-col gap-3">
-<div class="group flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 active:scale-[0.98] transition-transform cursor-pointer">
-<div class="flex items-center justify-center shrink-0 w-12 h-12 rounded-full bg-primary/20 text-primary dark:text-[#13ec5b]">
-<span class="material-symbols-outlined text-[24px]">mail</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<p class="text-base font-bold truncate pr-2" title="timoniukrodrigo01@hotmail.com">timoniukrodrigo01@hotmail.com</p>
-<p class="text-sm text-gray-500 dark:text-gray-400">Enviar correo</p>
-</div>
-<span class="material-symbols-outlined text-gray-400 dark:text-gray-600">chevron_right</span>
-</div>
-<div class="group flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-white/5 active:scale-[0.98] transition-transform cursor-pointer">
-<div class="flex items-center justify-center shrink-0 w-12 h-12 rounded-full bg-primary/20 text-primary dark:text-[#13ec5b]">
-<span class="material-symbols-outlined text-[24px]">call</span>
-</div>
-<div class="flex flex-col flex-1">
-<p class="text-base font-bold font-mono tracking-tight">+54 3464 608289</p>
-<p class="text-sm text-gray-500 dark:text-gray-400">Llamar a soporte</p>
-</div>
-<span class="material-symbols-outlined text-gray-400 dark:text-gray-600">chevron_right</span>
-</div>
-</div>
-</section>
-<section>
-<div class="flex items-center justify-between mb-4 px-1">
-<h3 class="text-lg font-bold">Preguntas Frecuentes</h3>
-</div>
-<div class="flex flex-col bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-white/5 overflow-hidden divide-y divide-gray-100 dark:divide-white/5">
-<div class="group bg-gray-50/50 dark:bg-white/5">
-<div class="flex items-center justify-between p-4 cursor-pointer">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary dark:text-primary text-[22px]">account_balance</span>
-<span class="text-sm font-bold">¿Cómo operar en EE.UU?</span>
-</div>
-<span class="material-symbols-outlined text-gray-400 text-[22px]">expand_less</span>
-</div>
-<div class="px-4 pb-4 pt-0">
-<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-            Para operar en Estados Unidos necesitas tener tu cuenta validada y saldo en dólares cable (CCL). Selecciona el mercado "EE.UU." en el selector superior de la pantalla de cotizaciones para ver los activos disponibles.
-        </p>
-</div>
-</div>
-<div class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[22px]">schedule</span>
-<span class="text-sm font-medium">Tiempos de acreditación</span>
-</div>
-<span class="material-symbols-outlined text-gray-400 text-[22px]">expand_more</span>
-</div>
-<div class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[22px]">lock_reset</span>
-<span class="text-sm font-medium">Recuperar contraseña</span>
-</div>
-<span class="material-symbols-outlined text-gray-400 text-[22px]">expand_more</span>
-</div>
-<div class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[22px]">currency_exchange</span>
-<span class="text-sm font-medium">Compra y venta de activos</span>
-</div>
-<span class="material-symbols-outlined text-gray-400 text-[22px]">expand_more</span>
-</div>
-</div>
-</section>
-<section class="grid grid-cols-2 gap-3 mt-2">
-<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-primary text-[28px]">description</span>
-<span class="text-xs font-semibold">Términos y Cond.</span>
-</button>
-<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-primary text-[28px]">play_circle</span>
-<span class="text-xs font-semibold">Video Tutoriales</span>
-</button>
-</section>
-</main>
-<footer class="py-6 flex flex-col items-center justify-center opacity-60">
-<p class="text-xs font-medium">Versión de la aplicación 1.0.0</p>
-<p class="text-[10px] mt-1 text-center max-w-[200px]">© 2024 Financial App. Todos los derechos reservados.</p>
-</footer>
-</div>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
 
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
+    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between px-4 py-3 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-white/5 h-16">
+            <button onclick="window.history.back()"
+                class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                <span aria-label="Volver" class="material-symbols-outlined text-[24px]">arrow_back</span>
+            </button>
+            <h1 class="text-lg font-black leading-tight tracking-tight flex-1 text-center pr-8 uppercase">Centro de
+                Soporte</h1>
+        </header>
+        <main class="flex-1 flex flex-col gap-6 p-5 pb-12 w-full max-w-md mx-auto">
+            <div
+                class="relative w-full h-40 rounded-[28px] overflow-hidden mb-2 bg-gradient-to-br from-[#102216] to-[#13ec5b]/20 border border-white/5 shadow-xl">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"
+                    data-alt="Support background image"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+                <div class="absolute bottom-5 left-5 z-10">
+                    <p class="text-primary font-black text-[10px] tracking-[0.2em] uppercase mb-1">Tu Asistente GOTI</p>
+                    <h2 class="text-white text-2xl font-black leading-tight">Soluciones inmediatas para tus inversiones
+                    </h2>
+                </div>
+            </div>
+            <section>
+                <h3 class="text-sm font-black uppercase tracking-[0.15em] mb-4 text-gray-500 dark:text-primary/60 px-1">
+                    Canales Directos</h3>
+                <div class="flex flex-col gap-3">
+                    <div
+                        class="group flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-3xl shadow-sm border border-gray-100 dark:border-white/5 active:scale-[0.98] transition-all cursor-pointer hover:border-primary/30">
+                        <div
+                            class="flex items-center justify-center shrink-0 w-12 h-12 rounded-2xl bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined text-[26px]">mail</span>
+                        </div>
+                        <div class="flex flex-col flex-1 min-w-0">
+                            <p class="text-base font-black truncate" title="timoniukrodrigo01@hotmail.com">
+                                timoniukrodrigo01@hotmail.com</p>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Enviar correo</p>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">chevron_right</span>
+                    </div>
+                    <div onclick="window.location.href='https://wa.me/543464608289'"
+                        class="group flex items-center gap-4 bg-white dark:bg-surface-dark p-4 rounded-3xl shadow-sm border border-gray-100 dark:border-white/5 active:scale-[0.98] transition-all cursor-pointer hover:border-primary/30">
+                        <div
+                            class="flex items-center justify-center shrink-0 w-12 h-12 rounded-2xl bg-[#25D366]/10 text-[#25D366]">
+                            <svg class="size-6 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.539 2.016 2.041-.54c1.192.706 2.039 1.157 3.231 1.157l.006.001c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.758-5.766zm3.339 8.169c-.046.126-.264.232-.371.247-.107.015-.224.02-.371-.03-.232-.08-.551-.186-.921-.341-.43-.18-.731-.345-1.011-.531-.421-.281-.781-.661-1.076-1.126-.06-.095-.311-.416-.311-.736s.166-.481.226-.546l.033-.035c.06-.06.106-.129.146-.176l.015-.018c.03-.035.056-.06.076-.08.06-.07.091-.12.141-.215.051-.095.025-.181-.01-.266l-.05-.116s-.193-.466-.264-.636c-.066-.156-.135-.129-.186-.131-.051-.005-.107-.005-.162-.005-.056 0-.147.02-.224.106-.076.085-.291.286-.291.696 0 .411.296.806.341.866.045.06.581.886 1.407 1.242.196.085.346.136.466.176.201.066.381.056.526.035.156-.025.481-.196.551-.386.066-.196.066-.361.045-.396-.021-.035-.07-.056-.146-.096zM12 2C6.477 2 2 6.477 2 12c0 1.891.526 3.657 1.439 5.167L2 22l4.981-1.391C8.423 21.498 10.137 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.634 0-3.146-.439-4.444-1.205l-.319-.187-3.3.92.936-3.2-.206-.35C3.896 14.896 3.5 13.487 3.5 12c0-4.687 3.813-8.5 8.5-8.5s8.5 3.813 8.5 8.5-3.813 8.5-8.5 8.5z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <p class="text-base font-black font-mono tracking-tight">WhatsApp Business</p>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Respuesta en < 5
+                                    min</p>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">chevron_right</span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="flex items-center justify-between mb-4 px-1">
+                    <h3 class="text-sm font-black uppercase tracking-[0.15em] text-gray-500 dark:text-primary/60">
+                        Preguntas Frecuentes</h3>
+                </div>
+                <div
+                    class="flex flex-col bg-white dark:bg-surface-dark rounded-[24px] shadow-sm border border-gray-100 dark:border-white/5 overflow-hidden divide-y divide-gray-100 dark:divide-white/5">
+                    <div class="group bg-gray-50/50 dark:bg-white/5">
+                        <div class="flex items-center justify-between p-4 cursor-pointer">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-[22px]">account_balance</span>
+                                <span class="text-sm font-black">¿Cómo operar en EE.UU?</span>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-400 text-[22px]">expand_less</span>
+                        </div>
+                        <div class="px-4 pb-4 pt-0">
+                            <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
+                                Para operar en Estados Unidos necesitas tener tu cuenta validada y saldo en dólares
+                                cable (CCL). Selecciona el mercado "EE.UU." en el selector superior de la pantalla de
+                                cotizaciones para ver los activos disponibles.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[22px]">schedule</span>
+                            <span class="text-sm font-black">Tiempos de acreditación</span>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-400 text-[22px]">expand_more</span>
+                    </div>
+                    <div
+                        class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[22px]">lock_reset</span>
+                            <span class="text-sm font-black">Recuperar contraseña</span>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-400 text-[22px]">expand_more</span>
+                    </div>
+                </div>
+            </section>
+            <section class="grid grid-cols-2 gap-4 mt-2">
+                <button
+                    class="flex flex-col items-center justify-center gap-3 p-5 rounded-[24px] bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all active:scale-95 shadow-sm">
+                    <span class="material-symbols-outlined text-primary text-[32px]">description</span>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Legal</span>
+                </button>
+                <button
+                    class="flex flex-col items-center justify-center gap-3 p-5 rounded-[24px] bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all active:scale-95 shadow-sm">
+                    <span class="material-symbols-outlined text-primary text-[32px]">play_circle</span>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Tutoriales</span>
+                </button>
+            </section>
+        </main>
+        <footer class="py-12 flex flex-col items-center justify-center opacity-40">
+            <p class="text-[10px] font-black uppercase tracking-widest">GOTI Financial Ecosystem v2.5.1</p>
+            <p class="text-[9px] mt-2 text-center max-w-[200px] font-bold">© 2026 Rodrigo O.T. Agency. Todos los
+                derechos reservados.</p>
+        </footer>
+    </div>
 
-    <script src="../../../../../../../../../goti_core.js"></script>
-</body></html>
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
+    <script src="../../goti_core.js"></script>
+</body>
+
+</html>

@@ -99,9 +99,9 @@
     <header
         class="flex items-center justify-between p-5 pt-8 bg-background-light dark:bg-background-dark sticky top-0 z-20">
         <div class="flex items-center gap-3">
-            <div class="relative">
+            <div class="relative cursor-pointer" onclick="window.location.href='../perfil/code.html'">
                 <div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/20"
-                    data-alt="User profile picture showing a smiling person or abstract avatar"
+                    data-alt="User profile picture"
                     style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgVIFjnO3Fp3Q7r1roPsM30XFC-3FAPXrJEWWJAlcVguOdFXUlbeHU62q7rZYZeSoV1ayzQn1Iqu0Yx9irpkFWdia_fMNqP-vxVaUig7NonzS-UEPVWaDWpxiQA3VrtTu63MQtYUS6tyul3aqZVjqyZE_SyqFLG3OhGM5DyF7KC6Gx2T3nFw8Izkfv9UqeM-WVWpuToMVgmhsj621Ukb-JbUTwQnP0GbOEeOaOu7AP_jVW-_zpYSffNjRzjSO_D3OUKyyPRhVBjUo");'>
                 </div>
                 <div class="absolute bottom-0 right-0 size-3 bg-primary rounded-full border-2 border-background-dark">
@@ -109,23 +109,23 @@
             </div>
             <div>
                 <p id="dynamic-greeting"
-                    class="text-[10px] text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest">Buenos
-                    días, Sofia</p>
+                    class="text-[10px] text-gray-500 dark:text-gray-400 font-extrabold uppercase tracking-widest">
+                    Cargando...</p>
                 <div class="flex items-center gap-2">
                     <h2 class="text-base font-black leading-tight">Master Panel</h2>
                     <span id="header-clock"
-                        class="text-[10px] font-mono text-primary/60 bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10">05:10:00</span>
+                        class="text-[10px] font-mono text-primary/60 bg-primary/5 px-2 py-0.5 rounded-full border border-primary/10">00:00:00</span>
                 </div>
             </div>
         </div>
         <div class="flex items-center gap-3">
             <div class="hidden sm:flex flex-col items-end">
                 <span class="text-[8px] font-black uppercase tracking-widest text-white/30">Sesión Actual</span>
-                <span class="text-[10px] font-bold text-yellow-500 flex items-center gap-1">
+                <span id="market-status" class="text-[10px] font-bold text-yellow-500 flex items-center gap-1">
                     <span class="size-1.5 rounded-full bg-yellow-500 animate-pulse"></span> PRE-MARKET
                 </span>
             </div>
-            <button
+            <button onclick="window.location.href='../goti_notification_center/code.html'"
                 class="relative flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors border border-white/5 bg-white/5">
                 <span class="material-symbols-outlined text-gray-700 dark:text-white text-xl">notifications</span>
                 <span class="absolute top-2.5 right-2.5 size-1.5 bg-danger rounded-full"></span>
@@ -138,7 +138,7 @@
             <span class="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Patrimonio
                 Neto</span>
             <div class="flex items-baseline gap-2">
-                <h1 class="text-4xl font-black tracking-tight text-white">$ 1.250.400,00</h1>
+                <h1 class="text-4xl font-black tracking-tight text-white" id="patrimony-value">$ 1.250.512,02</h1>
                 <span class="text-xs font-bold text-primary/60">ARS</span>
             </div>
 
@@ -148,14 +148,14 @@
 
             <div class="flex items-center justify-between mt-4">
                 <div class="flex items-center gap-2">
-                    <div
+                    <div id="trend-badge"
                         class="flex items-center gap-1 bg-primary/20 px-2 py-0.5 rounded-full text-primary text-[10px] font-black italic">
                         <span class="material-symbols-outlined text-[12px]">trending_up</span>
                         <span>+ 1,2%</span>
                     </div>
-                    <span class="text-white/40 text-[10px] font-bold">HOY: +$ 14.230</span>
+                    <span id="daily-gain" class="text-white/40 text-[10px] font-bold">HOY: +$ 14.230</span>
                 </div>
-                <div class="flex gap-1">
+                <div class="flex gap-1" id="carousel-dots">
                     <div class="w-1 h-1 rounded-full bg-primary"></div>
                     <div class="w-1 h-1 rounded-full bg-white/20"></div>
                     <div class="w-1 h-1 rounded-full bg-white/20"></div>
@@ -166,19 +166,20 @@
 
     <!-- AI Intelligence Panel (From Colab Volatility) -->
     <section class="px-5 pb-8">
-        <div class="neo-glass-card rounded-[24px] p-5 ai-glow relative overflow-hidden">
-            <div class="absolute -right-4 -top-4 opacity-5">
+        <div onclick="window.location.href='../analisis_volatilidad/code.html'"
+            class="neo-glass-card rounded-[24px] p-5 ai-glow relative overflow-hidden cursor-pointer group">
+            <div class="absolute -right-4 -top-4 opacity-10 group-hover:rotate-12 transition-transform duration-500">
                 <span class="material-symbols-outlined text-8xl text-primary">psychology</span>
             </div>
             <div class="flex items-center gap-2 mb-4">
-                <span class="material-symbols-outlined text-primary text-sm">bolt</span>
+                <span class="material-symbols-outlined text-primary text-sm animate-pulse">bolt</span>
                 <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary/80">Estrategia IA •
                     Volatilidad</h3>
             </div>
             <div class="flex justify-between items-end">
                 <div>
                     <h4 class="text-lg font-bold leading-none mb-1">Riesgo GGAL Detectado</h4>
-                    <p class="text-[11px] text-white/50 leading-relaxed max-w-[200px]">Alerta del sistema yfinance:
+                    <p class="text-[11px] text-white/50 leading-relaxed max-w-[200px]">Alerta del sistema GOTI:
                         Volatilidad diaria > 3%. Se recomienda cobertura en opciones.</p>
                 </div>
                 <div class="text-right">
@@ -191,23 +192,26 @@
     <!-- Quick Actions -->
     <section class="px-5 pb-6">
         <div class="flex gap-3 justify-between">
-            <button
-                class="flex flex-1 flex-col items-center justify-center gap-2 bg-surface-light dark:bg-surface-dark p-3 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm active:scale-95 transition-transform">
-                <div class="size-10 rounded-full bg-primary flex items-center justify-center text-background-dark">
+            <button onclick="window.location.href='../goti_trading_terminal/code.html'"
+                class="flex flex-1 flex-col items-center justify-center gap-2 bg-surface-light dark:bg-surface-dark p-3 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm active:scale-95 transition-all group">
+                <div
+                    class="size-10 rounded-full bg-primary flex items-center justify-center text-background-dark group-hover:shadow-[0_0_15px_rgba(19,236,91,0.4)]">
                     <span class="material-symbols-outlined">currency_exchange</span>
                 </div>
                 <span class="text-xs font-bold">Operar</span>
             </button>
-            <button
-                class="flex flex-1 flex-col items-center justify-center gap-2 bg-surface-light dark:bg-surface-dark p-3 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm active:scale-95 transition-transform">
-                <div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+            <button onclick="window.location.href='../comprar/code.html'"
+                class="flex flex-1 flex-col items-center justify-center gap-2 bg-surface-light dark:bg-surface-dark p-3 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm active:scale-95 transition-all group">
+                <div
+                    class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/30">
                     <span class="material-symbols-outlined">add</span>
                 </div>
                 <span class="text-xs font-bold">Ingresar</span>
             </button>
-            <button
-                class="flex flex-1 flex-col items-center justify-center gap-2 bg-surface-light dark:bg-surface-dark p-3 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm active:scale-95 transition-transform">
-                <div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+            <button onclick="window.location.href='../soporte_y_ayuda/code.html'"
+                class="flex flex-1 flex-col items-center justify-center gap-2 bg-surface-light dark:bg-surface-dark p-3 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm active:scale-95 transition-all group">
+                <div
+                    class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/30">
                     <span class="material-symbols-outlined">arrow_outward</span>
                 </div>
                 <span class="text-xs font-bold">Retirar</span>
@@ -231,7 +235,6 @@
                 <span
                     class="block py-2 text-sm font-bold text-gray-500 peer-checked:text-background-dark dark:peer-checked:text-white transition-colors">Mercado
                     USA</span>
-                <!-- Background indicator logic handles the highlight visually via CSS if needed, simplified here with static classes for demo -->
                 <div
                     class="absolute inset-y-1 right-1 w-[calc(50%-4px)] bg-white dark:bg-gray-600 rounded-lg shadow-sm transition-transform peer-checked:translate-x-0 -z-10 hidden peer-checked:block">
                 </div>
@@ -242,220 +245,189 @@
     <section class="flex flex-col gap-4 px-5">
         <div class="flex items-center justify-between">
             <h3 class="text-xl font-black tracking-tight">Mis Activos</h3>
-            <button
-                class="text-primary text-xs font-bold uppercase tracking-widest px-3 py-1 bg-primary/10 rounded-full">Ver
+            <button onclick="window.location.href='../registro_de_inversiones/code.html'"
+                class="text-primary text-xs font-bold uppercase tracking-widest px-3 py-1 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors">Ver
                 Historial</button>
         </div>
-        <!-- Asset Card 1: Positive -->
-        <article class="neo-glass-card rounded-[24px] p-5">
-            <!-- Header Row -->
-            <div class="flex justify-between items-start mb-4">
-                <div class="flex items-center gap-3">
-                    <div
-                        class="size-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
-                        <img class="w-6 h-6 dark:invert brightness-200" data-alt="Apple Logo"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDJX8VcesyE2utB5smwnE6xT645a3Xf1JvMSANVV2iTG-asXiuDbDlGZN1d-wYtS1iA6D7d7Pu6atZecOZtx2nTSt0SSEvrtXDjN2Dlx6BoSE3TjGFvqFAsV8CP2cjfG5YaRXOMwkonGIZkiWWj4QJrKwa35njnUy9--VnXt24hNb1-xstmOcM0yYuFbMHh81kwb9aDAb2ojYvU9YpBGbSxijZVpQ6nq3hjWtNYMY-POOCWj0WsSSBPVIlSkQOuRMrjPKz3UFvu3E" />
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h4 class="font-black text-base leading-none">AAPL</h4>
-                            <span
-                                class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">CEDEAR</span>
+
+        <div id="assets-container" class="flex flex-col gap-4">
+            <!-- Asset Card 1: USA/CEDEAR -->
+            <article data-market="usa" class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer"
+                onclick="window.location.href='../analisis_volatilidad/code.html?asset=AAPL'">
+                <!-- Header Row -->
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+                            <img class="w-6 h-6 dark:invert brightness-200" data-alt="Apple Logo"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDJX8VcesyE2utB5smwnE6xT645a3Xf1JvMSANVV2iTG-asXiuDbDlGZN1d-wYtS1iA6D7d7Pu6atZecOZtx2nTSt0SSEvrtXDjN2Dlx6BoSE3TjGFvqFAsV8CP2cjfG5YaRXOMwkonGIZkiWWj4QJrKwa35njnUy9--VnXt24hNb1-xstmOcM0yYuFbMHh81kwb9aDAb2ojYvU9YpBGbSxijZVpQ6nq3hjWtNYMY-POOCWj0WsSSBPVIlSkQOuRMrjPKz3UFvu3E" />
                         </div>
-                        <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Apple Computers
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-black text-base leading-none">AAPL</h4>
+                                <span
+                                    class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">CEDEAR</span>
+                            </div>
+                            <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Apple
+                                Computers</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-black text-lg leading-none">$ 12.450,00</p>
+                        <p class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                            <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                            +1.45%
                         </p>
                     </div>
                 </div>
-                <div class="text-right">
-                    <p class="font-black text-lg leading-none">$ 12.450,00</p>
-                    <p class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
-                        <span class="material-symbols-outlined text-[12px]">trending_up</span>
-                        +1.45%
-                    </p>
-                </div>
-            </div>
-            <!-- Metrics Grid -->
-            <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
-                <!-- Row 1 -->
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Cantidad
-                    </p>
-                    <p class="text-sm font-bold">15</p>
-                </div>
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c</p>
-                    <p class="text-sm font-bold">$ 11.200</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto</p>
-                    <p class="text-sm font-bold">$ 186.750</p>
-                </div>
-                <!-- Row 2 -->
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Impuestos
-                    </p>
-                    <p class="text-sm font-bold text-gray-400">$ 120</p>
-                </div>
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PL/D</p>
-                    <p class="text-sm font-bold text-primary">+$ 1.250</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Ganancia
-                    </p>
-                    <p class="text-sm font-bold text-primary">+$ 18.750</p>
-                </div>
-            </div>
-        </article>
-        <!-- Asset Card 2: Negative -->
-        <article
-            class="bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm">
-            <!-- Header Row -->
-            <div class="flex justify-between items-start mb-4">
-                <div class="flex items-center gap-3">
-                    <div
-                        class="size-10 rounded-full bg-blue-600 flex items-center justify-center overflow-hidden text-white font-bold">
-                        Y
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
+                    <div>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">
+                            Cantidad</p>
+                        <p class="text-sm font-bold">15</p>
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <h4 class="font-bold text-lg leading-none">YPFD</h4>
-                            <span
-                                class="text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded font-bold uppercase">Merval</span>
-                        </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">YPF S.A.</p>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c
+                        </p>
+                        <p class="text-sm font-bold">$ 11.200</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto
+                        </p>
+                        <p class="text-sm font-bold">$ 186.750</p>
                     </div>
                 </div>
-                <div class="text-right">
-                    <p class="font-bold text-lg leading-none">$ 23.100,00</p>
-                    <p class="text-xs font-bold text-danger flex items-center justify-end gap-0.5 mt-0.5">
-                        <span class="material-symbols-outlined text-[12px]">arrow_downward</span>
-                        0.85%
-                    </p>
+            </article>
+
+            <!-- Asset Card 2: Local -->
+            <article data-market="local"
+                class="asset-card bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm cursor-pointer"
+                onclick="window.location.href='../analisis_volatilidad/code.html?asset=YPFD'">
+                <!-- Header Row -->
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-10 rounded-full bg-blue-600 flex items-center justify-center overflow-hidden text-white font-bold">
+                            Y</div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-bold text-lg leading-none">YPFD</h4>
+                                <span
+                                    class="text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded font-bold uppercase">Merval</span>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">YPF S.A.</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-lg leading-none">$ 23.100,00</p>
+                        <p class="text-xs font-bold text-danger flex items-center justify-end gap-0.5 mt-0.5">
+                            <span class="material-symbols-outlined text-[12px]">arrow_downward</span>
+                            0.85%
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <!-- Metrics Grid -->
-            <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
-                <!-- Row 1 -->
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Cantidad
-                    </p>
-                    <p class="text-sm font-bold">50</p>
-                </div>
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c</p>
-                    <p class="text-sm font-bold">$ 24.500</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto</p>
-                    <p class="text-sm font-bold">$ 1.155.000</p>
-                </div>
-                <!-- Row 2 -->
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Impuestos
-                    </p>
-                    <p class="text-sm font-bold text-gray-400">$ 450</p>
-                </div>
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PL/D</p>
-                    <p class="text-sm font-bold text-danger">-$ 9.800</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Ganancia
-                    </p>
-                    <p class="text-sm font-bold text-danger">-$ 70.000</p>
-                </div>
-            </div>
-        </article>
-        <!-- Asset Card 3: Neutral/Small -->
-        <article
-            class="bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm opacity-90">
-            <!-- Header Row -->
-            <div class="flex justify-between items-start mb-4">
-                <div class="flex items-center gap-3">
-                    <div
-                        class="size-10 rounded-full bg-yellow-500 flex items-center justify-center overflow-hidden text-black font-bold text-xs">
-                        KO
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
+                    <div>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">
+                            Cantidad</p>
+                        <p class="text-sm font-bold">50</p>
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <h4 class="font-bold text-lg leading-none">KO</h4>
-                            <span
-                                class="text-[10px] bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-gray-500 dark:text-gray-300 font-bold uppercase">CEDEAR</span>
-                        </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Coca-Cola Co.</p>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c
+                        </p>
+                        <p class="text-sm font-bold">$ 24.500</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto
+                        </p>
+                        <p class="text-sm font-bold">$ 1.155.000</p>
                     </div>
                 </div>
-                <div class="text-right">
-                    <p class="font-bold text-lg leading-none">$ 14.200,00</p>
-                    <p class="text-xs font-bold text-gray-400 flex items-center justify-end gap-0.5 mt-0.5">
-                        <span class="material-symbols-outlined text-[12px]">remove</span>
-                        0.00%
-                    </p>
+            </article>
+
+            <!-- Asset Card 3: USA/CEDEAR -->
+            <article data-market="usa"
+                class="asset-card bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm opacity-90 cursor-pointer"
+                onclick="window.location.href='../analisis_volatilidad/code.html?asset=KO'">
+                <!-- Header Row -->
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-10 rounded-full bg-yellow-500 flex items-center justify-center overflow-hidden text-black font-bold text-xs">
+                            KO</div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-bold text-lg leading-none">KO</h4>
+                                <span
+                                    class="text-[10px] bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-gray-500 dark:text-gray-300 font-bold uppercase">CEDEAR</span>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Coca-Cola Co.</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-lg leading-none">$ 14.200,00</p>
+                        <p class="text-xs font-bold text-gray-400 flex items-center justify-end gap-0.5 mt-0.5">
+                            <span class="material-symbols-outlined text-[12px]">remove</span>
+                            0.00%
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <!-- Metrics Grid -->
-            <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Cantidad
-                    </p>
-                    <p class="text-sm font-bold">5</p>
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
+                    <div>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">
+                            Cantidad</p>
+                        <p class="text-sm font-bold">5</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c
+                        </p>
+                        <p class="text-sm font-bold">$ 13.800</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto
+                        </p>
+                        <p class="text-sm font-bold">$ 71.000</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c</p>
-                    <p class="text-sm font-bold">$ 13.800</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto</p>
-                    <p class="text-sm font-bold">$ 71.000</p>
-                </div>
-                <!-- Collapsed view for this card just to show variation in state if needed, or keeping it consistent -->
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Impuestos
-                    </p>
-                    <p class="text-sm font-bold text-gray-400">$ 30</p>
-                </div>
-                <div>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PL/D</p>
-                    <p class="text-sm font-bold text-gray-400">$ 0</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Ganancia
-                    </p>
-                    <p class="text-sm font-bold text-primary">+$ 2.000</p>
-                </div>
-            </div>
-        </article>
+            </article>
+        </div>
         <div class="h-6"></div>
     </section>
+
     <!-- Bottom Navigation -->
     <nav
         class="fixed bottom-0 left-0 w-full bg-white dark:bg-background-dark/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 pb-safe pt-2 z-50">
         <div class="flex justify-around items-center h-16">
-            <a class="flex flex-col items-center gap-1 group" href="#">
+            <a class="flex flex-col items-center gap-1 group" href="code.html">
                 <span class="material-symbols-outlined text-primary text-[28px]">home</span>
                 <span class="text-[10px] font-bold text-primary">Inicio</span>
             </a>
-            <a class="flex flex-col items-center gap-1 group" href="#">
+            <a class="flex flex-col items-center gap-1 group" href="../analisis_volatilidad/code.html">
                 <span
-                    class="material-symbols-outlined text-gray-400 group-hover:text-gray-200 text-[28px]">candlestick_chart</span>
-                <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Mercado</span>
+                    class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[28px]">monitoring</span>
+                <span
+                    class="text-[10px] font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary">Mercado</span>
             </a>
             <div class="relative -top-5">
-                <button
-                    class="size-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-background-dark transform transition-transform active:scale-95">
-                    <span class="material-symbols-outlined text-[32px]">swap_horiz</span>
+                <button onclick="window.location.href='../operaciones_fáciles/code.html'"
+                    class="size-16 bg-primary rounded-3xl shadow-lg shadow-primary/40 flex items-center justify-center text-background-dark transform transition-all active:scale-95 hover:scale-110">
+                    <span class="material-symbols-outlined text-[32px] font-black">add_circle</span>
                 </button>
             </div>
-            <a class="flex flex-col items-center gap-1 group" href="#">
+            <a class="flex flex-col items-center gap-1 group" href="../mis_inversiones/code.html">
                 <span
-                    class="material-symbols-outlined text-gray-400 group-hover:text-gray-200 text-[28px]">account_balance_wallet</span>
-                <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Billetera</span>
+                    class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[28px]">account_balance_wallet</span>
+                <span
+                    class="text-[10px] font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">Billetera</span>
             </a>
-            <a class="flex flex-col items-center gap-1 group" href="#">
+            <a class="flex flex-col items-center gap-1 group" href="../perfil/code.html">
                 <span
-                    class="material-symbols-outlined text-gray-400 group-hover:text-gray-200 text-[28px]">person</span>
-                <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Perfil</span>
+                    class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-[28px]">person</span>
+                <span
+                    class="text-[10px] font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">Perfil</span>
             </a>
         </div>
     </nav>
@@ -464,14 +436,6 @@
     <script src="../../goti_config.js"></script>
     <script src="../../goti_auth.js"></script>
     <script src="../../goti_core.js"></script>
-    <script>
-        // Auth Guard
-        if (!window.gotiAuth || !window.gotiAuth.isAuthenticated()) {
-            // Uncomment to enforce auth
-            // window.location.href = '../iniciar_sesión/code.html';
-            console.log('Auth check: Not authenticated (bypass for dev/preview)');
-        }
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Portfolio Performance Chart
@@ -482,7 +446,7 @@
                     data: {
                         labels: [...Array(7).keys()].map(i => `D-${6 - i}`),
                         datasets: [{
-                            data: [1220000, 1235000, 1215000, 1240000, 1245000, 1242000, 1250400],
+                            data: [1220000, 1235000, 1215000, 1240000, 1245000, 1242000, 1250512],
                             borderColor: '#13ec5b',
                             backgroundColor: (context) => {
                                 const chart = context.chart;
@@ -514,14 +478,27 @@
 
             // Market Segment Logic
             const radios = document.querySelectorAll('input[name="market"]');
+            const assetCards = document.querySelectorAll('.asset-card');
+
+            function filterAssets(market) {
+                assetCards.forEach(card => {
+                    if (card.dataset.market === market) {
+                        card.style.display = 'block';
+                        card.classList.add('animate-in', 'fade-in', 'duration-300');
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
             radios.forEach(radio => {
                 radio.addEventListener('change', (e) => {
-                    const value = e.target.value;
-                    const labels = document.querySelectorAll('label span');
-                    labels.forEach(l => l.classList.remove('text-background-dark', 'dark:text-white'));
-                    // Logic to visually switch content if needed
+                    filterAssets(e.target.value);
                 });
             });
+
+            // Initial filter
+            filterAssets('local');
 
             // Real-time Clock & Greeting
             function updateClock() {
@@ -531,46 +508,67 @@
 
                 const clockEl = document.getElementById('header-clock');
                 const greetingEl = document.getElementById('dynamic-greeting');
+                const marketStatusEl = document.getElementById('market-status');
 
                 if (clockEl) clockEl.textContent = timeStr;
+
+                // Update market status based on time (simulated)
+                if (marketStatusEl) {
+                    if (hours >= 11 && hours < 17) {
+                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-primary animate-pulse"></span> MERCADO ABIERTO';
+                        marketStatusEl.classList.remove('text-yellow-500');
+                        marketStatusEl.classList.add('text-primary');
+                    } else if (hours >= 17 && hours < 18) {
+                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-orange-500"></span> POS-MERCADO';
+                        marketStatusEl.classList.remove('text-yellow-500', 'text-primary');
+                        marketStatusEl.classList.add('text-orange-500');
+                    } else {
+                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-yellow-500"></span> PRE-MARKET';
+                    }
+                }
 
                 if (greetingEl) {
                     let greeting = "Buenos días";
                     if (hours >= 13) greeting = "Buenas tardes";
                     if (hours >= 20 || hours < 5) greeting = "Buenas noches";
 
-                    // Get user name
-                    let userName = 'Sofia';
+                    // Get user name from localStorage
+                    let userName = 'Inversor';
                     try {
                         const userStr = localStorage.getItem('goti_user');
                         if (userStr) {
                             const user = JSON.parse(userStr);
+                            // Preference order: name > email prefix
                             userName = user.name || (user.email ? user.email.split('@')[0] : 'Inversor');
-                            // Capitalize
-                            userName = userName.charAt(0).toUpperCase() + userName.slice(1);
                         }
-                    } catch (e) { console.error(e); }
+                    } catch (e) { console.error('Error parsing user:', e); }
 
-                    greetingEl.textContent = `${greeting}, ${userName}`;
+                    greetingEl.textContent = `${greeting}, ${userName.toUpperCase()}`;
                 }
             }
             setInterval(updateClock, 1000);
             updateClock();
 
             // Real-time Data Simulation
-            const totalValueEl = document.querySelector('h1.text-4xl');
-            let totalValue = 1250400.00;
+            const totalValueEl = document.getElementById('patrimony-value');
+            let totalValue = 1250512.02;
 
             function updateMetrics() {
-                const change = (Math.random() - 0.48) * 40;
+                const change = (Math.random() - 0.48) * 15; // Smaller variations for realism
                 totalValue += change;
                 if (totalValueEl) {
                     totalValueEl.textContent = `$ ${totalValue.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
                 }
             }
-            setInterval(updateMetrics, 2000);
+            setInterval(updateMetrics, 3000);
+
+            // Ripple setup from goti_core if available
+            if (window.goti && typeof window.goti.applyGlowPulse === 'function') {
+                window.goti.applyGlowPulse('.ai-glow');
+            }
         });
     </script>
+
 </body>
 
 </html>
