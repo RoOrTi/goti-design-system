@@ -156,61 +156,187 @@
     </div>
 
     <script src="../../goti_core.js"></script>
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const emailInput = document.querySelector('input[type="email"]');
             const passwordInput = document.querySelector('input[type="password"]:not([placeholder*="Repite"])');
             const confirmInput = document.querySelector('input[placeholder*="Repite"]');
-            const submitBtn = document.querySelector('button:contains("Crear Cuenta")') || document.querySelector('button.bg-primary');
+            const termsCheckbox = document.querySelector('input[type="checkbox"]');
+            const submitBtn = document.querySelector('button.bg-primary');
+            const backBtn = document.querySelector('button span.material-symbols-outlined').parentElement;
+            const loginLink = document.querySelector('a[href="#"]');
 
+            // Elementos de indicador de seguridad
+            const strengthBars = document.querySelectorAll('.h-1.w-1\\/4.rounded-full');
+            const strengthText = document.querySelector('.text-xs.text-text-muted.mt-1');
+
+            // Toggle de visibilidad de contraseña
+            const toggleButtons = document.querySelectorAll('button span.material-symbols-outlined');
+            toggleButtons.forEach(btn => {
+                if (btn.textContent === 'visibility' || btn.textContent === 'visibility_off') {
+                    btn.parentElement.addEventListener('click', () => {
+                        const input = btn.parentElement.previousElementSibling;
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            btn.textContent = 'visibility_off';
+                        } else {
+                            input.type = 'password';
+                            btn.textContent = 'visibility';
+                        }
+                    });
+                }
+            });
+
+            // Validación de email
             function validateEmail() {
                 const isValid = window.goti.isValidEmail(emailInput.value);
                 const container = emailInput.closest('.flex.items-center.rounded-lg.border');
                 if (container) {
                     if (isValid) {
-                        container.classList.replace('border-border-green', 'border-primary');
-                        container.classList.remove('focus-within:border-primary');
+                        container.classList.remove('border-border-green', 'border-red-500');
+                        container.classList.add('border-primary');
                     } else if (emailInput.value.length > 0) {
-                        container.classList.replace('border-border-green', 'border-red-500');
-                        container.classList.replace('border-primary', 'border-red-500');
+                        container.classList.remove('border-border-green', 'border-primary');
+                        container.classList.add('border-red-500');
                     } else {
-                        container.classList.add('border-border-green');
                         container.classList.remove('border-primary', 'border-red-500');
+                        container.classList.add('border-border-green');
                     }
                 }
             }
 
+            // Actualizar indicador de seguridad de contraseña
+            function updatePasswordStrength() {
+                const strength = window.gotiAuth.calculatePasswordStrength(passwordInput.value);
+
+                // Actualizar barras
+                strengthBars.forEach((bar, index) => {
+                    if (index < Math.ceil(strength.strength * 1.25)) {
+                        bar.classList.remove('bg-surface-dark', 'bg-primary/30');
+                        bar.classList.add('bg-primary');
+                    } else if (index < Math.ceil(strength.strength * 1.5)) {
+                        bar.classList.remove('bg-surface-dark', 'bg-primary');
+                        bar.classList.add('bg-primary/30');
+                    } else {
+                        bar.classList.remove('bg-primary', 'bg-primary/30');
+                        bar.classList.add('bg-surface-dark');
+                    }
+                });
+
+                // Actualizar texto
+                if (strengthText) {
+                    strengthText.textContent = `Nivel de seguridad: ${strength.level}`;
+                }
+            }
+
+            // Validación de coincidencia de contraseñas
             function validatePasswords() {
                 const match = passwordInput.value === confirmInput.value && passwordInput.value.length > 0;
                 const container = confirmInput.closest('.flex.w-full.items-stretch.rounded-lg.border');
                 if (container) {
                     if (match) {
-                        container.classList.replace('border-border-green', 'border-primary');
-                        container.classList.remove('border-red-500');
+                        container.classList.remove('border-border-green', 'border-red-500');
+                        container.classList.add('border-primary');
                     } else if (confirmInput.value.length > 0) {
-                        container.classList.replace('border-border-green', 'border-red-500');
-                        container.classList.replace('border-primary', 'border-red-500');
+                        container.classList.remove('border-border-green', 'border-primary');
+                        container.classList.add('border-red-500');
+                    } else {
+                        container.classList.remove('border-primary', 'border-red-500');
+                        container.classList.add('border-border-green');
                     }
                 }
             }
 
+            // Event listeners
             emailInput.addEventListener('input', validateEmail);
+            passwordInput.addEventListener('input', () => {
+                updatePasswordStrength();
+                validatePasswords();
+            });
             confirmInput.addEventListener('input', validatePasswords);
-            passwordInput.addEventListener('input', validatePasswords);
 
-            if (submitBtn) {
-                submitBtn.addEventListener('click', (e) => {
-                    const isEmailValid = window.goti.isValidEmail(emailInput.value);
-                    const isPassMatch = passwordInput.value === confirmInput.value;
+            // Navegación
+            backBtn.addEventListener('click', () => {
+                window.location.href = '../inicio/code.html';
+            });
 
-                    if (!isEmailValid || !isPassMatch) {
-                        e.preventDefault();
-                        alert('Por favor, revisa los datos ingresados.');
-                    } else {
-                        alert('Cuenta creada con éxito. Redirigiendo...');
+            loginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '../login/code.html';
+            });
+
+            // Registro de usuario
+            submitBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                const confirmPassword = confirmInput.value;
+                const acceptTerms = termsCheckbox.checked;
+
+                // Validaciones
+                if (!window.goti.isValidEmail(email)) {
+                    alert('❌ Por favor, ingresa un email válido');
+                    return;
+                }
+
+                if (password.length < 8) {
+                    alert('❌ La contraseña debe tener al menos 8 caracteres');
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert('❌ Las contraseñas no coinciden');
+                    return;
+                }
+
+                if (!acceptTerms) {
+                    alert('❌ Debes aceptar los términos y condiciones');
+                    return;
+                }
+
+                // Deshabilitar botón y mostrar loading
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Creando cuenta...';
+
+                try {
+                    const response = await window.gotiAuth.register(email, password, confirmPassword, acceptTerms);
+
+                    if (response.success) {
+                        // Guardar datos de usuario
+                        localStorage.setItem('goti_user', JSON.stringify(response.data));
+
+                        // Mostrar éxito
+                        submitBtn.classList.remove('bg-primary');
+                        submitBtn.classList.add('bg-green-500');
+                        submitBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> ¡Cuenta creada!';
+
+                        // Redirigir al dashboard
+                        setTimeout(() => {
+                            window.location.href = '../inicio/code.html';
+                        }, 1500);
                     }
-                });
-            }
+                } catch (error) {
+                    console.error('Error al registrar:', error);
+
+                    // Mostrar error
+                    submitBtn.classList.remove('bg-primary');
+                    submitBtn.classList.add('bg-red-500');
+                    submitBtn.innerHTML = '<span class="material-symbols-outlined">error</span> Error al crear cuenta';
+
+                    alert(`❌ ${error.message || 'Error al crear la cuenta. Intenta de nuevo.'}`);
+
+                    // Restaurar botón
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-red-500');
+                        submitBtn.classList.add('bg-primary');
+                        submitBtn.innerHTML = 'Crear Cuenta';
+                    }, 2000);
+                }
+            });
         });
     </script>
 </body>

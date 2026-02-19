@@ -461,7 +461,17 @@
     </nav>
     <div class="h-6 bg-transparent"></div>
 
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
     <script src="../../goti_core.js"></script>
+    <script>
+        // Auth Guard
+        if (!window.gotiAuth || !window.gotiAuth.isAuthenticated()) {
+            // Uncomment to enforce auth
+            // window.location.href = '../iniciar_sesión/code.html';
+            console.log('Auth check: Not authenticated (bypass for dev/preview)');
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Portfolio Performance Chart
@@ -528,7 +538,20 @@
                     let greeting = "Buenos días";
                     if (hours >= 13) greeting = "Buenas tardes";
                     if (hours >= 20 || hours < 5) greeting = "Buenas noches";
-                    greetingEl.textContent = `${greeting}, Sofia`;
+
+                    // Get user name
+                    let userName = 'Sofia';
+                    try {
+                        const userStr = localStorage.getItem('goti_user');
+                        if (userStr) {
+                            const user = JSON.parse(userStr);
+                            userName = user.name || (user.email ? user.email.split('@')[0] : 'Inversor');
+                            // Capitalize
+                            userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+                        }
+                    } catch (e) { console.error(e); }
+
+                    greetingEl.textContent = `${greeting}, ${userName}`;
                 }
             }
             setInterval(updateClock, 1000);

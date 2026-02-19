@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Iniciar Sesión - GOTI Financial</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-dark": "#1c271f",
+                        "border-green": "#3b5443",
+                        "text-muted": "#9db9a6"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Header / Nav -->
+        <div class="flex items-center p-4 pb-2 justify-between">
+            <button
+                class="text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-surface-dark transition-colors">
+                <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+            </button>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12"></h2>
+        </div>
+        <!-- Main Content Scrollable Area -->
+        <div class="flex-1 flex flex-col px-4 pb-8">
+            <!-- Headline & Subtitle -->
+            <div class="pt-4 pb-6">
+                <h1 class="text-white tracking-tight text-[32px] font-bold leading-tight text-left mb-2">Iniciar Sesión
+                </h1>
+                <p class="text-text-muted text-base font-normal leading-normal">Accede a tu cuenta de inversión</p>
+            </div>
+            <!-- Form Fields -->
+            <div class="flex flex-col gap-5 w-full max-w-[480px] mx-auto">
+                <!-- Email Field -->
+                <label class="flex flex-col w-full">
+                    <p class="text-white text-base font-medium leading-normal pb-2">Correo electrónico</p>
+                    <div
+                        class="flex items-center rounded-lg border border-border-green bg-surface-dark focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-14 placeholder:text-text-muted px-[15px] text-base font-normal leading-normal"
+                            placeholder="ejemplo@email.com" type="email" />
+                    </div>
+                </label>
+                <!-- Password Field -->
+                <label class="flex flex-col w-full">
+                    <p class="text-white text-base font-medium leading-normal pb-2">Contraseña</p>
+                    <div
+                        class="flex w-full items-stretch rounded-lg border border-border-green bg-surface-dark focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50 transition-all">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-14 placeholder:text-text-muted px-[15px] text-base font-normal leading-normal"
+                            placeholder="Ingresa tu contraseña" type="password" />
+                        <button
+                            class="text-text-muted hover:text-white flex items-center justify-center px-[15px] rounded-r-lg transition-colors">
+                            <span class="material-symbols-outlined" style="font-size: 24px;">visibility</span>
+                        </button>
+                    </div>
+                </label>
+                <!-- Forgot Password Link -->
+                <div class="flex justify-end -mt-2">
+                    <a class="text-primary text-sm font-medium hover:underline" href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <!-- Submit Button -->
+                <button
+                    class="mt-2 flex w-full items-center justify-center rounded-lg bg-primary h-14 px-4 text-background-dark text-base font-bold leading-normal hover:bg-[#0fd650] active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(19,236,91,0.15)]">
+                    Iniciar Sesión
+                </button>
+                <!-- Register Redirect -->
+                <div class="flex justify-center items-center mt-2">
+                    <p class="text-text-muted text-base">
+                        ¿No tienes cuenta?
+                        <a class="text-primary font-bold hover:underline ml-1" href="#">Crear Cuenta</a>
+                    </p>
+                </div>
+            </div>
+            <!-- Spacer to push footer down if content is short -->
+            <div class="flex-1"></div>
+            <!-- Security Badge -->
+            <div class="flex items-center justify-center gap-2 mt-8 opacity-60">
+                <span class="material-symbols-outlined text-text-muted" style="font-size: 16px;">lock</span>
+                <span class="text-xs text-text-muted uppercase tracking-widest font-medium">Encriptación 256-bit
+                    SSL</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../goti_core.js"></script>
+    <script src="../../goti_auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emailInput = document.querySelector('input[type="email"]');
+            const passwordInput = document.querySelector('input[type="password"]');
+            const submitBtn = document.querySelector('button.bg-primary');
+            const backBtn = document.querySelector('button span.material-symbols-outlined').parentElement;
+            const registerLink = document.querySelector('a.text-primary.font-bold');
+            const forgotPasswordLink = document.querySelector('a.text-primary.text-sm');
+            const toggleButton = document.querySelector('button span.material-symbols-outlined');
+
+            // Toggle de visibilidad de contraseña
+            toggleButton.parentElement.addEventListener('click', () => {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    toggleButton.textContent = 'visibility_off';
+                } else {
+                    passwordInput.type = 'password';
+                    toggleButton.textContent = 'visibility';
+                }
+            });
+
+            // Validación de email
+            function validateEmail() {
+                const isValid = window.goti.isValidEmail(emailInput.value);
+                const container = emailInput.closest('.flex.items-center.rounded-lg.border');
+                if (container) {
+                    if (isValid) {
+                        container.classList.remove('border-border-green', 'border-red-500');
+                        container.classList.add('border-primary');
+                    } else if (emailInput.value.length > 0) {
+                        container.classList.remove('border-border-green', 'border-primary');
+                        container.classList.add('border-red-500');
+                    } else {
+                        container.classList.remove('border-primary', 'border-red-500');
+                        container.classList.add('border-border-green');
+                    }
+                }
+            }
+
+            emailInput.addEventListener('input', validateEmail);
+
+            // Navegación
+            backBtn.addEventListener('click', () => {
+                window.location.href = '../inicio/code.html';
+            });
+
+            registerLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '../crear_cuenta/code.html';
+            });
+
+            forgotPasswordLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('🔐 Funcionalidad de recuperación de contraseña próximamente');
+            });
+
+            // Inicio de sesión
+            submitBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                // Validaciones
+                if (!window.goti.isValidEmail(email)) {
+                    alert('❌ Por favor, ingresa un email válido');
+                    return;
+                }
+
+                if (password.length === 0) {
+                    alert('❌ Por favor, ingresa tu contraseña');
+                    return;
+                }
+
+                // Deshabilitar botón y mostrar loading
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Iniciando sesión...';
+
+                try {
+                    const response = await window.gotiAuth.login(email, password);
+
+                    if (response.success) {
+                        // Guardar datos de usuario
+                        localStorage.setItem('goti_user', JSON.stringify(response.data));
+
+                        // Mostrar éxito
+                        submitBtn.classList.remove('bg-primary');
+                        submitBtn.classList.add('bg-green-500');
+                        submitBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> ¡Bienvenido!';
+
+                        // Redirigir al dashboard
+                        setTimeout(() => {
+                            window.location.href = '../inicio/code.html';
+                        }, 1500);
+                    }
+                } catch (error) {
+                    console.error('Error al iniciar sesión:', error);
+
+                    // Mostrar error
+                    submitBtn.classList.remove('bg-primary');
+                    submitBtn.classList.add('bg-red-500');
+                    submitBtn.innerHTML = '<span class="material-symbols-outlined">error</span> Error al iniciar sesión';
+
+                    alert(`❌ ${error.message || 'Credenciales inválidas. Verifica tu email y contraseña.'}`);
+
+                    // Restaurar botón
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-red-500');
+                        submitBtn.classList.add('bg-primary');
+                        submitBtn.innerHTML = 'Iniciar Sesión';
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

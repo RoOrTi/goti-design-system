@@ -149,6 +149,8 @@
         </div>
     </div>
 
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
     <script src="../../goti_core.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -161,21 +163,58 @@
             const emailInput = document.querySelector('input[type="text"]');
             const passwordInput = document.querySelector('input[type="password"]');
 
-            loginBtn.addEventListener('click', (e) => {
+            loginBtn.addEventListener('click', async (e) => {
                 const email = emailInput.value.trim();
                 const pass = passwordInput.value.trim();
 
                 if (email && pass) {
-                    // Real app would authenticate here
-                    loginBtn.innerHTML = '<span class="flex items-center gap-2 text-background-dark font-bold">ACCEDIENDO...</span>';
-                    setTimeout(() => {
-                        alert('¡Bienvenida, Sofia!');
-                        // Simulation of redirect
-                    }, 1000);
+                    try {
+                        // Change button state
+                        const originalContent = loginBtn.innerHTML;
+                        loginBtn.innerHTML = '<span class="flex items-center gap-2 text-background-dark font-bold">ACCEDIENDO...</span>';
+                        loginBtn.disabled = true;
+
+                        // Call backend
+                        const response = await window.gotiAuth.login(email, pass);
+
+                        if (response.success) {
+                            // Success!
+                            loginBtn.innerHTML = '<span class="flex items-center gap-2 text-background-dark font-bold">¡ÉXITO!</span>';
+                            // Store user info if needed
+                            localStorage.setItem('goti_user', JSON.stringify(response.user));
+
+                            setTimeout(() => {
+                                // Redirect to dashboard or home
+                                window.location.href = '../inicio/code.html';
+                            }, 1000);
+                        } else {
+                            throw new Error(response.message || 'Error desconocido');
+                        }
+
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        alert(error.message || 'Error al iniciar sesión. Verifica tus credenciales.');
+
+                        // Reset button
+                        loginBtn.innerHTML = '<span class="text-background-dark text-base font-bold tracking-wide">INICIAR SESIÓN</span>';
+                        loginBtn.disabled = false;
+
+                        // Shake effect
+                        emailInput.closest('.flex.flex-col').classList.add('animate-shake');
+                        passwordInput.closest('.flex.flex-col').classList.add('animate-shake');
+                        setTimeout(() => {
+                            emailInput.closest('.flex.flex-col').classList.remove('animate-shake');
+                            passwordInput.closest('.flex.flex-col').classList.remove('animate-shake');
+                        }, 500);
+                    }
                 } else {
                     alert('Por favor, completa todos los campos.');
                     emailInput.closest('.flex.flex-col').classList.add('animate-shake');
                     passwordInput.closest('.flex.flex-col').classList.add('animate-shake');
+                    setTimeout(() => {
+                        emailInput.closest('.flex.flex-col').classList.remove('animate-shake');
+                        passwordInput.closest('.flex.flex-col').classList.remove('animate-shake');
+                    }, 500);
                 }
             });
         });

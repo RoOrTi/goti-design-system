@@ -588,7 +588,17 @@
         </nav>
     </div>
 
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
     <script src="../../goti_core.js"></script>
+    <script>
+        // Auth Guard
+        if (!window.gotiAuth || !window.gotiAuth.isAuthenticated()) {
+            // Uncomment to enforce auth
+            // window.location.href = '../iniciar_sesión/code.html';
+            console.log('Auth check: Not authenticated (bypass for dev/preview)');
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Apply premium glow pulse to the floating 'Operar' button

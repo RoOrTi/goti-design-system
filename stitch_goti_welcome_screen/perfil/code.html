@@ -265,43 +265,32 @@
         </div>
     </div>
 
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
     <script src="../../goti_core.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const editBtn = document.querySelector('button:contains("Editar datos personales")') || document.querySelector('button.bg-[#111418]');
             const nameHeader = document.querySelector('h1.text-2xl');
-            const logoutBtn = document.querySelector('button:contains("Cerrar sesión")') || document.querySelector('.text-red-600');
-            const toggleNotif = document.getElementById('toggle-notif');
+            const logoutBtn = document.querySelector('button.text-red-600') || document.querySelector('button.text-red-400');
 
-            // 1. Edit Name Logic
-            if (editBtn && nameHeader) {
-                editBtn.addEventListener('click', () => {
-                    const newName = prompt('Ingresa tu nombre completo:', nameHeader.textContent);
-                    if (newName && newName.trim()) {
-                        nameHeader.textContent = newName.trim();
-                        alert('Perfil actualizado correctamente.');
+            // Load User Data
+            if (nameHeader) {
+                try {
+                    const userStr = localStorage.getItem('goti_user');
+                    if (userStr) {
+                        const user = JSON.parse(userStr);
+                        const userName = user.name || (user.email ? user.email.split('@')[0] : 'Juan Pérez');
+                        nameHeader.textContent = userName.charAt(0).toUpperCase() + userName.slice(1);
                     }
-                });
+                } catch (e) { console.error(e); }
             }
 
-            // 2. Toggle Switches
-            if (toggleNotif) {
-                toggleNotif.addEventListener('change', (e) => {
-                    const status = e.target.checked ? 'activadas' : 'desactivadas';
-                    console.log(`Notificaciones ${status}`);
-                    // Could add a small toast notification here
-                });
-            }
-
-            // 3. Logout Simulation
+            // Real Logout
             if (logoutBtn) {
                 logoutBtn.addEventListener('click', () => {
-                    if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
-                        logoutBtn.textContent = 'Saliendo...';
-                        setTimeout(() => {
-                            alert('Sesión cerrada con éxito.');
-                            // Simulation of redirect
-                        }, 1000);
+                    if (confirm('¿Cerrar sesión?')) {
+                        window.gotiAuth.logout();
+                        window.location.href = '../iniciar_sesión/code.html';
                     }
                 });
             }
