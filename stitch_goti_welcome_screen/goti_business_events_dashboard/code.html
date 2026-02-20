@@ -139,10 +139,46 @@
             left: 0;
             width: 100%;
             height: 60%;
-            background: white;
-            opacity: 0.6;
+            background: #13ec5b;
+            box-shadow: 0 0 15px #13ec5b;
             border-radius: 8px;
-            transition: height 0.3s ease;
+            transition: height 0.1s ease;
+        }
+
+        .alarm-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+
+        .alarm-item:hover {
+            border-color: #13ec5b55;
+            background: rgba(19, 236, 91, 0.05);
+        }
+
+        .alarm-triggered {
+            animation: trigger-pulse 1s infinite shadow;
+            border-color: #13ec5b;
+        }
+
+        @keyframes trigger-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(19, 236, 91, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(19, 236, 91, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(19, 236, 91, 0);
+            }
         }
 
         .analog-marks span {
@@ -227,12 +263,12 @@
                 </div>
 
                 <!-- Vertical Slider -->
-                <div class="v-slider">
-                    <div class="slider-track">
-                        <div class="slider-fill"></div>
+                <div class="v-slider" id="volume-control">
+                    <div class="slider-track" id="slider-track">
+                        <div class="slider-fill" id="slider-fill"></div>
                     </div>
-                    <div class="text-accent-blue mt-2">
-                        <span class="material-symbols-outlined">volume_up</span>
+                    <div class="text-primary mt-2 cursor-pointer" id="mute-btn">
+                        <span class="material-symbols-outlined" id="volume-icon">volume_up</span>
                     </div>
                 </div>
 
@@ -297,47 +333,79 @@
 
         <!-- Right Section: Events and Alarms Form -->
         <div class="col-span-12 md:col-span-4">
-            <div class="neo-glass p-8 rounded-[40px] border-white/10">
-                <h2 class="font-display font-black text-2xl mb-8">Eventos y Alarmas</h2>
+            <div class="neo-glass p-8 rounded-[40px] border-white/10 flex flex-col h-full max-h-[600px]">
+                <h2 class="font-display font-black text-2xl mb-6">Eventos y Alarmas</h2>
 
-                <form class="space-y-6">
-                    <div>
-                        <label class="block text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Fecha
-                            del Evento</label>
-                        <input type="text" placeholder="dd/mm/aaaa"
-                            class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-accent-blue focus:outline-none transition-colors">
-                    </div>
+                <!-- Display Area for Active Alarms -->
+                <div id="alarms-list" class="flex-1 overflow-y-auto no-scrollbar mb-6 pr-2">
+                    <!-- Default Alarms will be injected here -->
+                </div>
 
-                    <div>
-                        <label
-                            class="block text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Hora</label>
-                        <div class="relative">
-                            <input type="text" placeholder="--:--"
-                                class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-accent-blue focus:outline-none transition-colors">
-                            <span
-                                class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 opacity-20">schedule</span>
+                <form id="alarm-form" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label
+                                class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Fecha</label>
+                            <input type="date" id="event-date"
+                                class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors text-white">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Hora</label>
+                            <input type="time" id="event-time"
+                                class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors text-white">
                         </div>
                     </div>
 
                     <div>
-                        <label
-                            class="block text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Descripción</label>
-                        <input type="text" placeholder="Ej: Pagar WiFi"
-                            class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-sm focus:border-accent-blue focus:outline-none transition-colors">
+                        <label class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Título
+                            / Descripción</label>
+                        <input type="text" id="event-desc" placeholder="Apertura Market"
+                            class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors">
                     </div>
 
-                    <button
-                        class="w-full bg-accent-blue hover:bg-blue-600 text-white font-black rounded-2xl py-4 transition-all active:scale-[0.98] shadow-lg shadow-blue-500/20 uppercase tracking-widest text-xs">
-                        Agregar Evento
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-[#10d650] text-background-dark font-black rounded-xl py-3 transition-all active:scale-[0.98] shadow-lg shadow-primary/20 uppercase tracking-widest text-[10px]">
+                        Guardar Alarma
                     </button>
                 </form>
+
+                <!-- Hidden Audio Element -->
+                <audio id="alarm-audio" preload="auto">
+                    <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"
+                        type="audio/mpeg">
+                </audio>
+
+                <!-- Spotify Contextual Menu -->
+                <div class="mt-4 pt-4 border-t border-white/5">
+                    <p class="text-[8px] uppercase font-black tracking-widest text-white/20 mb-2">Spotify Integration
+                    </p>
+                    <div class="bg-black/30 p-2 rounded-xl border border-white/5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-sm">music_note</span>
+                            <span class="text-[9px] font-bold">GOTI Playlist Active</span>
+                        </div>
+                        <button
+                            onclick="window.open('https://open.spotify.com/playlist/37i9dQZF1DXcBWIGvYBM31', '_blank')"
+                            class="text-[8px] font-black uppercase tracking-widest text-primary border border-primary/30 px-2 py-1 rounded-lg">Abrir</button>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Clock Interaction Script -->
+    <!-- Core System Logic -->
     <script>
+        // --- State Management ---
+        let currentVolume = 0.6;
+        let isMuted = false;
+        let alarms = [
+            { id: 1, time: '11:00', desc: 'Apertura Mercado USA', enabled: true, type: 'market' },
+            { id: 2, time: '18:00', desc: 'Cierre Mercado USA', enabled: true, type: 'market' }
+        ];
+
+        // --- Clock Logic ---
         function updateClock() {
             const now = new Date();
             const h = now.getHours();
@@ -352,13 +420,138 @@
             document.getElementById('m-needle').style.transform = `translate(-50%, 0) rotate(${mDeg}deg)`;
             document.getElementById('s-needle').style.transform = `translate(-50%, 0) rotate(${sDeg}deg)`;
 
-            // Digital update
             const timeString = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
             document.getElementById('digital-time').textContent = timeString;
+
+            checkAlarms(h, m, s);
         }
 
+        // --- Alarm System Logic ---
+        function checkAlarms(h, m, s) {
+            const currentTimeStr = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+
+            alarms.forEach(alarm => {
+                if (alarm.enabled && alarm.time === currentTimeStr && s === 0) {
+                    triggerAlarm(alarm);
+                }
+            });
+        }
+
+        function triggerAlarm(alarm) {
+            console.log("Triggering alarm:", alarm.desc);
+            const audio = document.getElementById('alarm-audio');
+            audio.volume = isMuted ? 0 : currentVolume;
+            audio.play();
+
+            // Visual feedback
+            const alarmList = document.getElementById('alarms-list');
+            const items = alarmList.querySelectorAll('.alarm-item');
+            items.forEach(item => {
+                if (item.dataset.time === alarm.time) {
+                    item.classList.add('alarm-triggered');
+                    setTimeout(() => item.classList.remove('alarm-triggered'), 30000);
+                }
+            });
+        }
+
+        function renderAlarms() {
+            const list = document.getElementById('alarms-list');
+            list.innerHTML = alarms.map(alarm => `
+                <div class="alarm-item group" data-time="${alarm.time}">
+                    <div class="flex items-center gap-3">
+                        <div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">${alarm.type === 'market' ? 'trending_up' : 'alarm'}</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-black">${alarm.time} HS</p>
+                            <p class="text-[9px] text-white/40 font-bold uppercase">${alarm.desc}</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleAlarm(${alarm.id})" class="${alarm.enabled ? 'text-primary' : 'text-white/20'} transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">${alarm.enabled ? 'notifications_active' : 'notifications_off'}</span>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        window.toggleAlarm = (id) => {
+            const alarm = alarms.find(a => a.id === id);
+            if (alarm) alarm.enabled = !alarm.enabled;
+            renderAlarms();
+        };
+
+        // --- Volume Bar Interactivity ---
+        const sliderTrack = document.getElementById('slider-track');
+        const sliderFill = document.getElementById('slider-fill');
+        const volIcon = document.getElementById('volume-icon');
+        const muteBtn = document.getElementById('mute-btn');
+
+        function updateVolume(e) {
+            const rect = sliderTrack.getBoundingClientRect();
+            const height = rect.height;
+            const y = e.clientY - rect.top;
+            let percent = 1 - (y / height);
+            percent = Math.max(0, Math.min(1, percent));
+
+            currentVolume = percent;
+            sliderFill.style.height = `${percent * 100}%`;
+
+            if (percent === 0) {
+                volIcon.textContent = 'volume_off';
+            } else if (percent < 0.5) {
+                volIcon.textContent = 'volume_down';
+            } else {
+                volIcon.textContent = 'volume_up';
+            }
+
+            const audio = document.getElementById('alarm-audio');
+            audio.volume = currentVolume;
+        }
+
+        sliderTrack.addEventListener('mousedown', (e) => {
+            updateVolume(e);
+            function onMouseMove(moveEvent) {
+                updateVolume(moveEvent);
+            }
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', () => {
+                document.removeEventListener('mousemove', onMouseMove);
+            }, { once: true });
+        });
+
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            volIcon.textContent = isMuted ? 'volume_off' : (currentVolume > 0.5 ? 'volume_up' : 'volume_down');
+            volIcon.classList.toggle('text-white/20', isMuted);
+            volIcon.classList.toggle('text-primary', !isMuted);
+        });
+
+        // --- Form Handling ---
+        const form = document.getElementById('alarm-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const time = document.getElementById('event-time').value;
+            const desc = document.getElementById('event-desc').value;
+
+            if (time && desc) {
+                alarms.push({
+                    id: Date.now(),
+                    time: time,
+                    desc: desc,
+                    enabled: true,
+                    type: 'custom'
+                });
+                renderAlarms();
+                form.reset();
+            }
+        });
+
+        // --- Initialize ---
         setInterval(updateClock, 1000);
         updateClock();
+        renderAlarms();
+        sliderFill.style.height = `${currentVolume * 100}%`;
+
     </script>
 </body>
 
