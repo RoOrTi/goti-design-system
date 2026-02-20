@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="es">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Registro de Inversiones</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+    <title>Historial de Inversiones • GOTI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
@@ -25,12 +19,12 @@
                         "primary": "#13ec5b",
                         "background-light": "#f6f8f6",
                         "background-dark": "#102216",
-                        "card-dark": "#18281e", // Slightly lighter than background-dark
+                        "surface-dark": "#18281e",
                         "card-border": "#2f4536",
+                        "danger": "#ff4d4d",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"],
-                        "body": ["Noto Sans", "sans-serif"],
                     },
                     borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
                 },
@@ -38,7 +32,6 @@
         }
     </script>
     <style>
-        /* Custom scrollbar for horizontal scrolling */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -51,307 +44,254 @@
         .font-numeric {
             font-variant-numeric: tabular-nums;
         }
-    </style>
-    <style>
-        body {
-            min-height: max(884px, 100dvh);
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .neo-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-black">
-    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
+<body class="bg-background-light dark:bg-background-dark font-display text-white antialiased">
+    <div class="relative flex min-h-screen w-full flex-col max-w-[430px] mx-auto border-x border-white/5">
+
         <!-- Header -->
-        <header
-            class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-[#2f4536]">
-            <div class="flex items-center justify-between p-4 pb-3">
-                <button
-                    class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
-                    <span class="material-symbols-outlined text-slate-900 dark:text-white"
-                        style="font-size: 24px;">arrow_back</span>
+        <header class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-xl border-b border-white/5 pb-4">
+            <div class="flex items-center justify-between p-4">
+                <button onclick="window.history.back()"
+                    class="flex size-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
                 </button>
-                <h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Historial</h1>
+                <h1 class="text-white text-lg font-black uppercase tracking-widest">Historial</h1>
                 <button
-                    class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
-                    <span class="material-symbols-outlined text-slate-900 dark:text-white"
-                        style="font-size: 24px;">tune</span>
+                    class="flex size-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                    <span class="material-symbols-outlined">tune</span>
                 </button>
             </div>
-            <!-- Summary Stats -->
-            <div class="px-4 pb-4">
-                <div class="flex flex-col gap-1 items-center justify-center pt-2">
-                    <p class="text-slate-500 dark:text-[#9db9a6] text-xs font-medium tracking-wide uppercase">Ganancia
-                        Neta Total</p>
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary" style="font-size: 28px;">trending_up</span>
-                        <h2 class="text-slate-900 dark:text-white text-3xl font-extrabold tracking-tight font-numeric">
-                            +$125,400.50</h2>
-                    </div>
-                    <div
-                        class="flex items-center gap-1.5 mt-1 bg-primary/10 px-2 py-0.5 rounded-md border border-primary/20">
-                        <span class="material-symbols-outlined text-primary"
-                            style="font-size: 14px;">calendar_today</span>
-                        <p class="text-primary text-xs font-bold">Octubre 2023</p>
-                    </div>
+
+            <!-- Total Gain Summary -->
+            <div class="px-6 py-2 text-center animate-fade-in">
+                <p class="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Ganancia neta acumulada
+                </p>
+                <div class="flex items-center justify-center gap-2">
+                    <h2 class="text-3xl font-black font-numeric text-primary">+$125,400.50</h2>
+                </div>
+                <div
+                    class="inline-flex items-center gap-1.5 mt-3 bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                    <span class="material-symbols-outlined text-primary text-sm">calendar_month</span>
+                    <p class="text-primary text-[10px] font-black uppercase tracking-wider">Octubre 2023</p>
                 </div>
             </div>
-            <!-- Filter Chips -->
-            <div class="flex gap-2 px-4 pb-3 overflow-x-auto hide-scrollbar snap-x">
-                <button
-                    class="snap-start shrink-0 h-8 px-4 rounded-full bg-slate-900 dark:bg-primary text-white dark:text-black text-sm font-bold shadow-md transition-transform active:scale-95">
-                    Todos
-                </button>
-                <button
-                    class="snap-start shrink-0 h-8 px-4 rounded-full bg-gray-200 dark:bg-[#28392e] text-slate-700 dark:text-white text-sm font-medium border border-transparent dark:border-[#3b5443] transition-colors hover:bg-gray-300 dark:hover:bg-[#344a3b]">
-                    CEDEARs
-                </button>
-                <button
-                    class="snap-start shrink-0 h-8 px-4 rounded-full bg-gray-200 dark:bg-[#28392e] text-slate-700 dark:text-white text-sm font-medium border border-transparent dark:border-[#3b5443] transition-colors hover:bg-gray-300 dark:hover:bg-[#344a3b]">
-                    Acciones
-                </button>
-                <button
-                    class="snap-start shrink-0 h-8 px-4 rounded-full bg-gray-200 dark:bg-[#28392e] text-slate-700 dark:text-white text-sm font-medium border border-transparent dark:border-[#3b5443] transition-colors hover:bg-gray-300 dark:hover:bg-[#344a3b]">
-                    Bonos
-                </button>
-            </div>
         </header>
+
+        <!-- Filter Chips -->
+        <div
+            class="flex gap-2 px-4 py-4 overflow-x-auto hide-scrollbar sticky top-[180px] bg-background-dark/80 backdrop-blur-md z-40 border-b border-white/5">
+            <button
+                class="shrink-0 px-5 py-2 rounded-xl bg-primary text-background-dark text-xs font-black uppercase tracking-widest shadow-lg shadow-primary/20 transition-all active:scale-95">
+                Todos
+            </button>
+            <button
+                class="shrink-0 px-5 py-2 rounded-xl bg-white/5 text-white/60 text-xs font-black uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-colors">
+                CEDEARs
+            </button>
+            <button
+                class="shrink-0 px-5 py-2 rounded-xl bg-white/5 text-white/60 text-xs font-black uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-colors">
+                Acciones
+            </button>
+            <button
+                class="shrink-0 px-5 py-2 rounded-xl bg-white/5 text-white/60 text-xs font-black uppercase tracking-widest border border-white/10 hover:bg-white/10 transition-colors">
+                Bonos
+            </button>
+        </div>
+
         <!-- Main Content -->
-        <main class="flex-1 flex flex-col p-4 gap-6 pb-24">
-            <!-- Section: Octubre -->
-            <div>
-                <h3
-                    class="text-slate-500 dark:text-[#9db9a6] text-sm font-bold uppercase tracking-wider mb-3 px-1 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-primary"></span>
-                    Hoy, 14 Oct
-                </h3>
-                <!-- Card 1: Profit (AAPL) -->
+        <main class="flex-1 flex flex-col p-5 gap-6 pb-32">
+            <!-- Day Section -->
+            <div class="animate-fade-in" style="animation-delay: 0.1s">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-px flex-1 bg-white/5"></div>
+                    <span class="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">Hoy • 14 Oct</span>
+                    <div class="h-px flex-1 bg-white/5"></div>
+                </div>
+
+                <!-- Transaction Card: AAPL -->
                 <div
-                    class="group relative flex flex-col rounded-2xl bg-white dark:bg-card-dark border border-gray-100 dark:border-card-border shadow-sm overflow-hidden mb-4">
-                    <!-- Operation Header -->
-                    <div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-white/5">
+                    class="flex flex-col bg-surface-dark border border-white/5 rounded-[28px] overflow-hidden group hover:border-primary/20 transition-colors">
+                    <div class="flex items-center justify-between p-4 border-b border-white/5">
                         <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center p-2">
-                                <img class="w-full h-full object-contain dark:invert opacity-80" data-alt="Apple Logo"
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center p-2.5">
+                                <img class="w-full h-full object-contain filter brightness-0 invert opacity-80"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlU54FH5s27KcJzF66VWBROR1rPmsHNXXkLVf1wS7nlxWdu7XmKHzYR3JMAUmz8pY6IsVw-Giz1UIgqiFko56_vP8OyoCg1ky8YObOWjQBMFL1K-9h9sh_r5txdISr98S41GYj6tFd6v2wn_BFXDdhSaf8e75I5L4hWHPIvW3x-HbZdfTPR2CV_nEHluOCush-esSbyqieLAaeZ1-qQ83JKQ0Dhy-8w-nX7BLQthUxagCGCBGDYoIqm8FSjq9nd31hfiBZAywmiHU" />
                             </div>
                             <div>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-base leading-tight">AAPL</h4>
-                                <p class="text-slate-500 dark:text-gray-400 text-xs font-medium">CEDEAR • Apple Inc.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-end">
-                            <span
-                                class="inline-flex items-center rounded-md bg-green-50 dark:bg-primary/10 px-2 py-1 text-xs font-bold text-green-700 dark:text-primary ring-1 ring-inset ring-green-600/20 dark:ring-primary/20">VENTA</span>
-                            <span class="text-xs text-slate-400 dark:text-gray-500 mt-1">14:30 HS</span>
-                        </div>
-                    </div>
-                    <!-- Details Breakdown -->
-                    <div class="p-4 flex flex-col gap-3">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="text-slate-600 dark:text-gray-400">Operación (10u x $5,000)</span>
-                            <span class="text-slate-900 dark:text-white font-semibold font-numeric">$50,000.00</span>
-                        </div>
-                        <!-- Tax Logic Visualization -->
-                        <div class="flex flex-col gap-1 pl-3 border-l-2 border-gray-200 dark:border-white/10">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-slate-500 dark:text-gray-500 flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-[14px]">account_balance</span>
-                                    Impuestos y Comisiones
-                                </span>
-                            </div>
-                            <div class="flex justify-between items-center text-xs text-slate-500 dark:text-gray-400">
-                                <span>Coeficiente (0.65%)</span>
-                                <span class="font-numeric text-red-500/80">-$325.00</span>
-                            </div>
-                        </div>
-                        <div class="h-px bg-gray-100 dark:bg-white/10 my-1"></div>
-                        <!-- Result -->
-                        <div class="flex justify-between items-end">
-                            <span class="text-sm font-medium text-slate-500 dark:text-gray-400 pb-1">Resultado
-                                Neto</span>
-                            <div class="flex flex-col items-end">
-                                <span
-                                    class="text-2xl font-bold text-green-600 dark:text-primary font-numeric tracking-tight">+$49,675.00</span>
-                                <span
-                                    class="text-[10px] text-green-600/70 dark:text-primary/70 font-medium bg-green-50 dark:bg-primary/5 px-1.5 rounded">+4.2%
-                                    ganancia vs compra</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Section: Previous Month -->
-            <div>
-                <h3
-                    class="text-slate-500 dark:text-[#9db9a6] text-sm font-bold uppercase tracking-wider mb-3 px-1 mt-2">
-                    02 Octubre
-                </h3>
-                <!-- Card 2: Loss (TSLA) -->
-                <div
-                    class="group relative flex flex-col rounded-2xl bg-white dark:bg-card-dark border border-gray-100 dark:border-card-border shadow-sm overflow-hidden">
-                    <!-- Operation Header -->
-                    <div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-white/5">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center p-2">
-                                <img class="w-full h-full object-contain dark:invert opacity-80" data-alt="Tesla Logo"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAaXJwsEfAiTQTJ409P9kWqBwQ2B_wQNjCC-L-unZ38Qw_5IPNqhwWwxhW4bw9sykhfFP1_oXQ7a0Po7qvq_wGO50bqMSmd_No5ZT1iHwmhhwzmcUnNwlCz1KUE_XSbJTnr6yWMqlt0_2xi21ApJE5I07J_22RuejrJfy2Eu4jWo7nZ0cxUkd9h3VOFO1dspIzBlgbjnH_6Ugjxr_CZzYh5mp6YKxzxRes0W-w_ylfu-SlrRC-daBeMrx_DaLCfh2nrxwxN5d7TWI" />
-                            </div>
-                            <div>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-base leading-tight">TSLA</h4>
-                                <p class="text-slate-500 dark:text-gray-400 text-xs font-medium">CEDEAR • Tesla Inc.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-end">
-                            <span
-                                class="inline-flex items-center rounded-md bg-red-50 dark:bg-red-500/10 px-2 py-1 text-xs font-bold text-red-700 dark:text-red-400 ring-1 ring-inset ring-red-600/20 dark:ring-red-400/20">VENTA</span>
-                        </div>
-                    </div>
-                    <!-- Details Breakdown -->
-                    <div class="p-4 flex flex-col gap-3">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="text-slate-600 dark:text-gray-400">Operación (5u x $18,000)</span>
-                            <span class="text-slate-900 dark:text-white font-semibold font-numeric">$90,000.00</span>
-                        </div>
-                        <div
-                            class="flex justify-between items-center text-xs text-slate-500 dark:text-gray-400 pl-3 border-l-2 border-gray-200 dark:border-white/10">
-                            <span>Impuestos (0.65%)</span>
-                            <span class="font-numeric text-red-500/80">-$585.00</span>
-                        </div>
-                        <div class="h-px bg-gray-100 dark:bg-white/10 my-1"></div>
-                        <!-- Result -->
-                        <div class="flex justify-between items-end">
-                            <span class="text-sm font-medium text-slate-500 dark:text-gray-400 pb-1">Resultado
-                                Neto</span>
-                            <div class="flex flex-col items-end">
-                                <span
-                                    class="text-2xl font-bold text-red-600 dark:text-red-500 font-numeric tracking-tight">$89,415.00</span>
-                                <span
-                                    class="text-[10px] text-red-600/70 dark:text-red-400/70 font-medium bg-red-50 dark:bg-red-500/10 px-1.5 rounded">-2.1%
-                                    pérdida vs compra</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3: Small Dividend (KO) -->
-            <div>
-                <h3
-                    class="text-slate-500 dark:text-[#9db9a6] text-sm font-bold uppercase tracking-wider mb-3 px-1 mt-6">
-                    30 Septiembre
-                </h3>
-                <div
-                    class="group relative flex flex-col rounded-2xl bg-white dark:bg-card-dark border border-gray-100 dark:border-card-border shadow-sm overflow-hidden">
-                    <div class="flex items-center justify-between p-4 pb-3">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center p-2">
-                                <span class="font-black text-xs text-slate-900 dark:text-white">KO</span>
-                            </div>
-                            <div>
-                                <h4 class="text-slate-900 dark:text-white font-bold text-base leading-tight">Coca-Cola
-                                </h4>
-                                <p class="text-slate-500 dark:text-gray-400 text-xs font-medium">Pago de Dividendos</p>
+                                <h4 class="text-base font-black leading-tight text-white/90">AAPL</h4>
+                                <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest">CEDEAR • Apple
+                                    Inc.</p>
                             </div>
                         </div>
                         <div class="text-right">
                             <span
-                                class="text-lg font-bold text-green-600 dark:text-primary font-numeric tracking-tight">+$12.45</span>
-                            <p class="text-[10px] text-slate-400 dark:text-gray-500 uppercase font-bold">USD (u$s)</p>
+                                class="inline-block px-2 py-0.5 rounded-lg bg-primary/10 text-primary text-[10px] font-black italic tracking-tighter">VENTA
+                                EXITOSA</span>
+                            <p class="text-[9px] text-white/20 font-bold mt-1 tracking-widest">14:30 HS</p>
                         </div>
                     </div>
-                    <div class="bg-gray-50 dark:bg-white/5 px-4 py-2 flex justify-between items-center">
-                        <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-gray-500">Impuestos
-                            retenidos (30%)</span>
-                        <span class="text-xs font-medium text-slate-600 dark:text-gray-300 font-numeric">-$5.33</span>
+
+                    <div class="p-5 flex flex-col gap-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-white/40 uppercase tracking-widest">Monto Operado</span>
+                            <span class="text-lg font-black font-numeric">$50,000.00</span>
+                        </div>
+
+                        <div class="flex flex-col gap-2 p-3 rounded-2xl bg-white/5 border border-white/5">
+                            <div class="flex justify-between items-center text-[10px]">
+                                <span class="text-white/30 font-bold uppercase tracking-widest">Comisiones
+                                    (0.65%)</span>
+                                <span class="text-danger font-black font-numeric">-$325.00</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-end pt-2">
+                            <div>
+                                <p class="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] mb-1">
+                                    Resultado Neto</p>
+                                <h3 class="text-2xl font-black text-primary font-numeric tracking-tighter">+$49,675.00
+                                </h3>
+                            </div>
+                            <div class="text-right">
+                                <span
+                                    class="px-2 py-1 rounded-lg bg-primary text-background-dark text-[10px] font-black">+4.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction Card: TSLA -->
+            <div class="animate-fade-in" style="animation-delay: 0.2s">
+                <div class="flex items-center gap-3 mb-4 mt-4">
+                    <div class="h-px flex-1 bg-white/5"></div>
+                    <span class="text-[10px] font-black text-white/30 uppercase tracking-[0.3em]">02 Octubre</span>
+                    <div class="h-px flex-1 bg-white/5"></div>
+                </div>
+
+                <div
+                    class="flex flex-col bg-surface-dark border border-white/5 rounded-[28px] overflow-hidden group hover:border-red-500/20 transition-colors">
+                    <div class="flex items-center justify-between p-4 border-b border-white/5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center p-2.5">
+                                <img class="w-full h-full object-contain filter brightness-0 invert opacity-80"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAaXJwsEfAiTQTJ409P9kWqBwQ2B_wQNjCC-L-unZ38Qw_5IPNqhwWwxhW4bw9sykhfFP1_oXQ7a0Po7qvq_wGO50bqMSmd_No5ZT1iHwmhhwzmcUnNwlCz1KUE_XSbJTnr6yWMqlt0_2xi21ApJE5I07J_22RuejrJfy2Eu4jWo7nZ0cxUkd9h3VOFO1dspIzBlgbjnH_6Ugjxr_CZzYh5mp6YKxzxRes0W-w_ylfu-SlrRC-daBeMrx_DaLCfh2nrxwxN5d7TWI" />
+                            </div>
+                            <div>
+                                <h4 class="text-base font-black leading-tight text-white/90">TSLA</h4>
+                                <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest">CEDEAR • Tesla
+                                    Inc.</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span
+                                class="inline-block px-2 py-0.5 rounded-lg bg-red-500/10 text-red-500 text-[10px] font-black italic tracking-tighter">VENTA</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex flex-col gap-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-white/40 uppercase tracking-widest">Monto Operado</span>
+                            <span class="text-lg font-black font-numeric">$90,000.00</span>
+                        </div>
+
+                        <div class="flex justify-between items-end pt-2">
+                            <div>
+                                <p class="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] mb-1">
+                                    Resultado Neto</p>
+                                <h3 class="text-2xl font-black text-white font-numeric tracking-tighter">$89,415.00</h3>
+                            </div>
+                            <div class="text-right">
+                                <span
+                                    class="px-2 py-1 rounded-lg bg-red-500/10 text-red-500 text-[10px] font-black">-2.1%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
-        <!-- Bottom Navigation (iOS Style) -->
+
+        <!-- Bottom Navigation -->
         <nav
-            class="fixed bottom-0 w-full max-w-md bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t border-gray-200 dark:border-[#2f4536] pb-safe z-50">
-            <div class="flex justify-around items-center h-16">
-                <button class="flex flex-col items-center justify-center w-full h-full gap-1 group">
-                    <span
-                        class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px]">home</span>
-                    <span
-                        class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Inicio</span>
-                </button>
-                <button class="flex flex-col items-center justify-center w-full h-full gap-1 group">
-                    <span
-                        class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px]">pie_chart</span>
-                    <span
-                        class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Portafolio</span>
-                </button>
-                <div class="relative -top-5">
-                    <button
-                        class="flex items-center justify-center size-14 rounded-full bg-primary text-background-dark shadow-lg shadow-primary/40 transform transition-transform active:scale-95">
-                        <span class="material-symbols-outlined text-[32px] font-bold">add</span>
-                    </button>
-                </div>
-                <button class="flex flex-col items-center justify-center w-full h-full gap-1 group">
-                    <span class="material-symbols-outlined text-primary text-[24px]">receipt_long</span>
-                    <span class="text-[10px] font-bold text-primary">Historial</span>
-                </button>
-                <button class="flex flex-col items-center justify-center w-full h-full gap-1 group">
-                    <span
-                        class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px]">person</span>
-                    <span
-                        class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Perfil</span>
-                </button>
+            class="fixed bottom-0 left-0 right-0 h-24 bg-background-dark/80 backdrop-blur-3xl border-t border-white/5 px-6 flex items-center justify-between z-50 max-w-[430px] mx-auto">
+            <a href="../inicio/code.html"
+                class="flex flex-col items-center gap-1 group opacity-60 hover:opacity-100 transition-opacity">
+                <span
+                    class="material-symbols-outlined text-[28px] group-hover:scale-110 transition-transform">home</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">Inicio</span>
+            </a>
+            <a href="../analisis_volatilidad/code.html"
+                class="flex flex-col items-center gap-1 group opacity-60 hover:opacity-100 transition-opacity">
+                <span
+                    class="material-symbols-outlined text-[28px] group-hover:scale-110 transition-transform">monitoring</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">Mercado</span>
+            </a>
+
+            <!-- Central Button -->
+            <div class="relative -top-3">
+                <a href="../operaciones_fáciles/code.html"
+                    class="flex items-center justify-center w-16 h-16 rounded-3xl bg-primary text-background-dark shadow-[0_10px_30px_rgba(19,236,91,0.4)] hover:scale-110 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-[32px] font-black">add_circle</span>
+                </a>
             </div>
-            <!-- iOS Home Indicator Spacing -->
-            <div class="h-4 w-full"></div>
+
+            <a href="../mis_inversiones/code.html"
+                class="flex flex-col items-center gap-1 group opacity-60 hover:opacity-100 transition-opacity">
+                <span
+                    class="material-symbols-outlined text-[28px] group-hover:scale-110 transition-transform">account_balance_wallet</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">Billetera</span>
+            </a>
+            <a href="../perfil/code.html"
+                class="flex flex-col items-center gap-1 group opacity-60 hover:opacity-100 transition-opacity">
+                <span
+                    class="material-symbols-outlined text-[28px] group-hover:scale-110 transition-transform">person</span>
+                <span class="text-[10px] font-black uppercase tracking-widest">Perfil</span>
+            </a>
         </nav>
     </div>
 
+    <script src="../../goti_config.js"></script>
+    <script src="../../goti_auth.js"></script>
     <script src="../../goti_core.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const chips = document.querySelectorAll('header .overflow-x-auto button');
-            const historyCards = document.querySelectorAll('main > div');
+            const chips = document.querySelectorAll('header + div button, div.sticky button');
 
-            // 1. Filter Chips Interactivity
+            // Filter interactivity
             chips.forEach(chip => {
                 chip.addEventListener('click', () => {
-                    // Update chip styles
                     chips.forEach(c => {
-                        c.classList.remove('dark:bg-primary', 'text-black', 'dark:text-black', 'bg-slate-900', 'shadow-md');
-                        c.classList.add('bg-gray-200', 'dark:bg-[#28392e]', 'text-slate-700', 'dark:text-white');
-                        c.classList.replace('font-bold', 'font-medium');
+                        c.classList.remove('bg-primary', 'text-background-dark');
+                        c.classList.add('bg-white/5', 'text-white/60');
                     });
-
-                    chip.classList.remove('bg-gray-200', 'dark:bg-[#28392e]', 'text-slate-700', 'dark:text-white');
-                    chip.classList.add('dark:bg-primary', 'bg-slate-900', 'text-white', 'dark:text-black', 'shadow-md');
-                    chip.classList.replace('font-medium', 'font-bold');
-
-                    // Simple filtering simulation (randomly hide some cards for visual feedback)
-                    const filterName = chip.textContent.trim().toLowerCase();
-                    historyCards.forEach(card => {
-                        card.style.opacity = '0';
-                        setTimeout(() => {
-                            if (filterName === 'todos' || Math.random() > 0.4) {
-                                card.style.display = 'block';
-                                card.style.opacity = '1';
-                            } else {
-                                card.style.display = 'none';
-                            }
-                        }, 200);
-                    });
+                    chip.classList.remove('bg-white/5', 'text-white/60');
+                    chip.classList.add('bg-primary', 'text-background-dark');
                 });
             });
-
-            // 2. Add Transaction Simulation
-            const addBtn = document.querySelector('.size-14.bg-primary');
-            if (addBtn) {
-                window.goti.applyGlowPulse(addBtn);
-                addBtn.addEventListener('click', () => {
-                    alert('Acceso rápido a Nueva Operación habilitado.');
-                });
-            }
         });
     </script>
 </body>

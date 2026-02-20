@@ -55,7 +55,7 @@
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <!-- Header / Nav -->
         <div class="flex items-center p-4 pb-2 justify-between">
-            <button
+            <button onclick="window.history.back()"
                 class="text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-surface-dark transition-colors">
                 <span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
             </button>
@@ -140,7 +140,8 @@
                 <div class="flex justify-center items-center mt-2">
                     <p class="text-text-muted text-base">
                         ¿Ya tienes cuenta?
-                        <a class="text-primary font-bold hover:underline ml-1" href="#">Iniciar Sesión</a>
+                        <a class="text-primary font-bold hover:underline ml-1"
+                            href="../iniciar_sesión/code.html">Iniciar Sesión</a>
                     </p>
                 </div>
             </div>
@@ -258,13 +259,9 @@
             confirmInput.addEventListener('input', validatePasswords);
 
             // Navegación
-            backBtn.addEventListener('click', () => {
-                window.location.href = '../inicio/code.html';
-            });
-
             loginLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                window.location.href = '../login/code.html';
+                window.location.href = '../iniciar_sesión/code.html';
             });
 
             // Registro de usuario
