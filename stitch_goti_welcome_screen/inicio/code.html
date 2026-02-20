@@ -138,8 +138,18 @@
             <span class="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Patrimonio
                 Neto</span>
             <div class="flex items-baseline gap-2">
-                <h1 class="text-4xl font-black tracking-tight text-white" id="patrimony-value">$ 1.250.512,02</h1>
+                <h1 class="text-4xl font-black tracking-tight text-white" id="patrimony-value">$ 21.304.896,45</h1>
                 <span class="text-xs font-bold text-primary/60">ARS</span>
+            </div>
+            <div class="flex gap-4 mt-2">
+                <div>
+                    <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Tenencia Valorizada</p>
+                    <p class="text-xs font-bold text-white/80">$ 19.332.684,22</p>
+                </div>
+                <div class="border-l border-white/10 pl-4">
+                    <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Total Dinero</p>
+                    <p class="text-xs font-bold text-white/80">$ 1.972.212,22</p>
+                </div>
             </div>
 
             <div class="mt-4 h-32 w-full">
@@ -151,9 +161,10 @@
                     <div id="trend-badge"
                         class="flex items-center gap-1 bg-primary/20 px-2 py-0.5 rounded-full text-primary text-[10px] font-black italic">
                         <span class="material-symbols-outlined text-[12px]">trending_up</span>
-                        <span>+ 1,2%</span>
+                        <span>0,00%</span>
                     </div>
-                    <span id="daily-gain" class="text-white/40 text-[10px] font-bold">HOY: +$ 14.230</span>
+                    <span id="daily-gain" class="text-primary/80 text-[10px] font-bold">HISTÓRICO: +$
+                        21.130.469,64</span>
                 </div>
                 <div class="flex gap-1" id="carousel-dots">
                     <div class="w-1 h-1 rounded-full bg-primary"></div>
@@ -247,154 +258,448 @@
             <h3 class="text-xl font-black tracking-tight">Mis Activos</h3>
             <button onclick="window.location.href='../registro_de_inversiones/code.html'"
                 class="text-primary text-xs font-bold uppercase tracking-widest px-3 py-1 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors">Ver
-                Historial</button>
-        </div>
-
-        <div id="assets-container" class="flex flex-col gap-4">
-            <!-- Asset Card 1: USA/CEDEAR -->
-            <article data-market="usa" class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer"
-                onclick="window.location.href='../analisis_volatilidad/code.html?asset=AAPL'">
-                <!-- Header Row -->
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="size-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
-                            <img class="w-6 h-6 dark:invert brightness-200" data-alt="Apple Logo"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDJX8VcesyE2utB5smwnE6xT645a3Xf1JvMSANVV2iTG-asXiuDbDlGZN1d-wYtS1iA6D7d7Pu6atZecOZtx2nTSt0SSEvrtXDjN2Dlx6BoSE3TjGFvqFAsV8CP2cjfG5YaRXOMwkonGIZkiWWj4QJrKwa35njnUy9--VnXt24hNb1-xstmOcM0yYuFbMHh81kwb9aDAb2ojYvU9YpBGbSxijZVpQ6nq3hjWtNYMY-POOCWj0WsSSBPVIlSkQOuRMrjPKz3UFvu3E" />
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h4 class="font-black text-base leading-none">AAPL</h4>
-                                <span
-                                    class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">CEDEAR</span>
+                <div id="assets-container" class="flex flex-col gap-4">
+                    <!-- Asset: COCORMA -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=COCORMA'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-primary">account_balance</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">COCORMA</h4>
+                                        <span
+                                            class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">FCI</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Cocos
+                                        Rendimiento</p>
+                                </div>
                             </div>
-                            <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Apple
-                                Computers</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-black text-lg leading-none">$ 12.450,00</p>
-                        <p class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
-                            <span class="material-symbols-outlined text-[12px]">trending_up</span>
-                            +1.45%
-                        </p>
-                    </div>
-                </div>
-                <!-- Metrics Grid -->
-                <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
-                    <div>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">
-                            Cantidad</p>
-                        <p class="text-sm font-bold">15</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c
-                        </p>
-                        <p class="text-sm font-bold">$ 11.200</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto
-                        </p>
-                        <p class="text-sm font-bold">$ 186.750</p>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Asset Card 2: Local -->
-            <article data-market="local"
-                class="asset-card bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm cursor-pointer"
-                onclick="window.location.href='../analisis_volatilidad/code.html?asset=YPFD'">
-                <!-- Header Row -->
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="size-10 rounded-full bg-blue-600 flex items-center justify-center overflow-hidden text-white font-bold">
-                            Y</div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h4 class="font-bold text-lg leading-none">YPFD</h4>
-                                <span
-                                    class="text-[10px] bg-primary/20 text-primary px-1.5 py-0.5 rounded font-bold uppercase">Merval</span>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 1.952.447,46</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +2.12%
+                                </p>
                             </div>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">YPF S.A.</p>
                         </div>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-bold text-lg leading-none">$ 23.100,00</p>
-                        <p class="text-xs font-bold text-danger flex items-center justify-end gap-0.5 mt-0.5">
-                            <span class="material-symbols-outlined text-[12px]">arrow_downward</span>
-                            0.85%
-                        </p>
-                    </div>
-                </div>
-                <!-- Metrics Grid -->
-                <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
-                    <div>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">
-                            Cantidad</p>
-                        <p class="text-sm font-bold">50</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c
-                        </p>
-                        <p class="text-sm font-bold">$ 24.500</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto
-                        </p>
-                        <p class="text-sm font-bold">$ 1.155.000</p>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Asset Card 3: USA/CEDEAR -->
-            <article data-market="usa"
-                class="asset-card bg-white dark:bg-surface-dark rounded-2xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm opacity-90 cursor-pointer"
-                onclick="window.location.href='../analisis_volatilidad/code.html?asset=KO'">
-                <!-- Header Row -->
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="size-10 rounded-full bg-yellow-500 flex items-center justify-center overflow-hidden text-black font-bold text-xs">
-                            KO</div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h4 class="font-bold text-lg leading-none">KO</h4>
-                                <span
-                                    class="text-[10px] bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-gray-500 dark:text-gray-300 font-bold uppercase">CEDEAR</span>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">187.171</p>
                             </div>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Coca-Cola Co.</p>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Precio</p>
+                                <p class="text-sm font-bold">$ 10.431</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-primary">+$ 40.495</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-bold text-lg leading-none">$ 14.200,00</p>
-                        <p class="text-xs font-bold text-gray-400 flex items-center justify-end gap-0.5 mt-0.5">
-                            <span class="material-symbols-outlined text-[12px]">remove</span>
-                            0.00%
-                        </p>
-                    </div>
+                    </article>
+
+                    <!-- Asset: AL30 (Bono) -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=AL30'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-blue-500">description</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">AL30</h4>
+                                        <span
+                                            class="text-[8px] border border-blue-500/30 px-1.5 py-0.5 rounded text-blue-500 font-black uppercase italic">Bono</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">
+                                        Argentina 2030</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 1.682.847,00</p>
+                                <p
+                                    class="text-[10px] font-black text-danger flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_down</span>
+                                    -0.51%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">1.941</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Precio</p>
+                                <p class="text-sm font-bold">$ 86.700</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-danger">-$ 137.218</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: Letras (Summary) -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=LETRAS'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-purple-500">payments</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">LETRAS</h4>
+                                        <span
+                                            class="text-[8px] border border-purple-500/30 px-1.5 py-0.5 rounded text-purple-500 font-black uppercase italic">Tesoro</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">S16M6
+                                        / S17A6</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 1.038.352,38</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +0.46%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-white/5 pt-4">
+                            <span
+                                class="text-[10px] text-white/30 uppercase font-black tracking-widest">Participación</span>
+                            <span class="text-sm font-bold text-white/80">5.37% del Portfolio</span>
+                        </div>
+                    </article>
+
+                    <!-- Asset: LOMA (Acción) -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=LOMA'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-red-600/10 border border-red-600/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-red-600">factory</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">LOMA</h4>
+                                        <span
+                                            class="text-[8px] border border-red-600/30 px-1.5 py-0.5 rounded text-red-600 font-black uppercase italic">Acción</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Loma
+                                        Negra</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 230.125,00</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +1.70%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">70</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Precio</p>
+                                <p class="text-sm font-bold">$ 3.287</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-primary">+$ 675</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: TECO2 (Acción) -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=TECO2'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-indigo-500">router</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">TECO2</h4>
+                                        <span
+                                            class="text-[8px] border border-indigo-500/30 px-1.5 py-0.5 rounded text-indigo-500 font-black uppercase italic">Acción</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">
+                                        Telecom</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 98.550,00</p>
+                                <p
+                                    class="text-[10px] font-black text-danger flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_down</span>
+                                    -2.98%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">30</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Precio</p>
+                                <p class="text-sm font-bold">$ 3.285</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-danger">-$ 3.024</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: CRES (Acción) -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=CRES'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-green-500">agriculture</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">CRES</h4>
+                                        <span
+                                            class="text-[8px] border border-green-500/30 px-1.5 py-0.5 rounded text-green-500 font-black uppercase italic">Acción</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Cresud
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 15.228,00</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +1.32%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">9</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Precio</p>
+                                <p class="text-sm font-bold">$ 1.692</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-primary">+$ 198</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: DLR (Futuro) -->
+                    <article data-market="local"
+                        class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=DLRO32026'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-primary">update</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">DLRO32026</h4>
+                                        <span
+                                            class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">Futuro</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Dólar
+                                        Marzo 2026</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 1.440,00</p>
+                                <p
+                                    class="text-[10px] font-black text-danger flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_down</span>
+                                    -0.48%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">1</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Compra</p>
+                                <p class="text-sm font-bold">$ 1.447</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-danger">-$ 7.00</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: COCOSPPA -->
+                    <article data-market="local" class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=COCOSPPA'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-primary">account_balance</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">COCOSPPA</h4>
+                                        <span
+                                            class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">FCI</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Cocos
+                                        Pesos
+                                        Plus</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 8.901.929,12</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +10.17%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">6.991.446</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Precio</p>
+                                <p class="text-sm font-bold">$ 1.273</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-primary">+$ 821.376</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: ORCL (USA) -->
+                    <article data-market="usa" class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=ORCL'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-orange-500">database</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">ORCL</h4>
+                                        <span
+                                            class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">CEDEAR</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">Oracle
+                                        Corp
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 1.510.000,00</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +0.06%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">20</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Costo</p>
+                                <p class="text-sm font-bold">$ 82.032</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-danger">-$ 130.649</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asset: NVDA (USA) -->
+                    <article data-market="usa" class="asset-card neo-glass-card rounded-[24px] p-5 cursor-pointer mb-4"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=NVDA'">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-11 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-primary">memory</span>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-black text-base leading-none">NVDA</h4>
+                                        <span
+                                            class="text-[8px] border border-primary/30 px-1.5 py-0.5 rounded text-primary font-black uppercase italic">CEDEAR</span>
+                                    </div>
+                                    <p class="text-[10px] text-white/40 mt-1 uppercase font-bold tracking-widest">NVIDIA
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-black text-lg leading-none">$ 562.500,00</p>
+                                <p
+                                    class="text-[10px] font-black text-primary flex items-center justify-end gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">trending_up</span>
+                                    +0.42%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-white/5 pt-4">
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Cantidad</p>
+                                <p class="text-sm font-bold">50</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Costo</p>
+                                <p class="text-sm font-bold">$ 11.202</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-white/30 uppercase font-black tracking-widest">Resultado</p>
+                                <p class="text-sm font-bold text-primary">+$ 2.380</p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <!-- Metrics Grid -->
-                <div class="grid grid-cols-3 gap-y-3 gap-x-2 border-t border-gray-100 dark:border-gray-700 pt-4">
-                    <div>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">
-                            Cantidad</p>
-                        <p class="text-sm font-bold">5</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">PPP/c
-                        </p>
-                        <p class="text-sm font-bold">$ 13.800</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Monto
-                        </p>
-                        <p class="text-sm font-bold">$ 71.000</p>
-                    </div>
-                </div>
-            </article>
-        </div>
-        <div class="h-6"></div>
+                <div class="h-6"></div>
     </section>
 
     <!-- Bottom Navigation -->
@@ -551,10 +856,10 @@
 
             // Real-time Data Simulation
             const totalValueEl = document.getElementById('patrimony-value');
-            let totalValue = 1250512.02;
+            let totalValue = 21304896.45;
 
             function updateMetrics() {
-                const change = (Math.random() - 0.48) * 15; // Smaller variations for realism
+                const change = (Math.random() - 0.48) * 1500; // Scaled for larger balance
                 totalValue += change;
                 if (totalValueEl) {
                     totalValueEl.textContent = `$ ${totalValue.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;

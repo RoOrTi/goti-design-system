@@ -61,6 +61,49 @@
                 transform: translateY(0);
             }
         }
+
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px border rgba(255, 255, 255, 0.05);
+            padding: 8px 0;
+            white-space: nowrap;
+        }
+
+        .ticker {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 60s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 
@@ -68,7 +111,7 @@
     <div
         class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto border-x border-white/5 bg-background-dark">
         <!-- TopAppBar -->
-        <header class="flex items-center bg-background-dark p-4 pt-12 pb-4 border-b border-white/5">
+        <header class="flex items-center bg-background-dark p-4 pt-12 pb-4 border-b border-white/5 relative z-50">
             <div class="relative flex size-12 shrink-0 items-center justify-center">
                 <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
                     data-alt="Portrait of designer Rodrigo"
@@ -82,13 +125,42 @@
                     Timoniuk</h2>
                 <p class="text-[10px] text-white/40 uppercase tracking-widest font-sans">Soporte Financiero</p>
             </div>
-            <div class="flex w-12 items-center justify-end">
-                <button
+            <div class="relative items-center justify-end">
+                <button id="menuBtn"
                     class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-transparent text-white/60 hover:text-primary transition-colors">
                     <span class="material-symbols-outlined">more_vert</span>
                 </button>
+                <!-- Options Dropdown -->
+                <div id="optionsMenu"
+                    class="hidden absolute right-0 top-12 w-48 bg-surface-dark border border-white/10 rounded-2xl shadow-2xl py-2 animate-fade-in-up">
+                    <button
+                        class="w-full flex items-center gap-3 px-4 py-2 text-xs font-bold text-white/60 hover:text-primary hover:bg-white/5 transition-all">
+                        <span class="material-symbols-outlined text-sm">person</span> Ver Perfil
+                    </button>
+                    <button id="clearChatBtn"
+                        class="w-full flex items-center gap-3 px-4 py-2 text-xs font-bold text-white/60 hover:text-primary hover:bg-white/5 transition-all">
+                        <span class="material-symbols-outlined text-sm">delete_sweep</span> Limpiar Chat
+                    </button>
+                    <button
+                        class="w-full flex items-center gap-3 px-4 py-2 text-xs font-bold text-white/60 hover:text-primary hover:bg-white/5 transition-all">
+                        <span class="material-symbols-outlined text-sm">download</span> Exportar
+                    </button>
+                    <div class="h-px bg-white/5 my-1 mx-4"></div>
+                    <button
+                        class="w-full flex items-center gap-3 px-4 py-2 text-xs font-bold text-red-500/60 hover:text-red-500 hover:bg-red-500/5 transition-all">
+                        <span class="material-symbols-outlined text-sm">block</span> Bloquear
+                    </button>
+                </div>
             </div>
         </header>
+
+        <!-- Market Ticker -->
+        <div class="ticker-wrap bg-black/60 backdrop-blur-md border-b border-white/5">
+            <div id="ticker" class="ticker">
+                <!-- Dynamically populated from script -->
+            </div>
+        </div>
+
         <!-- Chat Area -->
         <div id="chatArea" class="flex-1 overflow-y-auto p-4 space-y-4 hide-scrollbar">
             <!-- Section Header -->
@@ -97,7 +169,7 @@
                 </h4>
             </div>
             <!-- Message: Bot -->
-            <div class="flex items-end gap-3">
+            <div class="flex items-end gap-3 mb-4">
                 <div class="bg-primary/20 rounded-full w-8 h-8 flex items-center justify-center shrink-0">
                     <span class="material-symbols-outlined text-primary text-sm">support_agent</span>
                 </div>
@@ -109,9 +181,28 @@
                 </div>
             </div>
         </div>
+
         <!-- Input Area -->
-        <div class="p-4 bg-background-dark border-t border-white/5 pb-10">
-            <div class="flex items-center gap-3 bg-surface-dark/50 p-2 rounded-2xl border border-white/5">
+        <div class="bg-background-dark border-t border-white/5 pb-10">
+            <!-- Suggested Questions -->
+            <div class="flex gap-2 p-4 overflow-x-auto no-scrollbar scroll-smooth">
+                <button
+                    class="suggestion-chip shrink-0 px-4 py-2 border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/10 rounded-full text-[10px] font-bold text-white/60 transition-all uppercase tracking-wider"
+                    onclick="useSuggestion('¿Cómo estuvo el mercado hoy?')">
+                    Mercado hoy
+                </button>
+                <button
+                    class="suggestion-chip shrink-0 px-4 py-2 border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/10 rounded-full text-[10px] font-bold text-white/60 transition-all uppercase tracking-wider"
+                    onclick="useSuggestion('¿Qué pronóstico tienes para mañana para el SPY o NASDAQ?')">
+                    Pronóstico SPY/NASDAQ
+                </button>
+                <button
+                    class="suggestion-chip shrink-0 px-4 py-2 border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/10 rounded-full text-[10px] font-bold text-white/60 transition-all uppercase tracking-wider"
+                    onclick="useSuggestion('¿Cuál es el precio de NVDA hoy y cuál es tu predicción para mañana?')">
+                    NVDA Hoy/Mañana
+                </button>
+            </div>
+            <div class="mx-4 flex items-center gap-3 bg-surface-dark/50 p-2 rounded-2xl border border-white/5">
                 <button class="flex items-center justify-center text-primary ml-2">
                     <span class="material-symbols-outlined">add</span>
                 </button>
@@ -128,30 +219,73 @@
 
     <script src="../../goti_core.js"></script>
     <script>
+        const MARKET_DATA = {
+            SPY: { label: "SPY", val: "584.20", change: "+0.42%", color: "text-primary" },
+            NASDAQ: { label: "NASDAQ", val: "19,120", change: "+0.65%", color: "text-primary" },
+            BTC: { label: "BTC", val: "104,150", change: "-1.20%", color: "text-red-500" },
+            DLR_OFICIAL: { label: "DLR OFICIAL", val: "1,390.00", change: "0.00%", color: "text-white" },
+            CCL: { label: "CCL", val: "1,348.50", change: "+0.30%", color: "text-primary" },
+            MERVAL: { label: "MERVAL", val: "1,958,120", change: "+4.15%", color: "text-primary" },
+            YPFD: { label: "YPFD", val: "28,450", change: "+3.40%", color: "text-primary" },
+            GGAL: { label: "GGAL", val: "5,840", change: "+1.80%", color: "text-primary" },
+            ALUA: { label: "ALUA", val: "980", change: "-0.50%", color: "text-red-400" }
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             const input = document.getElementById('messageInput');
             const sendBtn = document.getElementById('sendBtn');
             const chatArea = document.getElementById('chatArea');
+            const menuBtn = document.getElementById('menuBtn');
+            const optionsMenu = document.getElementById('optionsMenu');
+            const clearChatBtn = document.getElementById('clearChatBtn');
+            const tickerContainer = document.getElementById('ticker');
+
+            // --- Ticker Initialization ---
+            function initTicker() {
+                if (!tickerContainer) return;
+                let tickerHtml = "";
+                Object.values(MARKET_DATA).forEach(item => {
+                    tickerHtml += `<span class="ticker-item text-white/40">${item.label} <span class="${item.color}">${item.val} (${item.change})</span></span>`;
+                });
+                tickerContainer.innerHTML = tickerHtml + tickerHtml;
+            }
+            initTicker();
+
+            // --- Menu Logic ---
+            if (menuBtn && optionsMenu) {
+                menuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    optionsMenu.classList.toggle('hidden');
+                });
+                document.addEventListener('click', () => optionsMenu.classList.add('hidden'));
+            }
+
+            if (clearChatBtn) {
+                clearChatBtn.addEventListener('click', () => {
+                    chatArea.innerHTML = `<div class="py-2 text-center text-white/20 text-[10px] uppercase font-bold">Sesión Reiniciada</div>`;
+                    optionsMenu.classList.add('hidden');
+                });
+            }
+
+            // --- Chat Logic ---
+            window.useSuggestion = (text) => {
+                input.value = text;
+                input.focus();
+            };
 
             function addMessage(text, isUser = true) {
                 const wrapper = document.createElement('div');
                 wrapper.className = `flex ${isUser ? 'justify-end' : 'justify-start'} w-full animate-fade-in-up`;
-
                 const html = isUser ? `
-                <div class="max-w-[85%] rounded-2xl px-4 py-3 bg-primary text-background-dark font-bold text-sm shadow-lg shadow-primary/10">
-                    ${text}
-                </div>
-            ` : `
-                <div class="flex items-end gap-3">
-                    <div class="bg-primary/20 rounded-full w-8 h-8 flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-primary text-sm">support_agent</span>
+                    <div class="max-w-[85%] rounded-2xl px-4 py-3 bg-primary text-background-dark font-bold text-sm shadow-lg shadow-primary/10 mb-2">${text}</div>
+                ` : `
+                    <div class="flex items-end gap-3 mb-4">
+                        <div class="bg-primary/20 rounded-full w-8 h-8 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-primary text-sm">support_agent</span>
+                        </div>
+                        <div class="text-sm font-normal leading-relaxed max-w-[85%] rounded-2xl px-4 py-3 bg-surface-dark border border-white/5 text-white/90">${text}</div>
                     </div>
-                    <div class="text-sm font-normal leading-relaxed max-w-[85%] rounded-2xl px-4 py-3 bg-surface-dark border border-white/5 text-white/90">
-                        ${text}
-                    </div>
-                </div>
-            `;
-
+                `;
                 wrapper.innerHTML = html;
                 chatArea.appendChild(wrapper);
                 chatArea.scrollTop = chatArea.scrollHeight;
@@ -159,28 +293,34 @@
 
             function handleSend() {
                 const text = input.value.trim();
-                if (text) {
-                    addMessage(text, true);
-                    input.value = '';
+                if (!text) return;
+                addMessage(text, true);
+                input.value = '';
 
-                    // Simulated support delay
-                    setTimeout(() => {
-                        const responses = [
-                            "Entendido. Estoy revisando el estado del mercado local por ti.",
-                            "Esa operación requiere una validación adicional. ¿Deseas proceder?",
-                            "He registrado tu consulta. Un asesor de cuenta se pondrá en contacto pronto.",
-                            "Excelente elección. Los CEDEARs que mencionas están teniendo un volumen alto hoy."
-                        ];
-                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                        addMessage(randomResponse, false);
-                    }, 1500);
-                }
+                setTimeout(() => {
+                    let response = "";
+                    const lowerText = text.toLowerCase();
+
+                    if (lowerText.includes('mercado hoy')) {
+                        response = `Resumen Sincronizado:
+• Global: ${MARKET_DATA.SPY.label} @ ${MARKET_DATA.SPY.val} (${MARKET_DATA.SPY.change}) | ${MARKET_DATA.NASDAQ.label} @ ${MARKET_DATA.NASDAQ.val}
+• Argentina: DOLAR $${MARKET_DATA.DLR_OFICIAL.val} | CCL $${MARKET_DATA.CCL.val} | MERVAL ${MARKET_DATA.MERVAL.val} (${MARKET_DATA.MERVAL.change})
+• BTC: ${MARKET_DATA.BTC.val} (${MARKET_DATA.BTC.change})`;
+                    } else if (lowerText.includes('spy') || lowerText.includes('nasdaq')) {
+                        response = `El ${MARKET_DATA.SPY.label} se mantiene sólido en ${MARKET_DATA.SPY.val}. Variación: ${MARKET_DATA.SPY.change}.`;
+                    } else if (lowerText.includes('merval')) {
+                        response = `El MERVAL marca tendencia con su alza del ${MARKET_DATA.MERVAL.change}, alcanzando los ${MARKET_DATA.MERVAL.val} puntos.`;
+                    } else if (lowerText.includes('ccl') || lowerText.includes('dolar')) {
+                        response = `Referencia cambiaria: Dólar Oficial $${MARKET_DATA.DLR_OFICIAL.val} y CCL $${MARKET_DATA.CCL.val}.`;
+                    } else {
+                        response = "¿Deseas analizar algún otro valor de la marquesina superior?";
+                    }
+                    addMessage(response, false);
+                }, 1000);
             }
 
             sendBtn.addEventListener('click', handleSend);
-            input.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleSend();
-            });
+            input.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
         });
     </script>
 </body>

@@ -43,7 +43,36 @@
             background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard-container {
+            width: 100%;
+            height: 100vh;
+            overflow: auto;
+            padding: 2rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        /* Better Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #13ec5b44;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #13ec5b88;
         }
 
         /* Clock Animation */
@@ -215,344 +244,409 @@
     </style>
 </head>
 
-<body class="flex items-center justify-center p-8 overflow-hidden">
-    <div class="max-w-6xl w-full grid grid-cols-12 gap-8 items-start">
+<body class="bg-background">
+    <div class="dashboard-container">
+        <div class="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
-        <!-- Left Section: Clock and Calendar -->
-        <div class="col-span-12 md:col-span-8 flex flex-col gap-8">
-
-            <div class="flex flex-wrap gap-12 items-center justify-center md:items-start md:justify-start">
-
-                <!-- Analog Clock -->
-                <div class="relative w-[280px] h-[280px] flex items-center justify-center">
-                    <!-- Glow Rings -->
+            <!-- Column 1: Clock & Volume -->
+            <div
+                class="neo-glass rounded-[40px] p-6 flex flex-col items-center justify-center gap-6 h-full min-h-[440px]">
+                <div class="relative w-[220px] h-[220px] flex items-center justify-center shrink-0">
                     <div class="ring w-full h-full"></div>
                     <div class="ring w-4/5 h-4/5" style="animation-delay: 1s;"></div>
-
-                    <!-- Analog Marks -->
                     <div class="relative w-full h-full font-display">
                         <span
-                            class="absolute top-2 left-1/2 -translate-x-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">12</span>
+                            class="absolute top-1 left-1/2 -translate-x-1/2 text-xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">12</span>
                         <span
-                            class="absolute right-4 top-1/2 -translate-y-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">3</span>
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">3</span>
                         <span
-                            class="absolute bottom-2 left-1/2 -translate-x-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">6</span>
+                            class="absolute bottom-1 left-1/2 -translate-x-1/2 text-xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">6</span>
                         <span
-                            class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">9</span>
-
-                        <!-- Clock Center -->
+                            class="absolute left-3 top-1/2 -translate-y-1/2 text-xl font-black text-primary drop-shadow-[0_0_8px_#13ec5b]">9</span>
                         <div class="clock-center">
                             <div class="size-3 bg-white rounded-full z-50"></div>
                         </div>
-
-                        <!-- Needles -->
                         <div id="h-needle" class="needle hour"></div>
                         <div id="m-needle" class="needle minute"></div>
                         <div id="s-needle" class="needle second"></div>
-
-                        <!-- Digital Clock Overlay -->
-                        <div class="absolute inset-0 flex items-center justify-center pt-24">
-                            <div class="bg-black/80 border border-white/10 px-4 py-1 rounded-lg backdrop-blur-md">
+                        <div class="absolute inset-0 flex items-center justify-center pt-20">
+                            <div class="bg-black/80 border border-white/10 px-3 py-1 rounded-lg backdrop-blur-md">
                                 <span id="digital-time"
-                                    class="font-mono text-xl font-bold tracking-widest text-white">05:02:39</span>
-                                <div class="text-[8px] text-center text-white/40 uppercase font-black tracking-widest">
-                                    mar, 17 feb</div>
+                                    class="font-mono text-lg font-bold tracking-widest text-white">00:00:00</span>
+                                <div class="text-[7px] text-center text-white/40 uppercase font-black tracking-widest"
+                                    id="clock-date">---</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Vertical Slider -->
-                <div class="v-slider" id="volume-control">
+                <!-- Volume Control -->
+                <div class="v-slider shrink-0 scale-75 -mt-4" id="volume-control">
                     <div class="slider-track" id="slider-track">
                         <div class="slider-fill" id="slider-fill"></div>
                     </div>
-                    <div class="text-primary mt-2 cursor-pointer" id="mute-btn">
-                        <span class="material-symbols-outlined" id="volume-icon">volume_up</span>
-                    </div>
-                </div>
-
-                <!-- Calendar Card -->
-                <div class="neo-glass p-6 rounded-[32px] w-[300px]">
-                    <div class="flex items-center justify-between mb-6 px-2">
-                        <button
-                            class="material-symbols-outlined opacity-40 hover:opacity-100 transition-opacity">chevron_left</button>
-                        <h3 class="font-display font-black text-sm uppercase tracking-widest">Febrero de 2026</h3>
-                        <button
-                            class="material-symbols-outlined opacity-40 hover:opacity-100 transition-opacity">chevron_right</button>
-                    </div>
-
-                    <div
-                        class="grid grid-cols-7 gap-y-3 gap-x-1 text-center font-black text-[9px] uppercase tracking-widest text-white/20 mb-4">
-                        <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
-                    </div>
-
-                    <div class="grid grid-cols-7 gap-1">
-                        <!-- Muted Days -->
-                        <span class="calendar-day muted">26</span>
-                        <span class="calendar-day muted">27</span>
-                        <span class="calendar-day muted">28</span>
-                        <span class="calendar-day muted">29</span>
-                        <span class="calendar-day muted">30</span>
-                        <span class="calendar-day muted">31</span>
-                        <!-- Actual Days -->
-                        <span class="calendar-day">1</span>
-                        <span class="calendar-day">2</span>
-                        <span class="calendar-day">3</span>
-                        <span class="calendar-day">4</span>
-                        <span class="calendar-day">5</span>
-                        <span class="calendar-day">6</span>
-                        <span class="calendar-day">7</span>
-                        <span class="calendar-day">8</span>
-                        <span class="calendar-day">9</span>
-                        <span class="calendar-day">10</span>
-                        <span class="calendar-day">11</span>
-                        <span class="calendar-day">12</span>
-                        <span class="calendar-day">13</span>
-                        <span class="calendar-day">14</span>
-                        <span class="calendar-day">15</span>
-                        <span class="calendar-day">16</span>
-                        <span class="calendar-day active">17</span>
-                        <span class="calendar-day">18</span>
-                        <span class="calendar-day">19</span>
-                        <span class="calendar-day">20</span>
-                        <span class="calendar-day">21</span>
-                        <span class="calendar-day">22</span>
-                        <span class="calendar-day">23</span>
-                        <span class="calendar-day">24</span>
-                        <span class="calendar-day">25</span>
-                        <span class="calendar-day">26</span>
-                        <span class="calendar-day">27</span>
-                        <span class="calendar-day">28</span>
-                        <span class="calendar-day muted">1</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Right Section: Events and Alarms Form -->
-        <div class="col-span-12 md:col-span-4">
-            <div class="neo-glass p-8 rounded-[40px] border-white/10 flex flex-col h-full max-h-[600px]">
-                <h2 class="font-display font-black text-2xl mb-6">Eventos y Alarmas</h2>
-
-                <!-- Display Area for Active Alarms -->
-                <div id="alarms-list" class="flex-1 overflow-y-auto no-scrollbar mb-6 pr-2">
-                    <!-- Default Alarms will be injected here -->
-                </div>
-
-                <form id="alarm-form" class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label
-                                class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Fecha</label>
-                            <input type="date" id="event-date"
-                                class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors text-white">
-                        </div>
-                        <div>
-                            <label
-                                class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Hora</label>
-                            <input type="time" id="event-time"
-                                class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors text-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Título
-                            / Descripción</label>
-                        <input type="text" id="event-desc" placeholder="Apertura Market"
-                            class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors">
-                    </div>
-
-                    <button type="submit"
-                        class="w-full bg-primary hover:bg-[#10d650] text-background-dark font-black rounded-xl py-3 transition-all active:scale-[0.98] shadow-lg shadow-primary/20 uppercase tracking-widest text-[10px]">
-                        Guardar Alarma
-                    </button>
-                </form>
-
-                <!-- Hidden Audio Element -->
-                <audio id="alarm-audio" preload="auto">
-                    <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"
-                        type="audio/mpeg">
-                </audio>
-
-                <!-- Spotify Contextual Menu -->
-                <div class="mt-4 pt-4 border-t border-white/5">
-                    <p class="text-[8px] uppercase font-black tracking-widest text-white/20 mb-2">Spotify Integration
-                    </p>
-                    <div class="bg-black/30 p-2 rounded-xl border border-white/5 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-sm">music_note</span>
-                            <span class="text-[9px] font-bold">GOTI Playlist Active</span>
-                        </div>
-                        <button
-                            onclick="window.open('https://open.spotify.com/playlist/37i9dQZF1DXcBWIGvYBM31', '_blank')"
-                            class="text-[8px] font-black uppercase tracking-widest text-primary border border-primary/30 px-2 py-1 rounded-lg">Abrir</button>
+                    <div class="text-primary mt-1 cursor-pointer" id="mute-btn">
+                        <span class="material-symbols-outlined" id="volume-icon"
+                            style="font-size: 18px;">volume_up</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Column 2: Calendar -->
+            <div class="neo-glass p-6 rounded-[40px] h-full min-h-[440px] flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-4 px-2">
+                    <button
+                        class="material-symbols-outlined opacity-40 hover:opacity-100 transition-opacity">chevron_left</button>
+                    <h3 class="font-display font-black text-xs uppercase tracking-widest">Febrero de 2026</h3>
+                    <button
+                        class="material-symbols-outlined opacity-40 hover:opacity-100 transition-opacity">chevron_right</button>
+                </div>
+                <div
+                    class="grid grid-cols-7 gap-y-2 gap-x-1 text-center font-black text-[8px] uppercase tracking-widest text-white/20 mb-3">
+                    <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                </div>
+                <div class="grid grid-cols-7 gap-1">
+                    <span class="calendar-day muted">26</span><span class="calendar-day muted">27</span><span
+                        class="calendar-day muted">28</span><span class="calendar-day muted">29</span><span
+                        class="calendar-day muted">30</span><span class="calendar-day muted">31</span>
+                    <span class="calendar-day">1</span><span class="calendar-day">2</span><span
+                        class="calendar-day">3</span><span class="calendar-day">4</span><span
+                        class="calendar-day">5</span><span class="calendar-day">6</span><span
+                        class="calendar-day">7</span><span class="calendar-day">8</span><span
+                        class="calendar-day">9</span><span class="calendar-day">10</span><span
+                        class="calendar-day">11</span><span class="calendar-day">12</span><span
+                        class="calendar-day">13</span><span class="calendar-day">14</span><span
+                        class="calendar-day">15</span><span class="calendar-day">16</span><span
+                        class="calendar-day active">17</span><span class="calendar-day">18</span><span
+                        class="calendar-day">19</span><span class="calendar-day">20</span><span
+                        class="calendar-day">21</span><span class="calendar-day">22</span><span
+                        class="calendar-day">23</span><span class="calendar-day">24</span><span
+                        class="calendar-day">25</span><span class="calendar-day">26</span><span
+                        class="calendar-day">27</span><span class="calendar-day">28</span><span
+                        class="calendar-day muted">1</span>
+                </div>
+            </div>
+
+            <!-- Column 3: Alarms & Form -->
+            <div class="lg:col-span-1 h-full h-full min-h-[440px]">
+                <div class="neo-glass p-8 rounded-[40px] border-white/10 flex flex-col h-full max-h-[600px]">
+                    <h2 class="font-display font-black text-2xl mb-6">Eventos y Alarmas</h2>
+
+                    <!-- Display Area for Active Alarms -->
+                    <div id="alarms-list" class="flex-1 overflow-y-auto no-scrollbar mb-6 pr-2">
+                        <!-- Default Alarms will be injected here -->
+                    </div>
+
+                    <form id="alarm-form" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Fecha</label>
+                                <input type="date" id="event-date"
+                                    class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors text-white">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Hora</label>
+                                <input type="time" id="event-time"
+                                    class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors text-white">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                class="block text-[8px] uppercase font-black tracking-widest text-primary/60 mb-1">Título
+                                / Descripción</label>
+                            <input type="text" id="event-desc" placeholder="Apertura Market"
+                                class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs focus:border-primary focus:outline-none transition-colors">
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-[#10d650] text-background-dark font-black rounded-xl py-3 transition-all active:scale-[0.98] shadow-lg shadow-primary/20 uppercase tracking-widest text-[10px]">
+                            Guardar Alarma
+                        </button>
+                    </form>
+
+                    <!-- Hidden Audio Element -->
+                    <audio id="alarm-audio" preload="auto">
+                        <source
+                            src="file:///C:/Users/timon/Videos/VidMate/Gianna Nannini & Edoardo Bennato - Un'estate italiana (traducido).mp3"
+                            type="audio/mpeg">
+                    </audio>
+
+                    <div class="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
+                        <div>
+                            <p class="text-[8px] uppercase font-black tracking-widest text-white/20">System Check</p>
+                            <p id="audio-status" class="text-[7px] font-bold text-white/40 uppercase">Status: Wait Input
+                            </p>
+                        </div>
+                        <button id="test-sound-btn"
+                            class="text-[8px] font-black uppercase tracking-widest text-primary border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/10 transition-colors">Test
+                            Sound</button>
+                    </div>
+
+                    <!-- Spotify Contextual Menu -->
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <p class="text-[8px] uppercase font-black tracking-widest text-white/20 mb-2">Spotify
+                            Integration
+                        </p>
+                        <div class="bg-black/30 p-3 rounded-xl border border-white/5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="size-6 rounded-full bg-primary/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary text-[14px]">music_note</span>
+                                </div>
+                                <span class="text-[9px] font-bold">GOTI Playlist Active</span>
+                            </div>
+                            <button
+                                onclick="window.open('https://open.spotify.com/playlist/37i9dQZF1DXcBWIGvYBM31', '_blank')"
+                                class="text-[8px] font-black uppercase tracking-widest text-primary border border-primary/30 px-3 py-1.5 rounded-lg hover:bg-primary/20 transition-all">Abrir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    </div>
+        <!-- Core System Logic -->
+        <script>
+            // --- State Management ---
+            let currentVolume = 0.8;
+            let isMuted = false;
+            let lastTriggeredMinute = "";
+            let editingId = null;
+            let audioUnlocked = false;
+            let alarms = [
+                { id: 1, time: '11:00', desc: 'Apertura Mercado USA', enabled: true, type: 'market' },
+                { id: 2, time: '18:00', desc: 'Cierre Mercado USA', enabled: true, type: 'market' },
+                { id: 3, time: '22:06', desc: 'P01 - Test Alarma Audio', enabled: true, type: 'custom' }
+            ];
 
-    <!-- Core System Logic -->
-    <script>
-        // --- State Management ---
-        let currentVolume = 0.6;
-        let isMuted = false;
-        let alarms = [
-            { id: 1, time: '11:00', desc: 'Apertura Mercado USA', enabled: true, type: 'market' },
-            { id: 2, time: '18:00', desc: 'Cierre Mercado USA', enabled: true, type: 'market' }
-        ];
+            // --- Clock Logic ---
+            function updateClock() {
+                const now = new Date();
+                const h = now.getHours();
+                const m = now.getMinutes();
+                const s = now.getSeconds();
 
-        // --- Clock Logic ---
-        function updateClock() {
-            const now = new Date();
-            const h = now.getHours();
-            const m = now.getMinutes();
-            const s = now.getSeconds();
+                const hourStr = h.toString().padStart(2, '0');
+                const minStr = m.toString().padStart(2, '0');
+                const minuteKey = `${hourStr}:${minStr}`;
+                const timeStr = `${hourStr}:${minStr}:${s.toString().padStart(2, '0')}`;
 
-            const hDeg = (h % 12) * 30 + m * 0.5;
-            const mDeg = m * 6;
-            const sDeg = s * 6;
+                const hDeg = (h % 12) * 30 + m * 0.5;
+                const mDeg = m * 6;
+                const sDeg = s * 6;
 
-            document.getElementById('h-needle').style.transform = `translate(-50%, 0) rotate(${hDeg}deg)`;
-            document.getElementById('m-needle').style.transform = `translate(-50%, 0) rotate(${mDeg}deg)`;
-            document.getElementById('s-needle').style.transform = `translate(-50%, 0) rotate(${sDeg}deg)`;
+                document.getElementById('h-needle').style.transform = `translate(-50%, 0) rotate(${hDeg}deg)`;
+                document.getElementById('m-needle').style.transform = `translate(-50%, 0) rotate(${mDeg}deg)`;
+                document.getElementById('s-needle').style.transform = `translate(-50%, 0) rotate(${sDeg}deg)`;
 
-            const timeString = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-            document.getElementById('digital-time').textContent = timeString;
+                document.getElementById('digital-time').textContent = timeStr;
 
-            checkAlarms(h, m, s);
-        }
+                // Date update
+                const days = ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab'];
+                const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+                const dateEl = document.getElementById('clock-date');
+                if (dateEl) dateEl.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
 
-        // --- Alarm System Logic ---
-        function checkAlarms(h, m, s) {
-            const currentTimeStr = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
-
-            alarms.forEach(alarm => {
-                if (alarm.enabled && alarm.time === currentTimeStr && s === 0) {
-                    triggerAlarm(alarm);
+                // Check Alarms reliably
+                if (lastTriggeredMinute !== minuteKey) {
+                    checkAlarms(minuteKey);
                 }
-            });
-        }
+            }
 
-        function triggerAlarm(alarm) {
-            console.log("Triggering alarm:", alarm.desc);
-            const audio = document.getElementById('alarm-audio');
-            audio.volume = isMuted ? 0 : currentVolume;
-            audio.play();
+            function checkAlarms(minuteKey) {
+                alarms.forEach(alarm => {
+                    if (alarm.enabled && alarm.time === minuteKey) {
+                        triggerAlarm(alarm);
+                        lastTriggeredMinute = minuteKey;
+                    }
+                });
+            }
 
-            // Visual feedback
-            const alarmList = document.getElementById('alarms-list');
-            const items = alarmList.querySelectorAll('.alarm-item');
-            items.forEach(item => {
-                if (item.dataset.time === alarm.time) {
+            function triggerAlarm(alarm) {
+                console.log("ALARM TRIGGERED:", alarm.time, alarm.desc);
+                const audio = document.getElementById('alarm-audio');
+                const statusEl = document.getElementById('audio-status');
+
+                if (audio) {
+                    audio.volume = isMuted ? 0 : currentVolume;
+                    audio.currentTime = 0;
+                    audio.play()
+                        .then(() => {
+                            if (statusEl) statusEl.textContent = "Status: Playing";
+                        })
+                        .catch(e => {
+                            console.error("Audio error:", e);
+                            if (statusEl) {
+                                statusEl.textContent = "Status: Blocked/Error";
+                                statusEl.classList.add('text-red-500');
+                            }
+                            // Show a non-intrusive alert if audio fails
+                            const msg = document.createElement('div');
+                            msg.className = "fixed top-8 right-8 bg-red-500 text-white p-4 rounded-2xl z-[100] animate-bounce font-black text-xs uppercase";
+                            msg.textContent = "⚠️ Alarma: " + alarm.desc + " (Audio Bloqueado)";
+                            document.body.appendChild(msg);
+                            setTimeout(() => msg.remove(), 10000);
+                        });
+                }
+
+                // Visual feedback
+                const items = document.querySelectorAll(`[data-time="${alarm.time}"]`);
+                items.forEach(item => {
                     item.classList.add('alarm-triggered');
                     setTimeout(() => item.classList.remove('alarm-triggered'), 30000);
-                }
-            });
-        }
+                });
+            }
 
-        function renderAlarms() {
-            const list = document.getElementById('alarms-list');
-            list.innerHTML = alarms.map(alarm => `
-                <div class="alarm-item group" data-time="${alarm.time}">
+            function renderAlarms() {
+                const list = document.getElementById('alarms-list');
+                if (!list) return;
+                list.innerHTML = alarms.sort((a, b) => a.time.localeCompare(b.time)).map(alarm => `
+                <div class="alarm-item group ${!alarm.enabled ? 'opacity-50' : ''}" data-time="${alarm.time}">
                     <div class="flex items-center gap-3">
-                        <div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-colors">
+                        <div class="size-8 rounded-lg ${alarm.enabled ? 'bg-primary/20 text-primary' : 'bg-white/10 text-white/40'} flex items-center justify-center transition-all group-hover:scale-110">
                             <span class="material-symbols-outlined text-[18px]">${alarm.type === 'market' ? 'trending_up' : 'alarm'}</span>
                         </div>
                         <div>
-                            <p class="text-xs font-black">${alarm.time} HS</p>
-                            <p class="text-[9px] text-white/40 font-bold uppercase">${alarm.desc}</p>
+                            <p class="text-xs font-black tracking-tight">${alarm.time} HS</p>
+                            <p class="text-[9px] text-white/30 font-bold uppercase truncate max-w-[120px]">${alarm.desc}</p>
                         </div>
                     </div>
-                    <button onclick="toggleAlarm(${alarm.id})" class="${alarm.enabled ? 'text-primary' : 'text-white/20'} transition-colors">
-                        <span class="material-symbols-outlined text-[20px]">${alarm.enabled ? 'notifications_active' : 'notifications_off'}</span>
-                    </button>
+                    <div class="flex items-center gap-1">
+                        <button onclick="editAlarm(${alarm.id})" class="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-[18px]">edit</span>
+                        </button>
+                        <button onclick="toggleAlarm(${alarm.id})" class="p-1.5 rounded-lg hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-[20px] ${alarm.enabled ? 'text-primary' : 'text-white/20'}">${alarm.enabled ? 'notifications_active' : 'notifications_off'}</span>
+                        </button>
+                    </div>
                 </div>
             `).join('');
-        }
-
-        window.toggleAlarm = (id) => {
-            const alarm = alarms.find(a => a.id === id);
-            if (alarm) alarm.enabled = !alarm.enabled;
-            renderAlarms();
-        };
-
-        // --- Volume Bar Interactivity ---
-        const sliderTrack = document.getElementById('slider-track');
-        const sliderFill = document.getElementById('slider-fill');
-        const volIcon = document.getElementById('volume-icon');
-        const muteBtn = document.getElementById('mute-btn');
-
-        function updateVolume(e) {
-            const rect = sliderTrack.getBoundingClientRect();
-            const height = rect.height;
-            const y = e.clientY - rect.top;
-            let percent = 1 - (y / height);
-            percent = Math.max(0, Math.min(1, percent));
-
-            currentVolume = percent;
-            sliderFill.style.height = `${percent * 100}%`;
-
-            if (percent === 0) {
-                volIcon.textContent = 'volume_off';
-            } else if (percent < 0.5) {
-                volIcon.textContent = 'volume_down';
-            } else {
-                volIcon.textContent = 'volume_up';
             }
 
-            const audio = document.getElementById('alarm-audio');
-            audio.volume = currentVolume;
-        }
-
-        sliderTrack.addEventListener('mousedown', (e) => {
-            updateVolume(e);
-            function onMouseMove(moveEvent) {
-                updateVolume(moveEvent);
-            }
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', () => {
-                document.removeEventListener('mousemove', onMouseMove);
-            }, { once: true });
-        });
-
-        muteBtn.addEventListener('click', () => {
-            isMuted = !isMuted;
-            volIcon.textContent = isMuted ? 'volume_off' : (currentVolume > 0.5 ? 'volume_up' : 'volume_down');
-            volIcon.classList.toggle('text-white/20', isMuted);
-            volIcon.classList.toggle('text-primary', !isMuted);
-        });
-
-        // --- Form Handling ---
-        const form = document.getElementById('alarm-form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const time = document.getElementById('event-time').value;
-            const desc = document.getElementById('event-desc').value;
-
-            if (time && desc) {
-                alarms.push({
-                    id: Date.now(),
-                    time: time,
-                    desc: desc,
-                    enabled: true,
-                    type: 'custom'
-                });
+            window.toggleAlarm = (id) => {
+                const alarm = alarms.find(a => a.id === id);
+                if (alarm) alarm.enabled = !alarm.enabled;
                 renderAlarms();
-                form.reset();
+            };
+
+            window.editAlarm = (id) => {
+                const alarm = alarms.find(a => a.id === id);
+                if (!alarm) return;
+
+                editingId = id;
+                document.getElementById('event-time').value = alarm.time;
+                document.getElementById('event-desc').value = alarm.desc;
+
+                const submitBtn = document.querySelector('#alarm-form button[type="submit"]');
+                submitBtn.textContent = 'Actualizar Alarma';
+                submitBtn.classList.replace('bg-primary', 'bg-accent-blue');
+                submitBtn.classList.replace('shadow-primary/20', 'shadow-accent-blue/20');
+            };
+
+            function initInteractivity() {
+                const sliderTrack = document.getElementById('slider-track');
+                const sliderFill = document.getElementById('slider-fill');
+                const volIcon = document.getElementById('volume-icon');
+                const muteBtn = document.getElementById('mute-btn');
+                const testBtn = document.getElementById('test-sound-btn');
+
+                function updateVol(percent) {
+                    currentVolume = Math.max(0, Math.min(1, percent));
+                    sliderFill.style.height = `${currentVolume * 100}%`;
+
+                    if (currentVolume === 0) volIcon.textContent = 'volume_off';
+                    else if (currentVolume < 0.5) volIcon.textContent = 'volume_down';
+                    else volIcon.textContent = 'volume_up';
+
+                    const audio = document.getElementById('alarm-audio');
+                    if (audio) audio.volume = isMuted ? 0 : currentVolume;
+                }
+
+                sliderTrack.addEventListener('mousedown', (e) => {
+                    const handleMove = (ev) => {
+                        const rect = sliderTrack.getBoundingClientRect();
+                        updateVol(1 - (ev.clientY - rect.top) / rect.height);
+                    };
+                    handleMove(e);
+                    document.addEventListener('mousemove', handleMove);
+                    document.addEventListener('mouseup', () => document.removeEventListener('mousemove', handleMove), { once: true });
+                });
+
+                muteBtn.addEventListener('click', () => {
+                    isMuted = !isMuted;
+                    muteBtn.classList.toggle('text-white/20', isMuted);
+                    muteBtn.classList.toggle('text-primary', !isMuted);
+                    updateVol(currentVolume);
+                });
+
+                if (testBtn) {
+                    testBtn.addEventListener('click', () => {
+                        const audio = document.getElementById('alarm-audio');
+                        if (audio) {
+                            audio.volume = currentVolume;
+                            audio.play();
+                        }
+                    });
+                }
+
+                const form = document.getElementById('alarm-form');
+                if (form) {
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const t = document.getElementById('event-time').value;
+                        const d = document.getElementById('event-desc').value;
+
+                        if (t && d) {
+                            if (editingId) {
+                                // Update existing
+                                const index = alarms.findIndex(a => a.id === editingId);
+                                if (index !== -1) {
+                                    alarms[index].time = t;
+                                    alarms[index].desc = d;
+                                }
+                                editingId = null;
+                                const submitBtn = document.querySelector('#alarm-form button[type="submit"]');
+                                submitBtn.textContent = 'Guardar Alarma';
+                                submitBtn.classList.replace('bg-accent-blue', 'bg-primary');
+                                submitBtn.classList.replace('shadow-accent-blue/20', 'shadow-primary/20');
+                            } else {
+                                // Add new
+                                alarms.push({ id: Date.now(), time: t, desc: d, enabled: true, type: 'custom' });
+                            }
+                            renderAlarms();
+                            form.reset();
+                        }
+                    });
+                }
             }
-        });
 
-        // --- Initialize ---
-        setInterval(updateClock, 1000);
-        updateClock();
-        renderAlarms();
-        sliderFill.style.height = `${currentVolume * 100}%`;
+            document.addEventListener('DOMContentLoaded', () => {
+                initInteractivity();
+                renderAlarms();
+                setInterval(updateClock, 1000);
+                updateClock();
+                if (Notification.permission === "default") Notification.requestPermission();
 
-    </script>
+                // Unlock audio mechanism
+                const unlockAudio = () => {
+                    if (audioUnlocked) return;
+                    const audio = document.getElementById('alarm-audio');
+                    audio.play().then(() => {
+                        audio.pause();
+                        audio.currentTime = 0;
+                        audioUnlocked = true;
+                        const statusEl = document.getElementById('audio-status');
+                        if (statusEl) {
+                            statusEl.textContent = "Status: Ready";
+                            statusEl.classList.add('text-primary');
+                        }
+                    }).catch(e => console.log("Unlock waiting for real interaction"));
+                };
+
+                document.body.addEventListener('click', unlockAudio, { once: true });
+            });
+        </script>
 </body>
 
 </html>
