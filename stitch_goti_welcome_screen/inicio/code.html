@@ -325,9 +325,9 @@
             </div>
             <div class="flex justify-between items-end">
                 <div>
-                    <h4 class="text-lg font-bold leading-none mb-1">Riesgo GGAL Detectado</h4>
+                    <h4 class="text-lg font-bold leading-none mb-1">Volatilidad Detectada en Cartera</h4>
                     <p class="text-[11px] text-white/50 leading-relaxed max-w-[200px]">Alerta del sistema GOTI:
-                        Volatilidad diaria > 3%. Se recomienda cobertura en opciones.</p>
+                        Fluctuación diaria > 3% en activos monitoreados. Se recomienda revisión táctica.</p>
                 </div>
                 <div class="text-right">
                     <p class="text-2xl font-black text-danger">6.53%</p>
@@ -450,29 +450,7 @@
         </div>
     </section>
 
-    <!-- Market Segment Control -->
-    <section class="px-5 pb-4">
-        <div class="bg-gray-200 dark:bg-surface-dark p-1 rounded-xl flex relative">
-            <label class="flex-1 text-center cursor-pointer z-10">
-                <input checked="" class="peer sr-only" name="market" type="radio" value="local" />
-                <span
-                    class="block py-2 text-sm font-bold text-gray-500 peer-checked:text-background-dark dark:peer-checked:text-white transition-colors">Mercado
-                    Local</span>
-                <div
-                    class="absolute inset-y-1 left-1 w-[calc(50%-4px)] bg-white dark:bg-gray-600 rounded-lg shadow-sm transition-transform peer-checked:translate-x-0 -z-10 hidden peer-checked:block">
-                </div>
-            </label>
-            <label class="flex-1 text-center cursor-pointer z-10">
-                <input class="peer sr-only" name="market" type="radio" value="usa" />
-                <span
-                    class="block py-2 text-sm font-bold text-gray-500 peer-checked:text-background-dark dark:peer-checked:text-white transition-colors">Mercado
-                    USA</span>
-                <div
-                    class="absolute inset-y-1 right-1 w-[calc(50%-4px)] bg-white dark:bg-gray-600 rounded-lg shadow-sm transition-transform peer-checked:translate-x-0 -z-10 hidden peer-checked:block">
-                </div>
-            </label>
-        </div>
-    </section>
+
     <section id="market-local-section" class="flex flex-col gap-6 transition-opacity duration-300">
         <div class="flex items-center justify-between px-5">
             <div class="flex flex-col">
@@ -1340,104 +1318,6 @@
         </div>
     </section>
 
-    <section id="market-usa-section" class="flex flex-col gap-6 hidden transition-opacity duration-300">
-        <div class="flex items-center justify-between px-5">
-            <div class="flex flex-col">
-                <h3 class="text-3xl font-black tracking-tighter text-white">Mi Cartera</h3>
-                <p class="text-[10px] text-primary font-black uppercase tracking-[0.2em]">Mercado USA • CEDEARs</p>
-            </div>
-        </div>
-
-        <div class="portfolio-perspective portfolio-scroll px-5 flex flex-col gap-8">
-            <div class="flex flex-col gap-4">
-                <div class="category-glow">
-                    <h4 class="text-[12px] font-black text-white/50 uppercase tracking-widest">Gigantes Tech</h4>
-                </div>
-                <div class="flex flex-col gap-4">
-                    <!-- Asset: NVDA -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer"
-                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=NVDA'">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="size-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                                    <p class="font-black text-primary text-sm">NVDA</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-black text-xl text-white tracking-tight">NVIDIA Corp</h4>
-                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">NASDAQ</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 562.500</p>
-                                <p class="text-[11px] font-black text-danger">-$ 5.500 Rdo. (1D)</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
-                            <div>
-                                <p class="asset-label">Cant.</p>
-                                <p class="asset-value text-[11px]">50</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">PPC</p>
-                                <p class="asset-value text-[11px]">$ 11.202</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">Precio</p>
-                                <p class="asset-value text-[11px]">$ 11.250</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="asset-label">Rdo. Total</p>
-                                <p class="asset-value text-primary text-[11px]">+$ 2.400</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Asset: ORCL -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer"
-                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=ORCL'">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="size-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-                                    <p class="font-black text-red-400 text-sm">ORCL</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-black text-xl text-white tracking-tight">Oracle Corp</h4>
-                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">NYSE</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 1.510.000</p>
-                                <p class="text-[11px] font-black text-primary">+$ 1.000 Rdo. (1D)</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
-                            <div>
-                                <p class="asset-label">Cant.</p>
-                                <p class="asset-value text-[11px]">20</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">PPC</p>
-                                <p class="asset-value text-[11px]">$ 82.032</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">Precio</p>
-                                <p class="asset-value text-[11px]">$ 75.500</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="asset-label">Rdo. Total</p>
-                                <p class="asset-value text-danger text-[11px]">-$ 130K</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="h-6"></div>
-    </section>
-
     <!-- Bottom Navigation -->
     <nav
         class="fixed bottom-0 left-0 w-full bg-white dark:bg-background-dark/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 pb-safe pt-2 z-50">
@@ -1517,30 +1397,7 @@
                 });
             }
 
-            // Market Segment Logic
-            const radios = document.querySelectorAll('input[name="market"]');
-            const localSection = document.getElementById('market-local-section');
-            const usaSection = document.getElementById('market-usa-section');
-
-            function switchMarket(market) {
-                if (market === 'local') {
-                    localSection.classList.remove('hidden');
-                    usaSection.classList.add('hidden');
-                    localSection.classList.add('animate-in', 'fade-in', 'duration-500');
-                } else {
-                    localSection.classList.add('hidden');
-                    usaSection.classList.remove('hidden');
-                    usaSection.classList.add('animate-in', 'fade-in', 'duration-500');
-                }
-            }
-
-            radios.forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    switchMarket(e.target.value);
-                });
-            });
-            // Initial filter
-            switchMarket('local');
+            // Mostrar siempre la sección local (Mercado USA eliminado)
 
             // Real-time Clock & Greeting
             function updateClock() {
@@ -1792,9 +1649,15 @@
                 const dataValues = labels.map(l => distribution[l]);
                 const totalValue = dataValues.reduce((a, b) => a + b, 0);
 
-                // Update UI Header
+                // Update UI Header — total surge de la suma real de instrumentos
                 document.getElementById('donut-total-val').textContent = (totalValue / 1000000).toFixed(1) + 'M';
                 document.getElementById('donut-total-count').textContent = assetArticles.length;
+
+                // Actualizar el Patrimonio Neto con la suma real calculada
+                const patrimonioEl = document.getElementById('patrimony-value');
+                if (patrimonioEl) {
+                    patrimonioEl.textContent = `$ ${totalValue.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                }
 
                 // Legend Render
                 const legendContainer = document.getElementById('chart-legend');
