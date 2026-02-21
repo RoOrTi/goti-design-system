@@ -859,7 +859,7 @@
                     </article>
 
                     <!-- T15E7 -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer" data-asset-logic
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer mb-4" data-asset-logic
                         data-qty="1056414" data-ppc="1.19" data-price="1.21" data-bond-logic data-prev-price="1.2085"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=T15E7'">
                         <div class="flex justify-between items-start mb-6">
@@ -896,6 +896,58 @@
                                 <p class="asset-label">Rdo. Total</p>
                                 <p class="asset-value calc-result text-primary text-[11px]">+$ 0</p>
                             </div>
+                        </div>
+                    </article>
+
+                    <!-- TX26 (Bono CER) -->
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer" data-asset-logic data-qty="5000"
+                        data-ppc="1250" data-price="1480" data-cer-logic data-inflation="4.2" data-bcra-rate="3.5"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=TX26'">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="size-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                    <span class="material-symbols-outlined text-2xl">shield_with_heart</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-xl text-white tracking-tight">TX26</h4>
+                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">Bono CER + 2% • V.
+                                        2026</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl font-black text-white">$ 7.400.000</p>
+                                <div class="flex flex-col items-end">
+                                    <p class="text-[11px] font-black text-cyan-400 cer-status tracking-tight">AJUSTANDO
+                                        POR INFLACIÓN</p>
+                                    <p class="text-[9px] font-bold text-white/30 cer-comparison"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
+                            <div>
+                                <p class="asset-label">Cant.</p>
+                                <p class="asset-value text-[11px]">5.000</p>
+                            </div>
+                            <div>
+                                <p class="asset-label">PPC</p>
+                                <p class="asset-value text-[11px]">$ 1.250</p>
+                            </div>
+                            <div>
+                                <p class="asset-label">Precio</p>
+                                <p class="asset-value text-[11px]">$ 1.480</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="asset-label">Rdo. Total</p>
+                                <p class="asset-value calc-result text-primary text-[11px]">+$ 0</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="size-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                                <p class="text-[10px] font-black text-white/60">COEFICIENTE CER (INDEC)</p>
+                            </div>
+                            <p class="text-[10px] font-black text-cyan-400 cer-spread">ALPHA +0.7% vs Plazo Fijo</p>
                         </div>
                     </article>
                 </div>
@@ -1460,6 +1512,31 @@
                 });
             }
             calculatePnL();
+
+            // CER Adjustment Logic: Visual comparison against BCRA rates
+            function calculateCERLogic() {
+                const cerBlocks = document.querySelectorAll('[data-cer-logic]');
+                cerBlocks.forEach(block => {
+                    const inflation = parseFloat(block.dataset.inflation);
+                    const bcraRate = parseFloat(block.dataset.bcraRate);
+                    const spreadEl = block.querySelector('.cer-spread');
+                    const compEl = block.querySelector('.cer-comparison');
+
+                    if (inflation && bcraRate && spreadEl) {
+                        const alpha = inflation - bcraRate;
+                        const isBetter = alpha > 0;
+
+                        spreadEl.textContent = `ALPHA ${isBetter ? '+' : ''}${alpha.toFixed(1)}% vs Plazo Fijo`;
+                        spreadEl.classList.toggle('text-cyan-400', isBetter);
+                        spreadEl.classList.toggle('text-danger', !isBetter);
+
+                        if (compEl) {
+                            compEl.textContent = isBetter ? 'ESCUDO INFLACIONARIO ACTIVO' : 'TASA FIJA SUPERIOR';
+                        }
+                    }
+                });
+            }
+            calculateCERLogic();
 
             // Bond logic for specific TNA calculation based on price variation
             function calculateBondRates() {
