@@ -819,23 +819,32 @@
 
                 <div class="flex flex-col gap-4">
                     <!-- AL30 -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer" data-asset-logic data-qty="1941"
-                        data-ppc="93769.50" data-price="86695"
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer mb-4" data-asset-logic
+                        data-qty="1941" data-ppc="93769.50" data-price="86695" data-sovereign-logic
+                        data-prev-price="87500"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=AL30'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
                                 <div
                                     class="size-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                                    <span class="material-symbols-outlined text-2xl">description</span>
+                                    <span class="material-symbols-outlined text-2xl">public</span>
                                 </div>
                                 <div>
                                     <h4 class="font-black text-xl text-white tracking-tight">AL30</h4>
-                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">Argentina 2030</p>
+                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">Soberano USD • V.
+                                        2030</p>
                                 </div>
                             </div>
                             <div class="text-right">
                                 <p class="text-xl font-black text-white">$ 1.682.847</p>
-                                <p class="text-[11px] font-black text-danger">-$ 8.734 Rdo. (1D)</p>
+                                <div class="flex flex-col items-end">
+                                    <p class="text-[11px] font-black text-primary sov-yield">--% TNA (1D)</p>
+                                    <div class="flex items-center gap-1 mt-0.5">
+                                        <span class="size-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                                        <p class="text-[8px] font-black text-blue-400 tracking-widest">BLOOMBERG
+                                            TERMINAL</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -853,8 +862,16 @@
                             </div>
                             <div class="text-right">
                                 <p class="asset-label">Rdo. Total</p>
-                                <p class="asset-value text-danger text-[11px]">-$ 137K</p>
+                                <p class="asset-value calc-result text-danger text-[11px]">-$ 0</p>
                             </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[14px] text-white/40">water_drop</span>
+                                <p class="text-[10px] font-black text-white/50 tracking-tight">ALTA LIQUIDEZ /
+                                    PROFUNDIDAD</p>
+                            </div>
+                            <p class="text-[10px] font-black text-primary">FIX USD 8.5%</p>
                         </div>
                     </article>
 
@@ -1512,6 +1529,26 @@
                 });
             }
             calculatePnL();
+
+            // Sovereign logic for AL30 style bonds (Global, Liquidity, USD Yield)
+            function calculateSovereignLogic() {
+                const sovBlocks = document.querySelectorAll('[data-sovereign-logic]');
+                sovBlocks.forEach(block => {
+                    const price = parseFloat(block.dataset.price);
+                    const prevPrice = parseFloat(block.dataset.prevPrice);
+                    const yieldEl = block.querySelector('.sov-yield');
+
+                    if (price && prevPrice && yieldEl) {
+                        const tnaVar = ((price / prevPrice) - 1) * 365 * 100;
+                        const isPositive = tnaVar >= 0;
+
+                        yieldEl.textContent = `${isPositive ? '+' : ''}${tnaVar.toFixed(1)}% TNA (1D)`;
+                        yieldEl.classList.toggle('text-primary', isPositive);
+                        yieldEl.classList.toggle('text-danger', !isPositive);
+                    }
+                });
+            }
+            calculateSovereignLogic();
 
             // CER Adjustment Logic: Visual comparison against BCRA rates
             function calculateCERLogic() {
