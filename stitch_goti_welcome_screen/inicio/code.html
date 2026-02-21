@@ -150,6 +150,81 @@
             letter-spacing: -0.01em;
         }
 
+        /* === TRADER CARD GRID === */
+        .trade-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 3px;
+            border-radius: 12px;
+            padding: 10px 6px;
+        }
+
+        .trade-col-buy {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .trade-col-now {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trade-col-pos {
+            background: rgba(19, 236, 91, 0.10);
+            border: 1px solid rgba(19, 236, 91, 0.25);
+        }
+
+        .trade-col-neg {
+            background: rgba(255, 77, 77, 0.10);
+            border: 1px solid rgba(255, 77, 77, 0.25);
+        }
+
+        .trade-lbl {
+            font-size: 7px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.22);
+        }
+
+        .trade-price {
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .trade-sub {
+            font-size: 9px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.22);
+        }
+
+        .trade-tax-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 6px;
+            padding: 4px 2px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .trade-tax-lbl {
+            font-size: 7px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.18);
+        }
+
+        .trade-tax-val {
+            font-size: 9px;
+            font-weight: 900;
+            color: rgba(234, 179, 8, 0.65);
+        }
+
         .ai-glow {
             box-shadow: 0 0 30px rgba(19, 236, 91, 0.15);
         }
@@ -1411,18 +1486,24 @@
 
                 if (clockEl) clockEl.textContent = timeStr;
 
-                // Update market status based on time (simulated)
+                // Update market status — Mercado AR: Lun-Vie 10:00-18:00 hs
+                const dayOfWeek = now.getDay(); // 0=Dom, 6=Sab
+                const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
                 if (marketStatusEl) {
-                    if (hours >= 10 && hours < 18) {
+                    if (isWeekday && hours >= 10 && hours < 18) {
                         marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-primary animate-pulse"></span> MERCADO ABIERTO';
                         marketStatusEl.classList.remove('text-yellow-500', 'text-orange-500');
                         marketStatusEl.classList.add('text-primary');
-                    } else if (hours >= 18 && hours < 19) {
-                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-orange-500"></span> POS-MERCADO';
+                    } else if (isWeekday && hours >= 18 && hours < 19) {
+                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-orange-500"></span> CIERRE · POS-MARKET';
                         marketStatusEl.classList.remove('text-yellow-500', 'text-primary');
                         marketStatusEl.classList.add('text-orange-500');
+                    } else if (!isWeekday) {
+                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-white/20"></span> FIN DE SEMANA';
+                        marketStatusEl.classList.remove('text-primary', 'text-orange-500');
+                        marketStatusEl.classList.add('text-yellow-500');
                     } else {
-                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-yellow-500"></span> PRE-MARKET';
+                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-yellow-500 animate-pulse"></span> PRE-MARKET';
                         marketStatusEl.classList.remove('text-primary', 'text-orange-500');
                         marketStatusEl.classList.add('text-yellow-500');
                     }
@@ -1457,10 +1538,12 @@
             function updateMetrics() {
                 const now = new Date();
                 const hours = now.getHours();
+                const dow = now.getDay();
+                const mktOpen = dow >= 1 && dow <= 5 && hours >= 10 && hours < 18;
 
-                // Solo fluctuar el patrimonio durante horario de mercado (10:00 a 18:00)
-                if (hours >= 10 && hours < 18) {
-                    const change = (Math.random() - 0.48) * 1500; // Scaled for larger balance
+                // Solo fluctuar el patrimonio durante horario de mercado AR (L-V 10:00-18:00)
+                if (mktOpen) {
+                    const change = (Math.random() - 0.48) * 1500;
                     totalValue += change;
                     if (totalValueEl) {
                         totalValueEl.textContent = `$ ${totalValue.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -1474,35 +1557,101 @@
                 window.goti.applyGlowPulse('.ai-glow');
             }
 
-            // Calculation Logic for Gains/Losses
-            function calculatePnL() {
-                const assets = document.querySelectorAll('[data-asset-logic]');
-                assets.forEach(card => {
+            // === TRADER CARD DISPLAY (COMPRA | ACTUAL | RESULTADO + IMPUESTO) ===
+            function enhanceCardDisplay() {
+                const TAX = { CEDEARS: 0.0065, ACCIONES: 0.0045, BONOS: 0.0010, LETRAS: 0.0010, FCI: 0, FUTUROS: 0 };
+                const TAX_LABEL = { CEDEARS: 'Ganancias+IIBB 0,65%', ACCIONES: 'Sello+IIBB 0,45%', BONOS: 'IIBB 0,10%', LETRAS: 'IIBB 0,10%' };
+
+                function getCat(article) {
+                    const w = article.closest('.portfolio-perspective > div');
+                    const t = (w?.querySelector('h4')?.textContent || '').toUpperCase();
+                    if (t.includes('FCI') || t.includes('FONDOS')) return 'FCI';
+                    if (t.includes('CEDEAR')) return 'CEDEARS';
+                    if (t.includes('LETRA')) return 'LETRAS';
+                    if (t.includes('BONO') || t.includes('SOVEREIGN')) return 'BONOS';
+                    if (t.includes('ACCION') || t.includes('EQUITY')) return 'ACCIONES';
+                    if (t.includes('FUTURO')) return 'FUTUROS';
+                    return 'OTROS';
+                }
+
+                const fmtP = n => n >= 10000
+                    ? n.toLocaleString('es-AR', { maximumFractionDigits: 0 })
+                    : n.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const fmtARS = n => Math.abs(n) >= 1000000
+                    ? (Math.abs(n) / 1000000).toFixed(2) + 'M'
+                    : Math.abs(n).toLocaleString('es-AR', { maximumFractionDigits: 0 });
+                const fmtQty = n => n >= 1e6 ? (n / 1e6).toFixed(2) + 'M' : n >= 1000 ? (n / 1000).toFixed(1) + 'K' : n.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+
+                document.querySelectorAll('article[data-asset-logic]').forEach(card => {
                     const qty = parseFloat(card.dataset.qty);
                     const ppc = parseFloat(card.dataset.ppc);
                     const price = parseFloat(card.dataset.price);
-                    const resultEl = card.querySelector('.calc-result');
+                    if (isNaN(qty) || isNaN(ppc) || isNaN(price)) return;
 
-                    if (resultEl && !isNaN(qty) && !isNaN(ppc) && !isNaN(price)) {
-                        const gainLoss = (price - ppc) * qty;
-                        const isPositive = gainLoss >= 0;
+                    const cat = getCat(card);
+                    const isFCI = cat === 'FCI';
+                    const gainLoss = (price - ppc) * qty;
+                    const gain_pct = ppc > 0 ? ((price / ppc) - 1) * 100 : 0;
+                    const isPos = gainLoss >= 0;
+                    const taxRate = TAX[cat] || 0;
+                    const taxAmt = isPos && taxRate > 0 ? gainLoss * taxRate : 0;
 
-                        // Format result
-                        let resultStr = '';
-                        if (Math.abs(gainLoss) >= 1000000) {
-                            resultStr = `${isPositive ? '+' : '-'}$ ${(Math.abs(gainLoss) / 1000000).toFixed(1)}M`;
-                        } else {
-                            // High precision formatting for better clarity
-                            resultStr = `${isPositive ? '+' : '-'}$ ${Math.abs(gainLoss).toLocaleString('es-AR', { maximumFractionDigits: 0 })}`;
+                    // FCI: update only existing .calc-result (keep TNA display)
+                    if (isFCI) {
+                        const r = card.querySelector('.calc-result');
+                        if (r) {
+                            r.textContent = `${isPos ? '+' : '-'}$ ${fmtARS(gainLoss)}`;
+                            r.classList.toggle('text-primary', isPos);
+                            r.classList.toggle('text-danger', !isPos);
                         }
+                        return;
+                    }
 
-                        resultEl.textContent = resultStr;
-                        resultEl.classList.toggle('text-primary', isPositive);
-                        resultEl.classList.toggle('text-danger', !isPositive);
+                    // Build new 3-col trader grid
+                    const resColCls = isPos ? 'trade-col-pos' : 'trade-col-neg';
+                    const resTxtCls = isPos ? 'color:#13ec5b' : 'color:#ff4d4d';
+                    const pctTxtCls = isPos ? 'color:#13ec5b' : 'color:#ff4d4d';
+
+                    const taxRowHtml = taxAmt > 0 ? `
+                        <div class="trade-tax-row">
+                            <span class="trade-tax-lbl">${TAX_LABEL[cat] || ''}</span>
+                            <span class="trade-tax-val">-$ ${fmtARS(taxAmt)}</span>
+                        </div>` : '';
+
+                    const newHTML = `
+                        <div style="padding-top:16px;border-top:1px solid rgba(255,255,255,0.05)">
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+                                <div class="trade-col trade-col-buy">
+                                    <span class="trade-lbl">Compra</span>
+                                    <span class="trade-price" style="color:rgba(255,255,255,0.55)">$ ${fmtP(ppc)}</span>
+                                    <span class="trade-sub">${fmtQty(qty)} tít.</span>
+                                </div>
+                                <div class="trade-col trade-col-now">
+                                    <span class="trade-lbl">Actual</span>
+                                    <span class="trade-price" style="color:#fff">$ ${fmtP(price)}</span>
+                                    <span class="trade-sub" style="${pctTxtCls}">${isPos ? '+' : ''}${gain_pct.toFixed(2)}%</span>
+                                </div>
+                                <div class="trade-col ${resColCls}">
+                                    <span class="trade-lbl" style="${resTxtCls};opacity:0.6">Resultado</span>
+                                    <span class="trade-price" style="${resTxtCls}">${isPos ? '+' : '-'}$ ${fmtARS(gainLoss)}</span>
+                                    <span class="trade-sub" style="${resTxtCls};opacity:0.5">Neto</span>
+                                </div>
+                            </div>
+                            ${taxRowHtml}
+                        </div>`;
+
+                    const oldGrid = card.querySelector('.grid');
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = newHTML;
+                    const newNode = wrapper.firstElementChild;
+                    if (oldGrid) {
+                        oldGrid.replaceWith(newNode);
+                    } else {
+                        card.appendChild(newNode);
                     }
                 });
             }
-            calculatePnL();
+            enhanceCardDisplay();
 
             // Sovereign logic for AL30 style bonds (Global, Liquidity, USD Yield)
             function calculateSovereignLogic() {
