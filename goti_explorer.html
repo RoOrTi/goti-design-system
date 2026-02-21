@@ -325,24 +325,15 @@
                 </div>
             </div>
 
-            <!-- Home / Grid View -->
-            <div id="gridView" class="h-full overflow-hidden flex flex-col">
-                <div class="p-16 pb-0">
-                    <div
-                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-6">
-                        <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
-                        Sistema de Diseño Simplificado
-                    </div>
-                    <h1 class="text-7xl font-black tracking-tighter mb-6 leading-none">La Biblioteca <span
-                            class="text-primary">Maestra</span></h1>
-                    <p class="text-zinc-500 max-w-2xl text-xl font-medium leading-relaxed">
-                        Explora la colección refinada de componentes GOTI. Hemos eliminado lo irrelevante y potenciado
-                        cada pantalla con funciones de núcleo para una integración inmediata.
-                    </p>
+            <!-- Empty State / Placeholder -->
+            <div id="emptyState" class="h-full flex flex-col items-center justify-center p-16 text-center">
+                <div
+                    class="size-20 bg-zinc-900/50 rounded-3xl flex items-center justify-center mb-6 border border-white/5">
+                    <span class="material-symbols-outlined text-5xl text-zinc-700">select_window</span>
                 </div>
-                <div class="grid-view" id="gridContent">
-                    <!-- Cards will be injected here -->
-                </div>
+                <h3 class="text-2xl font-black text-zinc-300 tracking-tight">Selecciona una pantalla</h3>
+                <p class="text-zinc-600 max-w-xs mt-2 text-sm">Explora los componentes en la barra lateral para ver una
+                    previsualización interactiva.</p>
             </div>
         </main>
     </div>
@@ -378,11 +369,10 @@
         });
 
         const navList = document.getElementById('navList');
-        const gridContent = document.getElementById('gridContent');
+        const emptyState = document.getElementById('emptyState');
         const totalCount = document.getElementById('totalCount');
         const searchInput = document.getElementById('searchInput');
         const previewPane = document.getElementById('previewPane');
-        const gridView = document.getElementById('gridView');
         const previewFrame = document.getElementById('previewFrame');
         const closePreview = document.getElementById('closePreview');
         const currentName = document.getElementById('currentName');
@@ -417,47 +407,10 @@
             });
         }
 
-        function renderGrid(filter = '') {
-            gridContent.innerHTML = '';
-            screens.forEach(screen => {
-                const catInfo = categoryMap[screen.category];
-                if (screen.name.toLowerCase().includes(filter.toLowerCase()) ||
-                    catInfo.name.toLowerCase().includes(filter.toLowerCase())) {
 
-                    const card = document.createElement('div');
-                    card.className = 'skill-card';
-                    card.innerHTML = `
-                        <div class="functional-badge">
-                            <span class="material-symbols-outlined text-[12px]">bolt</span> LISTO
-                        </div>
-                        
-                        <div class="flex items-center gap-2 mb-2">
-                             <div class="size-9 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 text-zinc-400 group-hover:text-primary transition-colors" title="${catInfo.name}">
-                                <span class="material-symbols-outlined text-lg">${catInfo.icon}</span>
-                            </div>
-                            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-600">${catInfo.name}</span>
-                        </div>
-
-                        <div class="icon-box !bg-zinc-900/50 !border !border-white/5">
-                            <span class="material-symbols-outlined text-3xl font-bold" style="color: ${catInfo.color}">${screen.icon}</span>
-                        </div>
-                        
-                        <div class="mt-2">
-                            <h3 class="text-lg font-black tracking-tight">${screen.name}</h3>
-                            <p class="text-[11px] text-zinc-500 mt-1 leading-relaxed italic">Módulo de alta fidelidad optimizado.</p>
-                        </div>
-                    `;
-                    card.onclick = () => {
-                        const navItem = Array.from(document.querySelectorAll('.nav-item')).find(el => el.textContent.includes(screen.name));
-                        openPreview(screen, navItem);
-                    };
-                    gridContent.appendChild(card);
-                }
-            });
-        }
 
         function openPreview(screen, navItem) {
-            gridView.classList.add('hidden');
+            emptyState.classList.add('hidden');
             previewPane.classList.remove('hidden');
             previewFrame.src = screen.path;
             currentName.textContent = screen.name;
@@ -471,14 +424,13 @@
 
         closePreview.onclick = () => {
             previewPane.classList.add('hidden');
-            gridView.classList.remove('hidden');
+            emptyState.classList.remove('hidden');
             previewFrame.src = '';
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
         };
 
         searchInput.oninput = (e) => {
             renderSidebar(e.target.value);
-            renderGrid(e.target.value);
         };
 
         // Viewport switcher
@@ -492,7 +444,6 @@
 
         // Initialize
         renderSidebar();
-        renderGrid();
     </script>
 </body>
 

@@ -207,17 +207,17 @@
             <span class="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Patrimonio
                 Neto</span>
             <div class="flex items-baseline gap-2">
-                <h1 class="text-4xl font-black tracking-tight text-white" id="patrimony-value">$ 21.230.104,25</h1>
+                <h1 class="text-4xl font-black tracking-tight text-white" id="patrimony-value">$ 21.300.000,00</h1>
                 <span class="text-xs font-bold text-primary/60">ARS</span>
             </div>
             <div class="flex gap-4 mt-2">
                 <div>
                     <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Tenencia Valorizada</p>
-                    <p class="text-xs font-bold text-white/80">$ 20.582.095,71</p>
+                    <p class="text-xs font-bold text-white/80">$ 20.568.358,39</p>
                 </div>
                 <div class="border-l border-white/10 pl-4">
                     <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Total Dinero</p>
-                    <p class="text-xs font-bold text-white/80">$ 648.008,53</p>
+                    <p class="text-xs font-bold text-white/80">$ 731.641,61</p>
                 </div>
             </div>
 
@@ -237,6 +237,75 @@
                     <div class="w-1 h-1 rounded-full bg-primary"></div>
                     <div class="w-1 h-1 rounded-full bg-white/20"></div>
                     <div class="w-1 h-1 rounded-full bg-white/20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master Portfolio Analysis (Ultra Premium) -->
+    <section class="px-5 pb-8">
+        <div class="neo-glass-card rounded-[32px] p-8 relative overflow-hidden group ai-glow">
+            <!-- Background Decoration -->
+            <div class="absolute -right-20 -top-20 size-64 bg-primary/5 rounded-full blur-[80px]"></div>
+            <div class="absolute -left-20 -bottom-20 size-64 bg-blue-500/5 rounded-full blur-[80px]"></div>
+
+            <div class="flex items-center justify-between mb-10 relative">
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+                        <h3 class="text-[9px] font-black uppercase tracking-[0.3em] text-primary/80">Inteligencia de
+                            Cartera</h3>
+                    </div>
+                    <p class="text-2xl font-black text-white tracking-tighter italic">Análisis Maestro</p>
+                </div>
+                <div
+                    class="size-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-xl group-hover:border-primary/30 transition-all duration-500">
+                    <span
+                        class="material-symbols-outlined text-primary text-2xl group-hover:rotate-180 transition-transform duration-700">insights</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                <div class="md:col-span-5 flex justify-center relative">
+                    <div class="size-56 relative group/chart">
+                        <canvas id="portfolioDonutChart"></canvas>
+                        <!-- Center Info -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                            <span class="text-[9px] font-black text-white/20 uppercase tracking-[0.2em]">Total</span>
+                            <div class="flex items-baseline gap-0.5">
+                                <span class="text-[10px] font-black text-primary/60">$</span>
+                                <span id="donut-total-val"
+                                    class="text-xl font-black text-white tracking-tighter">0.0M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7">
+                    <div id="chart-legend" class="grid grid-cols-1 gap-4">
+                        <!-- Legend items will be injected here with premium style -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Metrics -->
+            <div class="mt-10 pt-8 border-t border-white/5 grid grid-cols-2 gap-4 relative">
+                <div class="flex flex-col gap-1">
+                    <p class="text-[8px] font-black text-white/30 uppercase tracking-widest">Estado de Diversificación
+                    </p>
+                    <div class="flex items-center gap-2">
+                        <div class="h-1.5 w-16 bg-white/5 rounded-full overflow-hidden">
+                            <div class="h-full w-[85%] bg-primary shadow-[0_0_10px_rgba(19,236,91,0.5)]"></div>
+                        </div>
+                        <span class="text-[10px] font-black text-primary tracking-tight">ALTA (85%)</span>
+                    </div>
+                </div>
+                <div class="flex flex-col items-end gap-1">
+                    <p class="text-[8px] font-black text-white/30 uppercase tracking-widest">Activos Detectados</p>
+                    <div class="flex items-center gap-2">
+                        <span id="donut-total-count" class="text-[14px] font-black text-white">0</span>
+                        <span class="text-[10px] font-bold text-white/40 italic">Instrumentos</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -313,22 +382,22 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-black text-white/30 uppercase tracking-widest">Peso Argentino</p>
-                            <p class="text-xl font-black text-white">ARS $ 502.884,85</p>
+                            <p class="text-xl font-black text-white">ARS $ 590.418,11</p>
                         </div>
                     </div>
                 </div>
                 <div class="space-y-2 pt-3 border-t border-white/5">
                     <div class="flex justify-between items-center opacity-90">
                         <span class="text-[10px] font-bold text-white/50">Hoy (C.I.)</span>
-                        <span class="text-[11px] font-black text-danger">- ARS $ 1.160.010,09</span>
+                        <span class="text-[11px] font-black text-primary">+ ARS $ 590.418,11</span>
                     </div>
                     <div class="flex justify-between items-center opacity-60">
                         <span class="text-[10px] font-bold text-white/50">En 24 hs</span>
-                        <span class="text-[11px] font-bold text-white">ARS $ 500.955,85</span>
+                        <span class="text-[11px] font-bold text-white">ARS $ 0,00</span>
                     </div>
                     <div class="flex justify-between items-center opacity-40">
                         <span class="text-[10px] font-bold text-white/50">Más de 24 hs</span>
-                        <span class="text-[11px] font-bold text-white">ARS $ 502.884,85</span>
+                        <span class="text-[11px] font-bold text-white">ARS $ 0,00</span>
                     </div>
                 </div>
             </div>
@@ -428,7 +497,7 @@
                 <div class="flex flex-col gap-4">
                     <!-- Asset: COCOSPPA -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer relative overflow-hidden group"
-                        data-asset-logic data-qty="6989931.455" data-ppc="1.15483" data-price="1.27448"
+                        data-asset-logic data-qty="6989932.907" data-ppc="1.15483" data-price="1.27448"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=COCOSPPA'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -447,8 +516,8 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="text-right" data-fci-logic data-amount="8908541.82" data-increment="8543.54">
-                                <p class="text-xl font-black text-white">$ 8.908.541</p>
+                            <div class="text-right" data-fci-logic data-amount="8908543.67" data-increment="8543.54">
+                                <p class="text-xl font-black text-white">$ 8.908.543,67</p>
                                 <div class="flex items-center justify-end gap-1.5 mt-1">
                                     <span
                                         class="px-1.5 py-0.5 bg-primary rounded text-[9px] font-black text-background-dark fci-tna">TNA
@@ -479,7 +548,7 @@
 
                     <!-- Asset: COCORMA -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer relative overflow-hidden group"
-                        data-asset-logic data-qty="286636.497" data-ppc="6.63139" data-price="10.43912"
+                        data-asset-logic data-qty="286562.283" data-ppc="6.63314" data-price="10.43912"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=COCORMA'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -492,8 +561,8 @@
                                     <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">FCI Rendimiento</p>
                                 </div>
                             </div>
-                            <div class="text-right" data-fci-logic data-amount="2992233.07" data-increment="2232.61">
-                                <p class="text-xl font-black text-white">$ 2.992.233</p>
+                            <div class="text-right" data-fci-logic data-amount="2991458.34" data-increment="2232.03">
+                                <p class="text-xl font-black text-white">$ 2.991.458,34</p>
                                 <div class="flex items-center justify-end gap-1.5 mt-1">
                                     <span
                                         class="px-1.5 py-0.5 bg-primary rounded text-[9px] font-black text-background-dark fci-tna">TNA
@@ -535,7 +604,7 @@
                 <div class="flex flex-col gap-4">
                     <!-- ORCL -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="20" data-ppc="82032" data-price="75500"
+                        data-qty="23" data-ppc="80982.60" data-price="71425"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=ORCL'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -549,7 +618,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 1.510.000</p>
+                                <p class="text-xl font-black text-white">$ 1.642.775,00</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -574,7 +643,7 @@
 
                     <!-- NFLX -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="258" data-ppc="3088" data-price="2324"
+                        data-qty="258" data-ppc="3088.51" data-price="2378"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=NFLX'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -588,7 +657,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 599.592</p>
+                                <p class="text-xl font-black text-white">$ 613.524,00</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -613,7 +682,7 @@
 
                     <!-- NVDA -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="50" data-ppc="11202" data-price="11250"
+                        data-qty="50" data-ppc="11202.40" data-price="11400"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=NVDA'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -628,7 +697,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 562.500</p>
+                                <p class="text-xl font-black text-white">$ 570.000,00</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -653,7 +722,7 @@
 
                     <!-- ADBE -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="45" data-ppc="9181" data-price="8500"
+                        data-qty="45" data-ppc="9181.22" data-price="8470"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=ADBE'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -667,7 +736,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 382.500</p>
+                                <p class="text-xl font-black text-white">$ 381.150,00</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -731,7 +800,7 @@
 
                     <!-- VXX -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="35" data-ppc="8539" data-price="8510"
+                        data-qty="35" data-ppc="8539.71" data-price="8210"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=VXX'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -745,7 +814,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 297.850</p>
+                                <p class="text-xl font-black text-white">$ 287.350,00</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -770,7 +839,7 @@
 
                     <!-- JD -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="22" data-ppc="10932" data-price="9800"
+                        data-qty="22" data-ppc="10932.72" data-price="9910"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=JD'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -784,7 +853,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 215.600</p>
+                                <p class="text-xl font-black text-white">$ 218.020,00</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -820,8 +889,8 @@
                 <div class="flex flex-col gap-4">
                     <!-- AL30 -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer mb-4" data-asset-logic
-                        data-qty="1941" data-ppc="93769.50" data-price="86695" data-sovereign-logic
-                        data-prev-price="87500"
+                        data-qty="1941" data-ppc="93769.48" data-price="86480" data-sovereign-logic
+                        data-prev-price="86695"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=AL30'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -836,7 +905,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 1.682.847</p>
+                                <p class="text-xl font-black text-white">$ 1.678.576,80</p>
                                 <div class="flex flex-col items-end">
                                     <p class="text-[11px] font-black text-primary sov-yield">--% TNA (1D)</p>
                                     <div class="flex items-center gap-1 mt-0.5">
@@ -877,7 +946,8 @@
 
                     <!-- T15E7 -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer mb-4" data-asset-logic
-                        data-qty="1056414" data-ppc="1.19" data-price="1.21" data-bond-logic data-prev-price="1.2085"
+                        data-qty="1052500" data-ppc="119.08" data-price="121.80" data-bond-logic
+                        data-prev-price="121.46"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=T15E7'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -892,7 +962,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 1.278.261</p>
+                                <p class="text-xl font-black text-white">$ 1.281.945,00</p>
                                 <p class="text-[11px] font-black text-primary bond-yield">--% TNA (1D)</p>
                             </div>
                         </div>
@@ -934,7 +1004,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 6.892.000</p>
+                                <p class="text-xl font-black text-white">$ 6.892.000,00</p>
                                 <div class="flex flex-col items-end">
                                     <p class="text-[11px] font-black text-cyan-400 cer-status tracking-tight">AJUSTANDO
                                         POR INFLACIÓN</p>
@@ -986,7 +1056,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 6.213.000</p>
+                                <p class="text-xl font-black text-white">$ 6.213.000,00</p>
                                 <div class="flex flex-col items-end">
                                     <p class="text-[11px] font-black text-cyan-400 cer-status tracking-tight">AJUSTANDO
                                         POR INFLACIÓN</p>
@@ -1033,7 +1103,8 @@
 
                 <div class="flex flex-col gap-4">
                     <!-- S16M6 -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer"
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer" data-asset-logic data-qty="855869"
+                        data-ppc="101.25" data-price="102.58"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=S16M6'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -1047,7 +1118,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 874.270</p>
+                                <p class="text-xl font-black text-white">$ 877.950,42</p>
                                 <p class="text-[11px] font-black text-primary">+$ 427 Rdo. (1D)</p>
                             </div>
                         </div>
@@ -1067,6 +1138,28 @@
                             <div class="text-right">
                                 <p class="asset-label">Rdo. Total</p>
                                 <p class="asset-value text-primary text-[11px]">+$ 7.657</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- S17A6 -->
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer" data-asset-logic data-qty="157393"
+                        data-ppc="103.76" data-price="104.63"
+                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=S17A6'">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="size-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                                    <span class="material-symbols-outlined text-2xl">payments</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-xl text-white tracking-tight">S17A6</h4>
+                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">Letra Tesoro
+                                        Nacional</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xl font-black text-white">$ 164.688,16</p>
                             </div>
                         </div>
                     </article>
@@ -1203,7 +1296,7 @@
 
                     <!-- VIST (Cedear) -->
                     <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer" data-asset-logic data-qty="2"
-                        data-ppc="28280" data-price="28120"
+                        data-ppc="28120" data-price="28280"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=VIST'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -1217,7 +1310,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 56.240</p>
+                                <p class="text-xl font-black text-white">$ 56.560,00</p>
                                 <p class="text-[11px] font-black text-danger">-$ 320 Rdo. (1D)</p>
                             </div>
                         </div>
@@ -1243,57 +1336,7 @@
                 </div>
             </div>
 
-            <!-- Categoría: Futuros -->
-            <div class="flex flex-col gap-4">
-                <div class="category-glow flex items-center justify-between">
-                    <h4 class="text-[12px] font-black text-white/90 uppercase tracking-widest">Futuros</h4>
-                    <span
-                        class="px-2 py-0.5 bg-yellow-500/10 rounded text-[9px] font-black text-yellow-500">DERIVATIVES</span>
-                </div>
 
-                <div class="flex flex-col gap-4">
-                    <!-- DLR032026 -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
-                        data-qty="1000" data-ppc="1447" data-price="1412"
-                        onclick="window.location.href='../analisis_volatilidad/code.html?asset=DLR032026'">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="size-12 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400">
-                                    <span class="material-symbols-outlined text-2xl">trending_up</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-black text-xl text-white tracking-tight">DLR 03/26</h4>
-                                    <p class="text-[10px] text-white/40 font-bold uppercase mt-0.5">DÓLAR FUTURO • ROFEX
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xl font-black text-white">$ 1.412.000</p>
-                                <p class="text-[11px] font-black text-danger">-$ 35.000 VALUACIÓN</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
-                            <div>
-                                <p class="asset-label">Lotes</p>
-                                <p class="asset-value text-[11px]">1</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">PPC</p>
-                                <p class="asset-value text-[11px]">$ 1.447</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">Precio</p>
-                                <p class="asset-value text-[11px]">$ 1.412</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="asset-label">Gan/Pérd</p>
-                                <p class="asset-value calc-result text-danger text-[11px]">-$ 0</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1689,6 +1732,133 @@
                 });
             }
             calculateFCIRates();
+
+            // --- CARTERA CIRCULAR LOGIC (REFINED & ROBUST) ---
+            function renderPortfolioDonut() {
+                const chartCtx = document.getElementById('portfolioDonutChart');
+                if (!chartCtx) return;
+
+                // 1. Gather Data (Robust extraction)
+                const distribution = {};
+                const colorMap = {
+                    'FCI': '#13ec5b',
+                    'CEDEARS': '#f9d006',
+                    'BONOS': '#3b82f6',
+                    'LETRAS': '#a855f7',
+                    'ACCIONES': '#ef4444',
+                    'FUTUROS': '#f59e0b',
+                    'EFECTIVO': '#64748b'
+                };
+
+                const getCatKey = (article) => {
+                    // Find the container that holds the header for this section
+                    const categoryWrapper = article.closest('.portfolio-perspective > div');
+                    const titleText = categoryWrapper?.querySelector('h4')?.textContent.toUpperCase() || '';
+
+                    if (titleText.includes('FONDOS') || titleText.includes('FCI')) return 'FCI';
+                    if (titleText.includes('CEDEAR')) return 'CEDEARS';
+                    if (titleText.includes('BONO') || titleText.includes('SOVEREIGN')) return 'BONOS';
+                    if (titleText.includes('LETRA')) return 'LETRAS';
+                    if (titleText.includes('ACCION') || titleText.includes('EQUITY')) return 'ACCIONES';
+                    if (titleText.includes('FUTURO')) return 'FUTUROS';
+                    return 'EFECTIVO';
+                };
+
+                // Processing Articles
+                const assetArticles = document.querySelectorAll('article[data-asset-logic]');
+                assetArticles.forEach(article => {
+                    const key = getCatKey(article);
+                    const qty = parseFloat(article.dataset.qty) || 0;
+                    const price = parseFloat(article.dataset.price) || 0;
+                    const value = qty * price;
+                    if (value > 0) distribution[key] = (distribution[key] || 0) + value;
+                });
+
+                // Processing Cash
+                document.querySelectorAll('.neo-glass-card').forEach(card => {
+                    const pTags = Array.from(card.querySelectorAll('p'));
+                    const isCashCard = pTags.some(p => p.textContent.toUpperCase().includes('PESO') || p.textContent.toUpperCase().includes('DÓLAR'));
+                    if (isCashCard && !card.hasAttribute('data-asset-logic')) {
+                        const amountStr = card.querySelector('.text-xl')?.textContent || '0';
+                        const amount = parseFloat(amountStr.replace(/\./g, '').replace(',', '.')) || 0;
+                        if (amount > 0) distribution['EFECTIVO'] = (distribution['EFECTIVO'] || 0) + amount;
+                    }
+                });
+
+                // Final totals
+                const labels = Object.keys(distribution).sort((a, b) => distribution[b] - distribution[a]);
+                if (labels.length === 0) return; // Silent exit if no data
+
+                const dataValues = labels.map(l => distribution[l]);
+                const totalValue = dataValues.reduce((a, b) => a + b, 0);
+
+                // Update UI Header
+                document.getElementById('donut-total-val').textContent = (totalValue / 1000000).toFixed(1) + 'M';
+                document.getElementById('donut-total-count').textContent = assetArticles.length;
+
+                // Legend Render
+                const legendContainer = document.getElementById('chart-legend');
+                legendContainer.innerHTML = '';
+                labels.forEach(label => {
+                    const val = distribution[label];
+                    const pct = ((val / totalValue) * 100).toFixed(0);
+                    const item = document.createElement('div');
+                    item.className = 'flex items-center justify-between p-3 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all group/item';
+                    item.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="size-2 rounded-full shadow-[0_0_8px_${colorMap[label]}]" style="background: ${colorMap[label]}"></div>
+                            <span class="text-[10px] font-black text-white/40 uppercase tracking-widest group-hover/item:text-white transition-colors">${label}</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[11px] font-black text-white">$ ${(val / 1000000).toFixed(1)}M</p>
+                            <p class="text-[8px] font-bold text-primary italic">${pct}%</p>
+                        </div>
+                    `;
+                    legendContainer.appendChild(item);
+                });
+
+                // Chart Init
+                new Chart(chartCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: dataValues,
+                            backgroundColor: labels.map(l => colorMap[l]),
+                            borderWidth: 0,
+                            borderRadius: 10,
+                            spacing: 8,
+                            hoverOffset: 15
+                        }]
+                    },
+                    options: {
+                        cutout: '85%',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true,
+                            duration: 2000,
+                            easing: 'easeOutQuart'
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: 'rgba(16, 34, 22, 0.95)',
+                                padding: 15,
+                                cornerRadius: 15,
+                                titleFont: { size: 12, weight: '800' },
+                                bodyFont: { size: 13, weight: '600' },
+                                displayColors: false,
+                                callbacks: { label: (c) => ` $ ${c.raw.toLocaleString('es-AR')}` }
+                            }
+                        }
+                    }
+                });
+            }
+            // Small delay to ensure all dynamic data is loaded
+            setTimeout(renderPortfolioDonut, 600);
         });
     </script>
 
