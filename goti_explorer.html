@@ -269,12 +269,12 @@
                 </div>
                 <div>
                     <h1 class="font-black text-2xl tracking-tighter">GOTI <span class="text-primary">EXP</span></h1>
-                    <p class="text-[10px] text-zinc-600 uppercase font-black tracking-[0.2em]">Refined Portfolio</p>
+                    <p class="text-[10px] text-zinc-600 uppercase font-black tracking-[0.2em]">Portafolio Refinado</p>
                 </div>
             </div>
 
             <div class="search-box">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search refined skills...">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar componentes refinados...">
             </div>
 
             <div class="flex-1 overflow-y-auto py-4" id="navList">
@@ -284,8 +284,8 @@
             <div class="p-6 border-t border-zinc-900 bg-black/20 flex flex-col gap-2">
                 <div
                     class="flex justify-between items-center text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
-                    <span>Cleaned & Functional</span>
-                    <span class="text-primary" id="totalCount">0 Screens</span>
+                    <span>Limpio y Funcional</span>
+                    <span class="text-primary" id="totalCount">0 Pantallas</span>
                 </div>
                 <p class="text-[9px] text-zinc-700 font-medium">© 2026 Rodrigo O.T. Agency</p>
             </div>
@@ -309,9 +309,9 @@
 
                     <div class="flex items-center gap-4">
                         <div class="flex bg-black p-1 rounded-xl gap-1 border border-zinc-800">
-                            <button class="vp-btn" data-width="375px">Mobile</button>
+                            <button class="vp-btn" data-width="375px">Móvil</button>
                             <button class="vp-btn" data-width="768px">Tablet</button>
-                            <button class="vp-btn active" data-width="100%">Full</button>
+                            <button class="vp-btn active" data-width="100%">Completo</button>
                         </div>
                         <a id="externalLink" href="#" target="_blank"
                             class="size-10 bg-primary text-black rounded-xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center shadow-lg shadow-primary/20">
@@ -331,10 +331,10 @@
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-6">
                         <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
-                        Design System Simplified
+                        Sistema de Diseño Simplificado
                     </div>
-                    <h1 class="text-7xl font-black tracking-tighter mb-6 leading-none">The <span
-                            class="text-primary">Master</span> Library</h1>
+                    <h1 class="text-7xl font-black tracking-tighter mb-6 leading-none">La Biblioteca <span
+                            class="text-primary">Maestra</span></h1>
                     <p class="text-zinc-500 max-w-2xl text-xl font-medium leading-relaxed">
                         Explora la colección refinada de componentes GOTI. Hemos eliminado lo irrelevante y potenciado
                         cada pantalla con funciones de núcleo para una integración inmediata.
@@ -348,20 +348,29 @@
     </div>
 
     <script>
-        // Refined Screen Data
+        // Mapeo de Categorías con Iconos y Nombres Traducidos
+        const categoryMap = {
+            'Brand & Identity': { name: 'Identidad de Marca', icon: 'branding_watermark', color: '#f9d006' },
+            'Trader Platform': { name: 'Plataforma de Trading', icon: 'monitoring', color: '#13ec5b' },
+            'Auth & Profile': { name: 'Acceso y Perfil', icon: 'lock_person', color: '#13ec5b' },
+            'Communication': { name: 'Comunicación', icon: 'forum', color: '#f9d006' },
+            'Business Assets': { name: 'Gestión de Activos', icon: 'business_center', color: '#f9d006' }
+        };
+
+        // Datos de Pantallas Refinados
         const screens = [
             { category: 'Brand & Identity', name: 'BIENVENIDA', path: 'stitch_goti_welcome_screen/bienvenida/code.html', icon: 'auto_awesome' },
-            { category: 'Trader Platform', name: 'DASHBOARD PRINCIPAL', path: 'stitch_goti_welcome_screen/inicio/code.html', icon: 'monitoring' },
+            { category: 'Trader Platform', name: 'DASHBOARD PRINCIPAL', path: 'stitch_goti_welcome_screen/inicio/code.html', icon: 'grid_view' },
             { category: 'Auth & Profile', name: 'CREAR CUENTA', path: 'stitch_goti_welcome_screen/crear_cuenta/code.html', icon: 'person_add' },
             { category: 'Auth & Profile', name: 'INICIAR SESIÓN', path: 'stitch_goti_welcome_screen/iniciar_sesión/code.html', icon: 'login' },
-            { category: 'Auth & Profile', name: 'PERFIL USUARIO', path: 'stitch_goti_welcome_screen/perfil/code.html', icon: 'person' },
-            { category: 'Auth & Profile', name: 'VERIFICACIÓN EMAIL', path: 'stitch_goti_welcome_screen/verificación_email/code.html', icon: 'verified_user' },
-            { category: 'Communication', name: 'CHAT CENTER', path: 'stitch_goti_welcome_screen/goti_designer_chat_center/code.html', icon: 'chat' },
-            { category: 'Communication', name: 'CONTACT SCREEN', path: 'stitch_goti_welcome_screen/goti_inquiry_&_contact_screen/code.html', icon: 'mail' },
-            { category: 'Business Assets', name: 'EVENTS DASHBOARD', path: 'stitch_goti_welcome_screen/goti_business_events_dashboard/code.html', icon: 'dashboard_customize' }
+            { category: 'Auth & Profile', name: 'PERFIL USUARIO', path: 'stitch_goti_welcome_screen/perfil/code.html', icon: 'account_circle' },
+            { category: 'Auth & Profile', name: 'VERIFICACIÓN EMAIL', path: 'stitch_goti_welcome_screen/verificación_email/code.html', icon: 'verified' },
+            { category: 'Communication', name: 'CENTRO DE CHAT', path: 'stitch_goti_welcome_screen/goti_designer_chat_center/code.html', icon: 'chat' },
+            { category: 'Communication', name: 'PANTALLA DE CONTACTO', path: 'stitch_goti_welcome_screen/goti_inquiry_&_contact_screen/code.html', icon: 'mail' },
+            { category: 'Business Assets', name: 'PANEL DE EVENTOS', path: 'stitch_goti_welcome_screen/goti_business_events_dashboard/code.html', icon: 'event_note' }
         ];
 
-        // Group by category
+        // Agrupar por categoría
         const categories = {};
         screens.forEach(s => {
             if (!categories[s.category]) categories[s.category] = [];
@@ -380,20 +389,21 @@
         const currentPath = document.getElementById('currentPath');
         const externalLink = document.getElementById('externalLink');
 
-        totalCount.textContent = `${screens.length} Screens`;
+        totalCount.textContent = `${screens.length} Pantallas`;
 
         function renderSidebar(filter = '') {
             navList.innerHTML = '';
             Object.keys(categories).sort().forEach(cat => {
+                const catInfo = categoryMap[cat];
                 const catScreens = categories[cat].filter(s =>
                     s.name.toLowerCase().includes(filter.toLowerCase()) ||
-                    s.category.toLowerCase().includes(filter.toLowerCase())
+                    catInfo.name.toLowerCase().includes(filter.toLowerCase())
                 );
 
                 if (catScreens.length > 0) {
                     const header = document.createElement('div');
-                    header.className = 'category-header';
-                    header.textContent = cat;
+                    header.className = 'category-header flex items-center gap-2';
+                    header.innerHTML = `<span class="material-symbols-outlined text-[14px]" style="color: ${catInfo.color}">${catInfo.icon}</span> ${catInfo.name}`;
                     navList.appendChild(header);
 
                     catScreens.forEach(screen => {
@@ -410,21 +420,32 @@
         function renderGrid(filter = '') {
             gridContent.innerHTML = '';
             screens.forEach(screen => {
+                const catInfo = categoryMap[screen.category];
                 if (screen.name.toLowerCase().includes(filter.toLowerCase()) ||
-                    screen.category.toLowerCase().includes(filter.toLowerCase())) {
+                    catInfo.name.toLowerCase().includes(filter.toLowerCase())) {
 
                     const card = document.createElement('div');
                     card.className = 'skill-card';
                     card.innerHTML = `
                         <div class="functional-badge">
-                            <span class="material-symbols-outlined text-[12px]">bolt</span> Ready
+                            <span class="material-symbols-outlined text-[12px]">bolt</span> LISTO
                         </div>
-                        <div class="tag">${screen.category}</div>
-                        <div class="icon-box">
-                            <span class="material-symbols-outlined text-3xl font-bold">${screen.icon}</span>
+                        
+                        <div class="flex items-center gap-2 mb-2">
+                             <div class="size-9 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 text-zinc-400 group-hover:text-primary transition-colors" title="${catInfo.name}">
+                                <span class="material-symbols-outlined text-lg">${catInfo.icon}</span>
+                            </div>
+                            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-600">${catInfo.name}</span>
                         </div>
-                        <h3>${screen.name}</h3>
-                        <p>High-fidelity refined UI module for ${screen.category.toLowerCase()} applications.</p>
+
+                        <div class="icon-box !bg-zinc-900/50 !border !border-white/5">
+                            <span class="material-symbols-outlined text-3xl font-bold" style="color: ${catInfo.color}">${screen.icon}</span>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <h3 class="text-lg font-black tracking-tight">${screen.name}</h3>
+                            <p class="text-[11px] text-zinc-500 mt-1 leading-relaxed italic">Módulo de alta fidelidad optimizado.</p>
+                        </div>
                     `;
                     card.onclick = () => {
                         const navItem = Array.from(document.querySelectorAll('.nav-item')).find(el => el.textContent.includes(screen.name));
