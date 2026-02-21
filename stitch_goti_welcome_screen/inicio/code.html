@@ -534,7 +534,8 @@
 
                 <div class="flex flex-col gap-4">
                     <!-- ORCL -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group"
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
+                        data-qty="20" data-ppc="82032" data-price="75500"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=ORCL'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -549,7 +550,6 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-xl font-black text-white">$ 1.510.000</p>
-                                <p class="text-[11px] font-black text-primary">+$ 1.000 Rdo. (1D)</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -567,13 +567,14 @@
                             </div>
                             <div class="text-right">
                                 <p class="asset-label">Rdo. Total</p>
-                                <p class="asset-value text-danger text-[11px]">-$ 130K</p>
+                                <p class="asset-value calc-result text-danger text-[11px]">-$ 0</p>
                             </div>
                         </div>
                     </article>
 
                     <!-- NFLX -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group"
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
+                        data-qty="258" data-ppc="3088" data-price="2324"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=NFLX'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -588,7 +589,6 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-xl font-black text-white">$ 599.592</p>
-                                <p class="text-[11px] font-black text-danger">-$ 8.256 Rdo. (1D)</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -606,13 +606,14 @@
                             </div>
                             <div class="text-right">
                                 <p class="asset-label">Rdo. Total</p>
-                                <p class="asset-value text-danger text-[11px]">-$ 197K</p>
+                                <p class="asset-value calc-result text-danger text-[11px]">-$ 0</p>
                             </div>
                         </div>
                     </article>
 
                     <!-- NVDA -->
-                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group"
+                    <article class="neo-glass-card rounded-[28px] p-6 cursor-pointer group" data-asset-logic
+                        data-qty="50" data-ppc="11202" data-price="11250"
                         onclick="window.location.href='../analisis_volatilidad/code.html?asset=NVDA'">
                         <div class="flex justify-between items-start mb-6">
                             <div class="flex items-center gap-4">
@@ -628,7 +629,6 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-xl font-black text-white">$ 562.500</p>
-                                <p class="text-[11px] font-black text-danger">-$ 5.500 Rdo. (1D)</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
@@ -646,7 +646,7 @@
                             </div>
                             <div class="text-right">
                                 <p class="asset-label">Rdo. Total</p>
-                                <p class="asset-value text-primary text-[11px]">+$ 2.400</p>
+                                <p class="asset-value calc-result text-primary text-[11px]">+$ 0</p>
                             </div>
                         </div>
                     </article>
@@ -1434,9 +1434,8 @@
                         let resultStr = '';
                         if (Math.abs(gainLoss) >= 1000000) {
                             resultStr = `${isPositive ? '+' : '-'}$ ${(Math.abs(gainLoss) / 1000000).toFixed(1)}M`;
-                        } else if (Math.abs(gainLoss) >= 1000) {
-                            resultStr = `${isPositive ? '+' : '-'}$ ${(Math.abs(gainLoss) / 1000).toFixed(0)}K`;
                         } else {
+                            // High precision formatting for better clarity
                             resultStr = `${isPositive ? '+' : '-'}$ ${Math.abs(gainLoss).toLocaleString('es-AR', { maximumFractionDigits: 0 })}`;
                         }
 
