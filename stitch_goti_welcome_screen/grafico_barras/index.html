@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOTI — Cambio % por Ticker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --border: #1e1e1e;
+            --axis: #2a2a2a;
+            --grid: rgba(255, 255, 255, 0.045);
+            --label: #555555;
+            --muted: #3a3a3a;
+            --text: #e8e8e8;
+            --green: #4ade80;
+            --green-bg: rgba(74, 222, 128, 0.12);
+            --red: #f87171;
+            --red-bg: rgba(248, 113, 113, 0.12);
+            --accent: #C8FF00;
+            --zero: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+        }
+
+        /* ─── Card ─────────────────────────────────────── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 32px 24px;
+            width: 100%;
+            max-width: 960px;
+        }
+
+        /* ─── Header ────────────────────────────────────── */
+        .chart-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            gap: 12px;
+        }
+
+        .chart-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.01em;
+        }
+
+        .chart-subtitle {
+            font-size: 11px;
+            color: var(--label);
+            margin-top: 4px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .chart-date {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(200, 255, 0, 0.07);
+            border: 1px solid rgba(200, 255, 0, 0.18);
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.06em;
+        }
+
+        /* ─── Resumen pills ─────────────────────────────── */
+        .summary-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 4px 11px;
+            border-radius: 100px;
+            letter-spacing: 0.05em;
+        }
+
+        .pill.pos {
+            color: var(--green);
+            background: var(--green-bg);
+            border: 1px solid rgba(74, 222, 128, 0.18);
+        }
+
+        .pill.neg {
+            color: var(--red);
+            background: var(--red-bg);
+            border: 1px solid rgba(248, 113, 113, 0.18);
+        }
+
+        .pill.neu {
+            color: var(--label);
+            background: #1a1a1a;
+            border: 1px solid var(--border);
+        }
+
+        /* ─── Chart layout ──────────────────────────────── */
+        .chart-layout {
+            display: flex;
+            gap: 0;
+            height: 320px;
+        }
+
+        /* Y axis */
+        .y-axis {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-right: 10px;
+            min-width: 44px;
+            /* top padding = positive zone, bottom padding = negative zone */
+        }
+
+        .y-tick {
+            font-size: 9px;
+            color: var(--label);
+            letter-spacing: 0.04em;
+            line-height: 1;
+        }
+
+        .y-tick.zero {
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 600;
+        }
+
+        /* Plot area */
+        .plot-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        /* Grid container */
+        .grid-wrap {
+            flex: 1;
+            position: relative;
+            border-left: 1.5px solid var(--axis);
+        }
+
+        /* Horizontal grid lines via JS */
+        .h-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--grid);
+        }
+
+        .h-line.zero-line {
+            background: var(--zero);
+            height: 1px;
+        }
+
+        /* Bars overlay */
+        .bars-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: stretch;
+            /* bars use absolute positioning */
+        }
+
+        /* Individual bar column */
+        .bar-col {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* The actual bar rect */
+        .bar {
+            position: absolute;
+            width: 68%;
+            border-radius: 3px;
+            transition: opacity .15s;
+            cursor: pointer;
+        }
+
+        .bar.pos {
+            background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+            bottom: var(--zero-pct);
+        }
+
+        .bar.neg {
+            background: linear-gradient(0deg, #f87171 0%, #ef4444 100%);
+            top: var(--zero-pct-top);
+        }
+
+        .bar:hover {
+            opacity: 0.75;
+        }
+
+        /* Tooltip */
+        .bar-col:hover .tooltip {
+            opacity: 1;
+            transform: translateY(-4px);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: calc(var(--zero-pct) + var(--bar-h) + 6px);
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            background: #1c1c1c;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px 9px;
+            font-size: 10px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .15s, transform .15s;
+            z-index: 10;
+        }
+
+        .tooltip.neg-tt {
+            bottom: auto;
+            top: calc(var(--zero-pct-top) + var(--bar-h) + 6px);
+        }
+
+        .tooltip strong {
+            display: block;
+            color: var(--text);
+            font-size: 11px;
+        }
+
+        .tooltip span {
+            color: var(--label);
+            font-size: 9px;
+        }
+
+        /* X labels strip */
+        .x-strip {
+            display: flex;
+            padding-left: 0;
+            padding-top: 6px;
+            border-top: 1.5px solid var(--axis);
+        }
+
+        .x-label {
+            flex: 1;
+            text-align: center;
+            font-size: 8.5px;
+            color: var(--label);
+            letter-spacing: 0.03em;
+            overflow: hidden;
+        }
+
+        /* ─── Footer ─────────────────────────────────────── */
+        .chart-footer {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .legend {
+            display: flex;
+            gap: 16px;
+        }
+
+        .leg-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--label);
+        }
+
+        .leg-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        .leg-dot.g {
+            background: var(--green);
+        }
+
+        .leg-dot.r {
+            background: var(--red);
+        }
+
+        .chart-note {
+            font-size: 9px;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <!-- Header -->
+        <div class="chart-header">
+            <div>
+                <div class="chart-title">Cambio Porcentual por Ticker</div>
+                <div class="chart-subtitle">Acciones del Merval · Cierre diario</div>
+            </div>
+            <div class="chart-date">22 / 02 / 2026</div>
+        </div>
+
+        <!-- Summary pills (rendered by JS) -->
+        <div class="summary-row" id="summaryRow"></div>
+
+        <!-- Chart -->
+        <div class="chart-layout">
+            <div class="y-axis" id="yAxis"></div>
+            <div class="plot-area">
+                <div class="grid-wrap" id="gridWrap">
+                    <div class="bars-overlay" id="barsOverlay"></div>
+                </div>
+                <div class="x-strip" id="xStrip"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="chart-footer">
+            <div class="legend">
+                <div class="leg-item">
+                    <div class="leg-dot g"></div> Sube
+                </div>
+                <div class="leg-item">
+                    <div class="leg-dot r"></div> Baja
+                </div>
+            </div>
+            <div class="chart-note">MERVAL · ARG · CIERRE 22-02-2026</div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ─────────────────────────────────────────
+           FUENTE DE DATOS
+        ───────────────────────────────────────── */
+        const DATA = [
+            { ticker: 'ALUA', precio: 898, cambio: -2.18 },
+            { ticker: 'BBAR', precio: 8170, cambio: 3.63 },
+            { ticker: 'BMA', precio: 13300, cambio: 2.08 },
+            { ticker: 'BYMA', precio: 326, cambio: 8.22 },
+            { ticker: 'CEPU', precio: 2367, cambio: -0.30 },
+            { ticker: 'COME', precio: 45.1, cambio: -2.15 },
+            { ticker: 'CRES', precio: 1770, cambio: 4.61 },
+            { ticker: 'EDN', precio: 2219.45, cambio: -2.37 },
+            { ticker: 'GGAL', precio: 7175, cambio: 4.20 },
+            { ticker: 'HARG', precio: 1690, cambio: 0.00 },
+            { ticker: 'LOMA', precio: 3280, cambio: -0.35 },
+            { ticker: 'METR', precio: 2042, cambio: -2.30 },
+            { ticker: 'MIRG', precio: 20700, cambio: 0.98 },
+            { ticker: 'PAMP', precio: 4772.5, cambio: -0.88 },
+            { ticker: 'SUPV', precio: 3197.5, cambio: 0.73 },
+            { ticker: 'TECO2', precio: 3305, cambio: 0.61 },
+            { ticker: 'TGNO4', precio: 4355, cambio: 0.58 },
+            { ticker: 'TGSU2', precio: 8825, cambio: 0.34 },
+            { ticker: 'TRAN', precio: 4010, cambio: 1.92 },
+            { ticker: 'TXAR', precio: 685, cambio: -1.44 },
+            { ticker: 'VALO', precio: 530.5, cambio: 0.47 },
+            { ticker: 'YPFD', precio: 55675, cambio: -0.49 },
+        ];
+
+        /* ─────────────────────────────────────────
+           ESCALA
+        ───────────────────────────────────────── */
+        const MAX_VAL = 9;   // tope positivo eje Y
+        const MIN_VAL = -3;   // tope negativo eje Y
+        const RANGE = MAX_VAL - MIN_VAL;
+
+        // % de altura que ocupa la zona positiva
+        const POS_FRAC = MAX_VAL / RANGE;   // ~0.75
+        const NEG_FRAC = Math.abs(MIN_VAL) / RANGE; // ~0.25
+
+        /* ─────────────────────────────────────────
+           SUMMARY PILLS
+        ───────────────────────────────────────── */
+        const positivos = DATA.filter(d => d.cambio > 0).length;
+        const negativos = DATA.filter(d => d.cambio < 0).length;
+        const neutros = DATA.filter(d => d.cambio === 0).length;
+        const mejor = DATA.reduce((a, b) => b.cambio > a.cambio ? b : a);
+        const peor = DATA.reduce((a, b) => b.cambio < a.cambio ? b : a);
+
+        document.getElementById('summaryRow').innerHTML = `
+    <div class="pill pos">▲ ${positivos} suben</div>
+    <div class="pill neg">▼ ${negativos} bajan</div>
+    ${neutros ? `<div class="pill neu">• ${neutros} sin cambio</div>` : ''}
+    <div class="pill pos">Mejor: ${mejor.ticker} +${mejor.cambio.toFixed(2)}%</div>
+    <div class="pill neg">Peor: ${peor.ticker} ${peor.cambio.toFixed(2)}%</div>
+  `;
+
+        /* ─────────────────────────────────────────
+           EJE Y — ticks
+        ───────────────────────────────────────── */
+        // ticks: 9, 7, 5, 3, 1, 0, -1, -3
+        const YTICKS = [9, 7, 5, 3, 1, 0, -1, -3];
+        const yAxis = document.getElementById('yAxis');
+
+        YTICKS.forEach(v => {
+            const el = document.createElement('span');
+            el.className = 'y-tick' + (v === 0 ? ' zero' : '');
+            el.textContent = v === 0 ? '0%' : (v > 0 ? `+${v}%` : `${v}%`);
+            yAxis.appendChild(el);
+        });
+
+        /* ─────────────────────────────────────────
+           GRID LINES (horizontal)
+        ───────────────────────────────────────── */
+        const gridWrap = document.getElementById('gridWrap');
+        YTICKS.forEach(v => {
+            const pct = ((MAX_VAL - v) / RANGE) * 100;
+            const line = document.createElement('div');
+            line.className = 'h-line' + (v === 0 ? ' zero-line' : '');
+            line.style.top = pct + '%';
+            gridWrap.appendChild(line);
+        });
+
+        /* ─────────────────────────────────────────
+           BARRAS
+        ───────────────────────────────────────── */
+        const overlay = document.getElementById('barsOverlay');
+        const xStrip = document.getElementById('xStrip');
+
+        // Posición del cero en % desde arriba
+        const ZERO_TOP_PCT = POS_FRAC * 100;  // e.g. 75%
+
+        DATA.forEach(d => {
+            const isPos = d.cambio >= 0;
+            const barPct = (Math.abs(d.cambio) / RANGE) * 100;  // altura como % del total
+
+            /* --- bar column --- */
+            const col = document.createElement('div');
+            col.className = 'bar-col';
+
+            /* --- bar rect --- */
+            const bar = document.createElement('div');
+            bar.className = 'bar ' + (isPos ? 'pos' : 'neg');
+
+            if (isPos) {
+                // crece hacia arriba desde la línea cero
+                bar.style.bottom = ZERO_TOP_PCT + '%';          // ancla en el cero (desde abajo)
+                // bottom from bottom = (100 - ZERO_TOP_PCT)%
+                // reuse CSS var trick via inline style
+                bar.style.bottom = (100 - ZERO_TOP_PCT) + '%';
+                bar.style.height = barPct + '%';
+            } else {
+                // crece hacia abajo desde la línea cero
+                bar.style.top = ZERO_TOP_PCT + '%';
+                bar.style.height = barPct + '%';
+            }
+
+            /* --- tooltip --- */
+            const tt = document.createElement('div');
+            tt.className = 'tooltip' + (isPos ? '' : ' neg-tt');
+
+            if (isPos) {
+                tt.style.bottom = `calc(${(100 - ZERO_TOP_PCT) + barPct}% + 6px)`;
+                tt.style.top = 'auto';
+            } else {
+                tt.style.top = `calc(${ZERO_TOP_PCT + barPct}% + 6px)`;
+                tt.style.bottom = 'auto';
+            }
+
+            tt.innerHTML = `
+      <strong style="color:${isPos ? 'var(--green)' : 'var(--red)'}">${isPos ? '+' : ''}${d.cambio.toFixed(2)}%</strong>
+      <span>$${d.precio.toLocaleString('es-AR')} · ${d.ticker}</span>
+    `;
+
+            col.appendChild(bar);
+            col.appendChild(tt);
+            overlay.appendChild(col);
+
+            /* --- x label --- */
+            const xl = document.createElement('div');
+            xl.className = 'x-label';
+            xl.textContent = d.ticker;
+            xStrip.appendChild(xl);
+        });
+    </script>
+</body>
+
+</html>
