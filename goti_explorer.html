@@ -260,6 +260,15 @@
             color: #444;
             text-transform: uppercase;
             letter-spacing: 0.2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .category-header:hover {
+            color: #777;
         }
 
         .search-box {
@@ -956,6 +965,18 @@
 
         totalCount.textContent = `${screens.length} Pantallas`;
 
+        // Estado de colapso de categorías - Empezamos con 'Auth & Profile' colapsado
+        const collapsedCategories = new Set(['Auth & Profile']);
+
+        function toggleCategory(cat) {
+            if (collapsedCategories.has(cat)) {
+                collapsedCategories.delete(cat);
+            } else {
+                collapsedCategories.add(cat);
+            }
+            renderSidebar(searchInput.value);
+        }
+
         function renderSidebar(filter = '') {
             navList.innerHTML = '';
             Object.keys(categories).sort().forEach(cat => {
@@ -966,18 +987,29 @@
                 );
 
                 if (catScreens.length > 0) {
+                    const isCollapsed = collapsedCategories.has(cat);
                     const header = document.createElement('div');
-                    header.className = 'category-header flex items-center gap-2';
-                    header.innerHTML = `<span class="material-symbols-outlined text-[14px]" style="color: ${catInfo.color}">${catInfo.icon}</span> ${catInfo.name}`;
+                    header.className = 'category-header group';
+                    header.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[14px]" style="color: ${catInfo.color}">${catInfo.icon}</span> 
+                            ${catInfo.name}
+                        </div>
+                        <span class="material-symbols-outlined text-[16px] transition-transform duration-300 ${isCollapsed ? '' : 'rotate-180'}" style="color: #333">expand_more</span>
+                    `;
+                    header.onclick = () => toggleCategory(cat);
                     navList.appendChild(header);
 
-                    catScreens.forEach(screen => {
-                        const item = document.createElement('div');
-                        item.className = 'nav-item';
-                        item.innerHTML = `<span class="material-symbols-outlined text-[18px]">${screen.icon}</span> ${screen.name}`;
-                        item.onclick = () => openPreview(screen, item);
-                        navList.appendChild(item);
-                    });
+                    // Si no está colapsado o si hay un filtro activo, mostramos las pantallas
+                    if (!isCollapsed || filter !== '') {
+                        catScreens.forEach(screen => {
+                            const item = document.createElement('div');
+                            item.className = 'nav-item';
+                            item.innerHTML = `<span class="material-symbols-outlined text-[18px]">${screen.icon}</span> ${screen.name}`;
+                            item.onclick = () => openPreview(screen, item);
+                            navList.appendChild(item);
+                        });
+                    }
                 }
             });
         }
