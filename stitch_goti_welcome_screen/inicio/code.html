@@ -305,7 +305,9 @@
                         <span class="material-symbols-outlined text-[12px]">trending_up</span>
                         <span id="pnl-pct">--</span>
                     </div>
-                    <span id="daily-gain" class="text-primary/80 text-[10px] font-bold">RESULTADO TOTAL: --</span>
+                    <span id="daily-gain" class="text-[10px] font-bold text-primary/80">RESULTADO TOTAL: --
+                        <span id="daily-gain-desc" style="font-weight:500;opacity:0.6;font-style:normal;"></span>
+                    </span>
                 </div>
                 <div class="flex gap-1" id="carousel-dots">
                     <div class="w-1 h-1 rounded-full bg-primary"></div>
@@ -1474,6 +1476,9 @@
             // Mostrar siempre la sección local (Mercado USA eliminado)
 
             // Real-time Clock & Greeting
+            // Nombres de días en español
+            const DAYS_ES = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
             function updateClock() {
                 const now = new Date();
                 const hours = now.getHours();
@@ -1481,61 +1486,54 @@
 
                 const clockEl = document.getElementById('header-clock');
                 const greetingEl = document.getElementById('dynamic-greeting');
-                const marketStatusEl = document.getElementById('market-status');
+                const marketStatEl = document.getElementById('market-status');
+                const dayLabelEl = document.getElementById('day-label');
 
                 if (clockEl) clockEl.textContent = timeStr;
+                if (dayLabelEl) dayLabelEl.textContent = `hoy: ${DAYS_ES[now.getDay()]}`;
 
-                // Update market status — Mercado AR: Lun-Vie 10:00-18:00 hs
-                const dayOfWeek = now.getDay(); // 0=Dom, 6=Sab
-                const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
-                if (marketStatusEl) {
+                // Estado del mercado — Mercado AR: Lun-Vie 10:00-18:00 hs
+                const dow = now.getDay(); // 0=Dom, 6=Sáb
+                const isWeekday = dow >= 1 && dow <= 5;
+                if (marketStatEl) {
                     if (isWeekday && hours >= 10 && hours < 18) {
-                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-primary animate-pulse"></span> MERCADO ABIERTO';
-                        marketStatusEl.classList.remove('text-yellow-500', 'text-orange-500');
-                        marketStatusEl.classList.add('text-primary');
+                        marketStatEl.innerHTML = '<span class="size-1.5 rounded-full bg-primary animate-pulse"></span> MERCADO ABIERTO';
+                        marketStatEl.className = marketStatEl.className.replace(/text-(yellow|orange|primary)-\S+/g, '');
+                        marketStatEl.classList.add('text-primary');
                     } else if (isWeekday && hours >= 18 && hours < 19) {
-                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-orange-500"></span> CIERRE · POS-MARKET';
-                        marketStatusEl.classList.remove('text-yellow-500', 'text-primary');
-                        marketStatusEl.classList.add('text-orange-500');
+                        marketStatEl.innerHTML = '<span class="size-1.5 rounded-full bg-orange-500"></span> CIERRE · POS-MARKET';
+                        marketStatEl.classList.remove('text-yellow-500', 'text-primary');
+                        marketStatEl.classList.add('text-orange-500');
                     } else if (!isWeekday) {
-                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-white/20"></span> FIN DE SEMANA';
-                        marketStatusEl.classList.remove('text-primary', 'text-orange-500');
-                        marketStatusEl.classList.add('text-yellow-500');
+                        marketStatEl.innerHTML = '<span class="size-1.5 rounded-full bg-white/20"></span> FIN DE SEMANA';
+                        marketStatEl.classList.remove('text-primary', 'text-orange-500');
+                        marketStatEl.classList.add('text-yellow-500');
                     } else {
-                        marketStatusEl.innerHTML = '<span class="size-1.5 rounded-full bg-yellow-500 animate-pulse"></span> PRE-MARKET';
-                        marketStatusEl.classList.remove('text-primary', 'text-orange-500');
-                        marketStatusEl.classList.add('text-yellow-500');
+                        marketStatEl.innerHTML = '<span class="size-1.5 rounded-full bg-yellow-500 animate-pulse"></span> PRE-MARKET';
+                        marketStatEl.classList.remove('text-primary', 'text-orange-500');
+                        marketStatEl.classList.add('text-yellow-500');
                     }
                 }
 
+                // Saludo dinámico
                 if (greetingEl) {
-                    let greeting = "Buenos días";
-                    if (hours >= 13) greeting = "Buenas tardes";
-                    if (hours >= 20 || hours < 5) greeting = "Buenas noches";
+                    let greeting = 'Buenos días';
+                    if (hours >= 13 && hours < 20) greeting = 'Buenas tardes';
+                    if (hours >= 20 || hours < 5) greeting = 'Buenas noches';
 
-                    // Get user name from localStorage
                     let userName = 'Inversor';
                     try {
                         const userStr = localStorage.getItem('goti_user');
                         if (userStr) {
                             const user = JSON.parse(userStr);
-                            // Preference order: name > email prefix
                             userName = user.name || (user.email ? user.email.split('@')[0] : 'Inversor');
                         }
-                    } catch (e) { console.error('Error parsing user:', e); }
-
+                    } catch (e) { }
                     greetingEl.textContent = `${greeting}, ${userName.toUpperCase()}`;
                 }
             }
-            // Agregar nombre del día al header en updateClock
-            const _DAYS_ES = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-            const _dayEl = document.getElementById('day-label');
-            const _origUpdateClock = updateClock;
-            function updateClock() {
-                _origUpdateClock();
-                if (_dayEl) _dayEl.textContent = `hoy: ${_DAYS_ES[new Date().getDay()]}`;
-            }
             updateClock();
+            setInterval(updateClock, 1000);
 
             // Real-time Data Simulation (sin sobreescribir el patrimonio real)
             const totalValueEl = document.getElementById('patrimony-value');
@@ -1826,7 +1824,11 @@
                 }
                 if (dailyEl) {
                     const absStr = Math.abs(Math.round(totalPnL)).toLocaleString('es-AR');
-                    dailyEl.textContent = `RESULTADO TOTAL: ${isPnLPos ? '+' : '-'}$ ${absStr}`;
+                    const descText = isPnLPos
+                        ? 'ganancia acum. vs precio de compra'
+                        : 'pérdida acum. vs precio de compra';
+                    dailyEl.innerHTML = `RESULTADO TOTAL: ${isPnLPos ? '+' : '-'}$ ${absStr}
+                        <span id="daily-gain-desc" style="font-weight:500;opacity:0.55;font-style:normal;">&nbsp;&middot;&nbsp;${descText}</span>`;
                     dailyEl.className = `text-[10px] font-bold ${isPnLPos ? 'text-primary/80' : 'text-danger/80'}`;
                 }
 
