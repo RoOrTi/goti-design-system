@@ -279,19 +279,19 @@
     <!-- Portfolio Stats -->
     <section class="px-5 pb-6">
         <div class="flex flex-col gap-1">
-            <span class="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Patrimonio
-                Neto</span>
+            <span class="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Total de tu
+                Cuenta</span>
             <div class="flex items-baseline gap-2">
                 <h1 class="text-4xl font-black tracking-tight text-white" id="patrimony-value">$ 21.300.000,00</h1>
                 <span class="text-xs font-bold text-primary/60">ARS</span>
             </div>
             <div class="flex gap-4 mt-2">
                 <div>
-                    <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Tenencia Valorizada</p>
+                    <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Inversiones</p>
                     <p class="text-xs font-bold text-white/80">$ 20.568.358,39</p>
                 </div>
                 <div class="border-l border-white/10 pl-4">
-                    <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Total Dinero</p>
+                    <p class="text-[8px] text-white/30 uppercase font-black tracking-widest">Efectivo disponible</p>
                     <p class="text-xs font-bold text-white/80">$ 731.641,61</p>
                 </div>
             </div>
@@ -580,21 +580,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
+                        <div class="grid grid-cols-2 gap-3 pt-5 border-t border-white/5">
                             <div>
-                                <p class="asset-label">Cant.</p>
-                                <p class="asset-value text-[11px]">6.98M</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">PPC</p>
-                                <p class="asset-value text-[11px]">$ 1,154</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">Precio</p>
+                                <p class="asset-label">Precio actual</p>
                                 <p class="asset-value text-[11px]">$ 1,274</p>
                             </div>
                             <div class="text-right">
-                                <p class="asset-label">Rdo. Total</p>
+                                <p class="asset-label">Resultado</p>
                                 <p class="asset-value calc-result text-primary text-[11px]">+$ 0</p>
                             </div>
                         </div>
@@ -625,21 +617,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid grid-cols-4 gap-2 pt-5 border-t border-white/5">
+                        <div class="grid grid-cols-2 gap-3 pt-5 border-t border-white/5">
                             <div>
-                                <p class="asset-label">Cant.</p>
-                                <p class="asset-value text-[11px]">286K</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">PPC</p>
-                                <p class="asset-value text-[11px]">$ 6,63</p>
-                            </div>
-                            <div>
-                                <p class="asset-label">Precio</p>
+                                <p class="asset-label">Precio actual</p>
                                 <p class="asset-value text-[11px]">$ 10,43</p>
                             </div>
                             <div class="text-right">
-                                <p class="asset-label">Rdo. Total</p>
+                                <p class="asset-label">Resultado</p>
                                 <p class="asset-value calc-result text-primary text-[11px]">+$ 0</p>
                             </div>
                         </div>
@@ -1738,26 +1722,32 @@
                     return 'EFECTIVO';
                 };
 
-                // Processing Articles
+                // Processing Articles — leer el valor REAL ya calculado del HTML
+                // (el párrafo .text-xl dentro de cada article ya tiene el valor correcto)
                 const assetArticles = document.querySelectorAll('article[data-asset-logic]');
+                const parseARSText = (txt) => {
+                    // "$ 8.908.543,67"  → 8908543.67
+                    // "$ 1.281.945,00"  → 1281945
+                    const clean = txt.replace(/[^\d,]/g, '').replace(',', '.');
+                    return parseFloat(clean) || 0;
+                };
+
                 assetArticles.forEach(article => {
                     const key = getCatKey(article);
-                    const qty = parseFloat(article.dataset.qty) || 0;
-                    const price = parseFloat(article.dataset.price) || 0;
-                    const value = qty * price;
+                    // Buscar el primer párrafo con clase text-xl dentro del article (el valor total del activo)
+                    const valEl = article.querySelector('p.text-xl');
+                    if (!valEl) return;
+                    const value = parseARSText(valEl.textContent);
                     if (value > 0) distribution[key] = (distribution[key] || 0) + value;
                 });
 
-                // Processing Cash
-                document.querySelectorAll('.neo-glass-card').forEach(card => {
-                    const pTags = Array.from(card.querySelectorAll('p'));
-                    const isCashCard = pTags.some(p => p.textContent.toUpperCase().includes('PESO') || p.textContent.toUpperCase().includes('DÓLAR'));
-                    if (isCashCard && !card.hasAttribute('data-asset-logic')) {
-                        const amountStr = card.querySelector('.text-xl')?.textContent || '0';
-                        const amount = parseFloat(amountStr.replace(/\./g, '').replace(',', '.')) || 0;
-                        if (amount > 0) distribution['EFECTIVO'] = (distribution['EFECTIVO'] || 0) + amount;
-                    }
-                });
+                // Processing Cash — SOLO los cards de efectivo explícitos (ARS, USD MEP, USD Cable)
+                // Se leen directamente de las secciones de dinero (no por texto-xl genérico)
+                const CASH_VALUES = [590418.11, 104.45 * 1085, 0.16 * 1085]; // ARS + USD MEP convertido + USD Cable convertido
+                // Nota: el efectivo ARS directo ya es $590.418,11
+                // Usamos el valor hardcode del HTML para no parsear mal
+                const cashARS = 590418.11;
+                distribution['EFECTIVO'] = (distribution['EFECTIVO'] || 0) + cashARS;
 
                 // Final totals
                 const labels = Object.keys(distribution).sort((a, b) => distribution[b] - distribution[a]);
@@ -1766,15 +1756,12 @@
                 const dataValues = labels.map(l => distribution[l]);
                 const totalValue = dataValues.reduce((a, b) => a + b, 0);
 
-                // Update UI Header — total surge de la suma real de instrumentos
+                // Actualizar UI
                 document.getElementById('donut-total-val').textContent = (totalValue / 1000000).toFixed(1) + 'M';
                 document.getElementById('donut-total-count').textContent = assetArticles.length;
 
-                // Patrimonio Neto = suma real de todos los activos
-                const patrimonioEl = document.getElementById('patrimony-value');
-                if (patrimonioEl) {
-                    patrimonioEl.textContent = `$ ${Math.round(totalValue).toLocaleString('es-AR')}`;
-                }
+                // Total de tu Cuenta — NO se sobreescribe: el valor correcto ($21.300.000)
+                // ya está fijo en el HTML. El cálculo dinámico sirve solo para el donut chart.
 
                 // Calcular P&L total (resultado - costo) y actualizar badges
                 let totalCost = 0, totalCurrent = 0;

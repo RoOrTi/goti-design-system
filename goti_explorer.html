@@ -37,6 +37,150 @@
             overflow: hidden;
         }
 
+        /* ─── Drum Kit Styles ─── */
+        #drumKitContainer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background: radial-gradient(ellipse at 50% 30%, #1a0a00 0%, #050505 70%);
+        }
+
+        #drumCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #drumUI {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 0 24px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            pointer-events: none;
+        }
+
+        #drumTitle {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(249, 208, 6, 0.7);
+            text-shadow: 0 0 20px rgba(249, 208, 6, 0.4);
+        }
+
+        #keyMapPanel {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            pointer-events: auto;
+        }
+
+        .key-chip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 7px 10px;
+            min-width: 52px;
+            transition: all 0.1s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .key-chip.hit {
+            background: rgba(249, 208, 6, 0.18);
+            border-color: #f9d006;
+            box-shadow: 0 0 16px rgba(249, 208, 6, 0.35);
+            transform: scale(1.08);
+        }
+
+        .key-chip .kbd {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 1px solid #444;
+            border-bottom: 3px solid #111;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            transition: all 0.08s;
+        }
+
+        .key-chip.hit .kbd {
+            background: linear-gradient(180deg, #f9d006 0%, #c9a800 100%);
+            border-color: #f9d006;
+            color: #000;
+            border-bottom: 1px solid #a88000;
+            transform: translateY(2px);
+        }
+
+        .key-chip .label {
+            font-size: 9px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-align: center;
+            transition: color 0.1s;
+        }
+
+        .key-chip.hit .label {
+            color: #f9d006;
+        }
+
+        #hitFeedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: 900;
+            color: #f9d006;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            pointer-events: none;
+            text-shadow: 0 0 30px #f9d006;
+            z-index: 20;
+            transition: none;
+        }
+
+        #drumKitTitle {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        #drumKitTitle h2 {
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.12);
+        }
+
         .sidebar {
             width: 320px;
             background-color: #0a0a0a;
@@ -325,20 +469,451 @@
                 </div>
             </div>
 
-            <!-- Empty State / Placeholder -->
-            <div id="emptyState" class="h-full flex flex-col items-center justify-center p-16 text-center">
-                <div
-                    class="size-20 bg-zinc-900/50 rounded-3xl flex items-center justify-center mb-6 border border-white/5">
-                    <span class="material-symbols-outlined text-5xl text-zinc-700">select_window</span>
+            <!-- Drum Kit -->
+            <div id="emptyState" class="h-full">
+                <div id="drumKitContainer">
+                    <canvas id="drumCanvas"></canvas>
+                    <div id="hitFeedback"></div>
+                    <div id="drumKitTitle">
+                        <h2>Virtual Drum Kit</h2>
+                    </div>
+                    <div id="drumUI">
+                        <div id="drumTitle">⬤ GOTI Drum Kit Designer · Toca con el teclado</div>
+                        <div id="keyMapPanel"></div>
+                    </div>
                 </div>
-                <h3 class="text-2xl font-black text-zinc-300 tracking-tight">Selecciona una pantalla</h3>
-                <p class="text-zinc-600 max-w-xs mt-2 text-sm">Explora los componentes en la barra lateral para ver una
-                    previsualización interactiva.</p>
             </div>
         </main>
     </div>
 
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+
+        /* ════════════════════════════════════════════════
+           DRUM KIT – Web Audio Engine (zero latency)
+        ════════════════════════════════════════════════ */
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+        function ensureAudio() {
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+        }
+
+        function playNoise(duration, hpFreq, color = 'white') {
+            const bufLen = audioCtx.sampleRate * duration;
+            const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
+            const data = buf.getChannelData(0);
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < bufLen; i++) {
+                const w = Math.random() * 2 - 1;
+                if (color === 'pink') {
+                    b0 = 0.99886 * b0 + w * 0.0555179; b1 = 0.99332 * b1 + w * 0.0750759;
+                    b2 = 0.96900 * b2 + w * 0.1538520; b3 = 0.86650 * b3 + w * 0.3104856;
+                    b4 = 0.55000 * b4 + w * 0.5329522; b5 = -0.7616 * b5 - w * 0.0168980;
+                    data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + w * 0.5362) / 7;
+                    b6 = w * 0.115926;
+                } else { data[i] = w; }
+            }
+            const src = audioCtx.createBufferSource();
+            src.buffer = buf;
+            const hp = audioCtx.createBiquadFilter();
+            hp.type = 'highpass'; hp.frequency.value = hpFreq;
+            src.connect(hp); hp.connect(audioCtx.destination);
+            src.start(); src.stop(audioCtx.currentTime + duration);
+        }
+
+        function playOsc(freq, type, decay, gain = 0.9, freqEnd = freq) {
+            const osc = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(freqEnd || 30, audioCtx.currentTime + decay);
+            g.gain.setValueAtTime(gain, audioCtx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + decay);
+            osc.connect(g); g.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + decay + 0.05);
+        }
+
+        function playClick(freq, decay) {
+            const osc = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            osc.type = 'sine'; osc.frequency.value = freq;
+            g.gain.setValueAtTime(1, audioCtx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + decay);
+            osc.connect(g); g.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + decay);
+        }
+
+        const drums = [
+            {
+                key: 'a', name: 'Bombo', label: 'KICK',
+                color: 0xc0392b, emissive: 0x8b0000, rimColor: 0x222222,
+                pos: [-2.8, -0.5, 0], scale: [1.4, 0.9, 1.4], isFloor: false, isBig: true,
+                play() {
+                    playOsc(150, 'sine', 0.5, 1.2, 40);
+                    playOsc(80, 'sine', 0.3, 0.8, 30);
+                    playClick(400, 0.02);
+                }
+            },
+            {
+                key: 's', name: 'Caja', label: 'SNARE',
+                color: 0xcccccc, emissive: 0x333333, rimColor: 0x888888,
+                pos: [-0.8, 0.2, 0.8], scale: [0.9, 0.55, 0.9], isFloor: false, isBig: false,
+                play() {
+                    playNoise(0.2, 500, 'pink');
+                    playOsc(220, 'triangle', 0.12, 0.9, 110);
+                    playClick(900, 0.015);
+                }
+            },
+            {
+                key: 'd', name: 'Hi-Hat C', label: 'HH CLO',
+                color: 0xd4af37, emissive: 0x5a4200, rimColor: 0xb8860b,
+                pos: [0.8, 1.1, 0.5], scale: [0.7, 0.04, 0.7], isFloor: false, isBig: false, isCymbal: true,
+                play() {
+                    playNoise(0.08, 8000, 'white');
+                    playClick(12000, 0.04);
+                }
+            },
+            {
+                key: 'f', name: 'Hi-Hat A', label: 'HH OP',
+                color: 0xd4af37, emissive: 0x5a4200, rimColor: 0xb8860b,
+                pos: [0.8, 1.3, 0.5], scale: [0.7, 0.04, 0.7], isFloor: false, isBig: false, isCymbal: true,
+                play() {
+                    playNoise(0.5, 7000, 'white');
+                    playClick(10000, 0.1);
+                }
+            },
+            {
+                key: 'g', name: 'Tom Alto', label: 'TOM HI',
+                color: 0x1a6b8a, emissive: 0x0a2a38, rimColor: 0x0d3d52,
+                pos: [0.6, 0.8, -0.2], scale: [0.75, 0.5, 0.75], isFloor: false, isBig: false,
+                play() {
+                    playOsc(280, 'sine', 0.25, 0.9, 120);
+                    playClick(500, 0.018);
+                }
+            },
+            {
+                key: 'h', name: 'Tom Base', label: 'TOM LO',
+                color: 0x1a6b8a, emissive: 0x0a2a38, rimColor: 0x0d3d52,
+                pos: [1.9, 0.5, -0.1], scale: [0.95, 0.6, 0.95], isFloor: false, isBig: false,
+                play() {
+                    playOsc(180, 'sine', 0.3, 0.9, 90);
+                    playClick(400, 0.02);
+                }
+            },
+            {
+                key: 'j', name: 'Crash', label: 'CRASH',
+                color: 0xe8c84a, emissive: 0x6b4e00, rimColor: 0xc8a800,
+                pos: [-1.8, 1.6, -0.3], scale: [0.85, 0.035, 0.85], isFloor: false, isBig: false, isCymbal: true,
+                play() {
+                    playNoise(1.2, 5000, 'white');
+                    playOsc(600, 'sawtooth', 0.8, 0.5, 100);
+                    playClick(8000, 0.05);
+                }
+            },
+            {
+                key: 'k', name: 'Ride', label: 'RIDE',
+                color: 0xe0c060, emissive: 0x5a4200, rimColor: 0xb09000,
+                pos: [3.0, 1.3, -0.4], scale: [0.9, 0.04, 0.9], isFloor: false, isBig: false, isCymbal: true,
+                play() {
+                    playNoise(0.9, 9000, 'pink');
+                    playOsc(800, 'sine', 1.0, 0.4, 200);
+                    playClick(10000, 0.03);
+                }
+            }
+        ];
+
+        /* ════════════════════════════════════════════════
+           THREE.JS – 3D Scene
+        ════════════════════════════════════════════════ */
+        const canvas = document.getElementById('drumCanvas');
+        const container = document.getElementById('drumKitContainer');
+        const W = () => container.clientWidth;
+        const H = () => container.clientHeight;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.3;
+        renderer.setSize(W(), H());
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.06);
+
+        const camera = new THREE.PerspectiveCamera(42, W() / H(), 0.1, 100);
+        camera.position.set(0, 4.5, 9);
+        camera.lookAt(0, 0.5, 0);
+
+        // Lights
+        const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+        scene.add(ambient);
+
+        const spotMain = new THREE.SpotLight(0xffeedd, 3.5, 30, Math.PI / 5, 0.4);
+        spotMain.position.set(0, 10, 4);
+        spotMain.castShadow = true;
+        spotMain.shadow.mapSize.set(1024, 1024);
+        scene.add(spotMain);
+
+        const spotLeft = new THREE.SpotLight(0x3355ff, 1.5, 20, Math.PI / 6, 0.5);
+        spotLeft.position.set(-8, 6, 2);
+        scene.add(spotLeft);
+
+        const spotRight = new THREE.SpotLight(0xff3300, 1.0, 20, Math.PI / 6, 0.5);
+        spotRight.position.set(8, 6, 2);
+        scene.add(spotRight);
+
+        // Floor
+        const floorGeo = new THREE.PlaneGeometry(30, 30);
+        const floorMat = new THREE.MeshStandardMaterial({
+            color: 0x111111,
+            roughness: 0.9,
+            metalness: 0.05
+        });
+        const floor = new THREE.Mesh(floorGeo, floorMat);
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.y = -1.1;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        // Stage platform
+        const stageGeo = new THREE.CylinderGeometry(5, 5.2, 0.25, 64);
+        const stageMat = new THREE.MeshStandardMaterial({ color: 0x181818, roughness: 0.7, metalness: 0.3 });
+        const stage = new THREE.Mesh(stageGeo, stageMat);
+        stage.position.y = -1.0;
+        stage.receiveShadow = true;
+        stage.castShadow = false;
+        scene.add(stage);
+
+        // Drum objects
+        const drumMeshes = [];
+        const hitLights = [];
+
+        function makeDrum(drum, index) {
+            const group = new THREE.Group();
+            group.position.set(...drum.pos);
+
+            const mat = new THREE.MeshStandardMaterial({
+                color: drum.color,
+                emissive: drum.emissive,
+                emissiveIntensity: 0.15,
+                roughness: drum.isCymbal ? 0.3 : 0.5,
+                metalness: drum.isCymbal ? 0.9 : 0.4,
+            });
+
+            let body;
+            if (drum.isCymbal) {
+                const geo = new THREE.CylinderGeometry(drum.scale[0], drum.scale[0] * 1.05, drum.scale[1], 48, 1);
+                body = new THREE.Mesh(geo, mat);
+                // Slight tilt
+                body.rotation.z = 0.12;
+                body.rotation.x = 0.05;
+            } else {
+                const geo = new THREE.CylinderGeometry(drum.scale[0], drum.scale[0] * 0.95, drum.scale[1], 48);
+                body = new THREE.Mesh(geo, mat);
+            }
+            body.castShadow = true;
+            body.receiveShadow = true;
+            group.add(body);
+
+            // Drum head (top membrane)
+            if (!drum.isCymbal) {
+                const headGeo = new THREE.CircleGeometry(drum.scale[0], 48);
+                const headMat = new THREE.MeshStandardMaterial({ color: 0xeeeeee, roughness: 0.9, metalness: 0.0 });
+                const head = new THREE.Mesh(headGeo, headMat);
+                head.rotation.x = -Math.PI / 2;
+                head.position.y = drum.scale[1] / 2 + 0.001;
+                head.castShadow = false;
+                group.add(head);
+
+                // Rim
+                const rimGeo = new THREE.TorusGeometry(drum.scale[0] + 0.03, 0.025, 12, 64);
+                const rimMat = new THREE.MeshStandardMaterial({ color: drum.rimColor, roughness: 0.3, metalness: 0.8 });
+                const rim = new THREE.Mesh(rimGeo, rimMat);
+                rim.rotation.x = Math.PI / 2;
+                rim.position.y = drum.scale[1] / 2;
+                rim.castShadow = true;
+                group.add(rim);
+
+                // Lugs (tension rods)
+                const lugCount = drum.isBig ? 12 : 8;
+                for (let i = 0; i < lugCount; i++) {
+                    const angle = (i / lugCount) * Math.PI * 2;
+                    const lugGeo = new THREE.CylinderGeometry(0.02, 0.02, drum.scale[1] * 0.6, 6);
+                    const lugMat = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 0.2, metalness: 0.95 });
+                    const lug = new THREE.Mesh(lugGeo, lugMat);
+                    lug.position.x = Math.cos(angle) * (drum.scale[0] + 0.07);
+                    lug.position.z = Math.sin(angle) * (drum.scale[0] + 0.07);
+                    lug.position.y = drum.scale[1] * 0.1;
+                    group.add(lug);
+                }
+            }
+
+            // Cymbal stand (simple)
+            if (drum.isCymbal) {
+                const standGeo = new THREE.CylinderGeometry(0.02, 0.02, 2.0, 8);
+                const standMat = new THREE.MeshStandardMaterial({ color: 0x666666, roughness: 0.4, metalness: 0.7 });
+                const stand = new THREE.Mesh(standGeo, standMat);
+                stand.position.y = -1.0;
+                group.add(stand);
+            } else if (drum.isBig) {
+                // Bass drum legs
+                for (let s = -1; s <= 1; s += 2) {
+                    const legGeo = new THREE.CylinderGeometry(0.03, 0.03, 1.0, 6);
+                    const legMat = new THREE.MeshStandardMaterial({ color: 0x666666, roughness: 0.3, metalness: 0.8 });
+                    const leg = new THREE.Mesh(legGeo, legMat);
+                    leg.position.set(s * 0.7, -drum.scale[1] / 2 - 0.4, 0);
+                    leg.rotation.z = s * 0.35;
+                    group.add(leg);
+                }
+            }
+
+            // Per-drum hit light (hidden until strike)
+            const hitLight = new THREE.PointLight(drum.color, 0, 4);
+            hitLight.position.set(0, drum.scale[1] / 2 + 0.5, 0);
+            group.add(hitLight);
+            hitLights.push(hitLight);
+
+            scene.add(group);
+            drumMeshes.push({ group, body, mat, hitLight, baseY: drum.pos[1] });
+        }
+
+        drums.forEach((d, i) => makeDrum(d, i));
+
+        /* ════════════════════════════════════════════════
+           Key Map UI Panel
+        ════════════════════════════════════════════════ */
+        const panel = document.getElementById('keyMapPanel');
+        const keyChips = {};
+        drums.forEach(d => {
+            const chip = document.createElement('div');
+            chip.className = 'key-chip';
+            chip.id = `chip-${d.key}`;
+            chip.innerHTML = `
+            <div class="kbd">${d.key.toUpperCase()}</div>
+            <div class="label">${d.label}</div>
+        `;
+            panel.appendChild(chip);
+            keyChips[d.key] = chip;
+        });
+
+        /* ════════════════════════════════════════════════
+           Hit Animation State
+        ════════════════════════════════════════════════ */
+        const hitTimers = {};
+        const chipTimers = {};
+        const feedbackEl = document.getElementById('hitFeedback');
+        let feedbackTimer = null;
+
+        function triggerDrum(index) {
+            ensureAudio();
+            const drum = drums[index];
+            const mesh = drumMeshes[index];
+
+            drum.play();
+
+            // Key chip flash
+            const chip = keyChips[drum.key];
+            if (chip) {
+                chip.classList.add('hit');
+                clearTimeout(chipTimers[drum.key]);
+                chipTimers[drum.key] = setTimeout(() => chip.classList.remove('hit'), 180);
+            }
+
+            // 3D hit animation: emissive pulse + Y bounce
+            mesh.mat.emissiveIntensity = 1.0;
+            mesh.hitLight.intensity = 6;
+            const startY = mesh.group.position.y;
+            mesh.group.position.y = startY + (drum.isCymbal ? 0.12 : 0.07);
+
+            clearTimeout(hitTimers[index]);
+            hitTimers[index] = setTimeout(() => {
+                mesh.mat.emissiveIntensity = 0.15;
+                mesh.hitLight.intensity = 0;
+                mesh.group.position.y = startY;
+            }, 120);
+
+            // Text feedback
+            feedbackEl.textContent = drum.name;
+            feedbackEl.style.opacity = '1';
+            feedbackEl.style.transition = 'none';
+            clearTimeout(feedbackTimer);
+            feedbackTimer = setTimeout(() => {
+                feedbackEl.style.transition = 'opacity 0.4s';
+                feedbackEl.style.opacity = '0';
+            }, 350);
+        }
+
+        /* ════════════════════════════════════════════════
+           Keyboard Input
+        ════════════════════════════════════════════════ */
+        const keyMap = {};
+        drums.forEach((d, i) => keyMap[d.key] = i);
+        const pressed = new Set();
+
+        document.addEventListener('keydown', e => {
+            const k = e.key.toLowerCase();
+            if (k in keyMap && !pressed.has(k)) {
+                pressed.add(k);
+                triggerDrum(keyMap[k]);
+            }
+        });
+        document.addEventListener('keyup', e => pressed.delete(e.key.toLowerCase()));
+
+        // Click on canvas area also triggers nearest drum (raycasting)
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        canvas.addEventListener('click', e => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            const allMeshes = drumMeshes.flatMap((m, i) => m.group.children.map(c => ({ obj: c, idx: i })));
+            const targets = allMeshes.map(a => a.obj);
+            const hits = raycaster.intersectObjects(targets);
+            if (hits.length > 0) {
+                const hitObj = hits[0].object;
+                const found = allMeshes.find(a => a.obj === hitObj);
+                if (found !== undefined) triggerDrum(found.idx);
+            }
+        });
+
+        /* ════════════════════════════════════════════════
+           Render Loop
+        ════════════════════════════════════════════════ */
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.008;
+
+            // Gentle idle bob / breath for cymbals
+            drumMeshes.forEach((m, i) => {
+                if (drums[i].isCymbal) {
+                    m.group.position.y = drums[i].pos[1] + Math.sin(time * 1.2 + i) * 0.005;
+                    m.group.rotation.z = Math.sin(time * 0.8 + i) * 0.008;
+                }
+            });
+
+            // Slowly rotate camera around set
+            camera.position.x = Math.sin(time * 0.08) * 0.6;
+            camera.lookAt(0.2, 0.6, 0);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(W(), H());
+            camera.aspect = W() / H();
+            camera.updateProjectionMatrix();
+        });
+
+        /* ════════════════════════════════════════════════
+           GOTI EXPLORER – Nav Logic (unchanged)
+        ════════════════════════════════════════════════ */
+
         // Mapeo de Categorías con Iconos y Nombres Traducidos
         const categoryMap = {
             'Brand & Identity': { name: 'Identidad de Marca', icon: 'branding_watermark', color: '#f9d006' },
